@@ -2,11 +2,7 @@
 #ifndef __snakePit__Snake__
 #define __snakePit__Snake__
 
-#include <stdio.h>
-#include <cstdlib>
-#include <iostream>
 #include "Pit.h"
-#include "globals.h"
 
 using namespace std;
 

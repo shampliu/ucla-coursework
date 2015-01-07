@@ -22,9 +22,9 @@ History::History(int nRows, int nCols) {
 }
 
 bool History::record(int r, int c) {
-    if (r > m_pit->rows() || c > m_pit->cols())
+    if (r > m_pit->rows() || c > m_pit->cols() || r < 1 || c < 1)
         return false;
-    m_array[r-1][c-1]++;
+    m_array[r-1][c-1]+=1;
     return true;
 }
 
@@ -41,7 +41,7 @@ void History::display() const {
                 grid[r][c] = 'Z';
             else
             {
-                char count = m_array[r][c]+100;
+                char count = m_array[r][c]+64;
                 grid[r][c] = count;
             }
         }

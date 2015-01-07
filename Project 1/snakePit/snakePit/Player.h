@@ -9,11 +9,6 @@
 #ifndef __snakePit__Player__
 #define __snakePit__Player__
 
-#include <stdio.h>
-#include <iostream>
-#include <cstdlib>
-#include "globals.h"
-
 using namespace std;
 
 class Pit;

@@ -9,10 +9,6 @@
 #ifndef __snakePit__Pit__
 #define __snakePit__Pit__
 
-#include <stdio.h>
-#include "globals.h"
-#include <iostream>
-#include <string>
 #include "History.h"
 
 using namespace std;

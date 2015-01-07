@@ -88,12 +88,11 @@ void Game::play()
                 case 'h':
                 {
                     m_pit->displayHistory();
-                    cout << "Press enter to continue.";
                     string s;
-                    cin >> s;
-                    cin.ignore(10000,'\n');
-                    clearScreen();
-                    m_pit->display(msg);
+                    cout << "Press enter to continue.";
+//                    cin.ignore(10000,'\n');
+                    getline(cin, s);
+                    continue;
                 }
                 case 'u':
                 case 'd':

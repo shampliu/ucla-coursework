@@ -10,6 +10,12 @@
 #define __snakePit__globals__
 
 #include <stdio.h>
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
 
 const int MAXROWS = 20;             // max number of rows in the pit
 const int MAXCOLS = 40;             // max number of columns in the pit
