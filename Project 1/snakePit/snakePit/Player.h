@@ -13,9 +13,10 @@
 #include <iostream>
 #include <cstdlib>
 #include "globals.h"
-#include "Pit.h"
 
 using namespace std;
+
+class Pit;
 
 class Player
 {

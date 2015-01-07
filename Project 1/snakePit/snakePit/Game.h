@@ -12,11 +12,13 @@
 #include <stdio.h>
 #include <cstdlib>
 #include <iostream>
-#include "Pit.h"
 #include "globals.h"
 #include "Player.h"
+#include <string>
 
 using namespace std;
+
+class Pit;
 
 class Game
 {

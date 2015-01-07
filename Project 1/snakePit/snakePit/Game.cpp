@@ -7,6 +7,7 @@
 //
 
 #include "Game.h"
+#include "Pit.h"
 
 Game::Game(int rows, int cols, int nSnakes)
 {
@@ -34,6 +35,9 @@ Game::Game(int rows, int cols, int nSnakes)
     int rPlayer = 1 + rand() % rows;
     int cPlayer = 1 + rand() % cols;
     m_pit->addPlayer(rPlayer, cPlayer);
+    
+    // Add History
+    m_pit->addHistory();
     
     // Populate with snakes
     while (nSnakes > 0)
@@ -67,7 +71,7 @@ void Game::play()
         m_pit->display(msg);
         msg = "";
         cout << endl;
-        cout << "Move (u/d/l/r//q): ";
+        cout << "Move (u/d/l/r//h/q): ";
         string action;
         getline(cin,action);
         if (action.size() == 0)
@@ -81,6 +85,16 @@ void Game::play()
                     continue;
                 case 'q':
                     return;
+                case 'h':
+                {
+                    m_pit->displayHistory();
+                    cout << "Press enter to continue.";
+                    string s;
+                    cin >> s;
+                    cin.ignore(10000,'\n');
+                    clearScreen();
+                    m_pit->display(msg);
+                }
                 case 'u':
                 case 'd':
                 case 'l':
