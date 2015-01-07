@@ -85,7 +85,9 @@ void Player::move(int dir)
         m_col += 2 * colDelta;
         if (m_pit->numberOfSnakesAt(m_row, m_col) > 0)  // landed on a snake!
             setDead();
-        m_pit->history();
+//        m_pit->history();
+        m_pit->history().record(m_row, m_col);
+        return;
     }
 }
 

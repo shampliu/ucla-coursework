@@ -36,8 +36,8 @@ Game::Game(int rows, int cols, int nSnakes)
     int cPlayer = 1 + rand() % cols;
     m_pit->addPlayer(rPlayer, cPlayer);
     
-    // Add History
-    m_pit->addHistory();
+//    // Add History
+//    m_pit->addHistory();
     
     // Populate with snakes
     while (nSnakes > 0)
@@ -92,6 +92,7 @@ void Game::play()
                     cout << "Press enter to continue.";
 //                    cin.ignore(10000,'\n');
                     getline(cin, s);
+                    clearScreen();
                     continue;
                 }
                 case 'u':

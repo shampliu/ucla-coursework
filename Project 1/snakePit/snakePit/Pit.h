@@ -35,7 +35,7 @@ public:
     // Mutators
     bool   addSnake(int r, int c);
     bool   addPlayer(int r, int c);
-    bool   addHistory();
+//    bool   addHistory();
     bool   destroyOneSnake(int r, int c);
     bool   moveSnakes();
     

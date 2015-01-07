@@ -2,9 +2,9 @@
 #ifndef __snakePit__Snake__
 #define __snakePit__Snake__
 
-#include "Pit.h"
-
 using namespace std;
+
+class Pit;
 
 class Snake
 {

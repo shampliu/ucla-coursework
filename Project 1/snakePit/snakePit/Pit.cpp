@@ -26,7 +26,7 @@ Pit::Pit(int nRows, int nCols)
     m_cols = nCols;
     m_player = nullptr;
     m_nSnakes = 0;
-    m_history = nullptr;
+    m_history = new History(nRows, nCols);
 }
 
 Pit::~Pit()
@@ -151,13 +151,11 @@ bool Pit::addPlayer(int r, int c)
     return true;
 }
 
-bool Pit::addHistory()
-{
-    if (m_history != nullptr)
-        return false;
-    m_history = new History(m_rows, m_cols);
-    return true;
-}
+//bool Pit::addHistory()
+//{
+//    m_history = new History(m_rows, m_cols);
+//    return true;
+//}
 
 bool Pit::destroyOneSnake(int r, int c)
 {
@@ -193,7 +191,5 @@ void Pit::displayHistory() const {
 }
 
 History& Pit::history() {
-    m_history->record(m_player->row(), m_player->col());
-    
     return *m_history;
 }

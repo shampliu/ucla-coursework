@@ -7,6 +7,7 @@
 //
 
 #include "Snake.h"
+#include "Pit.h"
 
 Snake::Snake(Pit* pp, int r, int c)
 {

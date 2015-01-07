@@ -10,47 +10,60 @@
 #include "Pit.h"
 
 History::History(int nRows, int nCols) {
-    m_pit = new Pit(nRows, nCols);
-    for (int i=0; i < nRows; i++)
+//    m_pit = new Pit(nRows, nCols);
+//    for (int i=0; i < nRows; i++)
+//    {
+//        for (int j=0; j < nCols; j++)
+//        {
+//            m_array[i][j] = 0;
+//        }
+//    }
+    m_rows = nRows;
+    m_cols = nCols;
+    for (int i = 0; i < nRows; i++)
     {
-        for (int j=0; j < nCols; j++)
+        for (int j = 0; j < nCols; j++)
         {
-            m_array[i][j] = 0;
+            m_grid[i][j] = '.';
         }
     }
+    
     
 }
 
 bool History::record(int r, int c) {
-    if (r > m_pit->rows() || c > m_pit->cols() || r < 1 || c < 1)
+//    if (r > m_pit->rows() || c > m_pit->cols() || r < 1 || c < 1)
+//        return false;
+//    m_array[r-1][c-1]+=1;
+//    return true;
+    if ((r <= m_rows && r >= 1 ) && (c <= m_cols && c >= 1))
+    {
+        if (m_grid[r-1][c-1] == '.')
+        {
+            m_grid[r-1][c-1] = 'A';
+            return true;
+        }
+        else if (m_grid[r-1][c-1] == 'Z')
+        {
+            return true;
+        }
+        else
+        {
+            m_grid[r-1][c-1]++;
+            return true;
+        }
+    }
+    else
         return false;
-    m_array[r-1][c-1]+=1;
-    return true;
+    
 }
 
 void History::display() const {
-    char grid[MAXROWS][MAXCOLS];
-    int r, c;
-    
-    for (r = 0; r < m_pit->rows(); r++)
-        for (c = 0; c < m_pit->cols(); c++)
-        {
-            if (m_array[r][c] == 0)
-                grid[r][c] = '.';
-            else if (m_array[r][c] >= 26)
-                grid[r][c] = 'Z';
-            else
-            {
-                char count = m_array[r][c]+64;
-                grid[r][c] = count;
-            }
-        }
-   
     clearScreen();
-    for (r = 0; r < m_pit->rows(); r++)
+    for (int r = 0; r < m_rows; r++)
     {
-        for (c = 0; c < m_pit->cols(); c++)
-            cout << grid[r][c];
+        for (int c = 0; c < m_cols; c++)
+            cout << m_grid[r][c];
         cout << endl;
     }
     cout << endl;
