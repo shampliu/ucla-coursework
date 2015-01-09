@@ -89,8 +89,7 @@ void Game::play()
                     m_pit->displayHistory();
                     string s;
                     cout << "Press enter to continue.";
-//                    cin.ignore(10000,'\n');
-                    getline(cin, s);
+                    cin.ignore(10000,'\n');
                     clearScreen();
                     continue;
                 }
