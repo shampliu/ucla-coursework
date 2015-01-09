@@ -23,7 +23,6 @@ public:
     void display() const;
     
 private:
-//    Pit* m_pit;
     int  m_rows;
     int  m_cols;
     char m_grid[MAXROWS][MAXCOLS];

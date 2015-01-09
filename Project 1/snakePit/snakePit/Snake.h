@@ -2,8 +2,6 @@
 #ifndef __snakePit__Snake__
 #define __snakePit__Snake__
 
-using namespace std;
-
 class Pit;
 
 class Snake

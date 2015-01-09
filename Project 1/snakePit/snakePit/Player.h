@@ -9,8 +9,6 @@
 #ifndef __snakePit__Player__
 #define __snakePit__Player__
 
-using namespace std;
-
 class Pit;
 
 class Player

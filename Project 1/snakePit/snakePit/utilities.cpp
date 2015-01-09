@@ -8,6 +8,8 @@
 
 #include "globals.h"
 
+using namespace std;
+
 int decodeDirection(char dir)
 {
     switch (dir)

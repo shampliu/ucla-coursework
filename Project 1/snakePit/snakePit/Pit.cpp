@@ -151,12 +151,6 @@ bool Pit::addPlayer(int r, int c)
     return true;
 }
 
-//bool Pit::addHistory()
-//{
-//    m_history = new History(m_rows, m_cols);
-//    return true;
-//}
-
 bool Pit::destroyOneSnake(int r, int c)
 {
     for (int k = 0; k < m_nSnakes; k++)

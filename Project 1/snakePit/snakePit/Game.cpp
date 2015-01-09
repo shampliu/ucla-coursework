@@ -9,6 +9,8 @@
 #include "Game.h"
 #include "Pit.h"
 
+using namespace std;
+
 Game::Game(int rows, int cols, int nSnakes)
 {
     if (nSnakes < 0)
@@ -35,9 +37,6 @@ Game::Game(int rows, int cols, int nSnakes)
     int rPlayer = 1 + rand() % rows;
     int cPlayer = 1 + rand() % cols;
     m_pit->addPlayer(rPlayer, cPlayer);
-    
-//    // Add History
-//    m_pit->addHistory();
     
     // Populate with snakes
     while (nSnakes > 0)

@@ -9,15 +9,9 @@
 #include "History.h"
 #include "Pit.h"
 
+using namespace std;
+
 History::History(int nRows, int nCols) {
-//    m_pit = new Pit(nRows, nCols);
-//    for (int i=0; i < nRows; i++)
-//    {
-//        for (int j=0; j < nCols; j++)
-//        {
-//            m_array[i][j] = 0;
-//        }
-//    }
     m_rows = nRows;
     m_cols = nCols;
     for (int i = 0; i < nRows; i++)
@@ -32,10 +26,6 @@ History::History(int nRows, int nCols) {
 }
 
 bool History::record(int r, int c) {
-//    if (r > m_pit->rows() || c > m_pit->cols() || r < 1 || c < 1)
-//        return false;
-//    m_array[r-1][c-1]+=1;
-//    return true;
     if ((r <= m_rows && r >= 1 ) && (c <= m_cols && c >= 1))
     {
         if (m_grid[r-1][c-1] == '.')
@@ -55,7 +45,6 @@ bool History::record(int r, int c) {
     }
     else
         return false;
-    
 }
 
 void History::display() const {

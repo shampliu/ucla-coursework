@@ -9,6 +9,8 @@
 #include "Player.h"
 #include "Pit.h"
 
+using namespace std;
+
 Player::Player(Pit* pp, int r, int c)
 {
     if (pp == nullptr)
@@ -85,7 +87,6 @@ void Player::move(int dir)
         m_col += 2 * colDelta;
         if (m_pit->numberOfSnakesAt(m_row, m_col) > 0)  // landed on a snake!
             setDead();
-//        m_pit->history();
         m_pit->history().record(m_row, m_col);
         return;
     }

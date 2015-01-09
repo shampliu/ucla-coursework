@@ -9,6 +9,8 @@
 #include "Snake.h"
 #include "Pit.h"
 
+using namespace std;
+
 Snake::Snake(Pit* pp, int r, int c)
 {
     if (pp == nullptr)

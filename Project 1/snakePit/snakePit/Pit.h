@@ -11,8 +11,6 @@
 
 #include "History.h"
 
-using namespace std;
-
 class Snake;
 class Player;
 
@@ -29,13 +27,12 @@ public:
     Player* player() const;
     int     snakeCount() const;
     int     numberOfSnakesAt(int r, int c) const;
-    void    display(string msg) const;
+    void    display(std::string msg) const;
     void    displayHistory() const;
     
     // Mutators
     bool   addSnake(int r, int c);
     bool   addPlayer(int r, int c);
-//    bool   addHistory();
     bool   destroyOneSnake(int r, int c);
     bool   moveSnakes();
     
