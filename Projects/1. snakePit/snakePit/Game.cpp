@@ -90,8 +90,8 @@ void Game::play()
                     string s;
                     cout << "Press enter to continue.";
                     cin.ignore(10000,'\n');
-                    clearScreen();
-                    continue;
+                    clearScreen(); // go back to previous screen
+                    continue; // doesn't count as a move
                 }
                 case 'u':
                 case 'd':

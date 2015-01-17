@@ -181,7 +181,7 @@ bool Pit::moveSnakes()
 }
 
 void Pit::displayHistory() const {
-    m_history->display();
+    m_history->display(); 
 }
 
 History& Pit::history() {
