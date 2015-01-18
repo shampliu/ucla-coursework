@@ -14,7 +14,9 @@
 
 const int DEFAULT_MAX_ITEMS = 200;
 
+//typedef unsigned long ItemType;
 typedef std::string ItemType;
+
 
 class Multiset
 {
@@ -23,11 +25,11 @@ public:
     
     bool empty();  // Return true if the multiset is empty, otherwise false.
     
-    int size();
+    int size() const;
     // Return the number of items in the multiset.  For example, the size
     // of a multiset containing "cumin", "cumin", "cumin", "turmeric" is 4.
     
-    int uniqueSize();
+    int uniqueSize() const;
     // Return the number of distinct items in the multiset.  For example,
     // the uniqueSize of a multiset containing "cumin", "cumin", "cumin",
     // "turmeric" is 2.
@@ -45,13 +47,13 @@ public:
     // Remove all instances of value from the multiset if present.
     // Return the number of instances removed.
     
-    bool contains(const ItemType& value);
+    bool contains(const ItemType& value) const;
     // Return true if the value is in the multiset, otherwise false.
     
-    int count(const ItemType& value);
+    int count(const ItemType& value) const;
     // Return the number of instances of value in the multiset.
     
-    int get(int i, ItemType& value);
+    int get(int i, ItemType& value) const;
     // If 0 <= i < uniqueSize(), copy into value an item in the
     // multiset and return the number of instances of that item in
     // the multiset.  Otherwise, leave value unchanged and return 0.
@@ -71,7 +73,7 @@ private:
     int m_uniqueSize;
     Item* m_array[DEFAULT_MAX_ITEMS];
     bool remove(int index);
-    int find(ItemType value);
+    int find(ItemType value) const;
 
 };
 

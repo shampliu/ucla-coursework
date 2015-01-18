@@ -21,6 +21,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		B0EF52CB1A6B411D00BE0494 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -28,10 +37,18 @@
 		B05E795A1A66EA5600485E99 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B09A81491A66EA8500B29103 /* Multiset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Multiset.cpp; sourceTree = "<group>"; };
 		B09A814A1A66EA8500B29103 /* Multiset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Multiset.h; sourceTree = "<group>"; };
+		B0EF52CD1A6B411D00BE0494 /* testMultiset */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testMultiset; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B05E79541A66EA5600485E99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0EF52CA1A6B411D00BE0494 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -53,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				B05E79571A66EA5600485E99 /* multiset */,
+				B0EF52CD1A6B411D00BE0494 /* testMultiset */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,6 +105,23 @@
 			productReference = B05E79571A66EA5600485E99 /* multiset */;
 			productType = "com.apple.product-type.tool";
 		};
+		B0EF52CC1A6B411D00BE0494 /* testMultiset */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0EF52D31A6B411E00BE0494 /* Build configuration list for PBXNativeTarget "testMultiset" */;
+			buildPhases = (
+				B0EF52C91A6B411D00BE0494 /* Sources */,
+				B0EF52CA1A6B411D00BE0494 /* Frameworks */,
+				B0EF52CB1A6B411D00BE0494 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = testMultiset;
+			productName = testMultiset;
+			productReference = B0EF52CD1A6B411D00BE0494 /* testMultiset */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -97,6 +132,9 @@
 				ORGANIZATIONNAME = "Chang Liu";
 				TargetAttributes = {
 					B05E79561A66EA5600485E99 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					B0EF52CC1A6B411D00BE0494 = {
 						CreatedOnToolsVersion = 6.1;
 					};
 				};
@@ -114,6 +152,7 @@
 			projectRoot = "";
 			targets = (
 				B05E79561A66EA5600485E99 /* multiset */,
+				B0EF52CC1A6B411D00BE0494 /* testMultiset */,
 			);
 		};
 /* End PBXProject section */
@@ -125,6 +164,13 @@
 			files = (
 				B09A814B1A66EA8500B29103 /* Multiset.cpp in Sources */,
 				B05E795B1A66EA5600485E99 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0EF52C91A6B411D00BE0494 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +265,24 @@
 			};
 			name = Release;
 		};
+		B0EF52D11A6B411E00BE0494 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B0EF52D21A6B411E00BE0494 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -239,6 +303,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		B0EF52D31A6B411E00BE0494 /* Build configuration list for PBXNativeTarget "testMultiset" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0EF52D11A6B411E00BE0494 /* Debug */,
+				B0EF52D21A6B411E00BE0494 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
