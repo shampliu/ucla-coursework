@@ -5,16 +5,16 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>4EDB171E-D415-4A6E-B4BB-1013ADDCE32A</string>
+	<string>48129B93-F90B-4AD4-B76F-B88044D5DD3A</string>
 	<key>IDESourceControlProjectName</key>
-	<string>multiset</string>
+	<string>1. multiset</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>22565FB0569488E754B3DDD591275D4772F92583</key>
 		<string>https://github.com/shampliu/cs32.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Homework/1. multiset/multiset.xcodeproj</string>
+	<string>Homework/1. multiset/1. multiset.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>22565FB0569488E754B3DDD591275D4772F92583</key>

@@ -4,25 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>multiset.xcscheme</key>
+		<key>1. multiset.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>testMultiset.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>B05E79561A66EA5600485E99</key>
+		<key>B0E6BDAE1A6DA62E0098DF28</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B0EF52CC1A6B411D00BE0494</key>
+		<key>B0E6BDC21A6DBFEF0098DF28</key>
 		<dict>
 			<key>primary</key>
 			<true/>

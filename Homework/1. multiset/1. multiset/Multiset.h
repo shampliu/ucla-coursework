@@ -1,21 +1,21 @@
 //
 //  Multiset.h
-//  multiset
+//  1. multiset
 //
-//  Created by Chang Liu on 1/14/15.
+//  Created by Chang Liu on 1/19/15.
 //  Copyright (c) 2015 Chang Liu. All rights reserved.
 //
 
-#ifndef __multiset__Multiset__
-#define __multiset__Multiset__
+#ifndef _____multiset__Multiset__
+#define _____multiset__Multiset__
 
 #include <iostream>
 #include <string>
 
 const int DEFAULT_MAX_ITEMS = 200;
 
-//typedef unsigned long ItemType;
-typedef std::string ItemType;
+typedef unsigned long ItemType;
+//typedef std::string ItemType;
 
 
 class Multiset
@@ -65,16 +65,16 @@ public:
 private:
     struct Item {
         int m_count;
-        ItemType m_word;
+        ItemType m_item;
         
-    public:
-        Item(ItemType a) : m_word(a), m_count(1) {};
     };
     int m_uniqueSize;
-    Item* m_array[DEFAULT_MAX_ITEMS];
+    Item m_array[DEFAULT_MAX_ITEMS];
+    
+    // Helper Functions
     bool remove(int index);
     int find(ItemType value) const;
-
+    
 };
 
-#endif /* defined(__multiset__Multiset__) */
+#endif /* defined(_____multiset__Multiset__) */

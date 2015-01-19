@@ -1,0 +1,341 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B0E6BDB31A6DA62E0098DF28 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0E6BDB21A6DA62E0098DF28 /* main.cpp */; };
+		B0E6BDBB1A6DA6560098DF28 /* newMultiset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0E6BDB91A6DA6560098DF28 /* newMultiset.cpp */; };
+		B0E6BDBE1A6DBC230098DF28 /* Multiset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0E6BDBC1A6DBC230098DF28 /* Multiset.cpp */; };
+		B0E6BDCC1A6DC1D40098DF28 /* StudentMultiset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0E6BDCA1A6DC1D40098DF28 /* StudentMultiset.cpp */; };
+		B0E6BDCE1A6DC21D0098DF28 /* testMultiset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0E6BDCD1A6DC21D0098DF28 /* testMultiset.cpp */; };
+		B0E6BDD01A6DC26A0098DF28 /* testnewMultiset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0E6BDCF1A6DC26A0098DF28 /* testnewMultiset.cpp */; };
+		B0E6BDD21A6DC9780098DF28 /* testStudentMultiset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0E6BDD11A6DC9780098DF28 /* testStudentMultiset.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B0E6BDAD1A6DA62E0098DF28 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		B0E6BDC11A6DBFEF0098DF28 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B0E6BDAF1A6DA62E0098DF28 /* 1. multiset */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "1. multiset"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0E6BDB21A6DA62E0098DF28 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		B0E6BDB91A6DA6560098DF28 /* newMultiset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = newMultiset.cpp; sourceTree = "<group>"; };
+		B0E6BDBA1A6DA6560098DF28 /* newMultiset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newMultiset.h; sourceTree = "<group>"; };
+		B0E6BDBC1A6DBC230098DF28 /* Multiset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Multiset.cpp; sourceTree = "<group>"; };
+		B0E6BDBD1A6DBC230098DF28 /* Multiset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Multiset.h; sourceTree = "<group>"; };
+		B0E6BDC31A6DBFEF0098DF28 /* testnewMultiset */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testnewMultiset; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0E6BDCA1A6DC1D40098DF28 /* StudentMultiset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StudentMultiset.cpp; sourceTree = "<group>"; };
+		B0E6BDCB1A6DC1D40098DF28 /* StudentMultiset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentMultiset.h; sourceTree = "<group>"; };
+		B0E6BDCD1A6DC21D0098DF28 /* testMultiset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testMultiset.cpp; sourceTree = "<group>"; };
+		B0E6BDCF1A6DC26A0098DF28 /* testnewMultiset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testnewMultiset.cpp; sourceTree = "<group>"; };
+		B0E6BDD11A6DC9780098DF28 /* testStudentMultiset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testStudentMultiset.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B0E6BDAC1A6DA62E0098DF28 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0E6BDC01A6DBFEF0098DF28 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B0E6BDA61A6DA62D0098DF28 = {
+			isa = PBXGroup;
+			children = (
+				B0E6BDB11A6DA62E0098DF28 /* 1. multiset */,
+				B0E6BDB01A6DA62E0098DF28 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B0E6BDB01A6DA62E0098DF28 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B0E6BDAF1A6DA62E0098DF28 /* 1. multiset */,
+				B0E6BDC31A6DBFEF0098DF28 /* testnewMultiset */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B0E6BDB11A6DA62E0098DF28 /* 1. multiset */ = {
+			isa = PBXGroup;
+			children = (
+				B0E6BDB21A6DA62E0098DF28 /* main.cpp */,
+				B0E6BDBD1A6DBC230098DF28 /* Multiset.h */,
+				B0E6BDBC1A6DBC230098DF28 /* Multiset.cpp */,
+				B0E6BDCB1A6DC1D40098DF28 /* StudentMultiset.h */,
+				B0E6BDCA1A6DC1D40098DF28 /* StudentMultiset.cpp */,
+				B0E6BDBA1A6DA6560098DF28 /* newMultiset.h */,
+				B0E6BDB91A6DA6560098DF28 /* newMultiset.cpp */,
+				B0E6BDCD1A6DC21D0098DF28 /* testMultiset.cpp */,
+				B0E6BDD11A6DC9780098DF28 /* testStudentMultiset.cpp */,
+				B0E6BDCF1A6DC26A0098DF28 /* testnewMultiset.cpp */,
+			);
+			path = "1. multiset";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B0E6BDAE1A6DA62E0098DF28 /* 1. multiset */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0E6BDB61A6DA62E0098DF28 /* Build configuration list for PBXNativeTarget "1. multiset" */;
+			buildPhases = (
+				B0E6BDAB1A6DA62E0098DF28 /* Sources */,
+				B0E6BDAC1A6DA62E0098DF28 /* Frameworks */,
+				B0E6BDAD1A6DA62E0098DF28 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "1. multiset";
+			productName = "1. multiset";
+			productReference = B0E6BDAF1A6DA62E0098DF28 /* 1. multiset */;
+			productType = "com.apple.product-type.tool";
+		};
+		B0E6BDC21A6DBFEF0098DF28 /* testnewMultiset */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0E6BDC71A6DBFEF0098DF28 /* Build configuration list for PBXNativeTarget "testnewMultiset" */;
+			buildPhases = (
+				B0E6BDBF1A6DBFEF0098DF28 /* Sources */,
+				B0E6BDC01A6DBFEF0098DF28 /* Frameworks */,
+				B0E6BDC11A6DBFEF0098DF28 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = testnewMultiset;
+			productName = testnewMultiset;
+			productReference = B0E6BDC31A6DBFEF0098DF28 /* testnewMultiset */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B0E6BDA71A6DA62D0098DF28 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Chang Liu";
+				TargetAttributes = {
+					B0E6BDAE1A6DA62E0098DF28 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					B0E6BDC21A6DBFEF0098DF28 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = B0E6BDAA1A6DA62D0098DF28 /* Build configuration list for PBXProject "1. multiset" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B0E6BDA61A6DA62D0098DF28;
+			productRefGroup = B0E6BDB01A6DA62E0098DF28 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B0E6BDAE1A6DA62E0098DF28 /* 1. multiset */,
+				B0E6BDC21A6DBFEF0098DF28 /* testnewMultiset */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B0E6BDAB1A6DA62E0098DF28 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0E6BDD21A6DC9780098DF28 /* testStudentMultiset.cpp in Sources */,
+				B0E6BDCE1A6DC21D0098DF28 /* testMultiset.cpp in Sources */,
+				B0E6BDB31A6DA62E0098DF28 /* main.cpp in Sources */,
+				B0E6BDBB1A6DA6560098DF28 /* newMultiset.cpp in Sources */,
+				B0E6BDD01A6DC26A0098DF28 /* testnewMultiset.cpp in Sources */,
+				B0E6BDCC1A6DC1D40098DF28 /* StudentMultiset.cpp in Sources */,
+				B0E6BDBE1A6DBC230098DF28 /* Multiset.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0E6BDBF1A6DBFEF0098DF28 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B0E6BDB41A6DA62E0098DF28 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B0E6BDB51A6DA62E0098DF28 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B0E6BDB71A6DA62E0098DF28 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B0E6BDB81A6DA62E0098DF28 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B0E6BDC81A6DBFEF0098DF28 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B0E6BDC91A6DBFEF0098DF28 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B0E6BDAA1A6DA62D0098DF28 /* Build configuration list for PBXProject "1. multiset" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0E6BDB41A6DA62E0098DF28 /* Debug */,
+				B0E6BDB51A6DA62E0098DF28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B0E6BDB61A6DA62E0098DF28 /* Build configuration list for PBXNativeTarget "1. multiset" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0E6BDB71A6DA62E0098DF28 /* Debug */,
+				B0E6BDB81A6DA62E0098DF28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B0E6BDC71A6DBFEF0098DF28 /* Build configuration list for PBXNativeTarget "testnewMultiset" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0E6BDC81A6DBFEF0098DF28 /* Debug */,
+				B0E6BDC91A6DBFEF0098DF28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B0E6BDA71A6DA62D0098DF28 /* Project object */;
+}
