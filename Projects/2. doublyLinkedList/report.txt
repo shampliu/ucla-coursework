@@ -1,0 +1,173 @@
+Chang Liu
+CS 32
+Project 3 Report
+
+============================
+Design of Doubly Linked List
+============================
+
+A typical doubly-linked list looks something like
+
+		HEAD				TAIL
+nullptr   <->	“blah”	 <->	“blah2”	  <->	“blah3”	  <-> 	nullptr
+
+The linked list begins as empty, with both head and tail Nodes as nullptrs. The list is not circular. There are two dummy nodes, one for the head and one for the tail. The head’s prev Node always points to nullptr and the tail’s next Node always points to nullptr. In the Nodes themselves, they contain an ItemType, a count for that item, and a prev / next Node pointer. Inserting a new Node will insert it at the end of the linked list so the newest Node is the tail. This was fast to implement since we have a tail pointer to insert after. 
+
+==========
+Pseudocode
+==========
+
+1. Multiset::Node* Multiset::find(const ItemType& search)
+
+make pointer to head Node
+while the pointer isn’t null
+ check if the value at the pointer is equal to search
+  return the Node if so
+ point to next
+return nullptr if not found
+
+2. void Multiset::remove(Node* p) 
+
+if size is 1
+ set head and tail to nullptr
+ delete Node p, decrement size and return
+if p is the head node
+ make pointer to the next node
+ delete head node
+ update head to pointer, make pointer’s prev a nullptr
+ update size and return
+if p is the tail node
+ make pointer to prev node
+ delete tail node
+ update tail to pointer, make pointer’s next a nullptr
+ update size and return
+
+elsewhere… 
+make two Node pointers, to prev and next Node of p
+delete p
+link the two pointers to each other
+update size and return
+
+3. int Multiset::erase(const ItemType& value) 
+
+call find on the value
+if it finds a Node
+ increment the Node’s count
+  if the count is 0, remove it 
+ 
+4. int Multiset::eraseAll(const Item& value)
+
+if Node has the value, through find
+ copy the count of the value
+ remove the Node and return the count
+
+5. bool Multiset::insert(const ItemType& value)
+
+if it’s the first value (head is nullptr)
+ create a new Node, with prev and next as nullptr 
+ set head and tail as the new Node, update size and return
+
+if not… 
+call find on the value
+if not found 
+ create a new Node, with next as nullptr
+ link it after the tail, and update the tail
+ update size
+if found
+ increment count at Node
+
+6. combine
+
+check if the result Multiset is empty
+ if not, create an empty Multiset and swap the two
+
+loop through ms1
+ make ItemType variable
+ call get function to change variable
+ set count variable to what the get function returns
+ for each count 
+  insert the ItemType variable into result
+ 
+do the same procedure for ms2
+
+7. subtract
+
+check if the result Multiset is empty 
+ if not, create an empty Multiset and swap the two
+
+loop through ms1
+ make ItemType variable
+ call get function to change variable
+ set count variable to what the get function returns
+ find ms2’s count for the same value
+ check if ms1’s count is greater
+  for each count that ms1 is greater by 
+   insert the ItemType variable into result
+
+==========
+Test Cases
+==========
+
+// default constructor
+Multiset ms1;
+// test size
+assert(ms1.size() == 0);
+// test empty
+assert(ms1.empty());
+// test erase on empty Multiset
+assert(ms1.erase("cumin") == 0);
+
+// insert duplicates, test case sensitivity
+ms1.insert("cumin");
+ms1.insert("cumin");
+ms1.insert("Cumin");
+ms1.insert("cumiN");
+assert(ms1.size() == 4 && ms1.uniqueSize() == 3);
+
+ms1.insert("erasethis");
+// erase should decrease unique size
+ms1.erase("erasethis");
+assert(ms1.size() == 4 && ms1.uniqueSize() == 3);
+
+// test copy constructor
+Multiset ms2(ms1);
+assert(ms2.size() == 4 && ms2.uniqueSize() == 3);
+assert(ms2.contains("Cumin"));
+ms2.insert("cumin");
+ms2.eraseAll("cumin");
+    
+
+for (int i = 0; i < 3; i++)    
+{
+ ms2.insert("oregano");
+}
+// test count function
+assert(ms2.count("oregano") == 3);
+
+// test assignment operator
+ms1 = ms2;
+assert(ms1.count("oregano") == 3);
+    
+Multiset ms3;
+// test swap function on empty Multiset
+ms3.swap(ms2);
+assert(ms2.empty() && ms3.count("oregano") == 3);
+    
+ms2.insert("stuff");
+ms2.insert("moreStuff");
+// test combine function
+combine(ms3, ms1, ms2);
+assert(ms2.count("oregano") == 6);
+    
+Multiset ms4;
+ms4.insert("oregano");
+ms4.insert("cheddar");
+ms4.insert("oregano");
+ms4.insert("Oregano");
+// test subtract function
+subtract(ms2, ms4, ms3);
+assert(ms3.count("oregano") == 4);
+
+
+ 
+
