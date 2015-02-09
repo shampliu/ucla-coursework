@@ -1,0 +1,41 @@
+Chang Liu
+CS 32
+Homework 3 
+
+=========
+Problem 2
+========= 
+
+1. (6,4)
+2. (6,3)
+3. (6,5)	
+4. (7,5)
+5. (8,5)
+6. (8,6)
+7. (8,7)
+8. (8,8)
+9. (7,8)
+10.(6,6)
+11.(5,4)
+12.(4,4)
+
+=========
+Problem 4
+=========
+
+1. (6,4)
+2. (5,4)
+3. (6,5)
+4. (6,3)
+5. (4,4)
+6. (6,6)
+7. (7,5)
+8. (3,4)
+9. (4,5)
+10.(8,5)
+11.(2,4)
+12.(4,6)
+
+I noticed that since stacks are a LIFO data structure, they tend to stick to one direction thoroughly until a dead end or the final destination is reached . This direction depends on the last value being pushed to the stack; in this case it is the westward direction. The algorithm prioritizes movement to the west, then south, then east, and last to the north. Only when there are no more options in the other directions, will this algorithm move north, which is why it takes a while to start heading in the right direction. The nature of the stack values the newest values being pushed onto it and this is why it thoroughly searches one direction first, before retracing the steps and trying another. 
+
+Meanwhile, the queue algorithm follows a FIFO structure. The direction the queue prioritizes then is reversed; since north directions are pushed first, then they are also popped first for queues. However, the FIFO structure also makes the search more erratic, jumping from direction to direction. Since the queue does not prioritize newer values, it does not commit to one direction. Instead, it cycles through all directions, from north clockwise to the west.  

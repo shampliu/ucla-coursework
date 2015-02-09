@@ -19,7 +19,7 @@ bool lessEqualTo(const char c1, const char c2);
 void toPostfix(const string infix, string &postfix);
 
 int evaluate(string infix, const bool values[], string& postfix, bool& result) {
-
+    
     if (! isValid(infix)) {
         return 1;
     }
