@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B020DE371A896687007BFB2E /* tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B020DE361A896687007BFB2E /* tree.cpp */; };
 		B0EE660C1A87D5A800BB2E49 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0EE660B1A87D5A800BB2E49 /* main.cpp */; };
 		B0EE66131A87F7B300BB2E49 /* character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0EE66121A87F7B300BB2E49 /* character.cpp */; };
 		B0F0C3301A88698700A973FD /* linear.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0F0C32F1A88698700A973FD /* linear.cpp */; };
@@ -26,6 +27,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B020DE361A896687007BFB2E /* tree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tree.cpp; sourceTree = "<group>"; };
 		B0EE66081A87D5A800BB2E49 /* 3. thirdHomework */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "3. thirdHomework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0EE660B1A87D5A800BB2E49 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B0EE66121A87F7B300BB2E49 /* character.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = character.cpp; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				B0EE660B1A87D5A800BB2E49 /* main.cpp */,
+				B020DE361A896687007BFB2E /* tree.cpp */,
 				B0F0C3311A886D1000A973FD /* maze.cpp */,
 				B0F0C32F1A88698700A973FD /* linear.cpp */,
 				B0EE66121A87F7B300BB2E49 /* character.cpp */,
@@ -130,6 +133,7 @@
 				B0EE660C1A87D5A800BB2E49 /* main.cpp in Sources */,
 				B0F0C3301A88698700A973FD /* linear.cpp in Sources */,
 				B0F0C3321A886D1000A973FD /* maze.cpp in Sources */,
+				B020DE371A896687007BFB2E /* tree.cpp in Sources */,
 				B0EE66131A87F7B300BB2E49 /* character.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

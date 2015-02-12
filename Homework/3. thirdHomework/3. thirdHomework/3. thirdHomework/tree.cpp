@@ -1,5 +1,5 @@
 //
-//  main.cpp
+//  tree.cpp
 //  3. thirdHomework
 //
 //  Created by Chang Liu on 2/8/15.
@@ -116,7 +116,6 @@ void order(double a[], int n)
     int f2;
     separate(a, n, a[0], f1, f2);
     order(a, f1);
-//    order(++a, n-1);
     if(f2 < n)
     {
         order(a+f2, n-f2);     }
@@ -124,24 +123,24 @@ void order(double a[], int n)
     return;
 }
 
-int main() {
-    
-    double a[10] = { 10, 50, 40, 20, 50, 40, 30, 90, 20, 50 };
-//    double b[3] = { 10, 20, 40 };
-//    double c[3] = { 10, 40, 30 };
-//    double d[3] = { 20, 10, 40 };
-//    double e[3] = { 50, 40, 30 };
-//    cout << countIncludes(a, 7, b, 3) << endl;
-//    cout << countIncludes(a, 7, c, 3) << endl;
-//    cout << countIncludes(a, 7, d, 3) << endl;
-//    cout << countIncludes(a, 7, e, 3) << endl;
-    
-    int f1;
-    int f2;
-    order(a, 10);
-    for (int i = 0; i < 10; i++) {
-        cout << a[i] << " ";
-    }
-    
-    
-}
+//int main() {
+//    
+//    double a[10] = { 10, 50, 40, 20, 50, 40, 30, 90, 60, 50 };
+//        double b[3] = { 10, 20, 40 };
+//        double c[3] = { 10, 40, 30 };
+//        double d[3] = { 20, 10, 40 };
+//        double e[3] = { 50, 40, 30 };
+//        cout << countIncludes(a, 7, b, 3) << endl;
+//        cout << countIncludes(a, 7, c, 3) << endl;
+//        cout << countIncludes(a, 7, d, 3) << endl;
+//        cout << countIncludes(a, 7, e, 3) << endl;
+//    
+//    int f1;
+//    int f2;
+//    order(a, 10);
+//    for (int i = 0; i < 10; i++) {
+//        cout << a[i] << " ";
+//    }
+//    
+//    
+//}
