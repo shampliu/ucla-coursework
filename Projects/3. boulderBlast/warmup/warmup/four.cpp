@@ -5,14 +5,6 @@
 //  Created by Chang Liu on 2/17/15.
 //  Copyright (c) 2015 Chang Liu. All rights reserved.
 //
-
-//
-//  main.cpp
-//  warmup
-//
-//  Created by Chang Liu on 2/16/15.
-//  Copyright (c) 2015 Chang Liu. All rights reserved.
-//
 #include <vector>
 #include <algorithm>
 #include <iostream>

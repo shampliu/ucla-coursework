@@ -37,6 +37,21 @@ private:
     
 };
 
+class Wall : public Actor {
+public:
+    Wall(StudentWorld* world, int startX, int startY) : Actor(world, IID_WALL, startX, startY, none) { };
+    
+    ~Wall() { };
+    
+    virtual void doSomething() { };
+    virtual bool canOccupy() {
+        return false;
+    }
+    
+private:
+    
+};
+
 /* classes with hitpoints */
 class LivingActor : public Actor {
 public:
@@ -51,7 +66,7 @@ public:
     
     virtual void doSomething() {
         
-    }
+    };
     
     
     
@@ -67,6 +82,7 @@ public:
     
     virtual void doSomething();
     
+    
     int getAmmo() const {
         return m_ammo;
     }
@@ -75,17 +91,6 @@ public:
     
 private:
     int m_ammo;
-};
-
-class Wall : public Actor {
-public:
-    Wall(StudentWorld* world, int startX, int startY) : Actor(world, IID_WALL, startX, startY, none) { };
-    
-    virtual void doSomething();
-    virtual bool canOccupy() {
-        return false; 
-    }
-    
 };
 
 

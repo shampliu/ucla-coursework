@@ -1,5 +1,7 @@
 #include "Actor.h"
 #include "StudentWorld.h"
+#include <vector>
+#include <iostream>
 
 // Students:  Add code to this file (if you wish), Actor.h, StudentWorld.h, and StudentWorld.cpp
 
@@ -11,33 +13,36 @@ void Player::doSomething() {
     int key;
     if (getWorld()->getKey(key))
     {
+        int x = getX();
+        int y = getY();
+        
         // user hit a key this tick!
         switch (key)
         {
             case KEY_PRESS_LEFT:
                 //... move player to the left ...;
                 setDirection(left);
-                if (canMove(getX() - 1, getY())) {
-                    moveTo(getX() - 1, getY());
+                if (canMove(x - 1, y)) {
+                    moveTo(x - 1, y);
                 }
                 break;
             case KEY_PRESS_RIGHT:
                 //... move player to the right ...;
                 setDirection(right);
-                if (canMove(getX() + 1, getY())) {
-                    moveTo(getX() + 1, getY());
+                if (canMove(x + 1, y)) {
+                    moveTo(x + 1, y);
                 }
                 break;
             case KEY_PRESS_UP:
                 setDirection(up);
-                if (canMove(getX(), getY()) + 1) {
-                    moveTo(getX(), getY() + 1);
+                if (canMove(x, y + 1)) {
+                    moveTo(x, y + 1);
                 }
                 break;
             case KEY_PRESS_DOWN:
                 setDirection(down);
-                if (canMove(getX(), getY()) - 1) {
-                    moveTo(getX(), getY() - 1);
+                if (canMove(x, y - 1)) {
+                    moveTo(x, y - 1);
                 }
                 break;
             case KEY_PRESS_SPACE:
@@ -51,27 +56,20 @@ void Player::doSomething() {
 }
 
 bool Player::canMove(int x, int y) const {
-    if (x > 15 || x < 0 || y > 15 || y < 0) {
+    if (x > VIEW_WIDTH || x < 0 || y > VIEW_HEIGHT || y < 0) {
         return false;
     }
     
     std::vector<Actor*> actors = getWorld()->getActors();
-    for (int i = 0; i < actors.size(); i++) {
-        if (actors[i]->getX() == x && actors[i]->getY() == y)
+    for (auto actor : actors) {
+        if (actor->getX() == x && actor->getY() == y)
         {
-            if (actors[i]->canOccupy()) {
+            if (actor->canOccupy()) {
                 return true;
             }
-            else {
-                return false;
-            }
+            else { return false; }
         }
     }
     
     return true;
-    
-    
-    
-    
-    return false;
 }
