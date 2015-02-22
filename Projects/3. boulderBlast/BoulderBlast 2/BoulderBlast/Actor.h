@@ -19,6 +19,7 @@ public:
     virtual ~Actor() { };
     
     virtual void doSomething() = 0;
+    virtual bool canOccupy() = 0;
     
     StudentWorld* getWorld() const {
         return m_world;
@@ -44,6 +45,10 @@ public:
         
     };
     
+    virtual bool canOccupy() {
+        return false;
+    }
+    
     virtual void doSomething() {
         
     }
@@ -66,6 +71,8 @@ public:
         return m_ammo;
     }
     
+    bool canMove(int x, int y) const; 
+    
 private:
     int m_ammo;
 };
@@ -75,6 +82,9 @@ public:
     Wall(StudentWorld* world, int startX, int startY) : Actor(world, IID_WALL, startX, startY, none) { };
     
     virtual void doSomething();
+    virtual bool canOccupy() {
+        return false; 
+    }
     
 };
 

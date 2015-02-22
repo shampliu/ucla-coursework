@@ -83,20 +83,20 @@
 		4B5BB2631A9110AA009A9A96 /* BoulderBlast */ = {
 			isa = PBXGroup;
 			children = (
-				4B5BB26B1A911293009A9A96 /* Actor.cpp */,
-				4B5BB26C1A911293009A9A96 /* GameController.cpp */,
-				4B5BB26D1A911293009A9A96 /* GameWorld.cpp */,
-				4B5BB26E1A911293009A9A96 /* StudentWorld.cpp */,
 				4B5BB26F1A911293009A9A96 /* Actor.h */,
+				4B5BB26B1A911293009A9A96 /* Actor.cpp */,
 				4B5BB2701A911293009A9A96 /* GameConstants.h */,
 				4B5BB2711A911293009A9A96 /* GameController.h */,
+				4B5BB26C1A911293009A9A96 /* GameController.cpp */,
 				4B5BB2721A911293009A9A96 /* GameWorld.h */,
+				4B5BB26D1A911293009A9A96 /* GameWorld.cpp */,
 				4B5BB2731A911293009A9A96 /* glut.h */,
 				4B5BB2741A911293009A9A96 /* GraphObject.h */,
 				4B5BB2751A911293009A9A96 /* Level.h */,
 				4B5BB2761A911293009A9A96 /* SoundFX.h */,
 				4B5BB2771A911293009A9A96 /* SpriteManager.h */,
 				4B5BB2781A911293009A9A96 /* StudentWorld.h */,
+				4B5BB26E1A911293009A9A96 /* StudentWorld.cpp */,
 				4B5BB2641A9110AA009A9A96 /* main.cpp */,
 			);
 			path = BoulderBlast;
@@ -282,6 +282,7 @@
 				4B5BB26A1A9110AA009A9A96 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

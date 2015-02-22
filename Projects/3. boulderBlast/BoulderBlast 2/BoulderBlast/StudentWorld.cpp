@@ -7,6 +7,26 @@ GameWorld* createStudentWorld(string assetDir)
 	return new StudentWorld(assetDir);
 }
 
+int StudentWorld::init()
+{
+    int status = loadLevel();
+    // if level data exists but isn't in the proper format
+    if (status == -1) {
+        return GWSTATUS_LEVEL_ERROR;
+    }
+    
+    //
+    //        // if no level data or last level completed was lvl 99
+    //        if (1) {
+    //            return GWSTATUS_PLAYER_WON;
+    //        }
+    
+    
+    
+    
+    return GWSTATUS_CONTINUE_GAME;
+}
+
 // Students:  Add code to this file (if you wish), StudentWorld.h, Actor.h and Actor.cpp
 int StudentWorld::move()
 {
