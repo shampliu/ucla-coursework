@@ -117,6 +117,9 @@ int StudentWorld::loadLevel() {
                 case Level::player:
                     m_player = new Player(this, x, y);
                     break;
+                case Level::boulder:
+                    m_actors.push_back(new Boulder(this, x, y));
+                    break;
                 default:
                     break;
             }
@@ -137,4 +140,27 @@ void StudentWorld::cleanUp() {
         delete *it2;
     }
     
+}
+
+Actor* StudentWorld::checkSpace(int x, int y, string& status) {
+    
+    if (x > VIEW_WIDTH || x < 0 || y > VIEW_HEIGHT || y < 0) {
+        status = "out of range";
+        return nullptr;
+    }
+    
+    std::vector<Actor*> actors = getActors();
+    for (auto actor : actors) {
+        if (actor->getX() == x && actor->getY() == y)
+        {
+            Boulder* b = dynamic_cast<Boulder*>(actor);
+            if (b != nullptr) { // is a boulder
+                status = "boulder";
+                return actor;
+            }
+            
+            return actor;
+        }
+    }
+    return nullptr;
 }

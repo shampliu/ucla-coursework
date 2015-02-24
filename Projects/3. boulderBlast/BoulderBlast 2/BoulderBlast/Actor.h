@@ -25,6 +25,10 @@ public:
         return m_world;
     }
     
+    void setDead() {
+        m_isAlive = false;
+    }
+    
     bool isAlive() const {
         return m_isAlive;
     }
@@ -60,9 +64,16 @@ public:
         
     };
     
+    virtual void isHit(int damage) {
+        m_health -= damage;
+        if (m_health <= 0) {
+            setDead();
+        }
+    };
+    
     virtual bool canOccupy() {
         return false;
-    }
+    };
     
     virtual void doSomething() {
         
@@ -87,12 +98,26 @@ public:
         return m_ammo;
     }
     
-    bool canMove(int x, int y) const; 
+    bool canMove(int& x, int& y, Direction dir);
     
 private:
     int m_ammo;
 };
 
+class Boulder : public LivingActor {
+    
+public:
+    Boulder(StudentWorld* world, int startX, int startY) : LivingActor(10, world, IID_BOULDER, startX, startY, none) { };
+    
+    virtual void doSomething() { };
+    
+    virtual bool canOccupy() {
+        return false;
+    }
+    
+    bool push(Direction dir);
+    
+};
 
 
 #endif // ACTOR_H_

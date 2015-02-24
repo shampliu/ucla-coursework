@@ -34,6 +34,8 @@ public:
     virtual int move();
 
     virtual void cleanUp();
+    
+    Actor* checkSpace(int x, int y, std::string& status);
 
     
     std::vector<Actor*> getActors() {
