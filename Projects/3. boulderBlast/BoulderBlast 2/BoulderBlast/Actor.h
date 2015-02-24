@@ -119,5 +119,22 @@ public:
     
 };
 
+class Hole : public Actor {
+public:
+    Hole(StudentWorld* world, int startX, int startY) : Actor(world, IID_HOLE, startX, startY, none) { };
+    
+    virtual void doSomething();
+    
+    virtual bool canOccupy() {
+        return false;
+    }
+};
+
+class Bullet : public Actor {
+    Bullet(StudentWorld* world, int startX, int startY, Direction dir) : Actor(world, IID_BULLET, startX, startY, dir) { };
+    
+    virtual void doSomething(); 
+};
+
 
 #endif // ACTOR_H_

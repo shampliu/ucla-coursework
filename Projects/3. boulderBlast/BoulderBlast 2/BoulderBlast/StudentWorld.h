@@ -35,6 +35,7 @@ public:
 
     virtual void cleanUp();
     
+    void removeDeadGameObjects();
     Actor* checkSpace(int x, int y, std::string& status);
 
     

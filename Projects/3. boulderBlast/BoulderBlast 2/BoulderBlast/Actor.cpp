@@ -23,15 +23,14 @@ void Player::doSomething() {
         // user hit a key this tick!
         switch (key)
         {
+            // canMove function will automatically change x & y if possible
             case KEY_PRESS_LEFT:
-                //... move player to the left ...;
                 setDirection(left);
                 if (canMove(x, y, left)) {
                     moveTo(x, y);
                 }
                 break;
             case KEY_PRESS_RIGHT:
-                //... move player to the right ...;
                 setDirection(right);
                 if (canMove(x, y, right)) {
                     moveTo(x, y);
@@ -66,9 +65,7 @@ void Player::doSomething() {
                     }
                     
                 }
-                //... add a Bullet in the square in front of the Player...;
                 break;
-                // etc
             case KEY_PRESS_ESCAPE:
                 break;
         }
@@ -97,7 +94,7 @@ bool Player::canMove(int& x, int& y, Direction dir) {
     }
     
     string status = "";
-    Actor* ap = getWorld()->checkSpace(x, y, status);
+    Actor* ap = getWorld()->checkSpace(dx, dy, status);
     
     // empty square
     if (ap == nullptr && status == "") {
@@ -182,8 +179,47 @@ bool Boulder::push(Direction dir) {
         
     }
     
+    if (ap != nullptr && status == "hole") {
+        moveTo(x, y);
+        ap->setDead();
+        setDead();
+        return true;
+    }
     
     
+    ////////
     return false; // take this out
     
 }
+
+/* Hole
+ ------------------------------ */
+void Hole::doSomething() {
+    if (! isAlive()) {
+        return;
+    }
+
+};
+
+
+/* Bullet
+ ------------------------------ */
+void Bullet::doSomething() {
+    if (! isAlive()) {
+        return;
+    }
+    
+    Direction dir = getDirection();
+    switch (dir) {
+        case up:
+        case right:
+        case down:
+        case left:
+        case none:
+            break;
+            
+    }
+}
+
+
+

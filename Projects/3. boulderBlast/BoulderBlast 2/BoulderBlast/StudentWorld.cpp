@@ -64,9 +64,9 @@ int StudentWorld::move()
 //            }
         }
     }
-//    // Remove newly-dead actors after each tick
-//    removeDeadGameObjects(); // delete dead game objects
-//    // Reduce the current bonus for the Level by one
+    // Remove newly-dead actors after each tick
+    removeDeadGameObjects(); // delete dead game objects
+    // Reduce the current bonus for the Level by one
 //    reduceLevelBonusByOne();
 //    // If the player has collected all of the Jewels on the level, then we
 //    // must expose the Exit so the player can advance to the next level
@@ -80,25 +80,42 @@ int StudentWorld::move()
 //        increaseScoreAppropriately();
 //        return GWSTATUS_FINISHED_LEVEL;
 //    }
+    
+    
     // the player hasn’t completed the current level and hasn’t died, so
     // continue playing the current level
     return GWSTATUS_CONTINUE_GAME;
     return 0;
 }
 
+void StudentWorld::removeDeadGameObjects() {
+    
+    for (auto ap = m_actors.begin(); ap != m_actors.end(); )
+    {
+        if (!(*ap)->isAlive()) {
+            delete (*ap);
+            ap = m_actors.erase(ap);
+        }
+        else {
+            ap++;
+        }
+    }
+    
+}
+
 int StudentWorld::loadLevel() {
     
-    std::string	curLevel = "level00.dat";
+    string	curLevel = "level00.dat";
     Level lev(assetDirectory());
     
     // format level
     int level = getLevel();
-    std::string formattedLevel;
+    string formattedLevel;
     if (level % 10 > 0) {
-        formattedLevel = "level" + std::to_string(level) + ".dat";
+        formattedLevel = "level" + to_string(level) + ".dat";
     }
     else {
-        formattedLevel = "level0" + std::to_string(level) + ".dat";
+        formattedLevel = "level0" + to_string(level) + ".dat";
     }
     
     Level::LoadResult result = lev.loadLevel(formattedLevel);
@@ -119,6 +136,9 @@ int StudentWorld::loadLevel() {
                     break;
                 case Level::boulder:
                     m_actors.push_back(new Boulder(this, x, y));
+                    break;
+                case Level::hole:
+                    m_actors.push_back(new Hole(this, x, y));
                     break;
                 default:
                     break;
@@ -153,11 +173,21 @@ Actor* StudentWorld::checkSpace(int x, int y, string& status) {
     for (auto actor : actors) {
         if (actor->getX() == x && actor->getY() == y)
         {
+            // check if actor is a Boulder
             Boulder* b = dynamic_cast<Boulder*>(actor);
-            if (b != nullptr) { // is a boulder
+            if (b != nullptr) {
                 status = "boulder";
                 return actor;
             }
+            
+            // check if actor is a Hole
+            Hole* h = dynamic_cast<Hole*>(actor);
+            if (h != nullptr) {
+                status = "hole";
+                return actor;
+            }
+            
+            
             
             return actor;
         }
