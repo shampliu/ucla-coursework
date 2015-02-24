@@ -50,19 +50,7 @@ void Player::doSomething() {
                 break;
             case KEY_PRESS_SPACE:
                 if (getAmmo() > 0) {
-                    Direction d = getDirection();
-                    switch (d) {
-                        case up:
-                            break;
-                        case right:
-                            break;
-                        case down:
-                            break;
-                        case left:
-                            break;
-                        case none:
-                            break;
-                    }
+                    shoot();
                     
                 }
                 break;
@@ -146,6 +134,15 @@ bool Player::canMove(int& x, int& y, Direction dir) {
 //    return true;
 //}
 
+
+/* Dangerous Actor
+ ------------------------------ */
+void DangerousActor::shoot() {
+    getWorld()->createBullet(getX(), getY(), getDirection());
+    
+}
+
+
 /* Boulder
  ------------------------------ */
 bool Boulder::push(Direction dir) {
@@ -209,16 +206,37 @@ void Bullet::doSomething() {
         return;
     }
     
+    int x = getX();
+    int y = getY();
+    
+    string status = "";
+    Actor* ap = getWorld()->checkSpace(x, y, status);
+    
+    if (ap != nullptr && ap->hittable() && status != "out of range") {
+        ap->takeHit();
+        setDead();
+        return;
+    }
+    
     Direction dir = getDirection();
     switch (dir) {
         case up:
+            y += 1;
+            break;
         case right:
+            x += 1;
+            break;
         case down:
+            y -= 1;
+            break;
         case left:
+            x -= 1;
+            break;
         case none:
             break;
-            
     }
+    
+    moveTo(x, y); 
 }
 
 

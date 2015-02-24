@@ -37,6 +37,8 @@ public:
     
     void removeDeadGameObjects();
     Actor* checkSpace(int x, int y, std::string& status);
+    
+    void createBullet(int x, int y, GraphObject::Direction dir);
 
     
     std::vector<Actor*> getActors() {

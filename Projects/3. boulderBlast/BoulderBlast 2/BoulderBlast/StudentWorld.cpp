@@ -140,6 +140,9 @@ int StudentWorld::loadLevel() {
                 case Level::hole:
                     m_actors.push_back(new Hole(this, x, y));
                     break;
+                case Level::exit:
+                    m_actors.push_back(new Exit(this, x, y));
+                    break;
                 default:
                     break;
             }
@@ -159,6 +162,31 @@ void StudentWorld::cleanUp() {
         it = m_actors.erase(it);
         delete *it2;
     }
+    
+}
+
+void StudentWorld::createBullet(int x, int y, GraphObject::Direction dir) {
+    int dx = x;
+    int dy = y;
+    
+    switch (dir) {
+        case GraphObject::up:
+            y += 1;
+            break;
+        case GraphObject::right:
+            x += 1;
+            break;
+        case GraphObject::down:
+            y -= 1;
+            break;
+        case GraphObject::left:
+            x -= 1;
+            break;
+        case GraphObject::none:
+            break;
+            
+    }
+    m_actors.push_back(new Bullet(this, x, y, dir));
     
 }
 

@@ -20,6 +20,11 @@ public:
     
     virtual void doSomething() = 0;
     virtual bool canOccupy() = 0;
+    virtual bool hittable() {
+        return true;
+    }
+    virtual void takeHit() { };
+    
     
     StudentWorld* getWorld() const {
         return m_world;
@@ -56,7 +61,50 @@ private:
     
 };
 
-/* classes with hitpoints */
+class Hole : public Actor {
+public:
+    Hole(StudentWorld* world, int startX, int startY) : Actor(world, IID_HOLE, startX, startY, none) { };
+    
+    virtual void doSomething();
+    
+    virtual bool canOccupy() {
+        return false;
+    }
+    
+    virtual bool hittable() {
+        return false;
+    }
+};
+
+class Bullet : public Actor {
+public:
+    Bullet(StudentWorld* world, int startX, int startY, Direction dir) : Actor(world, IID_BULLET, startX, startY, dir) { };
+    
+    virtual void doSomething();
+    virtual bool canOccupy() {
+        return true;
+    }
+    
+    virtual bool hittable() {
+        return false;
+    }
+};
+
+class Exit : public Actor {
+public:
+    Exit(StudentWorld* world, int startX, int startY) : Actor(world, IID_EXIT, startX, startY, none) {
+        
+        setVisible(false);
+    };
+    
+    virtual void doSomething() { };
+    virtual bool canOccupy() {
+        return true;
+    };
+    
+};
+
+// Actor with hitpoints
 class LivingActor : public Actor {
 public:
     LivingActor(int health, StudentWorld* world, int imageID, int startX, int startY, Direction dir = none) : Actor(world, imageID, startX, startY, dir), m_health(health) {
@@ -75,9 +123,7 @@ public:
         return false;
     };
     
-    virtual void doSomething() {
-        
-    };
+    virtual void doSomething() = 0;
     
     
     
@@ -86,10 +132,38 @@ private:
     int m_health;
 };
 
-class Player : public LivingActor {
+class Boulder : public LivingActor {
     
 public:
-    Player(StudentWorld* world, int startX, int startY) : LivingActor(20, world, IID_PLAYER, startX, startY, right), m_ammo(20) { };
+    Boulder(StudentWorld* world, int startX, int startY) : LivingActor(10, world, IID_BOULDER, startX, startY, none) { };
+    
+    virtual void doSomething() { };
+    
+    virtual bool canOccupy() {
+        return false;
+    }
+    
+    virtual void takeHit() {
+        isHit(2); 
+    }
+    
+    bool push(Direction dir);
+    
+};
+
+// LivingActor with gun
+class DangerousActor : public LivingActor {
+public:
+    DangerousActor(int health, StudentWorld* world, int imageID, int startX, int startY, Direction dir) : LivingActor(health, world, imageID, startX, startY, dir) { };
+    
+    void shoot();
+    
+};
+
+class Player : public DangerousActor {
+    
+public:
+    Player(StudentWorld* world, int startX, int startY) : DangerousActor(20, world, IID_PLAYER, startX, startY, right), m_ammo(20) { };
     
     virtual void doSomething();
     
@@ -104,37 +178,6 @@ private:
     int m_ammo;
 };
 
-class Boulder : public LivingActor {
-    
-public:
-    Boulder(StudentWorld* world, int startX, int startY) : LivingActor(10, world, IID_BOULDER, startX, startY, none) { };
-    
-    virtual void doSomething() { };
-    
-    virtual bool canOccupy() {
-        return false;
-    }
-    
-    bool push(Direction dir);
-    
-};
-
-class Hole : public Actor {
-public:
-    Hole(StudentWorld* world, int startX, int startY) : Actor(world, IID_HOLE, startX, startY, none) { };
-    
-    virtual void doSomething();
-    
-    virtual bool canOccupy() {
-        return false;
-    }
-};
-
-class Bullet : public Actor {
-    Bullet(StudentWorld* world, int startX, int startY, Direction dir) : Actor(world, IID_BULLET, startX, startY, dir) { };
-    
-    virtual void doSomething(); 
-};
 
 
 #endif // ACTOR_H_
