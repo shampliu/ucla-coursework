@@ -3,8 +3,31 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include "GraphObject.h"
+
 
 using namespace std;
+
+/* Actor
+ ------------------------------ */
+void Actor::convertDir(int& x, int& y, GraphObject::Direction dir) {
+    switch (dir) {
+        case GraphObject::up:
+            y += 1;
+            break;
+        case GraphObject::right:
+            x += 1;
+            break;
+        case GraphObject::down:
+            y -= 1;
+            break;
+        case GraphObject::left:
+            x -= 1;
+            break;
+        case GraphObject::none:
+            break;
+    }
+}
 
 /* Player 
  ------------------------------ */
@@ -23,29 +46,28 @@ void Player::doSomething() {
         // user hit a key this tick!
         switch (key)
         {
-            // canMove function will automatically change x & y if possible
             case KEY_PRESS_LEFT:
                 setDirection(left);
                 if (canMove(x, y, left)) {
-                    moveTo(x, y);
+                    moveTo(x-1, y);
                 }
                 break;
             case KEY_PRESS_RIGHT:
                 setDirection(right);
                 if (canMove(x, y, right)) {
-                    moveTo(x, y);
+                    moveTo(x+1, y);
                 }
                 break;
             case KEY_PRESS_UP:
                 setDirection(up);
                 if (canMove(x, y, up)) {
-                    moveTo(x, y);
+                    moveTo(x, y+1);
                 }
                 break;
             case KEY_PRESS_DOWN:
                 setDirection(down);
                 if (canMove(x, y, down)) {
-                    moveTo(x, y);
+                    moveTo(x, y-1);
                 }
                 break;
             case KEY_PRESS_SPACE:
@@ -64,44 +86,22 @@ bool Player::canMove(int& x, int& y, Direction dir) {
     int dx = x;
     int dy = y;
     
-    switch (dir) {
-        case up:
-            dy += 1;
-            break;
-        case right:
-            dx += 1;
-            break;
-        case down:
-            dy -= 1;
-            break;
-        case left:
-            dx -= 1;
-            break;
-        case none:
-            break;
-    }
+    convertDir(dx, dy, dir);
     
-    string status = "";
-    Actor* ap = getWorld()->checkSpace(dx, dy, status);
+    Actor* ap = getWorld()->checkSpace(dx, dy);
     
-    // empty square
-    if (ap == nullptr && status == "") {
-        x = dx;
-        y = dy;
+    // empty square or object that can be occupied
+    if (ap == nullptr || ap->canOccupy()) {
         return true;
     }
     
     // boulder
-    if (status == "boulder") {
-        Boulder* b = dynamic_cast<Boulder*>(ap);
-        
+    Boulder* b = dynamic_cast<Boulder*>(ap);
+    if (b != nullptr) {
         // can push
         if (b->push(dir)) {
-            x = dx;
-            y = dy;
             return true;
         }
-        
     }
     
     return false;
@@ -117,38 +117,24 @@ void DangerousActor::shoot() {
 /* Boulder
  ------------------------------ */
 bool Boulder::push(Direction dir) {
-    int x = getX();
-    int y = getY();
+    int dx = getX();
+    int dy = getY();
     
-    switch (dir) {
-        case up:
-            y += 1;
-            break;
-        case right:
-            x += 1;
-            break;
-        case down:
-            y -= 1;
-            break;
-        case left:
-            x -= 1;
-            break;
-        case none:
-            break;
-    }
+    convertDir(dx, dy, dir);
     
-    string status = "";
-    Actor* ap = getWorld()->checkSpace(x, y, status);
+    Actor* ap = getWorld()->checkSpace(dx, dy);
     
     // empty square
-    if (ap == nullptr && status == "") {
-        moveTo(x, y);
+    if (ap == nullptr) {
+        moveTo(dx, dy);
         return true;
         
     }
     
-    if (ap != nullptr && status == "hole") {
-        moveTo(x, y);
+    // hole
+    Hole* h = dynamic_cast<Hole*>(ap);
+    if (h != nullptr) {
+        moveTo(dx, dy);
         ap->setDead();
         setDead();
         return true;
@@ -166,7 +152,8 @@ void Hole::doSomething() {
     if (! isAlive()) {
         return;
     }
-
+    
+    // removal of Hole is managed by Boulder class
 };
 
 
@@ -177,37 +164,20 @@ void Bullet::doSomething() {
         return;
     }
     
-    int x = getX();
-    int y = getY();
+    int dx = getX();
+    int dy = getY();
     
-    string status = "";
-    Actor* ap = getWorld()->checkSpace(x, y, status);
+    Actor* ap = getWorld()->checkSpace(dx, dy);
     
-    if (ap != nullptr && ap->hittable() && status != "out of range") {
+    if (ap != nullptr && ap->hittable()) {
         ap->takeHit();
         setDead();
         return;
     }
     
-    Direction dir = getDirection();
-    switch (dir) {
-        case up:
-            y += 1;
-            break;
-        case right:
-            x += 1;
-            break;
-        case down:
-            y -= 1;
-            break;
-        case left:
-            x -= 1;
-            break;
-        case none:
-            break;
-    }
+    convertDir(dx, dy, getDirection());
     
-    moveTo(x, y); 
+    moveTo(dx, dy);
 }
 
 /* Jewel
@@ -225,12 +195,32 @@ void Jewel::doSomething() {
     }
 }
 
+/* Jewel
+ ------------------------------ */
+void Ammo::doSomething() {
+    if (! isAlive()) {
+        return;
+    }
+    
+    // if Player is on the same square as the Ammo
+    if (getX() == getWorld()->getPlayer()->getX() && getY() == getWorld()->getPlayer()->getY()) {
+        getWorld()->increaseScore(100);
+        getWorld()->getPlayer()->reload(20);
+        getWorld()->playSound(SOUND_GOT_GOODIE);
+        setDead();
+    }
+}
+
 /* SnarlBot
  ------------------------------ */
 void SnarlBot::doSomething() {
     if (! isAlive()) {
         return;
     }
+    
+    int dx = getX();
+    int dy = getY();
+    Direction dir = getDirection();
     
     // if SnarlBot is supposed to rest
     if (m_ticks < m_rest) {
@@ -241,11 +231,10 @@ void SnarlBot::doSomething() {
         m_ticks = 0;
         int px = getWorld()->getPlayer()->getX();
         int py = getWorld()->getPlayer()->getY();
-        Direction dir = getDirection();
         
         // player is in the same column as the SnarlBot and SnarlBot
         if (px == getX()) {
-            if (getWorld()->canShoot(getX(), getY(), py, dir)) {
+            if (getWorld()->canShoot(dx, dy, py, dir)) {
                 shoot();
                 getWorld()->playSound(SOUND_ENEMY_FIRE);
                 return;
@@ -253,17 +242,42 @@ void SnarlBot::doSomething() {
         }
         // player is in the same row as the SnarlBot
         if (py == getY()) {
-            if (getWorld()->canShoot(getX(), getY(), px, dir)) {
+            if (getWorld()->canShoot(dx, dy, px, dir)) {
                 shoot();
                 getWorld()->playSound(SOUND_ENEMY_FIRE);
                 return;
             }
 
         }
+        
+        // move or change direction if can't shoot
+        convertDir(dx, dy, dir);
+        
+        Actor* ap = getWorld()->checkSpace(dx, dy);
+        
+        // empty square or object that can be occupied
+        if (ap == nullptr || ap->canOccupy()) {
+            moveTo(dx, dy);
+        }
+        // change direction
+        else {
+            switch (dir) {
+                case up:
+                    setDirection(down);
+                    break;
+                case right:
+                    setDirection(left);
+                    break;
+                case down:
+                    setDirection(up);
+                    break;
+                case left:
+                    setDirection(right);
+                    break;
+            }
+        }
+        
     }
-    
-    // move or change direction if can't shoot
-    
     
 }
 

@@ -146,6 +146,9 @@ int StudentWorld::loadLevel() {
                 case Level::jewel:
                     m_actors.push_back(new Jewel(this, x, y));
                     break;
+                case Level::ammo:
+                    m_actors.push_back(new Ammo(this, x, y));
+                    break;
                 case Level::horiz_snarlbot:
                     m_actors.push_back(new SnarlBot(this, x, y, GraphObject::right));
                     break;
@@ -197,41 +200,40 @@ void StudentWorld::createBullet(int x, int y, GraphObject::Direction dir) {
     
 }
 
-Actor* StudentWorld::checkSpace(int x, int y, string& status) {
+Actor* StudentWorld::checkSpace(int x, int y) {
     
-    if (x > VIEW_WIDTH || x < 0 || y > VIEW_HEIGHT || y < 0) {
-        status = "out of range";
-        return nullptr;
-    }
+//    if (x > VIEW_WIDTH || x < 0 || y > VIEW_HEIGHT || y < 0) {
+//        status = "out of range";
+//        return nullptr;
+//    }
     
     std::vector<Actor*> actors = getActors();
     for (auto actor : actors) {
         if (actor->getX() == x && actor->getY() == y)
         {
-            // check if actor is a Boulder
-            Boulder* b = dynamic_cast<Boulder*>(actor);
-            if (b != nullptr) {
-                status = "boulder";
-                return actor;
-            }
-            
-            // check if actor is a Hole
-            Hole* h = dynamic_cast<Hole*>(actor);
-            if (h != nullptr) {
-                status = "hole";
-                return actor;
-            }
-            
-            
+//            // check if actor is a Boulder
+//            Boulder* b = dynamic_cast<Boulder*>(actor);
+//            if (b != nullptr) {
+//                status = "boulder";
+//                return actor;
+//            }
+//            
+//            // check if actor is a Hole
+//            Hole* h = dynamic_cast<Hole*>(actor);
+//            if (h != nullptr) {
+//                status = "hole";
+//                return actor;
+//            }
             
             return actor;
         }
     }
+    
+//    status = "empty"; 
     return nullptr;
 }
 
 bool StudentWorld::canShoot(int x, int y, int dest, GraphObject::Direction dir) {
-    string status = "";
     switch (dir) {
         case GraphObject::up:
             // facing wrong way
@@ -239,7 +241,7 @@ bool StudentWorld::canShoot(int x, int y, int dest, GraphObject::Direction dir) 
             // start one square ahead of initial because the initial parameter is the actor's position
             for (int i = y+1; i < dest; i++) {
                 
-                Actor* ap = checkSpace(x, i, status);
+                Actor* ap = checkSpace(x, i);
                 if (ap == nullptr || (ap != nullptr && !ap->hittable())) {
                     continue;
                 }
@@ -252,7 +254,7 @@ bool StudentWorld::canShoot(int x, int y, int dest, GraphObject::Direction dir) 
             if (dest < x) { return false; }
             for (int i = x+1; i < dest; i++) {
                 
-                Actor* ap = checkSpace(i, y, status);
+                Actor* ap = checkSpace(i, y);
                 if (ap == nullptr || (ap != nullptr && !ap->hittable())) {
                     continue;
                 }
@@ -265,7 +267,7 @@ bool StudentWorld::canShoot(int x, int y, int dest, GraphObject::Direction dir) 
             if (dest > y) { return false; }
             for (int i = y-1; i > dest; i--) {
                 
-                Actor* ap = checkSpace(x, i, status);
+                Actor* ap = checkSpace(x, i);
                 if (ap == nullptr || (ap != nullptr && !ap->hittable())) {
                     continue;
                 }
@@ -278,7 +280,7 @@ bool StudentWorld::canShoot(int x, int y, int dest, GraphObject::Direction dir) 
             if (dest > x) { return false; }
             for (int i = x-1; i > dest; i--) {
                 
-                Actor* ap = checkSpace(i, y, status);
+                Actor* ap = checkSpace(i, y);
                 if (ap == nullptr || (ap != nullptr && !ap->hittable())) {
                     continue;
                 }
@@ -293,108 +295,3 @@ bool StudentWorld::canShoot(int x, int y, int dest, GraphObject::Direction dir) 
     
 }
 
-Actor* StudentWorld::canMove(int x, int y, GraphObject::Direction dir, string& status) {
-    int dx = x;
-    int dy = y;
-    
-    switch (dir) {
-        case up:
-            dy += 1;
-            break;
-        case right:
-            dx += 1;
-            break;
-        case down:
-            dy -= 1;
-            break;
-        case left:
-            dx -= 1;
-            break;
-        case none:
-            break;
-    }
-    
-    string status = "";
-    Actor* ap = getWorld()->checkSpace(dx, dy, status);
-    
-    // empty square
-    if (ap == nullptr && status == "") {
-        x = dx;
-        y = dy;
-        return true;
-    }
-    
-    // boulder
-    if (status == "boulder") {
-        Boulder* b = dynamic_cast<Boulder*>(ap);
-        
-        // can push
-        if (b->push(dir)) {
-            x = dx;
-            y = dy;
-            return true;
-        }
-        
-    }
-    
-    return false;
-//    switch (dir) {
-//        case GraphObject::up:
-//            // facing wrong way
-//            if (dest < y) { return false; }
-//            // start one square ahead of initial because the initial parameter is the actor's position
-//            for (int i = y+1; i < dest; i++) {
-//                
-//                Actor* ap = checkSpace(x, i, status);
-//                if (ap == nullptr || (ap != nullptr && ap->canOccupy())) {
-//                    continue;
-//                }
-//                else {
-//                    return false;
-//                }
-//            }
-//            break;
-//        case GraphObject::right:
-//            if (dest < x) { return false; }
-//            for (int i = x+1; i < dest; i++) {
-//                
-//                Actor* ap = checkSpace(i, y, status);
-//                if (ap == nullptr || (ap != nullptr && !ap->hittable())) {
-//                    continue;
-//                }
-//                else {
-//                    return false;
-//                }
-//            }
-//            break;
-//        case GraphObject::down:
-//            if (dest > y) { return false; }
-//            for (int i = y-1; i > dest; i--) {
-//                
-//                Actor* ap = checkSpace(x, i, status);
-//                if (ap == nullptr || (ap != nullptr && !ap->hittable())) {
-//                    continue;
-//                }
-//                else {
-//                    return false;
-//                }
-//            }
-//            break;
-//        case GraphObject::left:
-//            if (dest > x) { return false; }
-//            for (int i = x-1; i > dest; i--) {
-//                
-//                Actor* ap = checkSpace(i, y, status);
-//                if (ap == nullptr || (ap != nullptr && !ap->hittable())) {
-//                    continue;
-//                }
-//                else {
-//                    return false;
-//                }
-//            }
-//            break;
-//    }
-//    
-//    return true;
-    
-}

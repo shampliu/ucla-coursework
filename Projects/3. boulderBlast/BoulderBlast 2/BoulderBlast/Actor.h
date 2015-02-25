@@ -9,12 +9,12 @@
 class Actor: public GraphObject {
 public:
     Actor(StudentWorld* world, int imageID, int startX, int startY, Direction dir = none) : GraphObject(imageID, startX, startY, dir) {
-        
         setVisible(true);
         m_isAlive = true;
         m_world = world;
-        
     };
+    
+    void convertDir(int& x, int& y, Direction dir);
     
     virtual ~Actor() { };
     
@@ -121,6 +121,18 @@ public:
     
 };
 
+class Ammo : public Actor {
+public:
+    Ammo(StudentWorld* world, int startX, int startY) : Actor(world, IID_AMMO, startX, startY, none) { };
+    virtual void doSomething();
+    virtual bool canOccupy() {
+        return true;
+    };
+    virtual bool hittable() {
+        return false;
+    }
+};
+
 // Actor with hitpoints
 class LivingActor : public Actor {
 public:
@@ -190,6 +202,10 @@ public:
     
     int getAmmo() const {
         return m_ammo;
+    }
+    
+    void reload(int amt) {
+        m_ammo += amt; 
     }
     
     virtual void takeHit() {

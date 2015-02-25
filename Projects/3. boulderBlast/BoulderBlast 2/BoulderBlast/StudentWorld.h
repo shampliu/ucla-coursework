@@ -11,8 +11,6 @@ class Actor;
 class Player;
 class Level;
 
-// Students:  Add code to this file, StudentWorld.cpp, Actor.h, and Actor.cpp
-
 class StudentWorld : public GameWorld
 {
 public:
@@ -36,7 +34,8 @@ public:
     virtual void cleanUp();
     
     void removeDeadGameObjects();
-    Actor* checkSpace(int x, int y, std::string& status);
+    
+    Actor* checkSpace(int x, int y);
     
     void createBullet(int x, int y, GraphObject::Direction dir);
 
@@ -46,7 +45,7 @@ public:
     }
     
     bool canShoot(int x, int y, int dest, GraphObject::Direction dir);
-    Actor* canMove(int x, int y, GraphObject::Direction dir, std::string& status);
+    
     
     Player* getPlayer() {
         return m_player;
