@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 
+
 using namespace std;
 
 GameWorld* createStudentWorld(string assetDir)
@@ -148,13 +149,13 @@ int StudentWorld::loadLevel() {
         for (int y = 0; y < VIEW_HEIGHT; y++) {
             Level::MazeEntry item =	lev.getContentsOf(x,y);
             switch (item) {
+                case Level::player:
+                    m_player = new Player(this, x, y);
+                    break;
                 case Level::wall: {
                     m_actors.push_back(new Wall(this, x, y));
                     break;
                 }
-                case Level::player:
-                    m_player = new Player(this, x, y);
-                    break;
                 case Level::boulder:
                     m_actors.push_back(new Boulder(this, x, y));
                     break;
@@ -182,6 +183,7 @@ int StudentWorld::loadLevel() {
                 case Level::vert_snarlbot:
                     m_actors.push_back(new SnarlBot(this, x, y, GraphObject::down));
                     break;
+                
                 default:
                     break;
             }

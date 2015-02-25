@@ -4,7 +4,8 @@
 #include <iostream>
 #include <string>
 #include "GraphObject.h"
-
+#include <cstdlib>
+#include <map>
 
 using namespace std;
 
@@ -107,13 +108,6 @@ bool Player::canMove(int& x, int& y, Direction dir) {
     return false;
 }
 
-/* Dangerous Actor
- ------------------------------ */
-void DangerousActor::shoot() {
-    getWorld()->createBullet(getX(), getY(), getDirection());
-}
-
-
 /* Boulder
  ------------------------------ */
 bool Boulder::push(Direction dir) {
@@ -187,7 +181,7 @@ void Jewel::doSomething() {
         return;
     }
     
-    // if Player is on the same square as the Jewel
+    // if Player is on the same square as the Jewel and Jewel is visible
     if (getX() == getWorld()->getPlayer()->getX() && getY() == getWorld()->getPlayer()->getY()) {
         getWorld()->increaseScore(50);
         getWorld()->playSound(SOUND_GOT_GOODIE);
@@ -203,7 +197,7 @@ void Ammo::doSomething() {
     }
     
     // if Player is on the same square as the Ammo
-    if (getX() == getWorld()->getPlayer()->getX() && getY() == getWorld()->getPlayer()->getY()) {
+    if (getX() == getWorld()->getPlayer()->getX() && getY() == getWorld()->getPlayer()->getY() && isVisible()) {
         getWorld()->increaseScore(100);
         getWorld()->getPlayer()->reload(20);
         getWorld()->playSound(SOUND_GOT_GOODIE);
@@ -219,7 +213,7 @@ void Health::doSomething() {
     }
     
     // if Player is on the same square as the Health
-    if (getX() == getWorld()->getPlayer()->getX() && getY() == getWorld()->getPlayer()->getY()) {
+    if (getX() == getWorld()->getPlayer()->getX() && getY() == getWorld()->getPlayer()->getY() && isVisible()) {
         getWorld()->increaseScore(500);
         getWorld()->getPlayer()->setHealth(20);
         getWorld()->playSound(SOUND_GOT_GOODIE);
@@ -235,10 +229,24 @@ void Life::doSomething() {
     }
     
     // if Player is on the same square as the Health
-    if (getX() == getWorld()->getPlayer()->getX() && getY() == getWorld()->getPlayer()->getY()) {
+    if (getX() == getWorld()->getPlayer()->getX() && getY() == getWorld()->getPlayer()->getY() && isVisible()) {
         getWorld()->incLives();
         getWorld()->playSound(SOUND_GOT_GOODIE);
         setDead();
+    }
+}
+
+/* Enemy
+ ------------------------------ */
+void Enemy::takeHit() {
+    // killed
+    if (isHit(2) == 1) {
+        getWorld()->increaseScore(100);
+        getWorld()->playSound(SOUND_ROBOT_DIE);
+    }
+    // hurt but not dead
+    else {
+        getWorld()->playSound(SOUND_ROBOT_IMPACT);
     }
 }
 
@@ -254,12 +262,12 @@ void SnarlBot::doSomething() {
     Direction dir = getDirection();
     
     // if SnarlBot is supposed to rest
-    if (m_ticks < m_rest) {
-        m_ticks++;
+    if (getTicks() < getRest()) {
+        setTicks();
     }
     // decide whether to shoot or not
     else {
-        m_ticks = 0;
+        setTicks();
         int px = getWorld()->getPlayer()->getX();
         int py = getWorld()->getPlayer()->getY();
         
@@ -312,15 +320,108 @@ void SnarlBot::doSomething() {
     
 }
 
-void SnarlBot::takeHit() {
-    // killed
-    if (isHit(2) == 1) {
-        getWorld()->increaseScore(100);
-        getWorld()->playSound(SOUND_ROBOT_DIE);
+/* KleptoBot
+ ------------------------------ */
+void KleptoBot::doSomething() {
+    if (! isAlive()) {
+        return;
     }
-    // hurt but not dead
+    
+    int dx = getX();
+    int dy = getY();
+    Direction dir = getDirection();
+    
+    // if KleptoBot is supposed to rest
+    if (getTicks() < getRest()) {
+        setTicks();
+    }
+    // decide whether to shoot or not
     else {
-        getWorld()->playSound(SOUND_ROBOT_IMPACT);
+        setTicks();
+        
+        // check for Goodie on the same square
+        Actor* ap = getWorld()->checkSpace(dx, dy);
+        Goodie* g = dynamic_cast<Goodie*>(ap);
+        if (g != nullptr) {
+            g->setVisible(false);
+            g->toggleVisible();
+            m_item = g;
+        }
+        
+        // check if it has moved the max distance
+        if (m_maxDist > 0 && m_blocked == false) {
+            m_maxDist--;
+            
+            // move or change direction if can't shoot
+            convertDir(dx, dy, dir);
+            
+            Actor* ap = getWorld()->checkSpace(dx, dy);
+            
+            // empty square or object that can be occupied
+            if (ap == nullptr || ap->canOccupy()) {
+                moveTo(dx, dy);
+                if (m_item != nullptr) {
+                    m_item->moveTo(dx, dy);
+                }
+                return;
+            }
+            // encountered obstruction
+            else {
+                m_blocked = true;
+            }
+        }
+        // change direction
+        else {
+            m_blocked = false;
+            
+            // reset max distance
+            m_maxDist = rand() % 6 + 1;
+            map<int, bool> check;
+            int count = 0;
+            
+            // count will check all four directions
+            while (count < 4) {
+                int rng = rand() % 4;
+                
+                if (check.find(rng)->second == true) {
+                    continue;
+                }
+                else {
+                    check[rng] = true;
+                    Direction dir;
+                    switch (rng) {
+                        case 0:
+                            dir = up;
+                            break;
+                        case 1:
+                            dir = right;
+                            break;
+                        case 2:
+                            dir = down;
+                            break;
+                        case 3:
+                            dir = left;
+                            break;
+                    }
+                    convertDir(dx, dy, dir);
+                    Actor* ap = getWorld()->checkSpace(dx, dy);
+                    
+                    if (ap == nullptr || ap->canOccupy()) {
+                        setDirection(dir);
+                        return;
+                    }
+                    count++;
+                    
+                }
+                
+            }
+            
+            
+            
+        }
+        
+        
     }
+    
 }
 

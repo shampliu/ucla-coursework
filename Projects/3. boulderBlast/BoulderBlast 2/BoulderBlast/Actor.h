@@ -4,6 +4,7 @@
 #include "GraphObject.h"
 #include "GameConstants.h"
 #include "StudentWorld.h"
+#include <cstdlib>
 
 // Actor without hitpoints
 class Actor: public GraphObject {
@@ -118,43 +119,49 @@ public:
     virtual bool hittable() {
         return false;
     }
+};
+
+// can be taken by KleptoBot
+class Goodie : public Actor {
+public:
+    Goodie(StudentWorld* world, int imageID, int startX, int startY) : Actor(world, imageID, startX, startY, none) {
+        m_visible = true;
+    };
+    
+    virtual void doSomething() = 0;
+    virtual bool canOccupy() {
+        return true;
+    };
+    virtual bool hittable() {
+        return false;
+    }
+    
+    void toggleVisible() {
+        m_visible == true ? m_visible = false : m_visible = true;
+    }
+    bool isVisible() const { return m_visible; };
+    
+private:
+    bool m_visible;
     
 };
 
-class Health : public Actor {
+class Health : public Goodie {
 public:
-    Health(StudentWorld* world, int startX, int startY) : Actor(world, IID_RESTORE_HEALTH, startX, startY, none) { };
+    Health(StudentWorld* world, int startX, int startY) : Goodie(world, IID_RESTORE_HEALTH, startX, startY) { };
     virtual void doSomething();
-    virtual bool canOccupy() {
-        return true;
-    };
-    virtual bool hittable() {
-        return false;
-    }
 };
 
-class Life : public Actor {
+class Life : public Goodie {
 public:
-    Life(StudentWorld* world, int startX, int startY) : Actor(world, IID_EXTRA_LIFE, startX, startY, none) { };
+    Life(StudentWorld* world, int startX, int startY) : Goodie(world, IID_EXTRA_LIFE, startX, startY) { };
     virtual void doSomething();
-    virtual bool canOccupy() {
-        return true;
-    };
-    virtual bool hittable() {
-        return false;
-    }
 };
 
-class Ammo : public Actor {
+class Ammo : public Goodie {
 public:
-    Ammo(StudentWorld* world, int startX, int startY) : Actor(world, IID_AMMO, startX, startY, none) { };
+    Ammo(StudentWorld* world, int startX, int startY) : Goodie(world, IID_AMMO, startX, startY) { };
     virtual void doSomething();
-    virtual bool canOccupy() {
-        return true;
-    };
-    virtual bool hittable() {
-        return false;
-    }
 };
 
 // Actor with hitpoints
@@ -215,19 +222,10 @@ public:
     
 };
 
-// LivingActor with gun
-class DangerousActor : public LivingActor {
-public:
-    DangerousActor(int health, StudentWorld* world, int imageID, int startX, int startY, Direction dir) : LivingActor(health, world, imageID, startX, startY, dir) { };
-    
-    void shoot();
-    
-};
-
-class Player : public DangerousActor {
+class Player : public LivingActor {
     
 public:
-    Player(StudentWorld* world, int startX, int startY) : DangerousActor(20, world, IID_PLAYER, startX, startY, right), m_ammo(20) { };
+    Player(StudentWorld* world, int startX, int startY) : LivingActor(20, world, IID_PLAYER, startX, startY, right), m_ammo(20) { };
     
     virtual void doSomething();
     
@@ -240,7 +238,9 @@ public:
         m_ammo += amt; 
     }
     
-    
+    void shoot() {
+        getWorld()->createBullet(getX(), getY(), getDirection());
+    }
     
     virtual void takeHit() {
         isHit(2);
@@ -252,17 +252,22 @@ private:
     int m_ammo;
 };
 
-class SnarlBot : public DangerousActor {
+// these guys hurt
+class Enemy : public LivingActor {
 public:
-    SnarlBot(StudentWorld* world, int startX, int startY, Direction dir) : DangerousActor(10, world, IID_SNARLBOT, startX, startY, dir) {
+    Enemy(int health, StudentWorld* world, int imageID, int startX, int startY, Direction dir) : LivingActor(health, world, imageID, startX, startY, dir) {
         m_ticks = 0;
-        
-        
         int ticks = (28 - getWorld()->getLevel()) / 4;
         ticks < 3 ? m_rest = 3 : m_rest = ticks;
     };
-    virtual void doSomething();
-
+    
+    int getRest() const { return m_rest; }
+    int getTicks() const { return m_ticks; }
+    void setTicks() {
+        (m_ticks < m_rest) ? m_ticks++ : m_ticks = 0;
+    }
+    
+    virtual void doSomething() = 0;
     virtual void takeHit();
 
     
@@ -272,8 +277,32 @@ private:
     
 };
 
-class KleptoBot : public LivingActor {
+
+class SnarlBot : public Enemy {
+public:
+    SnarlBot(StudentWorld* world, int startX, int startY, Direction dir) : Enemy(10, world, IID_SNARLBOT, startX, startY, dir) { };
     
+    void shoot() {
+        getWorld()->createBullet(getX(), getY(), getDirection());
+    }
+    virtual void doSomething();
+    
+};
+
+class KleptoBot : public Enemy {
+public:
+    KleptoBot(StudentWorld* world, int startX, int startY) : Enemy(5, world, IID_KLEPTOBOT, startX, startY, right) {
+        m_maxDist = rand() % 6 + 1;
+        m_item = nullptr;
+        m_blocked = false;
+    };
+    
+    virtual void doSomething();
+    
+private:
+    int m_maxDist;
+    bool m_blocked;
+    Goodie* m_item;
 };
 
 
