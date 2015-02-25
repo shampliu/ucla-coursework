@@ -324,6 +324,10 @@ void SnarlBot::doSomething() {
  ------------------------------ */
 void KleptoBot::doSomething() {
     if (! isAlive()) {
+        if (m_item != nullptr) {
+            m_item->toggleVisible();
+            m_item->setVisible(true);
+        }
         return;
     }
     

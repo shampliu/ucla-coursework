@@ -116,7 +116,7 @@ void StudentWorld::removeDeadGameObjects() {
     {
         if (!(*ap)->isAlive()) {
             delete (*ap);
-            ap = m_actors.erase(ap);
+            ap = m_actors.erase(ap); 
         }
         else {
             ap++;
@@ -183,7 +183,12 @@ int StudentWorld::loadLevel() {
                 case Level::vert_snarlbot:
                     m_actors.push_back(new SnarlBot(this, x, y, GraphObject::down));
                     break;
-                
+                case Level::kleptobot_factory:
+                    m_actors.push_back(new Factory(this, x, y, false));
+                    break;
+//                case Level::angry_kleptobot_factory:
+//                    m_actors.push_back(new AngryFactory(this, x, y));
+//                    break;
                 default:
                     break;
             }

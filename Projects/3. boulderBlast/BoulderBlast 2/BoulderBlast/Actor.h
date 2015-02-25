@@ -121,6 +121,26 @@ public:
     }
 };
 
+class Factory : public Actor {
+public:
+    Factory(StudentWorld* world, int startX, int startY, bool angry) : Actor(world, IID_ROBOT_FACTORY, startX, startY, none) {
+        m_angry = angry;
+    };
+    
+    virtual void doSomething() { };
+    virtual bool canOccupy() {
+        return false;
+    };
+    
+    // either implement one function to check or loop thru robots array
+    
+    
+private:
+    bool m_angry;
+    std::vector<Actor*> m_robots;
+    
+};
+
 // can be taken by KleptoBot
 class Goodie : public Actor {
 public:
