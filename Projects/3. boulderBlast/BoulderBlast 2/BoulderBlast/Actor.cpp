@@ -320,6 +320,31 @@ void SnarlBot::doSomething() {
     
 }
 
+/* Factory
+ ------------------------------ */
+bool Factory::countRegion(int& count) {
+    count = 0;
+    int x = getX();
+    int y = getY();
+    
+    
+    
+    // search row by row from the top
+    for (int j = y+3; j >= y-3; j--) {
+        if (y < 0 || y >= VIEW_HEIGHT) {
+            continue;
+        }
+        for (int i = x-3; i <= x+3; x++) {
+            if (x < 0 || x >= VIEW_WIDTH) {
+                continue;
+            }
+            
+            
+        }
+    }
+    
+}
+
 /* KleptoBot
  ------------------------------ */
 void KleptoBot::doSomething() {

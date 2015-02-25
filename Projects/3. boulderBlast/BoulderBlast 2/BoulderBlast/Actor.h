@@ -132,6 +132,8 @@ public:
         return false;
     };
     
+    bool countRegion(int& count);
+    
     // either implement one function to check or loop thru robots array
     
     
