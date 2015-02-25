@@ -40,16 +40,15 @@ public:
     unsigned int getBonus() const {
         return m_bonus;
     }
-    Actor* checkSpace(int x, int y);
+    Actor* checkSpace(int x, int y, std::string search);
     
     void createBullet(int x, int y, GraphObject::Direction dir);
-
     
     std::vector<Actor*> getActors() {
         return m_actors;
     }
     
-    bool canShoot(int x, int y, int dest, GraphObject::Direction dir);
+    bool canShoot(int x, int y, int dest, GraphObject::Direction dir, std::string check);
     
     
     Player* getPlayer() {

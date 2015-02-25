@@ -89,7 +89,7 @@ bool Player::canMove(int& x, int& y, Direction dir) {
     
     convertDir(dx, dy, dir);
     
-    Actor* ap = getWorld()->checkSpace(dx, dy);
+    Actor* ap = getWorld()->checkSpace(dx, dy, "");
     
     // empty square or object that can be occupied
     if (ap == nullptr || ap->canOccupy()) {
@@ -116,7 +116,7 @@ bool Boulder::push(Direction dir) {
     
     convertDir(dx, dy, dir);
     
-    Actor* ap = getWorld()->checkSpace(dx, dy);
+    Actor* ap = getWorld()->checkSpace(dx, dy, "");
     
     // empty square
     if (ap == nullptr) {
@@ -161,7 +161,7 @@ void Bullet::doSomething() {
     int dx = getX();
     int dy = getY();
     
-    Actor* ap = getWorld()->checkSpace(dx, dy);
+    Actor* ap = getWorld()->checkSpace(dx, dy, "");
     
     if (ap != nullptr && ap->hittable()) {
         ap->takeHit();
@@ -271,9 +271,12 @@ void SnarlBot::doSomething() {
         int px = getWorld()->getPlayer()->getX();
         int py = getWorld()->getPlayer()->getY();
         
+        string check;
+        
         // player is in the same column as the SnarlBot and SnarlBot
         if (px == getX()) {
-            if (getWorld()->canShoot(dx, dy, py, dir)) {
+            check = "v";
+            if (getWorld()->canShoot(dx, dy, py, dir, check)) {
                 shoot();
                 getWorld()->playSound(SOUND_ENEMY_FIRE);
                 return;
@@ -281,7 +284,8 @@ void SnarlBot::doSomething() {
         }
         // player is in the same row as the SnarlBot
         if (py == getY()) {
-            if (getWorld()->canShoot(dx, dy, px, dir)) {
+            check = "h"; 
+            if (getWorld()->canShoot(dx, dy, px, dir, check)) {
                 shoot();
                 getWorld()->playSound(SOUND_ENEMY_FIRE);
                 return;
@@ -292,7 +296,7 @@ void SnarlBot::doSomething() {
         // move or change direction if can't shoot
         convertDir(dx, dy, dir);
         
-        Actor* ap = getWorld()->checkSpace(dx, dy);
+        Actor* ap = getWorld()->checkSpace(dx, dy, "");
         
         // empty square or object that can be occupied
         if (ap == nullptr || ap->canOccupy()) {
@@ -327,22 +331,45 @@ bool Factory::countRegion(int& count) {
     int x = getX();
     int y = getY();
     
-    
-    
     // search row by row from the top
     for (int j = y+3; j >= y-3; j--) {
         if (y < 0 || y >= VIEW_HEIGHT) {
             continue;
         }
+        
         for (int i = x-3; i <= x+3; x++) {
             if (x < 0 || x >= VIEW_WIDTH) {
                 continue;
+            }
+            if (getWorld()->checkSpace(i, j, "kleptobot") != nullptr) {
+                // kleptobot at the same square as factory
+                if (i == x &&  j == y) { return false; }
+                count++;
             }
             
             
         }
     }
     
+    return true;
+}
+
+void Factory::doSomething() {
+//    int count = 0;
+//    if (countRegion(count)) {
+//        if (count < 3) {
+//            // 1/50 chance of it being 1, then spawn the kleptobot
+//            if (rand() % 50 == 1) {
+//                if (m_angry) {
+//                    
+//                }
+//                else {
+//                    getWorld()->getActors().push_back(new KleptoBot(getWorld(), getX(), getY()));
+//                }
+//                getWorld()->playSound(SOUND_ROBOT_BORN);
+//            }
+//        }
+//    }
 }
 
 /* KleptoBot
@@ -369,7 +396,7 @@ void KleptoBot::doSomething() {
         setTicks();
         
         // check for Goodie on the same square
-        Actor* ap = getWorld()->checkSpace(dx, dy);
+        Actor* ap = getWorld()->checkSpace(dx, dy, "");
         Goodie* g = dynamic_cast<Goodie*>(ap);
         if (g != nullptr) {
             g->setVisible(false);
@@ -384,7 +411,7 @@ void KleptoBot::doSomething() {
             // move or change direction if can't shoot
             convertDir(dx, dy, dir);
             
-            Actor* ap = getWorld()->checkSpace(dx, dy);
+            Actor* ap = getWorld()->checkSpace(dx, dy, "");
             
             // empty square or object that can be occupied
             if (ap == nullptr || ap->canOccupy()) {
@@ -433,7 +460,7 @@ void KleptoBot::doSomething() {
                             break;
                     }
                     convertDir(dx, dy, dir);
-                    Actor* ap = getWorld()->checkSpace(dx, dy);
+                    Actor* ap = getWorld()->checkSpace(dx, dy, "");
                     
                     if (ap == nullptr || ap->canOccupy()) {
                         setDirection(dir);

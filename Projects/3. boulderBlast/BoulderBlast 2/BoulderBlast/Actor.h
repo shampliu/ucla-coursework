@@ -127,7 +127,7 @@ public:
         m_angry = angry;
     };
     
-    virtual void doSomething() { };
+    virtual void doSomething();
     virtual bool canOccupy() {
         return false;
     };

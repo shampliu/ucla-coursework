@@ -234,7 +234,7 @@ void StudentWorld::createBullet(int x, int y, GraphObject::Direction dir) {
     
 }
 
-Actor* StudentWorld::checkSpace(int x, int y) {
+Actor* StudentWorld::checkSpace(int x, int y, string search) {
     
 //    if (x > VIEW_WIDTH || x < 0 || y > VIEW_HEIGHT || y < 0) {
 //        status = "out of range";
@@ -245,21 +245,15 @@ Actor* StudentWorld::checkSpace(int x, int y) {
     for (auto actor : actors) {
         if (actor->getX() == x && actor->getY() == y)
         {
-//            // check if actor is a Boulder
-//            Boulder* b = dynamic_cast<Boulder*>(actor);
-//            if (b != nullptr) {
-//                status = "boulder";
-//                return actor;
-//            }
-//            
-//            // check if actor is a Hole
-//            Hole* h = dynamic_cast<Hole*>(actor);
-//            if (h != nullptr) {
-//                status = "hole";
-//                return actor;
-//            }
-            
-            return actor;
+            if (search == "kleptobot") {
+                KleptoBot* k = dynamic_cast<KleptoBot*>(actor);
+                if (k != nullptr) {
+                    return k;
+                }
+            }
+            else {
+                return actor;
+            }
         }
     }
     
@@ -267,15 +261,17 @@ Actor* StudentWorld::checkSpace(int x, int y) {
     return nullptr;
 }
 
-bool StudentWorld::canShoot(int x, int y, int dest, GraphObject::Direction dir) {
+bool StudentWorld::canShoot(int x, int y, int dest, GraphObject::Direction dir, string check) {
     switch (dir) {
         case GraphObject::up:
+            if (check != "v") { return false; }
+            
             // facing wrong way
             if (dest < y) { return false; }
             // start one square ahead of initial because the initial parameter is the actor's position
             for (int i = y+1; i < dest; i++) {
                 
-                Actor* ap = checkSpace(x, i);
+                Actor* ap = checkSpace(x, i, "");
                 if (ap == nullptr || (ap != nullptr && !ap->hittable())) {
                     continue;
                 }
@@ -285,10 +281,12 @@ bool StudentWorld::canShoot(int x, int y, int dest, GraphObject::Direction dir) 
             }
             break;
         case GraphObject::right:
+            if (check != "h") { return false; }
+            
             if (dest < x) { return false; }
             for (int i = x+1; i < dest; i++) {
                 
-                Actor* ap = checkSpace(i, y);
+                Actor* ap = checkSpace(i, y, "");
                 if (ap == nullptr || (ap != nullptr && !ap->hittable())) {
                     continue;
                 }
@@ -298,10 +296,12 @@ bool StudentWorld::canShoot(int x, int y, int dest, GraphObject::Direction dir) 
             }
             break;
         case GraphObject::down:
+            if (check != "v") { return false; }
+            
             if (dest > y) { return false; }
             for (int i = y-1; i > dest; i--) {
                 
-                Actor* ap = checkSpace(x, i);
+                Actor* ap = checkSpace(x, i, "");
                 if (ap == nullptr || (ap != nullptr && !ap->hittable())) {
                     continue;
                 }
@@ -311,10 +311,12 @@ bool StudentWorld::canShoot(int x, int y, int dest, GraphObject::Direction dir) 
             }
             break;
         case GraphObject::left:
+            if (check != "h") { return false; }
+            
             if (dest > x) { return false; }
             for (int i = x-1; i > dest; i--) {
                 
-                Actor* ap = checkSpace(i, y);
+                Actor* ap = checkSpace(i, y, "");
                 if (ap == nullptr || (ap != nullptr && !ap->hittable())) {
                     continue;
                 }
@@ -325,7 +327,7 @@ bool StudentWorld::canShoot(int x, int y, int dest, GraphObject::Direction dir) 
             break;
     }
     
-    return true; 
+    return true;
     
 }
 
