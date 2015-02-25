@@ -45,6 +45,13 @@ public:
         return m_actors;
     }
     
+    bool canShoot(int x, int y, int dest, GraphObject::Direction dir);
+    Actor* canMove(int x, int y, GraphObject::Direction dir, std::string& status);
+    
+    Player* getPlayer() {
+        return m_player;
+    }
+    
 
     int	loadLevel();
 

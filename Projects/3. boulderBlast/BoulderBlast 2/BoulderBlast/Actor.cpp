@@ -51,7 +51,7 @@ void Player::doSomething() {
             case KEY_PRESS_SPACE:
                 if (getAmmo() > 0) {
                     shoot();
-                    
+                    m_ammo--;
                 }
                 break;
             case KEY_PRESS_ESCAPE:
@@ -107,39 +107,10 @@ bool Player::canMove(int& x, int& y, Direction dir) {
     return false;
 }
 
-//bool Player::canMove(int x, int y) const {
-//    if (x > VIEW_WIDTH || x < 0 || y > VIEW_HEIGHT || y < 0) {
-//        return false;
-//    }
-//    
-//    
-//    std::vector<Actor*> actors = getWorld()->getActors();
-//    for (auto actor : actors) {
-//        if (actor->getX() == x && actor->getY() == y)
-//        {
-//            if (actor->canOccupy()) {
-//                return true;
-//            }
-//            else {
-//                Boulder* b = dynamic_cast<Boulder*>(actor);
-//                if (b != nullptr) { // is a boulder
-//                    
-//                    
-//                }
-//                return false;
-//            }
-//        }
-//    }
-//    
-//    return true;
-//}
-
-
 /* Dangerous Actor
  ------------------------------ */
 void DangerousActor::shoot() {
     getWorld()->createBullet(getX(), getY(), getDirection());
-    
 }
 
 
@@ -239,5 +210,72 @@ void Bullet::doSomething() {
     moveTo(x, y); 
 }
 
+/* Jewel
+ ------------------------------ */
+void Jewel::doSomething() {
+    if (! isAlive()) {
+        return;
+    }
+    
+    // if Player is on the same square as the Jewel
+    if (getX() == getWorld()->getPlayer()->getX() && getY() == getWorld()->getPlayer()->getY()) {
+        getWorld()->increaseScore(50);
+        getWorld()->playSound(SOUND_GOT_GOODIE);
+        setDead();
+    }
+}
 
+/* SnarlBot
+ ------------------------------ */
+void SnarlBot::doSomething() {
+    if (! isAlive()) {
+        return;
+    }
+    
+    // if SnarlBot is supposed to rest
+    if (m_ticks < m_rest) {
+        m_ticks++;
+    }
+    // decide whether to shoot or not
+    else {
+        m_ticks = 0;
+        int px = getWorld()->getPlayer()->getX();
+        int py = getWorld()->getPlayer()->getY();
+        Direction dir = getDirection();
+        
+        // player is in the same column as the SnarlBot and SnarlBot
+        if (px == getX()) {
+            if (getWorld()->canShoot(getX(), getY(), py, dir)) {
+                shoot();
+                getWorld()->playSound(SOUND_ENEMY_FIRE);
+                return;
+            }
+        }
+        // player is in the same row as the SnarlBot
+        if (py == getY()) {
+            if (getWorld()->canShoot(getX(), getY(), px, dir)) {
+                shoot();
+                getWorld()->playSound(SOUND_ENEMY_FIRE);
+                return;
+            }
+
+        }
+    }
+    
+    // move or change direction if can't shoot
+    
+    
+}
+
+void SnarlBot::takeHit() {
+    // killed
+    if (isHit(2) == 1) {
+        getWorld()->increaseScore(100);
+        getWorld()->playSound(SOUND_ROBOT_DIE);
+    }
+    // hurt but not dead
+    else {
+        getWorld()->playSound(SOUND_ROBOT_IMPACT);
+    }
+}
 
