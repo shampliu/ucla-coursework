@@ -121,6 +121,30 @@ public:
     
 };
 
+class Health : public Actor {
+public:
+    Health(StudentWorld* world, int startX, int startY) : Actor(world, IID_RESTORE_HEALTH, startX, startY, none) { };
+    virtual void doSomething();
+    virtual bool canOccupy() {
+        return true;
+    };
+    virtual bool hittable() {
+        return false;
+    }
+};
+
+class Life : public Actor {
+public:
+    Life(StudentWorld* world, int startX, int startY) : Actor(world, IID_EXTRA_LIFE, startX, startY, none) { };
+    virtual void doSomething();
+    virtual bool canOccupy() {
+        return true;
+    };
+    virtual bool hittable() {
+        return false;
+    }
+};
+
 class Ammo : public Actor {
 public:
     Ammo(StudentWorld* world, int startX, int startY) : Actor(world, IID_AMMO, startX, startY, none) { };
@@ -150,6 +174,14 @@ public:
         }
         return 0;
     };
+    
+    int getHealth() {
+        return m_health;
+    }
+    
+    void setHealth(int amt) {
+        m_health = amt; 
+    }
     
     virtual bool canOccupy() {
         return false;
@@ -207,6 +239,8 @@ public:
     void reload(int amt) {
         m_ammo += amt; 
     }
+    
+    
     
     virtual void takeHit() {
         isHit(2);

@@ -195,7 +195,7 @@ void Jewel::doSomething() {
     }
 }
 
-/* Jewel
+/* Ammo
  ------------------------------ */
 void Ammo::doSomething() {
     if (! isAlive()) {
@@ -206,6 +206,37 @@ void Ammo::doSomething() {
     if (getX() == getWorld()->getPlayer()->getX() && getY() == getWorld()->getPlayer()->getY()) {
         getWorld()->increaseScore(100);
         getWorld()->getPlayer()->reload(20);
+        getWorld()->playSound(SOUND_GOT_GOODIE);
+        setDead();
+    }
+}
+
+/* Health
+ ------------------------------ */
+void Health::doSomething() {
+    if (! isAlive()) {
+        return;
+    }
+    
+    // if Player is on the same square as the Health
+    if (getX() == getWorld()->getPlayer()->getX() && getY() == getWorld()->getPlayer()->getY()) {
+        getWorld()->increaseScore(500);
+        getWorld()->getPlayer()->setHealth(20);
+        getWorld()->playSound(SOUND_GOT_GOODIE);
+        setDead();
+    }
+}
+
+/* Life
+ ------------------------------ */
+void Life::doSomething() {
+    if (! isAlive()) {
+        return;
+    }
+    
+    // if Player is on the same square as the Health
+    if (getX() == getWorld()->getPlayer()->getX() && getY() == getWorld()->getPlayer()->getY()) {
+        getWorld()->incLives();
         getWorld()->playSound(SOUND_GOT_GOODIE);
         setDead();
     }

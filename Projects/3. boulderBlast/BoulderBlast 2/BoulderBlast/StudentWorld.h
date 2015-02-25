@@ -17,8 +17,10 @@ public:
 	StudentWorld(std::string assetDir)
 	 : GameWorld(assetDir)
 	{
-        
+        m_bonus = 1000;
 	}
+    
+    std::string formatDisplay(int score, int level, int lives, int health, int ammo, unsigned int bonus);
     
     ~StudentWorld() {
         cleanUp(); 
@@ -34,7 +36,10 @@ public:
     virtual void cleanUp();
     
     void removeDeadGameObjects();
-    
+    void decBonus(); 
+    unsigned int getBonus() const {
+        return m_bonus;
+    }
     Actor* checkSpace(int x, int y);
     
     void createBullet(int x, int y, GraphObject::Direction dir);
@@ -57,6 +62,7 @@ public:
 private:
     std::vector<Actor*> m_actors;
     Player* m_player;
+    unsigned int m_bonus;
     
     
 };

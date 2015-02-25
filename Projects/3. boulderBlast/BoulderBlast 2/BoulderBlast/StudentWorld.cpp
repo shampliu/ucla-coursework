@@ -33,11 +33,26 @@ int StudentWorld::init()
 
 void StudentWorld::updateDisplay() {
     
+    int score = getScore();
+    int level = getLevel();
+    int lives = getLives();
+    int health = getPlayer()->getHealth();
+    int ammo = getPlayer()->getAmmo();
+    unsigned int bonus = getBonus();
+    // Next, create a string from your statistics, of the form:
+    // Score: 0000100 Level: 03 Lives: 3 Health: 70% Ammo: 216 Bonus: 34
     
+    string s = formatDisplay(score, level, lives, health, ammo, bonus);
+    // Finally, update the display text at the top of the screen with your
+    // newly created stats
+    setGameStatText(s); // calls our provided GameWorld::setGameStatText
+}
+
+string StudentWorld::formatDisplay(int score, int level, int lives, int health, int ammo, unsigned int bonus) {
+    return "Score: " + to_string(score) + " Level: " + to_string(level) + " Lives: " + to_string(lives) + " Health: " + to_string(health) + " Ammo: " + to_string(ammo) + " Bonus " + to_string(bonus);
     
 }
 
-// Students:  Add code to this file (if you wish), StudentWorld.h, Actor.h and Actor.cpp
 int StudentWorld::move()
 {
     // Update the Game Status Line
@@ -67,7 +82,7 @@ int StudentWorld::move()
     // Remove newly-dead actors after each tick
     removeDeadGameObjects(); // delete dead game objects
     // Reduce the current bonus for the Level by one
-//    reduceLevelBonusByOne();
+    decBonus();
 //    // If the player has collected all of the Jewels on the level, then we
 //    // must expose the Exit so the player can advance to the next level
 //    if (thePlayerHasCollectedAllOfTheJewelsOnTheLevel())
@@ -86,6 +101,12 @@ int StudentWorld::move()
     // continue playing the current level
     return GWSTATUS_CONTINUE_GAME;
     return 0;
+}
+
+void StudentWorld::decBonus() {
+    if (m_bonus > 0) {
+        m_bonus--; 
+    }
 }
 
 void StudentWorld::removeDeadGameObjects() {
@@ -145,6 +166,12 @@ int StudentWorld::loadLevel() {
                     break;
                 case Level::jewel:
                     m_actors.push_back(new Jewel(this, x, y));
+                    break;
+                case Level::restore_health:
+                    m_actors.push_back(new Health(this, x, y));
+                    break;
+                case Level::extra_life:
+                    m_actors.push_back(new Life(this, x, y));
                     break;
                 case Level::ammo:
                     m_actors.push_back(new Ammo(this, x, y));
