@@ -257,6 +257,10 @@ public:
         m_ammo += amt; 
     }
     
+    bool canOccupy() {
+        return false; 
+    }
+    
     int getJewels() {
         return m_jewels;
     }

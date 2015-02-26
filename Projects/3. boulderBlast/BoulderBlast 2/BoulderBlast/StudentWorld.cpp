@@ -71,14 +71,6 @@ int StudentWorld::move()
         {
             // ask each actor to do something (e.g. move)
             actor->doSomething();
-            if (! m_player->isAlive())
-                return GWSTATUS_PLAYER_DIED;
-            if (m_completed)
-            {
-                playSound(SOUND_FINISHED_LEVEL);
-                increaseScore(2000 + m_bonus);
-                return GWSTATUS_FINISHED_LEVEL;
-            }
         }
     }
     // Remove newly-dead actors after each tick
@@ -88,19 +80,14 @@ int StudentWorld::move()
         m_bonus--;
     }
     
-//    // If the player has collected all of the Jewels on the level, then we
-//    // must expose the Exit so the player can advance to the next level
-//    if (thePlayerHasCollectedAllOfTheJewelsOnTheLevel())
-//        exposeTheExitInTheMaze(); // make the exit Active
-//    // return the proper result
-//    if (! m_player->isAlive())
-//        return GWSTATUS_PLAYER_DIED;
-//    if (thePlayerCompletedTheCurrentLevel())
-//    {
-//        increaseScoreAppropriately();
-//        return GWSTATUS_FINISHED_LEVEL;
-//    }
-    
+    if (! m_player->isAlive())
+        return GWSTATUS_PLAYER_DIED;
+    if (m_completed)
+    {
+        playSound(SOUND_FINISHED_LEVEL);
+        increaseScore(2000 + m_bonus);
+        return GWSTATUS_FINISHED_LEVEL;
+    }
     
     // the player hasn’t completed the current level and hasn’t died, so
     // continue playing the current level
@@ -125,7 +112,6 @@ void StudentWorld::removeDeadGameObjects() {
 
 int StudentWorld::loadLevel() {
     
-    string	curLevel = "level00.dat";
     Level lev(assetDirectory());
     
     // format level
@@ -272,6 +258,9 @@ Actor* StudentWorld::checkSpace(int x, int y, string search) {
                 return actor;
             }
         }
+    }
+    if (m_player->getX() == x && m_player->getY() == y) {
+        return m_player;
     }
     
 //    status = "empty"; 
