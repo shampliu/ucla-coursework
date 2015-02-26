@@ -95,11 +95,11 @@ public:
 class Exit : public Actor {
 public:
     Exit(StudentWorld* world, int startX, int startY) : Actor(world, IID_EXIT, startX, startY, none) {
-        
+        m_visible = false;
         setVisible(false);
     };
     
-    virtual void doSomething() { };
+    virtual void doSomething();
     virtual bool canOccupy() {
         return true;
     };
@@ -107,6 +107,8 @@ public:
         return false;
     }
     
+private:
+    bool m_visible;
 };
 
 class Jewel : public Actor {
@@ -242,7 +244,7 @@ public:
 class Player : public LivingActor {
     
 public:
-    Player(StudentWorld* world, int startX, int startY) : LivingActor(20, world, IID_PLAYER, startX, startY, right), m_ammo(20) { };
+    Player(StudentWorld* world, int startX, int startY) : LivingActor(20, world, IID_PLAYER, startX, startY, right), m_ammo(20), m_jewels(0) { };
     
     virtual void doSomething();
     
@@ -255,6 +257,13 @@ public:
         m_ammo += amt; 
     }
     
+    int getJewels() {
+        return m_jewels;
+    }
+    void incJewels() {
+        m_jewels++;
+    }
+    
     void shoot() {
         getWorld()->createBullet(getX(), getY(), getDirection());
     }
@@ -263,6 +272,7 @@ public:
     
 private:
     int m_ammo;
+    int m_jewels;
 };
 
 // these guys hurt
@@ -305,29 +315,44 @@ public:
 
 class KleptoBot : public Enemy {
 public:
-    KleptoBot(StudentWorld* world, int startX, int startY) : Enemy(5, world, IID_KLEPTOBOT, startX, startY, right) {
+    KleptoBot(int health, StudentWorld* world, int startX, int startY) : Enemy(health, world, IID_KLEPTOBOT, startX, startY, right) {
         m_maxDist = rand() % 6 + 1;
         m_item = nullptr;
         m_blocked = false;
     };
     
-    virtual void resetDist() {
+    Goodie* getItem() {
+        return m_item;
+    }
+    
+    void addItem(Goodie* g) {
+        m_item = g; 
+    }
+    
+    int getDist() {
+        return m_maxDist;
+    }
+    
+    void changeDist(int change) {
+        m_maxDist += change; 
+    }
+    
+    bool isBlocked() {
+        return m_blocked;
+    }
+    
+    void toggleBlocked() {
+        m_blocked == true ? m_blocked = false : m_blocked = true;
+    }
+    
+    void resetDist() {
         m_maxDist = rand() % 6 + 1;
     }
     
     virtual void doSomething();
     
-    virtual void isHit(int damage) {
-        changeHealth(damage * -1);
-        if (getHealth() <= 0) {
-            setDead();
-            if (m_item != nullptr) {
-                m_item->toggleVisible();
-                m_item->setVisible(true);
-            }
-        }
-    };
-
+    virtual void isHit(int damage);
+    
     
 private:
     int m_maxDist;
@@ -337,7 +362,7 @@ private:
 
 class AngryKleptoBot : public KleptoBot {
 public:
-    AngryKleptoBot(StudentWorld* world, int startX, int startY) : KleptoBot(world, startX, startY) { };
+    AngryKleptoBot(StudentWorld* world, int startX, int startY) : KleptoBot(8, world, startX, startY) { };
     
     virtual void doSomething();
     

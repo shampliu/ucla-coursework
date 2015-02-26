@@ -17,7 +17,9 @@ public:
 	StudentWorld(std::string assetDir)
 	 : GameWorld(assetDir)
 	{
+        m_jewels = 0;
         m_bonus = 1000;
+        m_completed = false;
 	}
     
     std::string formatDisplay(int score, int level, int lives, int health, int ammo, unsigned int bonus);
@@ -33,14 +35,19 @@ public:
     virtual int init();
 
     virtual int move();
-
+    
     virtual void cleanUp();
     
     void removeDeadGameObjects();
-    void decBonus(); 
-    unsigned int getBonus() const {
-        return m_bonus;
+    
+    void completed() {
+        m_completed = true;
     }
+    
+    int getJewels() {
+        return m_jewels; 
+    }
+
     Actor* checkSpace(int x, int y, std::string search);
     
     void createBullet(int x, int y, GraphObject::Direction dir);
@@ -64,6 +71,8 @@ private:
     std::vector<Actor*> m_actors;
     Player* m_player;
     unsigned int m_bonus;
+    int m_jewels;
+    bool m_completed;
     
     
 };

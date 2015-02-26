@@ -19,7 +19,8 @@ class GraphObject
 
 	enum Direction { none, up, down, left, right};
 
-	GraphObject(int imageID, int startX, int startY, Direction dir = none)
+	GraphObject(int imageID, int startX,
+                int startY, Direction dir = none)
 	 : m_imageID(imageID), m_visible(false), m_x(startX), m_y(startY),
 	   m_destX(startX), m_destY(startY), m_brightness(1.0),
 	   m_animationNumber(0), m_direction(dir)

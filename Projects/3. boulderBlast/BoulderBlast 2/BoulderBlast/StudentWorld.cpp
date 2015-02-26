@@ -39,7 +39,7 @@ void StudentWorld::updateDisplay() {
     int lives = getLives();
     int health = getPlayer()->getHealth();
     int ammo = getPlayer()->getAmmo();
-    unsigned int bonus = getBonus();
+    unsigned int bonus = m_bonus;
     // Next, create a string from your statistics, of the form:
     // Score: 0000100 Level: 03 Lives: 3 Health: 70% Ammo: 216 Bonus: 34
     
@@ -73,17 +73,21 @@ int StudentWorld::move()
             actor->doSomething();
             if (! m_player->isAlive())
                 return GWSTATUS_PLAYER_DIED;
-//            if (thePlayerCompletedTheCurrentLevel())
-//            {
-//                increaseScoreAppropriately();
-//                return GWSTATUS_FINISHED_LEVEL;
-//            }
+            if (m_completed)
+            {
+                playSound(SOUND_FINISHED_LEVEL);
+                increaseScore(2000 + m_bonus);
+                return GWSTATUS_FINISHED_LEVEL;
+            }
         }
     }
     // Remove newly-dead actors after each tick
     removeDeadGameObjects(); // delete dead game objects
     // Reduce the current bonus for the Level by one
-    decBonus();
+    if (m_bonus > 0) {
+        m_bonus--;
+    }
+    
 //    // If the player has collected all of the Jewels on the level, then we
 //    // must expose the Exit so the player can advance to the next level
 //    if (thePlayerHasCollectedAllOfTheJewelsOnTheLevel())
@@ -102,12 +106,6 @@ int StudentWorld::move()
     // continue playing the current level
     return GWSTATUS_CONTINUE_GAME;
     return 0;
-}
-
-void StudentWorld::decBonus() {
-    if (m_bonus > 0) {
-        m_bonus--; 
-    }
 }
 
 void StudentWorld::removeDeadGameObjects() {
@@ -167,6 +165,7 @@ int StudentWorld::loadLevel() {
                     break;
                 case Level::jewel:
                     m_actors.push_back(new Jewel(this, x, y));
+                    m_jewels++; 
                     break;
                 case Level::restore_health:
                     m_actors.push_back(new Health(this, x, y));
@@ -187,9 +186,9 @@ int StudentWorld::loadLevel() {
                     m_actors.push_back(new Factory(this, x, y, false));
 //                    m_actors.push_back(new KleptoBot(this, x, y));
                     break;
-//                case Level::angry_kleptobot_factory:
-//                    m_actors.push_back(new AngryFactory(this, x, y));
-//                    break;
+                case Level::angry_kleptobot_factory:
+                    m_actors.push_back(new Factory(this, x, y, true));
+                    break;
                 default:
                     break;
             }
@@ -201,10 +200,6 @@ int StudentWorld::loadLevel() {
 
 void StudentWorld::insert(Actor* a) {
     m_actors.push_back(a);
-}
-
-void StudentWorld::spawnKlepto(int x, int y) {
-    m_actors.push_back(new KleptoBot(this, x, y));
 }
 
 
