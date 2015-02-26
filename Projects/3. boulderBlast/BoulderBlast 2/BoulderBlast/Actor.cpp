@@ -161,10 +161,16 @@ void Bullet::doSomething() {
     int dx = getX();
     int dy = getY();
     
-    Actor* ap = getWorld()->checkSpace(dx, dy, "");
+    Actor* ap = getWorld()->checkSpace(dx, dy, "living");
+    if (ap != nullptr) {
+        ap->isHit(2);
+        setDead();
+        return;
+    }
     
+    ap = getWorld()->checkSpace(dx, dy, "");
     if (ap != nullptr && ap->hittable()) {
-        ap->takeHit();
+        ap->isHit(2);
         setDead();
         return;
     }
@@ -215,7 +221,8 @@ void Health::doSomething() {
     // if Player is on the same square as the Health
     if (getX() == getWorld()->getPlayer()->getX() && getY() == getWorld()->getPlayer()->getY() && isVisible()) {
         getWorld()->increaseScore(500);
-        getWorld()->getPlayer()->setHealth(20);
+        int inc = 20 - getWorld()->getPlayer()->getHealth();
+        getWorld()->getPlayer()->changeHealth(inc);
         getWorld()->playSound(SOUND_GOT_GOODIE);
         setDead();
     }
@@ -238,11 +245,14 @@ void Life::doSomething() {
 
 /* Enemy
  ------------------------------ */
-void Enemy::takeHit() {
+void Enemy::isHit(int damage) {
     // killed
-    if (isHit(2) == 1) {
+    changeHealth(damage * -1);
+    
+    if (getHealth() <= 0) {
         getWorld()->increaseScore(100);
         getWorld()->playSound(SOUND_ROBOT_DIE);
+        setDead();
     }
     // hurt but not dead
     else {
@@ -326,60 +336,55 @@ void SnarlBot::doSomething() {
 
 /* Factory
  ------------------------------ */
-bool Factory::countRegion(int& count) {
-    count = 0;
+bool Factory::countRegion() {
+    int count = 0;
     int x = getX();
     int y = getY();
     
-    // search row by row from the top
-    for (int j = y+3; j >= y-3; j--) {
-        if (y < 0 || y >= VIEW_HEIGHT) {
-            continue;
+    for (auto robot : m_robots) {
+        int rx = robot->getX();
+        int ry = robot->getY();
+        
+        if (rx == x && ry == y) {
+            return false;
+        }
+
+        if ((rx <= x+3 || rx >= x-3) && (ry <= y+3 || ry >= y-3)) {
+            count++;
         }
         
-        for (int i = x-3; i <= x+3; x++) {
-            if (x < 0 || x >= VIEW_WIDTH) {
-                continue;
-            }
-            if (getWorld()->checkSpace(i, j, "kleptobot") != nullptr) {
-                // kleptobot at the same square as factory
-                if (i == x &&  j == y) { return false; }
-                count++;
-            }
-            
-            
-        }
     }
     
-    return true;
+    
+    if (count < 3) { return true; }
+    return false;
 }
 
 void Factory::doSomething() {
-//    int count = 0;
-//    if (countRegion(count)) {
-//        if (count < 3) {
-//            // 1/50 chance of it being 1, then spawn the kleptobot
-//            if (rand() % 50 == 1) {
-//                if (m_angry) {
-//                    
-//                }
-//                else {
-//                    getWorld()->getActors().push_back(new KleptoBot(getWorld(), getX(), getY()));
-//                }
-//                getWorld()->playSound(SOUND_ROBOT_BORN);
-//            }
-//        }
-//    }
+
+    if (countRegion()) {
+        // 1/50 chance of it being 1, then spawn the kleptobot
+        if (rand() % 50 == 1) {
+            if (m_angry) {
+                
+            }
+            else {
+//                getWorld()->spawnKlepto(getX(), getY()); 
+                KleptoBot* k = new KleptoBot(getWorld(), getX(), getY());
+                getWorld()->insert(k);
+                m_robots.push_back(k);
+            }
+            getWorld()->playSound(SOUND_ROBOT_BORN);
+        }
+
+        
+    }
 }
 
 /* KleptoBot
  ------------------------------ */
 void KleptoBot::doSomething() {
     if (! isAlive()) {
-        if (m_item != nullptr) {
-            m_item->toggleVisible();
-            m_item->setVisible(true);
-        }
         return;
     }
     
@@ -391,17 +396,18 @@ void KleptoBot::doSomething() {
     if (getTicks() < getRest()) {
         setTicks();
     }
-    // decide whether to shoot or not
+    
     else {
         setTicks();
         
         // check for Goodie on the same square
-        Actor* ap = getWorld()->checkSpace(dx, dy, "");
-        Goodie* g = dynamic_cast<Goodie*>(ap);
-        if (g != nullptr) {
-            g->setVisible(false);
-            g->toggleVisible();
-            m_item = g;
+        Actor* ap = getWorld()->checkSpace(dx, dy, "goodie");
+        if (ap != nullptr) {
+            if (rand() % 10 == 0) {
+                m_item = dynamic_cast<Goodie*>(ap);
+                m_item->setVisible(false);
+                getWorld()->playSound(SOUND_ROBOT_MUNCH);
+            }
         }
         
         // check if it has moved the max distance
@@ -431,7 +437,7 @@ void KleptoBot::doSomething() {
             m_blocked = false;
             
             // reset max distance
-            m_maxDist = rand() % 6 + 1;
+            resetDist();
             map<int, bool> check;
             int count = 0;
             
@@ -480,4 +486,10 @@ void KleptoBot::doSomething() {
     }
     
 }
+
+/* Angry KleptoBot
+ ------------------------------ */
+
+
+
 

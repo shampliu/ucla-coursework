@@ -24,7 +24,8 @@ public:
     virtual bool hittable() {
         return true;
     }
-    virtual void takeHit() { };
+    // do nothing if is hit
+    virtual void isHit(int damage) { };
     
     
     StudentWorld* getWorld() const {
@@ -132,9 +133,10 @@ public:
         return false;
     };
     
-    bool countRegion(int& count);
+    bool countRegion();
     
     // either implement one function to check or loop thru robots array
+private:
     
     
 private:
@@ -194,22 +196,19 @@ public:
         
     };
     
-    // return value of 1 means the actor has been killed
-    virtual int isHit(int damage) {
-        m_health -= damage;
+    virtual void isHit(int damage) {
+        changeHealth(damage * -1);
         if (m_health <= 0) {
             setDead();
-            return 1;
         }
-        return 0;
     };
     
     int getHealth() {
         return m_health;
     }
     
-    void setHealth(int amt) {
-        m_health = amt; 
+    void changeHealth(int amt) {
+        m_health += amt;
     }
     
     virtual bool canOccupy() {
@@ -236,10 +235,6 @@ public:
         return false;
     }
     
-    virtual void takeHit() {
-        isHit(2); 
-    }
-    
     bool push(Direction dir);
     
 };
@@ -264,10 +259,6 @@ public:
         getWorld()->createBullet(getX(), getY(), getDirection());
     }
     
-    virtual void takeHit() {
-        isHit(2);
-    }
-    
     bool canMove(int& x, int& y, Direction dir);
     
 private:
@@ -289,8 +280,9 @@ public:
         (m_ticks < m_rest) ? m_ticks++ : m_ticks = 0;
     }
     
+    void isHit(int damage); 
+    
     virtual void doSomething() = 0;
-    virtual void takeHit();
 
     
 private:
@@ -319,12 +311,39 @@ public:
         m_blocked = false;
     };
     
+    virtual void resetDist() {
+        m_maxDist = rand() % 6 + 1;
+    }
+    
     virtual void doSomething();
+    
+    virtual void isHit(int damage) {
+        changeHealth(damage * -1);
+        if (getHealth() <= 0) {
+            setDead();
+            if (m_item != nullptr) {
+                m_item->toggleVisible();
+                m_item->setVisible(true);
+            }
+        }
+    };
+
     
 private:
     int m_maxDist;
     bool m_blocked;
     Goodie* m_item;
+};
+
+class AngryKleptoBot : public KleptoBot {
+public:
+    AngryKleptoBot(StudentWorld* world, int startX, int startY) : KleptoBot(world, startX, startY) { };
+    
+    virtual void doSomething();
+    
+    void shoot() {
+        getWorld()->createBullet(getX(), getY(), getDirection());
+    }
 };
 
 

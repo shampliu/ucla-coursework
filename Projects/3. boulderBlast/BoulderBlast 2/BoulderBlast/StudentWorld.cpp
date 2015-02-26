@@ -50,7 +50,7 @@ void StudentWorld::updateDisplay() {
 }
 
 string StudentWorld::formatDisplay(int score, int level, int lives, int health, int ammo, unsigned int bonus) {
-    return "Score: " + to_string(score) + " Level: " + to_string(level) + " Lives: " + to_string(lives) + " Health: " + to_string(health) + " Ammo: " + to_string(ammo) + " Bonus " + to_string(bonus);
+    return "Score: " + to_string(score) + " Level: " + to_string(level) + " Lives: " + to_string(lives) + " Health: " + to_string(health*5) + "% Ammo: " + to_string(ammo) + " Bonus " + to_string(bonus);
     
 }
 
@@ -185,6 +185,7 @@ int StudentWorld::loadLevel() {
                     break;
                 case Level::kleptobot_factory:
                     m_actors.push_back(new Factory(this, x, y, false));
+//                    m_actors.push_back(new KleptoBot(this, x, y));
                     break;
 //                case Level::angry_kleptobot_factory:
 //                    m_actors.push_back(new AngryFactory(this, x, y));
@@ -197,6 +198,15 @@ int StudentWorld::loadLevel() {
     
     return 1;
 }
+
+void StudentWorld::insert(Actor* a) {
+    m_actors.push_back(a);
+}
+
+void StudentWorld::spawnKlepto(int x, int y) {
+    m_actors.push_back(new KleptoBot(this, x, y));
+}
+
 
 // free all actors when player completes current level or dies
 void StudentWorld::cleanUp() {
@@ -249,6 +259,18 @@ Actor* StudentWorld::checkSpace(int x, int y, string search) {
                 KleptoBot* k = dynamic_cast<KleptoBot*>(actor);
                 if (k != nullptr) {
                     return k;
+                }
+            }
+            else if (search == "goodie") {
+                Goodie* g = dynamic_cast<Goodie*>(actor);
+                if (g != nullptr) {
+                    return g; 
+                }
+            }
+            else if (search == "living") {
+                LivingActor* l = dynamic_cast<LivingActor*>(actor);
+                if (l != nullptr) {
+                    return l; 
                 }
             }
             else {

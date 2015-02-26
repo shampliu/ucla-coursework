@@ -28,6 +28,7 @@ public:
     
     void updateDisplay();
     
+    void insert(Actor* a);
 
     virtual int init();
 
@@ -50,6 +51,7 @@ public:
     
     bool canShoot(int x, int y, int dest, GraphObject::Direction dir, std::string check);
     
+    void spawnKlepto(int x, int y);
     
     Player* getPlayer() {
         return m_player;
