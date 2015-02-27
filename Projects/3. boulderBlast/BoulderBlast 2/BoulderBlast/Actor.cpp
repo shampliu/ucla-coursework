@@ -92,8 +92,8 @@ void Player::doSomething() {
                 }
                 break;
             case KEY_PRESS_ESCAPE:
-//                getWorld()->completed();
-                setDead();
+                getWorld()->completed();
+//                setDead();
                 break;
         }
     }
@@ -105,8 +105,13 @@ bool Player::canMove(int& x, int& y, Direction dir) {
     
     convertDir(dx, dy, dir);
     
-    Actor* ap = getWorld()->checkSpace(dx, dy, "");
+    // check if enemy is on it, in case there are two actors on the same square prioritize the enemy
+    Actor* ap = getWorld()->checkSpace(dx, dy, "enemy");
+    if (ap != nullptr) {
+        return false;
+    }
     
+    ap = getWorld()->checkSpace(dx, dy, "");
     // empty square or object that can be occupied
     if (ap == nullptr || ap->canOccupy()) {
         return true;

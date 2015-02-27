@@ -260,10 +260,10 @@ Actor* StudentWorld::checkSpace(int x, int y, string search) {
     for (auto actor : actors) {
         if (actor->getX() == x && actor->getY() == y)
         {
-            if (search == "kleptobot") {
-                KleptoBot* k = dynamic_cast<KleptoBot*>(actor);
-                if (k != nullptr) {
-                    return k;
+            if (search == "enemy") {
+                Enemy* e = dynamic_cast<Enemy*>(actor);
+                if (e != nullptr) {
+                    return e;
                 }
             }
             else if (search == "goodie") {

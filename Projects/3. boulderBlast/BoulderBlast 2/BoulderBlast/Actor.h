@@ -20,7 +20,9 @@ public:
     virtual ~Actor() { };
     
     virtual void doSomething() = 0;
-    virtual bool canOccupy() = 0;
+    virtual bool canOccupy(){
+        return false;
+    }
     virtual bool hittable() {
         return true;
     }
@@ -55,9 +57,6 @@ public:
     ~Wall() { };
     
     virtual void doSomething() { };
-    virtual bool canOccupy() {
-        return false;
-    }
     
 private:
     
@@ -68,10 +67,6 @@ public:
     Hole(StudentWorld* world, int startX, int startY) : Actor(world, IID_HOLE, startX, startY, none) { };
     
     virtual void doSomething();
-    
-    virtual bool canOccupy() {
-        return false;
-    }
     
     virtual bool hittable() {
         return false;
@@ -131,9 +126,6 @@ public:
     };
     
     virtual void doSomething();
-    virtual bool canOccupy() {
-        return false;
-    };
     
     bool countRegion();
     
@@ -213,10 +205,6 @@ public:
         m_health += amt;
     }
     
-    virtual bool canOccupy() {
-        return false;
-    };
-    
     virtual void doSomething() = 0;
     
     
@@ -232,10 +220,6 @@ public:
     Boulder(StudentWorld* world, int startX, int startY) : LivingActor(10, world, IID_BOULDER, startX, startY, none) { };
     
     virtual void doSomething() { };
-    
-    virtual bool canOccupy() {
-        return false;
-    }
     
     bool push(Direction dir);
     
@@ -255,10 +239,6 @@ public:
     
     void reload(int amt) {
         m_ammo += amt; 
-    }
-    
-    bool canOccupy() {
-        return false; 
     }
     
     int getJewels() {
@@ -355,10 +335,6 @@ public:
     
     void resetDist() {
         m_maxDist = rand() % 6 + 1;
-    }
-    
-    bool canOccupy() {
-        return false;
     }
     
     virtual void doSomething();
