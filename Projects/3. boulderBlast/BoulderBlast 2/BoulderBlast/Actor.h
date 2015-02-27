@@ -154,8 +154,8 @@ public:
         return false;
     }
     
-    void toggleVisible() {
-        m_visible == true ? m_visible = false : m_visible = true;
+    void setV(bool b) {
+        m_visible = b;
     }
     bool isVisible() const { return m_visible; };
     
@@ -329,13 +329,15 @@ public:
         return m_blocked;
     }
     
-    void toggleBlocked() {
-        m_blocked == true ? m_blocked = false : m_blocked = true;
+    void setBlocked(bool b) {
+        m_blocked = b;
     }
     
     void resetDist() {
         m_maxDist = rand() % 6 + 1;
     }
+    
+    
     
     virtual void doSomething();
     

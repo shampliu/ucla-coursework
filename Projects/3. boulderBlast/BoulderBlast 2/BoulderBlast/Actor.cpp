@@ -418,7 +418,8 @@ void KleptoBot::isHit(int damage) {
         getWorld()->increaseScore(10);
         setDead();
         if (m_item != nullptr) {
-            m_item->toggleVisible();
+            m_item->moveTo(getX(), getY());
+            m_item->setV(true);
             m_item->setVisible(true);
         }
     }
@@ -444,12 +445,16 @@ void KleptoBot::doSomething() {
     else {
         setTicks();
         
+        
+        
         // check for Goodie on the same square
         Actor* ap = getWorld()->checkSpace(dx, dy, "goodie");
-        if (ap != nullptr) {
+        Goodie* g = dynamic_cast<Goodie*>(ap);
+        if (g != nullptr && m_item == nullptr && g->isVisible()) {
             if (rand() % 10 == 0) {
-                m_item = dynamic_cast<Goodie*>(ap);
+                m_item = g;
                 m_item->setVisible(false);
+                m_item->setV(false);
                 getWorld()->playSound(SOUND_ROBOT_MUNCH);
             }
         }
@@ -461,24 +466,27 @@ void KleptoBot::doSomething() {
             // move or change direction if can't shoot
             convertDir(dx, dy, dir);
             
-            Actor* ap = getWorld()->checkSpace(dx, dy, "");
+            Actor* ap = getWorld()->checkSpace(dx, dy, "living");
+            if (ap != nullptr) {
+                setBlocked(true);
+                return;
+            }
+            
+            ap = getWorld()->checkSpace(dx, dy, "");
             
             // empty square or object that can be occupied
             if (ap == nullptr || ap->canOccupy()) {
                 moveTo(dx, dy);
-                if (m_item != nullptr) {
-                    m_item->moveTo(dx, dy);
-                }
                 return;
             }
             // encountered obstruction
             else {
-                m_blocked = true;
+                setBlocked(true);
             }
         }
         // change direction
         else {
-            m_blocked = false;
+            setBlocked(false);
             
             // reset max distance
             resetDist();
@@ -518,8 +526,14 @@ void KleptoBot::doSomething() {
                     }
                     
                     convertDir(dx, dy, dir);
-                    Actor* ap = getWorld()->checkSpace(dx, dy, "");
                     
+                    Actor* ap = getWorld()->checkSpace(dx, dy, "living");
+                    if (ap != nullptr) {
+                        count++;
+                        continue;
+                    }
+
+                    ap = getWorld()->checkSpace(dx, dy, "");
                     // can move in that direction
                     if (ap == nullptr || ap->canOccupy()) {
                         setDirection(dir);
@@ -545,7 +559,8 @@ void AngryKleptoBot::isHit(int damage) {
         getWorld()->increaseScore(20);
         setDead();
         if (getItem() != nullptr) {
-            getItem()->toggleVisible();
+            getItem()->moveTo(getX(), getY());
+            getItem()->setV(true);
             getItem()->setVisible(true);
         }
     }
@@ -596,10 +611,12 @@ void AngryKleptoBot::doSomething() {
         
         // check for Goodie on the same square
         Actor* ap = getWorld()->checkSpace(dx, dy, "goodie");
-        if (ap != nullptr) {
+        Goodie* g = dynamic_cast<Goodie*>(ap);
+        if (g != nullptr && getItem() == nullptr && g->isVisible()) {
             if (rand() % 10 == 0) {
-                addItem(dynamic_cast<Goodie*>(ap));
+                addItem(g);
                 getItem()->setVisible(false);
+                getItem()->setV(false);
                 getWorld()->playSound(SOUND_ROBOT_MUNCH);
             }
         }
@@ -611,24 +628,27 @@ void AngryKleptoBot::doSomething() {
             // move or change direction if can't shoot
             convertDir(dx, dy, dir);
             
-            Actor* ap = getWorld()->checkSpace(dx, dy, "");
+            Actor* ap = getWorld()->checkSpace(dx, dy, "living");
+            if (ap != nullptr) {
+                setBlocked(true);
+                return;
+            }
+            
+            ap = getWorld()->checkSpace(dx, dy, "");
             
             // empty square or object that can be occupied
             if (ap == nullptr || ap->canOccupy()) {
                 moveTo(dx, dy);
-                if (getItem() != nullptr) {
-                    getItem()->moveTo(dx, dy);
-                }
                 return;
             }
             // encountered obstruction
             else {
-                toggleBlocked();
+                setBlocked(true);
             }
         }
         // change direction
         else {
-            toggleBlocked();
+            setBlocked(false);
             
             // reset max distance
             resetDist();
@@ -660,7 +680,14 @@ void AngryKleptoBot::doSomething() {
                             break;
                     }
                     convertDir(dx, dy, dir);
-                    Actor* ap = getWorld()->checkSpace(dx, dy, "");
+                    
+                    Actor* ap = getWorld()->checkSpace(dx, dy, "living");
+                    if (ap != nullptr) {
+                        count++;
+                        continue;
+                    }
+                    
+                    ap = getWorld()->checkSpace(dx, dy, "");
                     
                     if (ap == nullptr || ap->canOccupy()) {
                         setDirection(dir);
