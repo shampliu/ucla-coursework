@@ -16,6 +16,11 @@ GameWorld* createStudentWorld(string assetDir)
 
 int StudentWorld::init()
 {
+    m_jewels = 0;
+    m_bonus = 1000;
+    m_completed = false;
+    
+    
     int status = loadLevel();
     // if level data exists but isn't in the proper format
     if (status == -1) {
@@ -92,7 +97,6 @@ int StudentWorld::move()
         {
             playSound(SOUND_FINISHED_LEVEL);
             increaseScore(2000 + m_bonus);
-            m_completed = false;
             return GWSTATUS_FINISHED_LEVEL;
         }
     }

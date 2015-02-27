@@ -357,6 +357,10 @@ public:
         m_maxDist = rand() % 6 + 1;
     }
     
+    bool canOccupy() {
+        return false;
+    }
+    
     virtual void doSomething();
     
     virtual void isHit(int damage);
@@ -373,6 +377,8 @@ public:
     AngryKleptoBot(StudentWorld* world, int startX, int startY) : KleptoBot(8, world, startX, startY) { };
     
     virtual void doSomething();
+    
+    virtual void isHit(int damage);
     
     void shoot() {
         getWorld()->createBullet(getX(), getY(), getDirection());

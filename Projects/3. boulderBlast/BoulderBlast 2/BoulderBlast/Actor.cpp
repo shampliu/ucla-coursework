@@ -92,6 +92,7 @@ void Player::doSomething() {
                 }
                 break;
             case KEY_PRESS_ESCAPE:
+//                getWorld()->completed();
                 setDead();
                 break;
         }
@@ -409,6 +410,7 @@ void KleptoBot::isHit(int damage) {
     changeHealth(damage * -1);
     if (getHealth() <= 0) {
         getWorld()->playSound(SOUND_ROBOT_DIE);
+        getWorld()->increaseScore(10);
         setDead();
         if (m_item != nullptr) {
             m_item->toggleVisible();
@@ -477,14 +479,18 @@ void KleptoBot::doSomething() {
             resetDist();
             map<int, bool> check;
             int count = 0;
+            Direction firstDir = none;
             
             // count will check all four directions
             while (count < 4) {
                 int rng = rand() % 4;
                 
+                // already checked that direction
                 if (check.find(rng)->second == true) {
                     continue;
                 }
+                
+                // map new direction
                 else {
                     check[rng] = true;
                     Direction dir;
@@ -502,15 +508,24 @@ void KleptoBot::doSomething() {
                             dir = left;
                             break;
                     }
+                    if (firstDir == none) {
+                        firstDir = dir;
+                    }
+                    
                     convertDir(dx, dy, dir);
                     Actor* ap = getWorld()->checkSpace(dx, dy, "");
                     
+                    // can move in that direction
                     if (ap == nullptr || ap->canOccupy()) {
                         setDirection(dir);
+                        moveTo(dx, dy);
                         return;
                     }
                     count++;
                 }
+            }
+            if (count == 4) {
+                setDirection(firstDir);
             }
         }
     }
@@ -518,6 +533,22 @@ void KleptoBot::doSomething() {
 
 /* Angry KleptoBot
  ------------------------------ */
+void AngryKleptoBot::isHit(int damage) {
+    changeHealth(damage * -1);
+    if (getHealth() <= 0) {
+        getWorld()->playSound(SOUND_ROBOT_DIE);
+        getWorld()->increaseScore(20);
+        setDead();
+        if (getItem() != nullptr) {
+            getItem()->toggleVisible();
+            getItem()->setVisible(true);
+        }
+    }
+    else {
+        getWorld()->playSound(SOUND_ROBOT_IMPACT);
+    }
+};
+
 void AngryKleptoBot::doSomething() {
     if (! isAlive()) {
         return;
@@ -628,6 +659,7 @@ void AngryKleptoBot::doSomething() {
                     
                     if (ap == nullptr || ap->canOccupy()) {
                         setDirection(dir);
+                        moveTo(dx, dy);
                         return;
                     }
                     count++;
