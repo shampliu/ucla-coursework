@@ -3,7 +3,9 @@
 #include "Actor.h"
 #include <vector>
 #include <string>
-
+#include <iostream> // defines the overloads of the << operator
+#include <sstream>  // defines the type std::ostringstream
+#include <iomanip>  // defines the manipulator setw
 
 using namespace std;
 
@@ -50,7 +52,17 @@ void StudentWorld::updateDisplay() {
 }
 
 string StudentWorld::formatDisplay(int score, int level, int lives, int health, int ammo, unsigned int bonus) {
-    return "Score: " + to_string(score) + " Level: " + to_string(level) + " Lives: " + to_string(lives) + " Health: " + to_string(health*5) + "% Ammo: " + to_string(ammo) + " Bonus " + to_string(bonus);
+    ostringstream l;
+    l.fill('0');
+    l << setw(2) << level;
+    string lvl = l.str();
+    
+    ostringstream s;
+    s.fill('0');
+    s << setw(7) << score;
+    string scr = s.str();
+    
+    return "Score: " + scr + " Level: " + lvl + " Lives: " + to_string(lives) + " Health: " + to_string(health*5) + "% Ammo: " + to_string(ammo) + " Bonus " + to_string(bonus);
     
 }
 
@@ -116,13 +128,11 @@ int StudentWorld::loadLevel() {
     
     // format level
     int level = getLevel();
-    string formattedLevel;
-    if (level % 10 > 0) {
-        formattedLevel = "level" + to_string(level) + ".dat";
-    }
-    else {
-        formattedLevel = "level0" + to_string(level) + ".dat";
-    }
+    ostringstream l;
+    l.fill('0');
+    l << setw(2) << level;
+    string formattedLevel = "level" + l.str() + ".dat";
+    
     
     Level::LoadResult result = lev.loadLevel(formattedLevel);
     if (result	==	Level::load_fail_file_not_found	||
@@ -170,7 +180,6 @@ int StudentWorld::loadLevel() {
                     break;
                 case Level::kleptobot_factory:
                     m_actors.push_back(new Factory(this, x, y, false));
-//                    m_actors.push_back(new KleptoBot(this, x, y));
                     break;
                 case Level::angry_kleptobot_factory:
                     m_actors.push_back(new Factory(this, x, y, true));
@@ -193,12 +202,19 @@ void StudentWorld::insert(Actor* a) {
 void StudentWorld::cleanUp() {
     delete m_player;
     
-    std::vector<Actor*>::iterator it;
-    for (it = m_actors.begin(); it != m_actors.end(); ) {
-        std::vector<Actor*>::iterator it2 = it;
-        it = m_actors.erase(it);
-        delete *it2;
+    auto ap = m_actors.begin();
+    while (ap != m_actors.end())
+    {
+        delete *ap;
+        ap = m_actors.erase(ap);
     }
+    
+//    std::vector<Actor*>::iterator it;
+//    for (it = m_actors.begin(); it != m_actors.end(); ) {
+//        std::vector<Actor*>::iterator it2 = it;
+//        it = m_actors.erase(it);
+//        delete *it2;
+//    }
     
 }
 
