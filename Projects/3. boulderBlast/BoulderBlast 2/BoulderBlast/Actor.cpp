@@ -32,6 +32,20 @@ void Actor::convertDir(int& x, int& y, GraphObject::Direction dir) {
 
 /* Player 
  ------------------------------ */
+void Player::isHit(int damage) {
+    changeHealth(damage * -1);
+    
+    // killed
+    if (getHealth() <= 0) {
+        getWorld()->playSound(SOUND_PLAYER_DIE);
+        setDead();
+    }
+    // hurt but not dead
+    else {
+        getWorld()->playSound(SOUND_PLAYER_IMPACT);;
+    }
+    
+}
 
 void Player::doSomething() {
     if (!isAlive()) {
@@ -78,6 +92,7 @@ void Player::doSomething() {
                 }
                 break;
             case KEY_PRESS_ESCAPE:
+                setDead();
                 break;
         }
     }
@@ -302,7 +317,6 @@ void SnarlBot::doSomething() {
             check = "v";
             if (getWorld()->canShoot(dx, dy, py, dir, check)) {
                 shoot();
-                getWorld()->playSound(SOUND_ENEMY_FIRE);
                 return;
             }
         }
@@ -311,7 +325,6 @@ void SnarlBot::doSomething() {
             check = "h"; 
             if (getWorld()->canShoot(dx, dy, px, dir, check)) {
                 shoot();
-                getWorld()->playSound(SOUND_ENEMY_FIRE);
                 return;
             }
 
@@ -532,7 +545,6 @@ void AngryKleptoBot::doSomething() {
             check = "v";
             if (getWorld()->canShoot(dx, dy, py, dir, check)) {
                 shoot();
-                getWorld()->playSound(SOUND_ENEMY_FIRE);
                 return;
             }
         }
@@ -541,7 +553,6 @@ void AngryKleptoBot::doSomething() {
             check = "h";
             if (getWorld()->canShoot(dx, dy, px, dir, check)) {
                 shoot();
-                getWorld()->playSound(SOUND_ENEMY_FIRE);
                 return;
             }
             

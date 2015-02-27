@@ -84,21 +84,23 @@ int StudentWorld::move()
             // ask each actor to do something (e.g. move)
             actor->doSomething();
         }
+        if (! m_player->isAlive()) {
+            decLives();
+            return GWSTATUS_PLAYER_DIED;
+        }
+        if (m_completed)
+        {
+            playSound(SOUND_FINISHED_LEVEL);
+            increaseScore(2000 + m_bonus);
+            m_completed = false;
+            return GWSTATUS_FINISHED_LEVEL;
+        }
     }
     // Remove newly-dead actors after each tick
     removeDeadGameObjects(); // delete dead game objects
     // Reduce the current bonus for the Level by one
     if (m_bonus > 0) {
         m_bonus--;
-    }
-    
-    if (! m_player->isAlive())
-        return GWSTATUS_PLAYER_DIED;
-    if (m_completed)
-    {
-        playSound(SOUND_FINISHED_LEVEL);
-        increaseScore(2000 + m_bonus);
-        return GWSTATUS_FINISHED_LEVEL;
     }
     
     // the player hasn’t completed the current level and hasn’t died, so
@@ -132,6 +134,8 @@ int StudentWorld::loadLevel() {
     l.fill('0');
     l << setw(2) << level;
     string formattedLevel = "level" + l.str() + ".dat";
+    
+    cout << level;
     
     
     Level::LoadResult result = lev.loadLevel(formattedLevel);

@@ -268,8 +268,11 @@ public:
         m_jewels++;
     }
     
+    void isHit(int damage); 
+    
     void shoot() {
         getWorld()->createBullet(getX(), getY(), getDirection());
+        getWorld()->playSound(SOUND_PLAYER_FIRE);
     }
     
     bool canMove(int& x, int& y, Direction dir);
@@ -312,6 +315,7 @@ public:
     
     void shoot() {
         getWorld()->createBullet(getX(), getY(), getDirection());
+        getWorld()->playSound(SOUND_ENEMY_FIRE);
     }
     virtual void doSomething();
     
@@ -372,6 +376,7 @@ public:
     
     void shoot() {
         getWorld()->createBullet(getX(), getY(), getDirection());
+        getWorld()->playSound(SOUND_ENEMY_FIRE);
     }
 };
 
