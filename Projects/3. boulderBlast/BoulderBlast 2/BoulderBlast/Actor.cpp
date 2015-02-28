@@ -92,8 +92,8 @@ void Player::doSomething() {
                 }
                 break;
             case KEY_PRESS_ESCAPE:
-//                getWorld()->completed();
-                setDead();
+                getWorld()->completed();
+//                setDead();
                 break;
         }
     }
@@ -467,12 +467,12 @@ void KleptoBot::doSomething() {
                 m_item->setVisible(false);
                 m_item->setV(false);
                 getWorld()->playSound(SOUND_ROBOT_MUNCH);
+                return;
             }
         }
         
         // check if it has moved the max distance
         if (m_maxDist > 0 && m_blocked == false) {
-            m_maxDist--;
             
             // move or change direction if can't shoot
             convertDir(dx, dy, dir);
@@ -488,7 +488,7 @@ void KleptoBot::doSomething() {
             // empty square or object that can be occupied
             if (ap == nullptr || ap->canOccupy()) {
                 moveTo(dx, dy);
-                return;
+                m_maxDist--;
             }
             // encountered obstruction
             else {

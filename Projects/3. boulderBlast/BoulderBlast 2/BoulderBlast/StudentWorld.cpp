@@ -27,11 +27,10 @@ int StudentWorld::init()
         return GWSTATUS_LEVEL_ERROR;
     }
     
-    //
-    //        // if no level data or last level completed was lvl 99
-    //        if (1) {
-    //            return GWSTATUS_PLAYER_WON;
-    //        }
+    // if no level data or last level completed was lvl 99
+    if (status == 1) {
+        return GWSTATUS_PLAYER_WON;
+    }
     
     
     
@@ -57,17 +56,26 @@ void StudentWorld::updateDisplay() {
 }
 
 string StudentWorld::formatDisplay(int score, int level, int lives, int health, int ammo, unsigned int bonus) {
-    ostringstream l;
-    l.fill('0');
-    l << setw(2) << level;
-    string lvl = l.str();
+    ostringstream oss;
     
-    ostringstream s;
-    s.fill('0');
-    s << setw(7) << score;
-    string scr = s.str();
+    oss << "Score: ";
+    oss.fill('0');
+    oss << setw(7) << score << "  "
+    << "Level: "
+    << setw(2) << level << "  "
+    << "Lives: ";
+    oss.fill(' ');
+    oss << lives << "  "
+    << "Health: "
+    << setw(3) << health*5 << "%  "
+    << "Ammo: ";
+    oss << setw(2) << ammo << "  "
+    << "Bonus: "
+    << setw(4) << bonus;
     
-    return "Score: " + scr + " Level: " + lvl + " Lives: " + to_string(lives) + " Health: " + to_string(health*5) + "% Ammo: " + to_string(ammo) + " Bonus " + to_string(bonus);
+    string displayText = oss.str();
+    
+    return displayText;
     
 }
 
@@ -79,11 +87,12 @@ int StudentWorld::move()
     // Boulders, Jewels, Holes, Bullets, the Exit, etc.
     // Give each actor a chance to do something
     
+    if (m_player->isAlive()) {
+        m_player->doSomething();
+    }
+    
     for (auto actor : m_actors)
     {
-        if (m_player->isAlive()) {
-            m_player->doSomething();
-        }
         if (actor->isAlive())
         {
             // ask each actor to do something (e.g. move)
@@ -110,7 +119,6 @@ int StudentWorld::move()
     // the player hasn’t completed the current level and hasn’t died, so
     // continue playing the current level
     return GWSTATUS_CONTINUE_GAME;
-    return 0;
 }
 
 void StudentWorld::removeDeadGameObjects() {
@@ -139,15 +147,14 @@ int StudentWorld::loadLevel() {
     l << setw(2) << level;
     string formattedLevel = "level" + l.str() + ".dat";
     
-    cout << level;
-    
-    
     Level::LoadResult result = lev.loadLevel(formattedLevel);
-    if (result	==	Level::load_fail_file_not_found	||
-        result	==	Level:: load_fail_bad_format)
+    if (result	==	Level:: load_fail_bad_format)
         return -1; //	something	bad	happened!
     
-    for (int x = 0; x < VIEW_WIDTH; x++) {
+    if (result	==	Level::load_fail_file_not_found)
+        return 1; // player won
+    
+    for (int x = 0; x < VIEW_WIDTH; x++) {    
         for (int y = 0; y < VIEW_HEIGHT; y++) {
             Level::MazeEntry item =	lev.getContentsOf(x,y);
             switch (item) {
@@ -198,7 +205,7 @@ int StudentWorld::loadLevel() {
         }
     }
     
-    return 1;
+    return 0;
 }
 
 void StudentWorld::insert(Actor* a) {
@@ -243,11 +250,6 @@ void StudentWorld::createBullet(int x, int y, GraphObject::Direction dir) {
 }
 
 Actor* StudentWorld::checkSpace(int x, int y, string search) {
-    
-//    if (x > VIEW_WIDTH || x < 0 || y > VIEW_HEIGHT || y < 0) {
-//        status = "out of range";
-//        return nullptr;
-//    }
     
     std::vector<Actor*> actors = getActors();
     for (auto actor : actors) {
