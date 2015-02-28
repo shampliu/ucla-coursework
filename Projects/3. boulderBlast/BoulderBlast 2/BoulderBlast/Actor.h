@@ -30,17 +30,11 @@ public:
     virtual void isHit(int damage) { };
     
     
-    StudentWorld* getWorld() const {
-        return m_world;
-    }
+    StudentWorld* getWorld() const { return m_world; }
     
-    void setDead() {
-        m_isAlive = false;
-    }
+    void setDead() { m_isAlive = false; }
     
-    bool isAlive() const {
-        return m_isAlive;
-    }
+    bool isAlive() const { return m_isAlive; }
     
 private:
     bool m_isAlive;
@@ -66,7 +60,7 @@ class Hole : public Actor {
 public:
     Hole(StudentWorld* world, int startX, int startY) : Actor(world, IID_HOLE, startX, startY, none) { };
     
-    virtual void doSomething();
+    virtual void doSomething() { };
     
     virtual bool hittable() {
         return false;
@@ -128,8 +122,6 @@ public:
     virtual void doSomething();
     
     bool countRegion();
-    
-    // either implement one function to check or loop thru robots array
 private:
     
     
@@ -197,13 +189,9 @@ public:
         }
     };
     
-    int getHealth() {
-        return m_health;
-    }
+    int getHealth() const { return m_health; }
     
-    void changeHealth(int amt) {
-        m_health += amt;
-    }
+    void changeHealth(int amt) { m_health += amt; }
     
     virtual void doSomething() = 0;
     
@@ -241,7 +229,7 @@ public:
         m_ammo += amt; 
     }
     
-    int getJewels() {
+    int getJewels() const {
         return m_jewels;
     }
     void incJewels() {
@@ -277,7 +265,7 @@ public:
         (m_ticks < m_rest) ? m_ticks++ : m_ticks = 0;
     }
     
-    void isHit(int damage); 
+    void isHit(int damage) = 0;
     
     virtual void doSomething() = 0;
 
@@ -293,6 +281,8 @@ class SnarlBot : public Enemy {
 public:
     SnarlBot(StudentWorld* world, int startX, int startY, Direction dir) : Enemy(10, world, IID_SNARLBOT, startX, startY, dir) { };
     
+    
+    virtual void isHit(int damage);
     void shoot() {
         getWorld()->createBullet(getX(), getY(), getDirection());
         getWorld()->playSound(SOUND_ENEMY_FIRE);
@@ -361,7 +351,7 @@ public:
 //    virtual void doSomething();
     
     virtual void isHit(int damage);
-    virtual bool isAngry() { return false; }
+    virtual bool isAngry() { return true; }
     virtual void shoot() {
         getWorld()->createBullet(getX(), getY(), getDirection());
         getWorld()->playSound(SOUND_ENEMY_FIRE);

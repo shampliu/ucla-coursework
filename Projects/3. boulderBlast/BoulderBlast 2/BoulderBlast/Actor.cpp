@@ -155,21 +155,9 @@ bool Boulder::push(Direction dir) {
         return true;
     }
     
-    
-    ////////
-    return false; // take this out
+    return false;
     
 }
-
-/* Hole
- ------------------------------ */
-void Hole::doSomething() {
-    if (! isAlive()) {
-        return;
-    }
-    
-    // removal of Hole is managed by Boulder class
-};
 
 
 /* Bullet
@@ -204,9 +192,11 @@ void Bullet::doSomething() {
 /* Exit
  ------------------------------ */
 void Exit::doSomething() {
-    if (getWorld()->getJewels() == getWorld()->getPlayer()->getJewels()) {
+    // check if it wasn't visible to begin with so the sound only plays once
+    if (getWorld()->getJewels() == getWorld()->getPlayer()->getJewels() && m_visible == false) {
         m_visible = true; 
         setVisible(true);
+        getWorld()->playSound(SOUND_REVEAL_EXIT);
     }
     
     if (getWorld()->getPlayer()->getX() == getX() && getWorld()->getPlayer()->getY() == getY() && m_visible) {
@@ -221,7 +211,7 @@ void Jewel::doSomething() {
         return;
     }
     
-    // if Player is on the same square as the Jewel and Jewel is visible
+    // if Player is on the same square as the Jewel
     if (getX() == getWorld()->getPlayer()->getX() && getY() == getWorld()->getPlayer()->getY()) {
         getWorld()->increaseScore(50);
         getWorld()->playSound(SOUND_GOT_GOODIE);
@@ -278,9 +268,10 @@ void Life::doSomething() {
     }
 }
 
-/* Enemy
+
+/* SnarlBot
  ------------------------------ */
-void Enemy::isHit(int damage) {
+void SnarlBot::isHit(int damage) {
     // killed
     changeHealth(damage * -1);
     
@@ -294,9 +285,6 @@ void Enemy::isHit(int damage) {
         getWorld()->playSound(SOUND_ROBOT_IMPACT);
     }
 }
-
-/* SnarlBot
- ------------------------------ */
 void SnarlBot::doSomething() {
     if (! isAlive()) {
         return;

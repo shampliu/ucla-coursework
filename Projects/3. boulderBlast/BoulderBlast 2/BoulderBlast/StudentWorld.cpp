@@ -217,13 +217,6 @@ void StudentWorld::cleanUp() {
         ap = m_actors.erase(ap);
     }
     
-//    std::vector<Actor*>::iterator it;
-//    for (it = m_actors.begin(); it != m_actors.end(); ) {
-//        std::vector<Actor*>::iterator it2 = it;
-//        it = m_actors.erase(it);
-//        delete *it2;
-//    }
-    
 }
 
 void StudentWorld::createBullet(int x, int y, GraphObject::Direction dir) {
