@@ -296,7 +296,12 @@ bool StudentWorld::canShoot(int x, int y, int dest, GraphObject::Direction dir, 
             // start one square ahead of initial because the initial parameter is the actor's position
             for (int i = y+1; i < dest; i++) {
                 
-                Actor* ap = checkSpace(x, i, "");
+                Actor* ap = checkSpace(x, i, "living");
+                if (ap != nullptr) {
+                    return false;
+                }
+                
+                ap = checkSpace(x, i, "");
                 if (ap == nullptr || (ap != nullptr && !ap->hittable())) {
                     continue;
                 }
@@ -311,7 +316,12 @@ bool StudentWorld::canShoot(int x, int y, int dest, GraphObject::Direction dir, 
             if (dest < x) { return false; }
             for (int i = x+1; i < dest; i++) {
                 
-                Actor* ap = checkSpace(i, y, "");
+                Actor* ap = checkSpace(i, y, "living");
+                if (ap != nullptr) {
+                    return false;
+                }
+                
+                ap = checkSpace(i, y, "");
                 if (ap == nullptr || (ap != nullptr && !ap->hittable())) {
                     continue;
                 }
@@ -325,8 +335,12 @@ bool StudentWorld::canShoot(int x, int y, int dest, GraphObject::Direction dir, 
             
             if (dest > y) { return false; }
             for (int i = y-1; i > dest; i--) {
+                Actor* ap = checkSpace(x, i, "living");
+                if (ap != nullptr) {
+                    return false;
+                }
                 
-                Actor* ap = checkSpace(x, i, "");
+                ap = checkSpace(x, i, "");
                 if (ap == nullptr || (ap != nullptr && !ap->hittable())) {
                     continue;
                 }
@@ -340,8 +354,12 @@ bool StudentWorld::canShoot(int x, int y, int dest, GraphObject::Direction dir, 
             
             if (dest > x) { return false; }
             for (int i = x-1; i > dest; i--) {
+                Actor* ap = checkSpace(i, y, "living");
+                if (ap != nullptr) {
+                    return false;
+                }
                 
-                Actor* ap = checkSpace(i, y, "");
+                ap = checkSpace(i, y, "");
                 if (ap == nullptr || (ap != nullptr && !ap->hittable())) {
                     continue;
                 }
