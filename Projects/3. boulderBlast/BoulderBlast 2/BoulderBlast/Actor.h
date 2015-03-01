@@ -329,7 +329,7 @@ public:
     
     virtual void shoot() { };
     
-    virtual bool isAngry() { return true; }
+    virtual bool isAngry() { return false; }
     
     
     

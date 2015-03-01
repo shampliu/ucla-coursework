@@ -278,11 +278,11 @@ Actor* StudentWorld::checkSpace(int x, int y, string search) {
             }
         }
     }
+    
     if (m_player->getX() == x && m_player->getY() == y) {
         return m_player;
     }
     
-//    status = "empty"; 
     return nullptr;
 }
 
