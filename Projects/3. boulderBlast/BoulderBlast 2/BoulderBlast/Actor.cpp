@@ -406,7 +406,6 @@ void KleptoBot::isHit(int damage) {
         getWorld()->increaseScore(10);
         setDead();
         if (m_item != nullptr) {
-            m_item->moveTo(getX(), getY());
             m_item->setV(true);
             m_item->setVisible(true);
         }
@@ -488,6 +487,9 @@ void KleptoBot::doSomething() {
             // empty square or object that can be occupied
             if (ap == nullptr || ap->canOccupy()) {
                 moveTo(dx, dy);
+                if (m_item != nullptr) {
+                    m_item->moveTo(dx, dy);
+                }
                 m_maxDist--;
             }
             // encountered obstruction
@@ -549,6 +551,9 @@ void KleptoBot::doSomething() {
                     if (ap == nullptr || ap->canOccupy()) {
                         setDirection(dir);
                         moveTo(dx, dy);
+                        if (m_item != nullptr) {
+                            m_item->moveTo(dx, dy);
+                        }
                         return;
                     }
                     count++;
