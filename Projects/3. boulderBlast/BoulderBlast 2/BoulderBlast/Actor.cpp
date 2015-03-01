@@ -92,8 +92,8 @@ void Player::doSomething() {
                 }
                 break;
             case KEY_PRESS_ESCAPE:
-                getWorld()->completed();
-//                setDead();
+//                getWorld()->completed();
+                setDead();
                 break;
         }
     }
@@ -368,7 +368,7 @@ bool Factory::countRegion() {
             return false;
         }
 
-        if ((rx <= x+3 || rx >= x-3) && (ry <= y+3 || ry >= y-3)) {
+        if ((rx <= x+3 && rx >= x-3) && (ry <= y+3 && ry >= y-3)) {
             count++;
         }
     }
@@ -427,6 +427,7 @@ void KleptoBot::doSomething() {
     // if KleptoBot is supposed to rest
     if (getTicks() < getRest()) {
         setTicks();
+        return;
     }
     
     else {
@@ -491,11 +492,13 @@ void KleptoBot::doSomething() {
                     m_item->moveTo(dx, dy);
                 }
                 m_maxDist--;
+                return;
             }
             // encountered obstruction
-            else {
-                setBlocked(true);
-            }
+            
+            setBlocked(true);
+            return;
+            
         }
         // change direction
         else {
@@ -538,7 +541,9 @@ void KleptoBot::doSomething() {
                         firstDir = dir;
                     }
                     
-                    convertDir(dx, dy, dir);
+                    dx = getX();
+                    dy = getY();
+                    convertDir(dx, dy, getDirection());
                     
                     Actor* ap = getWorld()->checkSpace(dx, dy, "living");
                     if (ap != nullptr) {
@@ -584,138 +589,6 @@ void AngryKleptoBot::isHit(int damage) {
         getWorld()->playSound(SOUND_ROBOT_IMPACT);
     }
 };
-
-//void AngryKleptoBot::doSomething() {
-//    if (! isAlive()) {
-//        return;
-//    }
-//    
-//    int dx = getX();
-//    int dy = getY();
-//    Direction dir = getDirection();
-//    
-//    // if KleptoBot is supposed to rest
-//    if (getTicks() < getRest()) {
-//        setTicks();
-//    }
-//    
-//    else {
-//        setTicks();
-//        
-//        int px = getWorld()->getPlayer()->getX();
-//        int py = getWorld()->getPlayer()->getY();
-//        
-//        string check;
-//        
-//        // player is in the same column as the SnarlBot and SnarlBot
-//        if (px == getX()) {
-//            check = "v";
-//            if (getWorld()->canShoot(dx, dy, py, dir, check)) {
-//                shoot();
-//                return;
-//            }
-//        }
-//        // player is in the same row as the SnarlBot
-//        if (py == getY()) {
-//            check = "h";
-//            if (getWorld()->canShoot(dx, dy, px, dir, check)) {
-//                shoot();
-//                return;
-//            }
-//            
-//        }
-//        
-//        // check for Goodie on the same square
-//        Actor* ap = getWorld()->checkSpace(dx, dy, "goodie");
-//        Goodie* g = dynamic_cast<Goodie*>(ap);
-//        if (g != nullptr && getItem() == nullptr && g->isVisible()) {
-//            if (rand() % 10 == 0) {
-//                addItem(g);
-//                getItem()->setVisible(false);
-//                getItem()->setV(false);
-//                getWorld()->playSound(SOUND_ROBOT_MUNCH);
-//            }
-//        }
-//        
-//        // check if it has moved the max distance
-//        if (getDist() > 0 && !isBlocked()) {
-//            changeDist(-1);
-//            
-//            // move or change direction if can't shoot
-//            convertDir(dx, dy, dir);
-//            
-//            Actor* ap = getWorld()->checkSpace(dx, dy, "living");
-//            if (ap != nullptr) {
-//                setBlocked(true);
-//                return;
-//            }
-//            
-//            ap = getWorld()->checkSpace(dx, dy, "");
-//            
-//            // empty square or object that can be occupied
-//            if (ap == nullptr || ap->canOccupy()) {
-//                moveTo(dx, dy);
-//                return;
-//            }
-//            // encountered obstruction
-//            else {
-//                setBlocked(true);
-//            }
-//        }
-//        // change direction
-//        else {
-//            setBlocked(false);
-//            
-//            // reset max distance
-//            resetDist();
-//            map<int, bool> check;
-//            int count = 0;
-//            
-//            // count will check all four directions
-//            while (count < 4) {
-//                int rng = rand() % 4;
-//                
-//                if (check.find(rng)->second == true) {
-//                    continue;
-//                }
-//                else {
-//                    check[rng] = true;
-//                    Direction dir;
-//                    switch (rng) {
-//                        case 0:
-//                            dir = up;
-//                            break;
-//                        case 1:
-//                            dir = right;
-//                            break;
-//                        case 2:
-//                            dir = down;
-//                            break;
-//                        case 3:
-//                            dir = left;
-//                            break;
-//                    }
-//                    convertDir(dx, dy, dir);
-//                    
-//                    Actor* ap = getWorld()->checkSpace(dx, dy, "living");
-//                    if (ap != nullptr) {
-//                        count++;
-//                        continue;
-//                    }
-//                    
-//                    ap = getWorld()->checkSpace(dx, dy, "");
-//                    
-//                    if (ap == nullptr || ap->canOccupy()) {
-//                        setDirection(dir);
-//                        moveTo(dx, dy);
-//                        return;
-//                    }
-//                    count++;
-//                }
-//            }
-//        }
-//    }
-//}
 
 
 
