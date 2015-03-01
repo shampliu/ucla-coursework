@@ -30,6 +30,115 @@ void Actor::convertDir(int& x, int& y, GraphObject::Direction dir) {
     }
 }
 
+/* Bullet
+ ------------------------------ */
+void Bullet::doSomething() {
+    if (! isAlive()) {
+        return;
+    }
+    
+    int dx = getX();
+    int dy = getY();
+    
+    Actor* ap = getWorld()->checkSpace(dx, dy, "living");
+    if (ap != nullptr) {
+        ap->isHit(2);
+        setDead();
+        return;
+    }
+    
+    ap = getWorld()->checkSpace(dx, dy, "");
+    if (ap != nullptr && ap->hittable()) {
+        ap->isHit(2);
+        setDead();
+        return;
+    }
+    
+    convertDir(dx, dy, getDirection());
+    
+    moveTo(dx, dy);
+}
+
+/* Exit
+ ------------------------------ */
+void Exit::doSomething() {
+    // check if it wasn't visible to begin with so the sound only plays once
+    if (getWorld()->getJewels() == getWorld()->getPlayer()->getJewels() && m_visible == false) {
+        m_visible = true;
+        setVisible(true);
+        getWorld()->playSound(SOUND_REVEAL_EXIT);
+    }
+    
+    if (getWorld()->getPlayer()->getX() == getX() && getWorld()->getPlayer()->getY() == getY() && m_visible) {
+        getWorld()->completed();
+    }
+}
+
+/* Jewel
+ ------------------------------ */
+void Jewel::doSomething() {
+    if (! isAlive()) {
+        return;
+    }
+    
+    // if Player is on the same square as the Jewel
+    if (getX() == getWorld()->getPlayer()->getX() && getY() == getWorld()->getPlayer()->getY()) {
+        getWorld()->increaseScore(50);
+        getWorld()->playSound(SOUND_GOT_GOODIE);
+        getWorld()->getPlayer()->incJewels();
+        setDead();
+    }
+}
+
+/* Ammo
+ ------------------------------ */
+void Ammo::doSomething() {
+    if (! isAlive()) {
+        return;
+    }
+    
+    // if Player is on the same square as the Ammo
+    if (getX() == getWorld()->getPlayer()->getX() && getY() == getWorld()->getPlayer()->getY() && isVisible()) {
+        getWorld()->increaseScore(100);
+        getWorld()->getPlayer()->reload(20);
+        getWorld()->playSound(SOUND_GOT_GOODIE);
+        setDead();
+    }
+}
+
+/* Health
+ ------------------------------ */
+void Health::doSomething() {
+    if (! isAlive()) {
+        return;
+    }
+    
+    // if Player is on the same square as the Health
+    if (getX() == getWorld()->getPlayer()->getX() && getY() == getWorld()->getPlayer()->getY() && isVisible()) {
+        getWorld()->increaseScore(500);
+        int inc = 20 - getWorld()->getPlayer()->getHealth();
+        getWorld()->getPlayer()->changeHealth(inc);
+        getWorld()->playSound(SOUND_GOT_GOODIE);
+        setDead();
+    }
+}
+
+/* Life
+ ------------------------------ */
+void Life::doSomething() {
+    if (! isAlive()) {
+        return;
+    }
+    
+    // if Player is on the same square as the Health
+    if (getX() == getWorld()->getPlayer()->getX() && getY() == getWorld()->getPlayer()->getY() && isVisible()) {
+        getWorld()->incLives();
+        getWorld()->playSound(SOUND_GOT_GOODIE);
+        setDead();
+    }
+}
+
+
 /* Player 
  ------------------------------ */
 void Player::isHit(int damage) {
@@ -158,116 +267,6 @@ bool Boulder::push(Direction dir) {
     return false;
     
 }
-
-
-/* Bullet
- ------------------------------ */
-void Bullet::doSomething() {
-    if (! isAlive()) {
-        return;
-    }
-    
-    int dx = getX();
-    int dy = getY();
-    
-    Actor* ap = getWorld()->checkSpace(dx, dy, "living");
-    if (ap != nullptr) {
-        ap->isHit(2);
-        setDead();
-        return;
-    }
-    
-    ap = getWorld()->checkSpace(dx, dy, "");
-    if (ap != nullptr && ap->hittable()) {
-        ap->isHit(2);
-        setDead();
-        return;
-    }
-    
-    convertDir(dx, dy, getDirection());
-    
-    moveTo(dx, dy);
-}
-
-/* Exit
- ------------------------------ */
-void Exit::doSomething() {
-    // check if it wasn't visible to begin with so the sound only plays once
-    if (getWorld()->getJewels() == getWorld()->getPlayer()->getJewels() && m_visible == false) {
-        m_visible = true; 
-        setVisible(true);
-        getWorld()->playSound(SOUND_REVEAL_EXIT);
-    }
-    
-    if (getWorld()->getPlayer()->getX() == getX() && getWorld()->getPlayer()->getY() == getY() && m_visible) {
-        getWorld()->completed(); 
-    }
-}
-
-/* Jewel
- ------------------------------ */
-void Jewel::doSomething() {
-    if (! isAlive()) {
-        return;
-    }
-    
-    // if Player is on the same square as the Jewel
-    if (getX() == getWorld()->getPlayer()->getX() && getY() == getWorld()->getPlayer()->getY()) {
-        getWorld()->increaseScore(50);
-        getWorld()->playSound(SOUND_GOT_GOODIE);
-        getWorld()->getPlayer()->incJewels();
-        setDead();
-    }
-}
-
-/* Ammo
- ------------------------------ */
-void Ammo::doSomething() {
-    if (! isAlive()) {
-        return;
-    }
-    
-    // if Player is on the same square as the Ammo
-    if (getX() == getWorld()->getPlayer()->getX() && getY() == getWorld()->getPlayer()->getY() && isVisible()) {
-        getWorld()->increaseScore(100);
-        getWorld()->getPlayer()->reload(20);
-        getWorld()->playSound(SOUND_GOT_GOODIE);
-        setDead();
-    }
-}
-
-/* Health
- ------------------------------ */
-void Health::doSomething() {
-    if (! isAlive()) {
-        return;
-    }
-    
-    // if Player is on the same square as the Health
-    if (getX() == getWorld()->getPlayer()->getX() && getY() == getWorld()->getPlayer()->getY() && isVisible()) {
-        getWorld()->increaseScore(500);
-        int inc = 20 - getWorld()->getPlayer()->getHealth();
-        getWorld()->getPlayer()->changeHealth(inc);
-        getWorld()->playSound(SOUND_GOT_GOODIE);
-        setDead();
-    }
-}
-
-/* Life
- ------------------------------ */
-void Life::doSomething() {
-    if (! isAlive()) {
-        return;
-    }
-    
-    // if Player is on the same square as the Health
-    if (getX() == getWorld()->getPlayer()->getX() && getY() == getWorld()->getPlayer()->getY() && isVisible()) {
-        getWorld()->incLives();
-        getWorld()->playSound(SOUND_GOT_GOODIE);
-        setDead();
-    }
-}
-
 
 /* SnarlBot
  ------------------------------ */

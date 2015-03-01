@@ -32,9 +32,6 @@ int StudentWorld::init()
         return GWSTATUS_PLAYER_WON;
     }
     
-    
-    
-    
     return GWSTATUS_CONTINUE_GAME;
 }
 

@@ -6,7 +6,11 @@
 #include "StudentWorld.h"
 #include <cstdlib>
 
-// Actor without hitpoints
+/* Actor
+
+ character with no hitpoints
+ 
+ ------------------------------ */
 class Actor: public GraphObject {
 public:
     Actor(StudentWorld* world, int imageID, int startX, int startY, Direction dir = none) : GraphObject(imageID, startX, startY, dir) {
@@ -40,10 +44,10 @@ private:
     bool m_isAlive;
     StudentWorld* m_world;
     
-    
-    
 };
 
+/* Wall
+ ------------------------------ */
 class Wall : public Actor {
 public:
     Wall(StudentWorld* world, int startX, int startY) : Actor(world, IID_WALL, startX, startY, none) { };
@@ -56,6 +60,8 @@ private:
     
 };
 
+/* Hole
+ ------------------------------ */
 class Hole : public Actor {
 public:
     Hole(StudentWorld* world, int startX, int startY) : Actor(world, IID_HOLE, startX, startY, none) { };
@@ -67,6 +73,8 @@ public:
     }
 };
 
+/* Bullet
+ ------------------------------ */
 class Bullet : public Actor {
 public:
     Bullet(StudentWorld* world, int startX, int startY, Direction dir) : Actor(world, IID_BULLET, startX, startY, dir) { };
@@ -81,6 +89,8 @@ public:
     }
 };
 
+/* Exit
+ ------------------------------ */
 class Exit : public Actor {
 public:
     Exit(StudentWorld* world, int startX, int startY) : Actor(world, IID_EXIT, startX, startY, none) {
@@ -100,6 +110,8 @@ private:
     bool m_visible;
 };
 
+/* Jewel
+ ------------------------------ */
 class Jewel : public Actor {
 public:
     Jewel(StudentWorld* world, int startX, int startY) : Actor(world, IID_JEWEL, startX, startY, none) { };
@@ -113,6 +125,8 @@ public:
     }
 };
 
+/* Factory
+ ------------------------------ */
 class Factory : public Actor {
 public:
     Factory(StudentWorld* world, int startX, int startY, bool angry) : Actor(world, IID_ROBOT_FACTORY, startX, startY, none) {
@@ -131,7 +145,11 @@ private:
     
 };
 
-// can be taken by KleptoBot
+/* Goodie
+ 
+ can be taken by a KleptoBot
+ 
+ ------------------------------ */
 class Goodie : public Actor {
 public:
     Goodie(StudentWorld* world, int imageID, int startX, int startY) : Actor(world, imageID, startX, startY, none) {
@@ -156,25 +174,35 @@ private:
     
 };
 
+/* Health
+ ------------------------------ */
 class Health : public Goodie {
 public:
     Health(StudentWorld* world, int startX, int startY) : Goodie(world, IID_RESTORE_HEALTH, startX, startY) { };
     virtual void doSomething();
 };
 
+/* Life
+ ------------------------------ */
 class Life : public Goodie {
 public:
     Life(StudentWorld* world, int startX, int startY) : Goodie(world, IID_EXTRA_LIFE, startX, startY) { };
     virtual void doSomething();
 };
 
+/* Ammo
+ ------------------------------ */
 class Ammo : public Goodie {
 public:
     Ammo(StudentWorld* world, int startX, int startY) : Goodie(world, IID_AMMO, startX, startY) { };
     virtual void doSomething();
 };
 
-// Actor with hitpoints
+/* LivingActor
+ 
+ actor with hitpoints
+ 
+ ------------------------------ */
 class LivingActor : public Actor {
 public:
     LivingActor(int health, StudentWorld* world, int imageID, int startX, int startY, Direction dir = none) : Actor(world, imageID, startX, startY, dir), m_health(health) {
@@ -195,13 +223,12 @@ public:
     
     virtual void doSomething() = 0;
     
-    
-    
-    
 private:
     int m_health;
 };
 
+/* Boulder
+ ------------------------------ */
 class Boulder : public LivingActor {
     
 public:
@@ -213,6 +240,8 @@ public:
     
 };
 
+/* Player
+ ------------------------------ */
 class Player : public LivingActor {
     
 public:
@@ -250,7 +279,11 @@ private:
     int m_jewels;
 };
 
-// these guys hurt
+/* Enemy
+ 
+ the bad guys
+ 
+ ------------------------------ */
 class Enemy : public LivingActor {
 public:
     Enemy(int health, StudentWorld* world, int imageID, int startX, int startY, Direction dir) : LivingActor(health, world, imageID, startX, startY, dir) {
@@ -276,7 +309,8 @@ private:
     
 };
 
-
+/* SnarlBot
+ ------------------------------ */
 class SnarlBot : public Enemy {
 public:
     SnarlBot(StudentWorld* world, int startX, int startY, Direction dir) : Enemy(10, world, IID_SNARLBOT, startX, startY, dir) { };
@@ -291,6 +325,8 @@ public:
     
 };
 
+/* KleptoBot
+ ------------------------------ */
 class KleptoBot : public Enemy {
 public:
     KleptoBot(int health, StudentWorld* world, int startX, int startY) : Enemy(health, world, IID_KLEPTOBOT, startX, startY, right) {
@@ -344,11 +380,11 @@ private:
     Goodie* m_item;
 };
 
+/* AngryKleptoBot
+ ------------------------------ */
 class AngryKleptoBot : public KleptoBot {
 public:
     AngryKleptoBot(StudentWorld* world, int startX, int startY) : KleptoBot(8, world, startX, startY) { };
-    
-//    virtual void doSomething();
     
     virtual void isHit(int damage);
     virtual bool isAngry() { return true; }
