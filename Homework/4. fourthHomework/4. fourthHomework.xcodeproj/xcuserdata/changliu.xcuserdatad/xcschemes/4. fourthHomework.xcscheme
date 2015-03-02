@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B0E74E451A8EAF2A00E23610"
-               BuildableName = "4. templating"
-               BlueprintName = "4. templating"
-               ReferencedContainer = "container:4. templating.xcodeproj">
+               BlueprintIdentifier = "B09B66AF1AA3A965003C6321"
+               BuildableName = "4. fourthHomework"
+               BlueprintName = "4. fourthHomework"
+               ReferencedContainer = "container:4. fourthHomework.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B0E74E451A8EAF2A00E23610"
-            BuildableName = "4. templating"
-            BlueprintName = "4. templating"
-            ReferencedContainer = "container:4. templating.xcodeproj">
+            BlueprintIdentifier = "B09B66AF1AA3A965003C6321"
+            BuildableName = "4. fourthHomework"
+            BlueprintName = "4. fourthHomework"
+            ReferencedContainer = "container:4. fourthHomework.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -51,10 +51,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B0E74E451A8EAF2A00E23610"
-            BuildableName = "4. templating"
-            BlueprintName = "4. templating"
-            ReferencedContainer = "container:4. templating.xcodeproj">
+            BlueprintIdentifier = "B09B66AF1AA3A965003C6321"
+            BuildableName = "4. fourthHomework"
+            BlueprintName = "4. fourthHomework"
+            ReferencedContainer = "container:4. fourthHomework.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -69,10 +69,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B0E74E451A8EAF2A00E23610"
-            BuildableName = "4. templating"
-            BlueprintName = "4. templating"
-            ReferencedContainer = "container:4. templating.xcodeproj">
+            BlueprintIdentifier = "B09B66AF1AA3A965003C6321"
+            BuildableName = "4. fourthHomework"
+            BlueprintName = "4. fourthHomework"
+            ReferencedContainer = "container:4. fourthHomework.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
