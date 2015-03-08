@@ -1,0 +1,60 @@
+Chang Liu
+CS 32
+Homework 4
+
+=========
+Problem 2
+=========
+The insert function does not work when we try to insert a URL object because the function calls upon another function, find, which requires comparison between URLs to decide where to add the new URL. Since URL is not a built-in type and its comparison operators have not been overloaded (e.g. ==, <=, >, !=), the code does not compile. 
+
+==========
+Problem 3b
+==========
+It would be impossible to have the same output with a single listAll function that only takes one parameter. Without the string passed in as a second parameter, there is no way the program can remember the path as it recursively enters each MenuItem. The best result I could produce was:
+
+File/New/Window/
+Open/
+Exit/
+Refresh/
+Under Development/Help/Index/
+About/
+
+Once the function enters a Menu that has submenus, it will only remember the path for the first submenu and not the subsequent ones. 
+
+==========
+Problem 4a
+==========
+The time complexity for this problem would be O(N^3) because of the double nested for loop. For an input size of N, the outer for loop executes N times. For each execution, the secondary for loop executes another N times and for each execution of the secondary for loop, the third loop executes N times. The total number of executions then of the innermost loop is N^3 and that is the highest order term. Within each for loop, several assignments and comparisons are made that would contribute to a coefficient of N^3 but we only care about the high order term. There the time complexity of the function is O(N^3). 
+
+==========
+Problem 4b
+==========
+Here the time complexity is still O(N^3). The significant change to this algorithm changes the second for loop to run and i amount of times instead of N. So for each execution of the outer for loop, the second for loop runs for 1, 2, 3 … N-3, N-2, N-1 times. This arithmetic sequence can be simplified to N(N-1) / 2. If we factor in the third for loop, which runs N times for every execution of the second for loop, then the most inner operations would run for a total of N^2(N-1) / 2 times which simplifies to N^3. Therefore, the time complexity of this function remains O(N^3). 
+
+==========
+Problem 5a
+==========
+Assuming that m1, m2 and the old value of result each have N distinct items, the time complexity is O(N^2). The outer for loop runs for a maximum of N times. Inside the for loop, ignoring the insignificant assignments, we have a call to the get function, which makes a maximum of N/2 comparisons because it halves the size first before searching. Next we have a call to contains which calls the find function, which runs a maximum of N times. Inside the if statement, the insert function is called, which also calls find. That would give an equation of N * (N/2 + N + N) which equates to (5/2)N^2, simplifying to N^2. Therefore the Big O is O(N^2).  
+
+==========
+Problem 5b
+==========
+The time complexity of the new uniqueIntersect function is O(N log(N)), which is significantly better than the previous uniqueIntersect function. In the function, we have two for loops that loop through a maximum of N nodes. Then, the STL sort function is called, which uses an O(N log(N)) algorithm. Next, we have another for loop that also executes a maximum of N times, with simple, insignificant comparisons and assignments inside. Lastly, there is a do while loop that also averages a runtime of O(N). Summing these complexities up gives us 4N + N log(N) which simplifies to N log(N) when using large amounts of inputs. The 4N is dropped since N log(N) scales to much larger than 4N. Therefore, the time complexity is O(N log(N)). 
+
+=========
+Problem 6
+=========	
+N		STL Sort	Insertion
+-----------------------------------------
+10,000		8.5607ms	1619.45ms
+20,000		11.0277ms	7259.39ms
+30,000		21.0306ms	17737.7ms
+40,000		23.2721ms	38437.7ms
+100,000		64.5541ms
+200,000		156.013ms
+300,000		265.958ms
+1,000,000	952.426ms
+
+
+
+

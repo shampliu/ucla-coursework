@@ -6,86 +6,62 @@
 //  Copyright (c) 2015 Chang Liu. All rights reserved.
 //
 
+#include "Multiset.h"
 #include <iostream>
 #include <string>
-#include <vector>
-
+#include <cassert>
 using namespace std;
 
-class MenuItem
+void test()
 {
-public:
-    MenuItem(string nm) : m_name(nm) {}
-    virtual ~MenuItem() {}
-    string name() const { return m_name; }
-    virtual bool add(MenuItem* m) = 0;
-    virtual const vector<MenuItem*>* menuItems() const = 0;
-private:
-    string m_name;
-};
-
-class PlainMenuItem : public MenuItem   // PlainMenuItem allows no submenus
-{
-public:
-    PlainMenuItem(string nm) : MenuItem(nm) {}
-    virtual bool add(MenuItem* m) { return false; }
-    virtual const vector<MenuItem*>* menuItems() const { return NULL; }
-};
-
-class CompoundMenuItem : public MenuItem  // CompoundMenuItem allows submenus
-{
-public:
-    CompoundMenuItem(string nm) : MenuItem(nm) {}
-    virtual ~CompoundMenuItem();
-    virtual bool add(MenuItem* m) { m_menuItems.push_back(m); return true; }
-    virtual const vector<MenuItem*>* menuItems() const { return &m_menuItems; }
-private:
-    vector<MenuItem*> m_menuItems;
-};
-
-CompoundMenuItem::~CompoundMenuItem()
-{
-    for (int k = 0; k < m_menuItems.size(); k++)
-        delete m_menuItems[k];
-}
-
-void listAll(const MenuItem* m, string path) // two-parameter overload
-{
-    const vector<MenuItem*>* c = m->menuItems();
-    if (c == nullptr) {
-        return;
-    }
-    for (vector<MenuItem*>::const_iterator it = c->begin(); it != c->end(); it++) {
-//        cout << (*it)->name() << endl;
-        cout << path + (*it)->name() << endl;
-        listAll(*it, path + (*it)->name() + '/');
-//        cout << path + (*it)->name() << endl;
-        
-    }
-}
-
-void listAll(const MenuItem* m)  // one-parameter overload
-{
-    if (m != NULL)
-        listAll(m, "");
+    Multiset<int> mi;
+    Multiset<string> ms;
+    assert(mi.empty());
+    assert(ms.size() == 0);
+    assert(mi.uniqueSize() == 0);
+    assert(mi.insert(10));
+    assert(ms.insert("hello"));
+    assert(mi.contains(10));
+    assert(ms.count("hello") == 1);
+    assert(mi.erase(10) == 1);
+    string s;
+    assert(ms.get(0, s)  &&  s == "hello");
+    Multiset<string> ms2(ms);
+    ms.swap(ms2);
+    ms = ms2;
+    combine(mi,mi,mi);
+    combine(ms,ms2,ms);
+    assert(ms.eraseAll("hello") == 2);
+    subtract(mi,mi,mi);
+    subtract(ms,ms2,ms);
 }
 
 int main()
 {
-    CompoundMenuItem* cm0 = new CompoundMenuItem("New");
-    cm0->add(new PlainMenuItem("Window"));
-    CompoundMenuItem* cm1 = new CompoundMenuItem("File");
-    cm1->add(cm0);
-    cm1->add(new PlainMenuItem("Open"));
-    cm1->add(new PlainMenuItem("Exit"));
-    CompoundMenuItem* cm2 = new CompoundMenuItem("Help");
-    cm2->add(new PlainMenuItem("Index"));
-    cm2->add(new PlainMenuItem("About"));
-    CompoundMenuItem* cm3 = new CompoundMenuItem("");  // main menu bar
-    cm3->add(cm1);
-    cm3->add(new PlainMenuItem("Refresh"));  // no submenu
-    cm3->add(new CompoundMenuItem("Under Development")); // no submenus yet
-    cm3->add(cm2);
-    listAll(cm3);
-    delete cm3;
+    test();
+    cout << "Passed all tests" << endl;
 }
+
+//#include "Multiset.h"  // class template from problem 1
+//#include <string>
+//using namespace std;
+//
+//class URL
+//{
+//public:
+//    URL(string i) : m_id(i) {}
+//    URL() : m_id("http://cs.ucla.edu") {}
+//    string id() const { return m_id; }
+//private:
+//    string m_id;
+//};
+//
+//int main()
+//{
+//    Multiset<int> mi;
+//    mi.insert(7);  // OK
+//    Multiset<string> ms;
+//    ms.insert("http://www.symantec.com");  // OK
+//    Multiset<URL> mu;
+//    mu.insert(URL("http://www.symantec.com"));  // error!
+//}

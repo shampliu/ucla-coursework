@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B0121B041AA59FDE00DCF3BE /* list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0121B031AA59FDE00DCF3BE /* list.cpp */; };
+		B0121B061AA647F200DCF3BE /* sorts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0121B051AA647F200DCF3BE /* sorts.cpp */; };
 		B09B66B41AA3A965003C6321 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B09B66B31AA3A965003C6321 /* main.cpp */; };
 		B0EC069E1AA3FB4E00D26C90 /* multisetMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0EC069D1AA3FB4E00D26C90 /* multisetMain.cpp */; };
 /* End PBXBuildFile section */
@@ -24,6 +26,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B0121B031AA59FDE00DCF3BE /* list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = list.cpp; sourceTree = "<group>"; };
+		B0121B051AA647F200DCF3BE /* sorts.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sorts.cpp; sourceTree = "<group>"; };
 		B09B66B01AA3A965003C6321 /* 4. fourthHomework */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "4. fourthHomework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B09B66B31AA3A965003C6321 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B09B66BB1AA3A97A003C6321 /* Multiset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Multiset.h; sourceTree = "<group>"; };
@@ -61,6 +65,8 @@
 			isa = PBXGroup;
 			children = (
 				B09B66B31AA3A965003C6321 /* main.cpp */,
+				B0121B051AA647F200DCF3BE /* sorts.cpp */,
+				B0121B031AA59FDE00DCF3BE /* list.cpp */,
 				B0EC069D1AA3FB4E00D26C90 /* multisetMain.cpp */,
 				B09B66BB1AA3A97A003C6321 /* Multiset.h */,
 			);
@@ -124,7 +130,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B09B66B41AA3A965003C6321 /* main.cpp in Sources */,
+				B0121B061AA647F200DCF3BE /* sorts.cpp in Sources */,
 				B0EC069E1AA3FB4E00D26C90 /* multisetMain.cpp in Sources */,
+				B0121B041AA59FDE00DCF3BE /* list.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
