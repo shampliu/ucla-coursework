@@ -9,35 +9,43 @@
 #ifndef _____steg_o_matic__HashTable__
 #define _____steg_o_matic__HashTable__
 
+#include <string>
+#include <iostream>
+
 template <typename KeyType,	typename ValueType>
 class HashTable
 {
 public:
     HashTable(unsigned int numBuckets, unsigned int capacity);
-    ~HashTable();
+//    ~HashTable();
     
     bool isFull() const;
     bool set(const KeyType&	key, const ValueType& value, bool permanent = false);
     bool get(const KeyType& key, ValueType& value)	const;
     bool touch(const KeyType& key);
-    bool discard(KeyType& key,	ValueType& value);
+    bool discard(KeyType& key,ValueType& value);
+    
+//    const ValueType& getTop();
+//    int top();
+    
+    
+    
 private:
 
     struct Bucket {
         KeyType     m_key;
         ValueType   m_value;
-        Bucket*     m_next;
         bool        m_permanent;
+        bool        m_exists;
         
-        Bucket() : m_next(nullptr), m_permanent(false) { };
-        Bucket(KeyType key, ValueType val, bool permanent) : m_key(key), m_value(val), m_next(nullptr), m_permanent(permanent) { };
+        Bucket() : m_exists(false) { };
     };
     
     Bucket*         m_array;
     
     struct Recent {
         
-        Recent(unsigned int capacity) : m_capacity(capacity), m_top(-1) {
+        Recent(unsigned int capacity) : m_capacity(capacity), m_top(0) {
             m_stack = new Bucket[capacity];
         };
         
@@ -46,32 +54,28 @@ private:
                 return false;
             }
             
-            ++m_top;
-            m_stack[m_top] = b;
+            m_stack[m_top] = *b;
+//            std::cout << "KEY = " << m_stack[m_top].m_key << std::endl;
+            m_top++;
             return true;
         }
         
-        bool toTop(Bucket* b) {
+        void toTop(Bucket* b) {
             // if top value is most recent, it will stay at the top
+            
             for (int i = 0; i < m_top; i++) {
-                if (m_stack[i] == b) {
+                if (m_stack[i].m_key == b->m_key) {
+                    
                     for (int j = i; j < m_top; j++) {
                         m_stack[j] = m_stack[j+1];
                     }
-                    m_stack[m_top] = b;
-                    return true;
+                    m_stack[m_top] = *b;
                 }
             }
-            return true;
         }
         
-        bool pop() {
-            if (m_stack[m_top] != nullptr) {
-                m_stack[m_top] = nullptr;
-                m_top--;
-                return true;
-            }
-            return false;
+        void pop() {
+            m_top--;
         }
         
         Bucket*     m_stack;
@@ -92,9 +96,9 @@ private:
 };
 
 // non-member functions
-unsigned int computeHash(int key)
+unsigned int computeHash(std::string key)
 {
-    return 0;
+    return static_cast<unsigned int>(key.length());
 }
 
 /* HashTable
@@ -102,7 +106,10 @@ unsigned int computeHash(int key)
 template<typename KeyType, typename ValueType>
 inline
 HashTable<KeyType, ValueType>::HashTable(unsigned int numBuckets, unsigned int capacity) : m_capacity(capacity), m_pairs(0) {
+    
+    m_recent = new Recent(capacity);
     m_array = new Bucket[numBuckets];
+    
 };
 
 template<typename KeyType, typename ValueType>
@@ -123,58 +130,60 @@ bool HashTable<KeyType, ValueType>::get(const KeyType& key, ValueType& value) co
     unsigned int computeHash(KeyType); // prototype
     unsigned int index = computeHash(key);
     
-    Bucket* b = m_array[index];
+    Bucket* b = &m_array[index];
     
-    while (b != nullptr) {
-        if (b->m_key == key) {
-            value = b->m_value;
-            return true;
-        }
-        else {
-            b = b->m_next;
-        }
+    if (b->m_exists) {
+        value = b->m_value;
+        return true;
     }
-    
-    return false;
+    else {
+        return false;
+    }
 }
 
 template<typename KeyType, typename ValueType>
 inline
-bool HashTable<KeyType, ValueType>::set(const KeyType&	key, const ValueType& value, bool permanent) {
+bool HashTable<KeyType, ValueType>::set(const KeyType& key, const ValueType& value, bool permanent) {
     
     unsigned int computeHash(KeyType); // prototype
     unsigned int index = computeHash(key);
     
-    Bucket* b = m_array[index];
     
-    for (;;) {
-        if (b == nullptr) {
-            // can't add anymore
-            if (isFull()) {
-                return false;
-            }
-            // add new item
-            else {
-                Bucket* b = new Bucket(key, value, permanent);
-                m_pairs++;
-                m_array[index] = b;
-                if (! permanent) {
-                    m_recent->push(b);
-                }
-                return true;
-            }
+    Bucket* b = &m_array[index];
+//    std::cout << b->m_key << " , " << b-> m_value << std::endl;
+    
+    if (b->m_exists) {
+        b->m_value = value;
+        
+        if (! b->m_permanent) {
+            m_recent->toTop(b);
         }
-        // update the value, 3rd parameter doesn't matter
-        else if(b->m_key == key) {
-            b->m_value = value;
-            if (! b->m_permanent) {
-                m_recent->toTop(b);
-            }
-            return true;
+        return true;
+        
+    }
+    else {
+        // can't add anymore
+        if (isFull()) {
+            return false;
         }
-        else {
-            b = b->next;
+        
+        // add new one
+        Bucket* b = new Bucket;
+        b->m_key = key;
+        b->m_value = value;
+        b->m_permanent = permanent;
+        b->m_exists = true;
+        
+        m_pairs++;
+        m_array[index] = *b;
+        
+        if (! permanent) {
+            m_recent->push(b);
         }
+        
+//        std::cout << b->m_key << " , " << b-> m_value << std::endl;
+        
+        return true;
     }
     
 }
@@ -186,22 +195,16 @@ bool HashTable<KeyType, ValueType>::touch(const KeyType& key) {
     unsigned int computeHash(KeyType); // prototype
     unsigned int index = computeHash(key);
     
-    Bucket* b = m_array[index];
+    Bucket* b = &m_array[index];
     
-    for (;;) {
-        if (b == nullptr) {
-            return false;
-        }
-        // move to top
-        else if(b->m_key == key && ! b->m_permanent) {
-            m_recent->toTop(b);
-            return true;
-        }
-        else {
-            b = b->next;
-        }
+    if (b->m_exists) {
+        m_recent->toTop(b);
+        return true;
     }
-    return false;
+    // could not find
+    else {
+        return false;
+    }
     
 }
 
@@ -209,38 +212,27 @@ template<typename KeyType, typename ValueType>
 inline
 bool HashTable<KeyType, ValueType>::discard(KeyType& key, ValueType& value) {
     
-    Bucket* cur = m_recent->m_stack[m_recent->m_top];
-    
-    // return if no non-permanent items that were recently changed
-    if (cur == nullptr) {
-        return false;
-    }
+    Bucket* top = &(m_recent->m_stack[m_recent->m_top]);
     
     unsigned int computeHash(KeyType); // prototype
     
-    key = cur->m_key;
-    value = cur->m_value;
-    unsigned int index = computeHash(key);
-    
-    Bucket* b = m_array[index];
-    
-    for (;;) {
-        if (b == nullptr) {
-            return false;
-        }
+    if (top->m_exists) {
+        key = top->m_key;
+        std::cout << key;
+        value = top->m_value;
+        std::cout << value;
         
-        else if(b->m_key == key && ! b->m_permanent) {
-            m_recent->pop();
-            m_array[index] = b->next;
-            delete b;
-            return true;
-        }
-        else {
-            b = b->next;
-        }
+        m_recent->pop();
+        m_pairs--;
+        
+        delete top; 
+        return true;
+        
     }
-    
-    return false;
+    // return if no non-permanent items that were recently changed
+    else {
+        return false;
+    }
     
 }
 
