@@ -110,6 +110,8 @@ HashTable<KeyType, ValueType>::HashTable(unsigned int numBuckets, unsigned int c
     m_recent = new Recent(capacity);
     m_array = new Bucket[numBuckets];
     
+    std::cout << m_array[0].m_key;
+    
 };
 
 template<typename KeyType, typename ValueType>
@@ -225,7 +227,8 @@ bool HashTable<KeyType, ValueType>::discard(KeyType& key, ValueType& value) {
         m_recent->pop();
         m_pairs--;
         
-        delete top; 
+//        delete top;
+        top->m_exists = false;
         return true;
         
     }
