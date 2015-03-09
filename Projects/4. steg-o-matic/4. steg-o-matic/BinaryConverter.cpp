@@ -10,12 +10,56 @@ bool convertBitStringToNumber(string bitString, unsigned short& number);
 
 string BinaryConverter::encode(const vector<unsigned short>& numbers)
 {
-	return "";  // This compiles, but may not be correct
+    string result = "";
+    for (auto& num : numbers) {
+        result += convertNumberToBitString(num);
+    }
+    
+    for (int i = 0; i < result.length(); i++) {
+        if (i == '1') {
+            result[i] = '\t';
+        }
+        else if (i == '0') {
+            result[i] = ' ';
+        }
+        // shouldn't be any other character
+        else {
+            return "";
+        }
+    }
+    return result;
 }
 
 bool BinaryConverter::decode(const string& bitString,
 							 vector<unsigned short>& numbers)
 {
+    int len = static_cast<int>(bitString.length());
+    if (len % 16 != 0) {
+        return false;
+    }
+    
+    // erases all elements of vector
+    numbers.clear();
+    
+    for (int i = 0; i < len; i+=16) {
+        string result = "";
+        unsigned short num;
+        for (int j = i; j < i+16; j++) {
+            if (bitString[j] == '\t') {
+                result += '1';
+            }
+            else if (bitString[j] == ' ') {
+                result += '0';
+            }
+            // if not tab or space character
+            else {
+                return false;
+            }
+        }
+        convertBitStringToNumber(result, num);
+        numbers.push_back(num);
+    }
+    
 	return false;  // This compiles, but may not be correct
 }
 

@@ -13,37 +13,33 @@ template <typename KeyType,	typename ValueType>
 class HashTable
 {
 public:
-    HashTable(unsigned int numBuckets, unsigned int capacity) : m_array[numBuckets], m_capacity(capacity), m_pairs(0) { };
+    HashTable(unsigned int numBuckets, unsigned int capacity);
     ~HashTable();
     
-    bool isFull() const {
-        if (m_capacity == m_size) {
-            return true;
-        }
-        
-        return false;
-    }
+    bool isFull() const;
     bool set(const KeyType&	key, const ValueType& value, bool permanent = false);
     bool get(const KeyType& key, ValueType& value)	const;
     bool touch(const KeyType& key);
     bool discard(KeyType& key,	ValueType& value);
 private:
-    //	We	prevent a	HashTable from	being	copied	or	assigned	by	declaring	the
-    //	copy	constructor	and	assignment	operator	private	and	not	implementing	them.
+
     struct Bucket {
         KeyType     m_key;
         ValueType   m_value;
         Bucket*     m_next;
         bool        m_permanent;
         
+        Bucket() : m_next(nullptr), m_permanent(false) { };
         Bucket(KeyType key, ValueType val, bool permanent) : m_key(key), m_value(val), m_next(nullptr), m_permanent(permanent) { };
     };
     
-    Bucket*         m_array[unsigned int buckets];
+    Bucket*         m_array;
     
     struct Recent {
         
-        Recent(unsigned int capacity) : m_stack[capacity], m_capacity(capacity), m_top(-1) { };
+        Recent(unsigned int capacity) : m_capacity(capacity), m_top(-1) {
+            m_stack = new Bucket[capacity];
+        };
         
         bool push(Bucket* b) {
             if (m_top == m_capacity) {
@@ -78,7 +74,7 @@ private:
             return false;
         }
         
-        Bucket*     m_stack[unsigned int capacity];
+        Bucket*     m_stack;
         
         int         m_capacity;
         int         m_top;
@@ -89,6 +85,8 @@ private:
     unsigned int m_capacity;
     unsigned int m_pairs;
     
+    //	We	prevent a	HashTable from	being	copied	or	assigned	by	declaring	the
+    //	copy	constructor	and	assignment	operator	private	and	not	implementing	them.
     HashTable(const HashTable&);
     HashTable& operator=(const HashTable&);
 };
@@ -99,9 +97,28 @@ unsigned int computeHash(int key)
     return 0;
 }
 
+/* HashTable
+ ------------------------------ */
 template<typename KeyType, typename ValueType>
 inline
-bool HashTable<KeyType, ValueType>::get(const Keytype& key, ValueType& value) const {
+HashTable<KeyType, ValueType>::HashTable(unsigned int numBuckets, unsigned int capacity) : m_capacity(capacity), m_pairs(0) {
+    m_array = new Bucket[numBuckets];
+};
+
+template<typename KeyType, typename ValueType>
+inline
+bool HashTable<KeyType, ValueType>::isFull() const {
+    if (m_capacity == m_pairs) {
+        return true;
+    }
+    
+    return false;
+}
+
+
+template<typename KeyType, typename ValueType>
+inline
+bool HashTable<KeyType, ValueType>::get(const KeyType& key, ValueType& value) const {
     
     unsigned int computeHash(KeyType); // prototype
     unsigned int index = computeHash(key);
@@ -114,7 +131,7 @@ bool HashTable<KeyType, ValueType>::get(const Keytype& key, ValueType& value) co
             return true;
         }
         else {
-            b = b->next;
+            b = b->m_next;
         }
     }
     
@@ -123,7 +140,7 @@ bool HashTable<KeyType, ValueType>::get(const Keytype& key, ValueType& value) co
 
 template<typename KeyType, typename ValueType>
 inline
-bool HashTable<KeyType, ValueType>::set(const KeyType&	key, const ValueType& value, bool permanent = false) {
+bool HashTable<KeyType, ValueType>::set(const KeyType&	key, const ValueType& value, bool permanent) {
     
     unsigned int computeHash(KeyType); // prototype
     unsigned int index = computeHash(key);
@@ -133,12 +150,12 @@ bool HashTable<KeyType, ValueType>::set(const KeyType&	key, const ValueType& val
     for (;;) {
         if (b == nullptr) {
             // can't add anymore
-            if (isFull) {
+            if (isFull()) {
                 return false;
             }
             // add new item
             else {
-                Bucket* b = new Bucket(key, value, permanent)
+                Bucket* b = new Bucket(key, value, permanent);
                 m_pairs++;
                 m_array[index] = b;
                 if (! permanent) {
@@ -192,12 +209,38 @@ template<typename KeyType, typename ValueType>
 inline
 bool HashTable<KeyType, ValueType>::discard(KeyType& key, ValueType& value) {
     
-    Bucket* remove = m_recent->m_stack[m_recent->m_top];
+    Bucket* cur = m_recent->m_stack[m_recent->m_top];
+    
+    // return if no non-permanent items that were recently changed
+    if (cur == nullptr) {
+        return false;
+    }
+    
     unsigned int computeHash(KeyType); // prototype
+    
+    key = cur->m_key;
+    value = cur->m_value;
     unsigned int index = computeHash(key);
     
     Bucket* b = m_array[index];
-
+    
+    for (;;) {
+        if (b == nullptr) {
+            return false;
+        }
+        
+        else if(b->m_key == key && ! b->m_permanent) {
+            m_recent->pop();
+            m_array[index] = b->next;
+            delete b;
+            return true;
+        }
+        else {
+            b = b->next;
+        }
+    }
+    
+    return false;
     
 }
 
