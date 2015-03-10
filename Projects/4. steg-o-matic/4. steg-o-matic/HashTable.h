@@ -100,9 +100,12 @@ private:
 };
 
 // non-member functions
-unsigned int computeHash(std::string key)
-{
+unsigned int computeHash(std::string key){
     return static_cast<unsigned int>(key.length());
+}
+
+unsigned int computeHash(unsigned short key) {
+    return 100;
 }
 
 /* HashTable

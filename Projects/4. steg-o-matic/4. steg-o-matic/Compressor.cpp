@@ -21,7 +21,7 @@ void Compressor::compress(const string& s, vector<unsigned short>& numbers)
     
     unsigned short nextFreeID = 256;
     string runSoFar = "";
-    vector<unsigned short> result;
+//    vector<unsigned short> result;
     
     unsigned short val;
     
@@ -34,12 +34,12 @@ void Compressor::compress(const string& s, vector<unsigned short>& numbers)
         }
         else {
             hash.get(runSoFar, val);
-            result.push_back(val);
+            numbers.push_back(val);
             hash.touch(runSoFar);
             runSoFar = "";
             
             hash.get(static_cast<string>(&c), val);
-            result.push_back(val);
+            numbers.push_back(val);
             
             if (! hash.isFull()) {
                 hash.set(expandedRun, nextFreeID);
@@ -55,11 +55,11 @@ void Compressor::compress(const string& s, vector<unsigned short>& numbers)
     
     if (runSoFar != "") {
         hash.get(runSoFar, val);
-        result.push_back(val);
+        numbers.push_back(val);
     }
     
     // append capacity as the last number in the vector
-    result.push_back(cap);
+    numbers.push_back(cap);
 }
 
 bool Compressor::decompress(const vector<unsigned short>& numbers, string& s)
