@@ -48,6 +48,15 @@ int main()
     string out;
     Steg::hide(st, msg, out);
     
+    cout << out;
+    
+    string blah = "";
+    
+    Steg::reveal(out, blah);
+    
+    cout << blah;
+//    string code = BinaryConverter::encode(numbers);
+    
 //    cout << out.length();
 //    
 //    for (int i = 0; i < out.length(); i++) {

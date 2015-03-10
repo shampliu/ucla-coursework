@@ -113,11 +113,11 @@ bool Compressor::decompress(const vector<unsigned short>& numbers, string& s)
         // us represents multicharacter string
         else {
             string val = "";
-            if (! hash.get(us, val)) {
+            if (! hash.get(numbers[us], val)) {
                 return false;
             }
             else {
-                hash.touch(us);
+                hash.touch(numbers[us]);
                 output += val;
                 runSoFar = val;
                 continue;

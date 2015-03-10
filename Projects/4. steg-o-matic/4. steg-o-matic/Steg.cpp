@@ -47,7 +47,11 @@ bool Steg::hide(const string& hostIn, const string& msg, string& hostOut)
             if (str[i] == ' ' || str[i] == '\t') {
                 str = str.substr(0, str.size()-1);
             }
-            else break;
+            else {
+//                string b = str.substr(0, str.size()-1);
+//                cout << b << endl;
+                break;
+            }
         }
     }
     
@@ -66,6 +70,8 @@ bool Steg::hide(const string& hostIn, const string& msg, string& hostOut)
         // the rest
         else {
             lines[i] += code.substr(count, count + (l/n));
+            count += (l/n);
+
         }
         
     }
@@ -80,60 +86,63 @@ bool Steg::hide(const string& hostIn, const string& msg, string& hostOut)
 
 bool Steg::reveal(const string& hostIn, string& msg) 
 {
-//    vector<string> lines;
-//    string line = "";
-//    
-//    for (int i = 0; i < hostIn.length(); i++) {
-//        if (hostIn[i] == '\n') {
-//            lines.push_back(line);
-//            line = "";
-//            continue;
-//        }
-//        else if (hostIn[i] == '\r') {
-//            i++;
-//            lines.push_back(line);
-//            line = "";
-//            continue;
-//        }
-//        else {
-//            line += hostIn[i];
-//        }
-//    }
-//    
-//    string result = "";
-//    for (auto& str : lines) {
-//        // strip only trailing whitespace
-//        if (str.length() == 0) {
-//            continue;
-//        }
-//        if (str.length() == 1) {
-//            if (str[0] == ' ' || str[0] == '\t') {
-//                result += str[0];
-//            }
-//            continue; 
-//        }
-//        
-//        int i = str.length()-1;
-//        int count = 0;
-//        
-//        for ( ; i >= 0; i--) {
-//            if (str[i] == ' ' || str[i] == '\t') {
-//                count++;
-//                continue;
-//            }
-//            else break;
-//        }
+    
+    vector<string> lines;
+    string line = "";
+    
+    for (int i = 0; i < hostIn.length(); i++) {
+        if (hostIn[i] == '\n') {
+            lines.push_back(line);
+            line = "";
+            continue;
+        }
+        else if (hostIn[i] == '\r') {
+            i++;
+            lines.push_back(line);
+            line = "";
+            continue;
+        }
+        else {
+            line += hostIn[i];
+        }
+    }
+    
+    string result = "";
+    for (auto& str : lines) {
+        // strip only trailing whitespace
+        if (str.length() == 0) {
+            continue;
+        }
+        if (str.length() == 1) {
+            if (str[0] == ' ' || str[0] == '\t') {
+                result += str[0];
+            }
+            continue; 
+        }
+        
+        int i;
+        int count = 0;
+        
+        for (i = str.length()-1 ; i >= 0; i--) {
+            if (str[i] == ' ' || str[i] == '\t') {
+                count++;
+                continue;
+            }
+            else break;
+        }
 //        std::cout << i << " --- " << str.length() << std::endl;
-////        result += str.substr(i, count);
-////        std::cout << str.length() << " ";
-//    }
-//    
-//    vector<unsigned short> numbers;
-//    BinaryConverter::decode(result, numbers);
-////    Compressor::decompress(numbers, msg);
-//    
-//    
-//    
+//        cout << str.substr(i+1, count) << endl;
+        result += str.substr(i+1, count);
+//        std::cout << str.length() << " ";
+    }
+    
+    vector<unsigned short> numbers;
+    BinaryConverter::decode(result, numbers);
+    cout << numbers.size();
+//    Compressor::decompress(numbers, msg);
+    
+    
+    
     return true;
 }
 
