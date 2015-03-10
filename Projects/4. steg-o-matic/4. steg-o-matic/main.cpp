@@ -4,38 +4,44 @@
 #include <iostream>
 #include "provided.h"
 #include <string>
-#include "HashTable.h"
+//#include "HashTable.h"
 
 using namespace std;
 
 int main()
 {
-    HashTable<string, unsigned int> hash(10, 20);
-    hash.set("hello", 69);
-
-    unsigned int result = 15;
-    hash.get("hello", result);
-
-    cout << result << endl;
-
-    hash.set("bye", 111);
-    hash.set("hi", 52);
-    
-    hash.touch("bye"); 
-
-    string k = "";
-    unsigned int i = 4;
-    
-    hash.discard(k, i);
-    cout << k << i;
+//    HashTable<string, unsigned int> hash(10, 20);
+//    hash.set("hello", 69);
 //
-//    vector<unsigned short> v;
-//    v.push_back(15);
-//    v.push_back(17);
-//    v.push_back(66);
+//    unsigned int result = 15;
+//    hash.get("hello", result);
+//
+//    cout << result << endl;
+//
+//    hash.set("bye", 111);
+//    hash.set("hi", 52);
 //    
-//    string s = BinaryConverter::encode(v);
-//    cout << s;
+//    hash.touch("bye"); 
+//
+//    string k = "";
+//    unsigned int i = 4;
+//    
+//    hash.discard(k, i);
+//    cout << k << i;
+//    
+//    hash.set("cat", 115);
+//    hash.get("cat", result);
+//    cout << result;
+    
+    
+
+    vector<unsigned short> v;
+    v.push_back(15);
+    v.push_back(17);
+    v.push_back(66);
+    
+    string s = BinaryConverter::encode(v);
+    cout << s;
     
     
 	cout << "Test driver not yet written." << endl;
