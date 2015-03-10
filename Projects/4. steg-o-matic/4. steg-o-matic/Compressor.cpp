@@ -65,6 +65,7 @@ void Compressor::compress(const string& s, vector<unsigned short>& numbers)
     V.push_back(cap);
     
     numbers = V;
+    
 //    for (int i = 0; i < numbers.size(); i++) {
 //        cout << numbers[i] << " ";
 //    }

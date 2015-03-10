@@ -55,7 +55,16 @@ int main()
     Steg::reveal(out, blah);
     
     cout << blah;
+    
+//    vector<unsigned short> numbers;
+//    Compressor::compress(msg, numbers);
+//    
 //    string code = BinaryConverter::encode(numbers);
+//    cout << code.length();
+//    
+//    BinaryConverter::decode(code, numbers);
+//    Compressor::decompress(numbers, out);
+//    cout << out;
     
 //    cout << out.length();
 //    

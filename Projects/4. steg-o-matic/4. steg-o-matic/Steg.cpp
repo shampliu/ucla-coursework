@@ -42,7 +42,7 @@ bool Steg::hide(const string& hostIn, const string& msg, string& hostOut)
     }
     
     for(auto& str : lines) {
-        // strip only trailing whitespace
+        // strip the trailing whitespace
         for (int i = str.length()-1; i >= 0; i--) {
             if (str[i] == ' ' || str[i] == '\t') {
                 str = str.substr(0, str.size()-1);
@@ -55,26 +55,43 @@ bool Steg::hide(const string& hostIn, const string& msg, string& hostOut)
         }
     }
     
-    int l = code.length();
-    int n = lines.size();
+    int l = code.length(); // 128
+    int n = lines.size(); // 5
+    
+    
     
     // to manage substring
     int count = 0;
+    int index = 0;
+    int inc = l/n; // 25
     
     for (int i = 0; i < n; i++) {
         // first l%n lines
-        if (i < l%n) {
-            lines[i] += code.substr(count, count + (l/n) + 1);
-            count += (l/n) + 1;
+        if (i < l%n) { // i < 3
+
+            lines[i] += code.substr(count, inc + 1);
+            count += inc + 1;
+//            for (int j = 0; j < inc + 1; j++) {
+//                lines[i] += code[index];
+//                index++;
+//            }
         }
         // the rest
         else {
-            lines[i] += code.substr(count, count + (l/n));
-            count += (l/n);
+//            for (int j = 0; j < inc; j++) {
+//                lines[i] += code[index];
+//                index++;
+//            }
 
+            lines[i] += code.substr(count, inc);
+            count += inc;
         }
         
     }
+    
+
+    
+    
     
     hostOut = "";
     for (const auto& str : lines) {
@@ -86,7 +103,6 @@ bool Steg::hide(const string& hostIn, const string& msg, string& hostOut)
 
 bool Steg::reveal(const string& hostIn, string& msg) 
 {
-    
     vector<string> lines;
     string line = "";
     
@@ -119,27 +135,27 @@ bool Steg::reveal(const string& hostIn, string& msg)
             }
             continue; 
         }
-        
         int i;
         int count = 0;
         
         for (i = str.length()-1 ; i >= 0; i--) {
             if (str[i] == ' ' || str[i] == '\t') {
                 count++;
-                continue;
             }
             else break;
         }
-//        std::cout << i << " --- " << str.length() << std::endl;
-//        cout << str.substr(i+1, count) << endl;
+        
         result += str.substr(i+1, count);
-//        std::cout << str.length() << " ";
+//        cout << result.length() << endl;
     }
+    
+    
+    cout << result.length();
     
     vector<unsigned short> numbers;
     BinaryConverter::decode(result, numbers);
-    cout << numbers.size();
-//    Compressor::decompress(numbers, msg);
+//    cout << numbers.size();
+    Compressor::decompress(numbers, msg);
     
     
     
