@@ -35,16 +35,34 @@ int main()
     
     
 
-    vector<unsigned short> v;
-    v.push_back(15);
-    v.push_back(17);
-    v.push_back(66);
+//    vector<unsigned short> v;
+//    v.push_back(15);
+//    v.push_back(17);
+//    v.push_back(66);
+//    
+//    string s = BinaryConverter::encode(v);
+//    cout << s;
     
-    string s = BinaryConverter::encode(v);
-    cout << s;
+    string st = "<html>      \nQ  \tQQ  \t\nBBB\t\t\t     \n\nGG_\t\t\n";
+    string msg = "AAAAAAAAAB";
+    string out;
+    Steg::hide(st, msg, out);
     
+//    cout << out.length();
+//    
+//    for (int i = 0; i < out.length(); i++) {
+//        if (out[i] == '\t') {
+//            cout << "T";
+//            continue;
+//        }
+//        if (out[i] == ' ') {
+//            cout << "=";
+//            continue;
+//        }
+//        cout << out[i];
+//    }
+//    
     
-	cout << "Test driver not yet written." << endl;
 
 	// string text;
 	// if ( ! WebSteg::hideMessageInPage("http://cs.ucla.edu", "Hello there!", text))

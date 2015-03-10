@@ -2,12 +2,14 @@
 #include <string>
 #include <vector>
 #include "HashTable.h"
+#include <iostream>
 
 
 using namespace std;
 
 void Compressor::compress(const string& s, vector<unsigned short>& numbers)
 {
+    
     numbers.clear();
     
     unsigned int cap = min((static_cast<int>(s.length()))/2 + 512, 16384);
@@ -17,29 +19,30 @@ void Compressor::compress(const string& s, vector<unsigned short>& numbers)
     for (unsigned short i = 0; i < 256; i++) {
         string str(1, static_cast<char>(i));
         hash.set(str, i, true);
+        
     }
     
     unsigned short nextFreeID = 256;
     string runSoFar = "";
-//    vector<unsigned short> result;
+    vector<unsigned short> V;
     
     unsigned short val;
     
-    for(const char& c : s) {
+    for (const char& c : s) {
         string expandedRun = runSoFar + c;
-        
-        if (hash.get(s, val)) {
+
+        if (hash.get(expandedRun, val)) {
             runSoFar = expandedRun;
             continue;
         }
         else {
             hash.get(runSoFar, val);
-            numbers.push_back(val);
+            V.push_back(val);
             hash.touch(runSoFar);
             runSoFar = "";
             
-            hash.get(static_cast<string>(&c), val);
-            numbers.push_back(val);
+            hash.get(string(1, c), val);
+            V.push_back(val);
             
             if (! hash.isFull()) {
                 hash.set(expandedRun, nextFreeID);
@@ -55,11 +58,16 @@ void Compressor::compress(const string& s, vector<unsigned short>& numbers)
     
     if (runSoFar != "") {
         hash.get(runSoFar, val);
-        numbers.push_back(val);
+        V.push_back(val);
     }
     
     // append capacity as the last number in the vector
-    numbers.push_back(cap);
+    V.push_back(cap);
+    
+    numbers = V;
+//    for (int i = 0; i < numbers.size(); i++) {
+//        cout << numbers[i] << " ";
+//    }
 }
 
 bool Compressor::decompress(const vector<unsigned short>& numbers, string& s)
@@ -116,6 +124,8 @@ bool Compressor::decompress(const vector<unsigned short>& numbers, string& s)
             }
         }
     }
+    
+    s = output; 
     
     return true;
     

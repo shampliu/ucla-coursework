@@ -79,7 +79,9 @@ private:
                 b->after->before = b->before;
             }
             b->after = m_head;
-            m_head->before = b;
+            if (m_head != nullptr) {
+                m_head->before = b;
+            }
             m_head = b;
         }
     
@@ -101,7 +103,14 @@ private:
 
 // non-member functions
 unsigned int computeHash(std::string key){
-    return static_cast<unsigned int>(key.length());
+    unsigned int i, total = 0;
+    
+    for (i = 0; i < key.length(); i++) {
+        total = total + (i+1) * key[i];
+    }
+    total = total & 1034;
+    
+    return total;
 }
 
 unsigned int computeHash(unsigned short key) {

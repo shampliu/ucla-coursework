@@ -12,6 +12,7 @@ bool convertBitStringToNumber(string bitString, unsigned short& number);
 string BinaryConverter::encode(const vector<unsigned short>& numbers)
 {
     string result = "";
+    
     for (auto& num : numbers) {
         result += convertNumberToBitString(num);
     }

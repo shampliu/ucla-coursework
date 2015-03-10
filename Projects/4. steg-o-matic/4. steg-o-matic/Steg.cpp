@@ -1,5 +1,6 @@
 #include "provided.h"
 #include <string>
+#include <iostream>
 using namespace std;
 
 bool Steg::hide(const string& hostIn, const string& msg, string& hostOut) 
@@ -11,6 +12,7 @@ bool Steg::hide(const string& hostIn, const string& msg, string& hostOut)
     
     vector<unsigned short> numbers;
     Compressor::compress(msg, numbers);
+    
     string code = BinaryConverter::encode(numbers);
     
     vector<string> lines;
@@ -78,5 +80,61 @@ bool Steg::hide(const string& hostIn, const string& msg, string& hostOut)
 
 bool Steg::reveal(const string& hostIn, string& msg) 
 {
-	return false;  // This compiles, but may not be correct
+//    vector<string> lines;
+//    string line = "";
+//    
+//    for (int i = 0; i < hostIn.length(); i++) {
+//        if (hostIn[i] == '\n') {
+//            lines.push_back(line);
+//            line = "";
+//            continue;
+//        }
+//        else if (hostIn[i] == '\r') {
+//            i++;
+//            lines.push_back(line);
+//            line = "";
+//            continue;
+//        }
+//        else {
+//            line += hostIn[i];
+//        }
+//    }
+//    
+//    string result = "";
+//    for (auto& str : lines) {
+//        // strip only trailing whitespace
+//        if (str.length() == 0) {
+//            continue;
+//        }
+//        if (str.length() == 1) {
+//            if (str[0] == ' ' || str[0] == '\t') {
+//                result += str[0];
+//            }
+//            continue; 
+//        }
+//        
+//        int i = str.length()-1;
+//        int count = 0;
+//        
+//        for ( ; i >= 0; i--) {
+//            if (str[i] == ' ' || str[i] == '\t') {
+//                count++;
+//                continue;
+//            }
+//            else break;
+//        }
+//        std::cout << i << " --- " << str.length() << std::endl;
+////        result += str.substr(i, count);
+////        std::cout << str.length() << " ";
+//    }
+//    
+//    vector<unsigned short> numbers;
+//    BinaryConverter::decode(result, numbers);
+////    Compressor::decompress(numbers, msg);
+//    
+//    
+//    
+    return true;
 }
+
+
