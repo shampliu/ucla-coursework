@@ -22,13 +22,13 @@ int main()
     hash.set("hi", 52);
     
     hash.touch("bye"); 
+
+    string k = "";
+    unsigned int i = 4;
+    
+    hash.discard(k, i);
+    cout << k << i;
 //
-//    string k = "";
-//    unsigned int i = 4;
-//    
-//    hash.discard(k, i);
-//    cout << k << i;
-//    
 //    vector<unsigned short> v;
 //    v.push_back(15);
 //    v.push_back(17);
