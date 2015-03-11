@@ -4,6 +4,7 @@
 #include <iostream>
 #include "provided.h"
 #include <string>
+#include "http.h"
 //#include "HashTable.h"
 
 using namespace std;
@@ -43,49 +44,34 @@ int main()
 //    string s = BinaryConverter::encode(v);
 //    cout << s;
     
-    string st = "<html>      \nQ  \tQQ  \t\nBBB\t\t\t     \n\nGG_\t\t\n";
-    string msg = "AAAAAAAAAB";
-    string out;
-    Steg::hide(st, msg, out);
-    
-    cout << out;
-    
-    string blah = "";
-    
-    Steg::reveal(out, blah);
-    
-    cout << blah;
-    
-//    vector<unsigned short> numbers;
-//    Compressor::compress(msg, numbers);
+//    /* REVIEW THIS LATER */
+//    string st = "<html>      \nQ  \tQQ  \t\nBBB\t\t\t     \n\nGG_\t\t\n";
+//    string msg = "Hello there! My name is Chang     ";
+//    string out;
+//    Steg::hide(st, msg, out);
 //    
-//    string code = BinaryConverter::encode(numbers);
-//    cout << code.length();
+//    cout << endl;
 //    
-//    BinaryConverter::decode(code, numbers);
-//    Compressor::decompress(numbers, out);
-//    cout << out;
-    
-//    cout << out.length();
+//    string blah = "";
 //    
-//    for (int i = 0; i < out.length(); i++) {
-//        if (out[i] == '\t') {
-//            cout << "T";
-//            continue;
-//        }
-//        if (out[i] == ' ') {
-//            cout << "=";
-//            continue;
-//        }
-//        cout << out[i];
-//    }
+//    Steg::reveal(out, blah);
 //    
-    
+//    cout << blah;
 
-	// string text;
-	// if ( ! WebSteg::hideMessageInPage("http://cs.ucla.edu", "Hello there!", text))
-	//	cout << "Error hiding!" << endl;
-	// string msg;
-	// if ( ! WebSteg::revealMessageInPage("http://cs.ucla.edu", msg))
-	// 	cout << "Error revealing!" << endl;
+    string text;
+    if ( ! WebSteg::hideMessageInPage("http://cs.ucla.edu", "Hello there!", text)) {
+        cout << "Error hiding!" << endl;
+    }
+    string message;
+    if ( ! WebSteg::revealMessageInPage("http://cs.ucla.edu", message))
+        cout << "Error revealing!" << endl;
+    
+//     string text;
+//     if ( ! WebSteg::hideMessageInPage("http://cs.ucla.edu", "Hello there!", text))
+//    	cout << "Error hiding!" << endl;
+//     HTTP().set("http://a.com", text);
+//     string msg;
+//     if ( ! WebSteg::revealMessageInPage("http://a.com", msg)  ||
+//                  msg != "Hello there!")
+//     	cout << "Error revealing!" << endl;
 }

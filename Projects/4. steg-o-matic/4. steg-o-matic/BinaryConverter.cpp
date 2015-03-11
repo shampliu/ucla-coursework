@@ -37,7 +37,7 @@ bool BinaryConverter::decode(const string& bitString,
 {
     int len = static_cast<int>(bitString.length());
     if (len % 16 != 0) {
-        cout << "not multiple of 16!!!!" << endl;
+        cout << "Not a multiple of 16. Problem in BinaryConverter::decode" << endl;
         return false;
     }
     

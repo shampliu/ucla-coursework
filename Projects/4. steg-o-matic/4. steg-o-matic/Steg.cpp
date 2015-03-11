@@ -13,6 +13,8 @@ bool Steg::hide(const string& hostIn, const string& msg, string& hostOut)
     vector<unsigned short> numbers;
     Compressor::compress(msg, numbers);
     
+//    cout << numbers.size() << "NUMBER SIZE" << endl; 
+    
     string code = BinaryConverter::encode(numbers);
     
     vector<string> lines;
@@ -41,15 +43,15 @@ bool Steg::hide(const string& hostIn, const string& msg, string& hostOut)
         line = "";
     }
     
-    for(auto& str : lines) {
+//    cout << lines.size() << "LINE SIZE" << endl; 
+    
+    for (auto& str : lines) {
         // strip the trailing whitespace
         for (int i = str.length()-1; i >= 0; i--) {
             if (str[i] == ' ' || str[i] == '\t') {
                 str = str.substr(0, str.size()-1);
             }
             else {
-//                string b = str.substr(0, str.size()-1);
-//                cout << b << endl;
                 break;
             }
         }
@@ -59,14 +61,22 @@ bool Steg::hide(const string& hostIn, const string& msg, string& hostOut)
     int n = lines.size(); // 5
     
     
+    cout << "CODE SIZE: " << l << endl;
+    cout << "NUMBER OF LINES: " << n << endl;
+
+    
+    
     
     // to manage substring
     int count = 0;
-    int index = 0;
+//    int index = 0;
     int inc = l/n; // 25
+    
+//    cout << l%n << endl;
     
     for (int i = 0; i < n; i++) {
         // first l%n lines
+        cout << lines[i].length() << endl;
         if (i < l%n) { // i < 3
 
             lines[i] += code.substr(count, inc + 1);
@@ -86,36 +96,41 @@ bool Steg::hide(const string& hostIn, const string& msg, string& hostOut)
             lines[i] += code.substr(count, inc);
             count += inc;
         }
-        
     }
     
-
     
-    
-    
+    int co = 0;
     hostOut = "";
     for (const auto& str : lines) {
+//        cout << "string: " << str << " size: " << str.length() << endl;
+        co += str.length();
         hostOut = hostOut + str + '\n';
     }
+    cout << "HOSTOUT LINE LENGTH: " << co << endl;
     
 	return true;  // This compiles, but may not be correct
 }
 
 bool Steg::reveal(const string& hostIn, string& msg) 
 {
+    cout << "HOSTIN LINE LENGTH (with newlines): " << hostIn.length() << endl;
+
     vector<string> lines;
     string line = "";
     
     for (int i = 0; i < hostIn.length(); i++) {
         if (hostIn[i] == '\n') {
+            
             lines.push_back(line);
             line = "";
+            
             continue;
         }
         else if (hostIn[i] == '\r') {
             i++;
             lines.push_back(line);
             line = "";
+            
             continue;
         }
         else {
@@ -124,8 +139,9 @@ bool Steg::reveal(const string& hostIn, string& msg)
     }
     
     string result = "";
+    
     for (auto& str : lines) {
-        // strip only trailing whitespace
+        // get only trailing whitespace
         if (str.length() == 0) {
             continue;
         }
@@ -145,12 +161,10 @@ bool Steg::reveal(const string& hostIn, string& msg)
             else break;
         }
         
+//        cout << count << endl;
         result += str.substr(i+1, count);
-//        cout << result.length() << endl;
     }
-    
-    
-    cout << result.length();
+    cout << "CODE SIZE: " << result.length() << endl;
     
     vector<unsigned short> numbers;
     BinaryConverter::decode(result, numbers);

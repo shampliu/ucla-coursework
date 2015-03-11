@@ -224,8 +224,6 @@ bool HashTable<KeyType, ValueType>::set(const KeyType& key, const ValueType& val
             m_list->insert(b);
         }
         
-//        std::cout << b->m_key << " , " << b-> m_value << std::endl;
-        
         return true;
     }
     
@@ -261,12 +259,11 @@ bool HashTable<KeyType, ValueType>::discard(KeyType& key, ValueType& value) {
     
     if (bottom != nullptr) {
         key = bottom->m_key;
-//        std::cout << key;
         value = bottom->m_value;
-//        std::cout << value;
         
         m_list->remove();
     }
+    
     // return if no non-permanent items that were recently changed
     else {
         return false;

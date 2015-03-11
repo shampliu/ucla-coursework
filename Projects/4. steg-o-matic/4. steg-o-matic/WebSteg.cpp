@@ -1,6 +1,7 @@
 #include "provided.h"
 #include <string>
 #include "http.h"
+#include <iostream>
 
 using namespace std;
 
@@ -25,9 +26,10 @@ bool WebSteg::hideMessageInPage(const string& url, const string& msg, string& ho
     if (HTTP().get(url, host)) {
         string hostOut;
         Steg::hide(host, msg, hostOut);
-        return false;
+        return true;
     }
     else {
+        cout << "Error fetching content from URL " << url << endl;
         return false;
     }
 }
@@ -36,11 +38,11 @@ bool WebSteg::revealMessageInPage(const string& url, string& msg)
 {
     string hostIn;
     if (HTTP().get(url, hostIn)) {
-        string hostOut;
-        Steg::hide(hostIn, msg, hostOut);
+        Steg::reveal(hostIn, msg);
         return true;
     }
     else {
+        cout << "Error fetching content from URL " << url << endl;
         return false;
     }
 }

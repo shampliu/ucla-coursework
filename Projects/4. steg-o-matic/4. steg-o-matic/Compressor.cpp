@@ -19,7 +19,6 @@ void Compressor::compress(const string& s, vector<unsigned short>& numbers)
     for (unsigned short i = 0; i < 256; i++) {
         string str(1, static_cast<char>(i));
         hash.set(str, i, true);
-        
     }
     
     unsigned short nextFreeID = 256;
@@ -65,10 +64,6 @@ void Compressor::compress(const string& s, vector<unsigned short>& numbers)
     V.push_back(cap);
     
     numbers = V;
-    
-//    for (int i = 0; i < numbers.size(); i++) {
-//        cout << numbers[i] << " ";
-//    }
 }
 
 bool Compressor::decompress(const vector<unsigned short>& numbers, string& s)
