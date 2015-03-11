@@ -5,6 +5,7 @@ using namespace std;
 
 bool Steg::hide(const string& hostIn, const string& msg, string& hostOut) 
 {
+    cout << "MESSAGE: " << msg << " OF LENGTH: " << msg.length() << endl;
     // empty string
     if (hostIn == "") {
         return false;

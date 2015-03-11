@@ -7,9 +7,24 @@
 
 using namespace std;
 
+// non-member functions
+unsigned int computeHash(std::string key){
+    unsigned int i, total = 0;
+    
+    for (i = 0; i < key.length(); i++) {
+        total = total + (i+1) * key[i];
+    }
+    total = total & HASH_TABLE_SIZE;
+    
+    return total;
+}
+
+unsigned int computeHash(unsigned short key) {
+    return key % HASH_TABLE_SIZE;
+}
+
 void Compressor::compress(const string& s, vector<unsigned short>& numbers)
 {
-    
     numbers.clear();
     
     unsigned int cap = min((static_cast<int>(s.length()))/2 + 512, 16384);
@@ -64,6 +79,7 @@ void Compressor::compress(const string& s, vector<unsigned short>& numbers)
     V.push_back(cap);
     
     numbers = V;
+    cout << "COMPRESSED NUMBER SIZE: " << numbers.size() << endl; 
 }
 
 bool Compressor::decompress(const vector<unsigned short>& numbers, string& s)

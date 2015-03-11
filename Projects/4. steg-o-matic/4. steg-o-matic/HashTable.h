@@ -12,12 +12,14 @@
 #include <string>
 #include <iostream>
 
+unsigned int HASH_TABLE_SIZE;
+
 template <typename KeyType,	typename ValueType>
 class HashTable
 {
 public:
     HashTable(unsigned int numNodes, unsigned int capacity);
-//    ~HashTable();
+    ~HashTable();
     
     bool isFull() const;
     bool set(const KeyType&	key, const ValueType& value, bool permanent = false);
@@ -101,28 +103,13 @@ private:
     HashTable& operator=(const HashTable&);
 };
 
-// non-member functions
-unsigned int computeHash(std::string key){
-    unsigned int i, total = 0;
-    
-    for (i = 0; i < key.length(); i++) {
-        total = total + (i+1) * key[i];
-    }
-    total = total & 1034;
-    
-    return total;
-}
-
-unsigned int computeHash(unsigned short key) {
-    return 100;
-}
-
 /* HashTable
  ------------------------------ */
 template<typename KeyType, typename ValueType>
 inline
 HashTable<KeyType, ValueType>::HashTable(unsigned int numNodes, unsigned int capacity) : m_capacity(capacity), m_pairs(0) {
     
+    HASH_TABLE_SIZE = numNodes;
     m_list = new List(capacity);
     m_array = new Node*[numNodes];
     
@@ -131,6 +118,16 @@ HashTable<KeyType, ValueType>::HashTable(unsigned int numNodes, unsigned int cap
     }
     
 };
+
+template<typename KeyType, typename ValueType>
+inline
+HashTable<KeyType, ValueType>::~HashTable() {
+    for (int i = 0; i < m_capacity; i++) {
+        if (m_array[i] != nullptr) {
+            delete m_array[i];
+        }
+    }
+}
 
 template<typename KeyType, typename ValueType>
 inline
@@ -285,10 +282,8 @@ bool HashTable<KeyType, ValueType>::discard(KeyType& key, ValueType& value) {
             m_pairs--;
             return true;
         }
-        
         b = b->next;
     }
-    
     return false;
 }
 
