@@ -50,15 +50,27 @@ void Compressor::compress(const string& s, vector<unsigned short>& numbers)
             continue;
         }
         else {
-            hash.get(runSoFar, val);
-            V.push_back(val);
-            hash.touch(runSoFar);
+            if (hash.get(runSoFar, val)) {
+                V.push_back(val);
+                hash.touch(runSoFar);
+                cout << val << " - " << runSoFar << endl;
+                
+            }
+            else {
+                cout << "Error! runSoFar not found" << endl;
+            }
             runSoFar = "";
             
-            hash.get(string(1, c), val);
-            V.push_back(val);
+            if (hash.get(string(1, c), val)) {
+                V.push_back(val);
+                cout << val << " - " << string(1,c) << endl;
+            }
+            else {
+                cout << "Error! char not found" << endl;
+            }
             
             if (! hash.isFull()) {
+                cout << expandedRun << " MAPPED TO " << nextFreeID << endl;
                 hash.set(expandedRun, nextFreeID);
                 nextFreeID++;
             }
@@ -73,19 +85,32 @@ void Compressor::compress(const string& s, vector<unsigned short>& numbers)
     if (runSoFar != "") {
         hash.get(runSoFar, val);
         V.push_back(val);
+        cout << val << " - " << runSoFar << endl;
     }
     
     // append capacity as the last number in the vector
     V.push_back(cap);
     
     numbers = V;
-    cout << "COMPRESSED NUMBER SIZE: " << numbers.size() << endl; 
+    cout << "COMPRESSED NUMBER SIZE (with cap at end): " << numbers.size() << endl;
+    
+//    for (const auto& num : numbers) {
+//        cout << num;
+//        if (num <= 255) {
+//            cout << string(1, static_cast<char>(num));
+//        }
+//        cout << endl;
+//    }
 }
 
 bool Compressor::decompress(const vector<unsigned short>& numbers, string& s)
 {
     unsigned int cap = numbers[numbers.size()-1];
     HashTable<unsigned short, string> hash(cap * 2, cap);
+    
+    for (auto num : numbers) {
+        cout << num << endl;
+    }
     
     for (unsigned short j = 0; j < 256; j++) {
         string str(1, static_cast<char>(j));
@@ -96,14 +121,17 @@ bool Compressor::decompress(const vector<unsigned short>& numbers, string& s)
     string runSoFar = "";
     string output = "";
     
+//    cout << numbers[10] << "!!!" << endl;
+    
     for (unsigned short us = 0; us < numbers.size()-1; us++) {
+        // equals a 1-character string
         if (numbers[us] <= 255) {
             string val = "";
             hash.get(numbers[us], val);
             output += val;
             
             if (runSoFar == "") {
-                runSoFar = output;
+                runSoFar = val;
                 continue;
             }
             else {
