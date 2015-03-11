@@ -57,21 +57,38 @@ int main()
 //    Steg::reveal(out, blah);
 //    
 //    cout << blah;
+    
+//    HTTP().set("http://a.com", "This is a test page.  \nThis is \nA test page. yes \n blah");
+//    string host;
+//    if ( ! WebSteg::hideMessageInPage("http://a.com", "Hello there!", host)) {
+//        cout << "Error hiding!" << endl;
+//    }
+//    string message;
+//    if ( ! WebSteg::revealMessageInPage("http://a.com", message))
+//        cout << "Error revealing!" << endl;
 
+    
+    
+
+//    string text;
+//    if ( ! WebSteg::hideMessageInPage("http://cs.ucla.edu", "Hello there!", text)) {
+//        cout << "Error hiding!" << endl;
+//    }
+//    string message;
+//    if ( ! WebSteg::revealMessageInPage("http://cs.ucla.edu", message))
+//        cout << "Error revealing!" << endl;
+    
     string text;
     if ( ! WebSteg::hideMessageInPage("http://cs.ucla.edu", "Hello there!", text)) {
         cout << "Error hiding!" << endl;
     }
-    string message;
-    if ( ! WebSteg::revealMessageInPage("http://cs.ucla.edu", message))
+    HTTP().set("http://a.com", text);
+    string msg;
+    if ( ! WebSteg::revealMessageInPage("http://a.com", msg)  || msg != "Hello there!") {
         cout << "Error revealing!" << endl;
+    }
     
-//     string text;
-//     if ( ! WebSteg::hideMessageInPage("http://cs.ucla.edu", "Hello there!", text))
-//    	cout << "Error hiding!" << endl;
-//     HTTP().set("http://a.com", text);
-//     string msg;
-//     if ( ! WebSteg::revealMessageInPage("http://a.com", msg)  ||
-//                  msg != "Hello there!")
-//     	cout << "Error revealing!" << endl;
+    cout << msg;
+    
+    
 }

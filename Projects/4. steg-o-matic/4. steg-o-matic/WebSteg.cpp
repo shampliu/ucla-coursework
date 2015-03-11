@@ -7,25 +7,12 @@ using namespace std;
 
 bool WebSteg::hideMessageInPage(const string& url, const string& msg, string& host)
 {
-//    string url = "http://en.wikipedia.org/wiki/Bald";
-//    string page; // to hold the contents of the web page
-//    // The next line downloads a web page for you. So easy!
-//    if (HTTP().get(url, page))
-//        cout << page; // prints the page’s data out
-//    else
-//        cout << "Error fetching content from URL " << url << endl;
-//    ...
-    
-//    HTTP().set("http://a.com", "This is a test page.");
-//    HTTP().set("http://b.com", "Here is another.");
-//    HTTP().set("http://c.com", "<html>Everyone loves CS 32</html>");
-//    string page;
-//    if (HTTP().get("http://b.com", page))
-//        cout << page << endl; // writes Here is another.
-    
+    // get HTML at url and set it to host
     if (HTTP().get(url, host)) {
         string hostOut;
         Steg::hide(host, msg, hostOut);
+        HTTP().set(url, hostOut);
+        host = hostOut;
         return true;
     }
     else {

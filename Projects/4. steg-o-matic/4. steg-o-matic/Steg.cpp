@@ -71,13 +71,17 @@ bool Steg::hide(const string& hostIn, const string& msg, string& hostOut)
     int count = 0;
 //    int index = 0;
     int inc = l/n; // 25
+    cout << "L/N: " << inc << endl;
+    cout << "L%N: " << l%n << endl;
     
 //    cout << l%n << endl;
     
     for (int i = 0; i < n; i++) {
         // first l%n lines
-        cout << lines[i].length() << endl;
+//        cout << lines[i].length() << endl;
         if (i < l%n) { // i < 3
+            string b = code.substr(count, inc + 1);
+            cout << b.length() << endl;
 
             lines[i] += code.substr(count, inc + 1);
             count += inc + 1;
@@ -88,6 +92,8 @@ bool Steg::hide(const string& hostIn, const string& msg, string& hostOut)
         }
         // the rest
         else {
+            string b = code.substr(count, inc);
+            cout << b.length() << endl;
 //            for (int j = 0; j < inc; j++) {
 //                lines[i] += code[index];
 //                index++;
@@ -106,10 +112,13 @@ bool Steg::hide(const string& hostIn, const string& msg, string& hostOut)
         co += str.length();
         hostOut = hostOut + str + '\n';
     }
-    cout << "HOSTOUT LINE LENGTH: " << co << endl;
+    cout << "HOSTOUT LENGTH (without newlines): " << co << endl;
+    cout << "HOSTOUT LENGTH: " << hostOut.length() << endl;;
     
 	return true;  // This compiles, but may not be correct
 }
+
+
 
 bool Steg::reveal(const string& hostIn, string& msg) 
 {
