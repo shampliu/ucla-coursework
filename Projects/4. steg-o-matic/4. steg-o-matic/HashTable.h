@@ -12,7 +12,6 @@
 #include <string>
 #include <iostream>
 
-unsigned int HASH_TABLE_SIZE;
 
 template <typename KeyType,	typename ValueType>
 class HashTable
@@ -109,7 +108,6 @@ template<typename KeyType, typename ValueType>
 inline
 HashTable<KeyType, ValueType>::HashTable(unsigned int numNodes, unsigned int capacity) : m_capacity(capacity), m_pairs(0) {
     
-    HASH_TABLE_SIZE = numNodes;
     m_list = new List(capacity);
     m_array = new Node*[numNodes];
     
@@ -146,6 +144,7 @@ bool HashTable<KeyType, ValueType>::get(const KeyType& key, ValueType& value) co
     
     unsigned int computeHash(KeyType); // prototype
     unsigned int bucket = computeHash(key);
+    bucket = bucket % (m_capacity * 2);
     
     Node* b = m_array[bucket];
     
@@ -168,6 +167,8 @@ bool HashTable<KeyType, ValueType>::set(const KeyType& key, const ValueType& val
     
     unsigned int computeHash(KeyType); // prototype
     unsigned int bucket = computeHash(key);
+    bucket = bucket % (m_capacity * 2);
+
     
     Node* cur = m_array[bucket];
     Node* prev = nullptr;
@@ -232,6 +233,8 @@ bool HashTable<KeyType, ValueType>::touch(const KeyType& key) {
     
     unsigned int computeHash(KeyType); // prototype
     unsigned int bucket = computeHash(key);
+    bucket = bucket % (m_capacity * 2);
+
     
     Node* b = m_array[bucket];
     
@@ -268,6 +271,8 @@ bool HashTable<KeyType, ValueType>::discard(KeyType& key, ValueType& value) {
     
     unsigned int computeHash(KeyType); // prototype
     unsigned int bucket = computeHash(key);
+    bucket = bucket % (m_capacity * 2);
+
     
     Node* b = m_array[bucket];
     while (b != nullptr) {

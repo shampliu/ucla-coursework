@@ -4,23 +4,27 @@
 #include "HashTable.h"
 #include <iostream>
 
+static const unsigned int InitialFNV = 2166136261U;
+static const unsigned int FNVMultiple = 16777619;
 
 using namespace std;
 
 // non-member functions
 unsigned int computeHash(std::string key){
-    unsigned int i, total = 0;
-    
-    for (i = 0; i < key.length(); i++) {
-        total = total + (i+1) * key[i];
+    unsigned int hash = InitialFNV;
+    for(unsigned int i = 0; i < key.length(); i++)
+    {
+        hash = hash ^ (key[i]);       /* xor  the low 8 bits */
+        hash = hash * FNVMultiple;  /* multiply by the magic number */
     }
-    total = total & HASH_TABLE_SIZE;
-    
-    return total;
+    return hash;
 }
 
 unsigned int computeHash(unsigned short key) {
-    return key % HASH_TABLE_SIZE;
+    key = ((key >> 16) ^ key) * 0x45d9f3b;
+    key = ((key >> 16) ^ key) * 0x45d9f3b;
+    key = ((key >> 16) ^ key);
+    return key;
 }
 
 void Compressor::compress(const string& s, vector<unsigned short>& numbers)
@@ -53,7 +57,7 @@ void Compressor::compress(const string& s, vector<unsigned short>& numbers)
             if (hash.get(runSoFar, val)) {
                 V.push_back(val);
                 hash.touch(runSoFar);
-                cout << val << " - " << runSoFar << endl;
+//                cout << val << " - " << runSoFar << endl;
                 
             }
             else {
@@ -63,14 +67,14 @@ void Compressor::compress(const string& s, vector<unsigned short>& numbers)
             
             if (hash.get(string(1, c), val)) {
                 V.push_back(val);
-                cout << val << " - " << string(1,c) << endl;
+//                cout << val << " - " << string(1,c) << endl;
             }
             else {
                 cout << "Error! char not found" << endl;
             }
             
             if (! hash.isFull()) {
-                cout << expandedRun << " MAPPED TO " << nextFreeID << endl;
+//                cout << expandedRun << " MAPPED TO " << nextFreeID << endl;
                 hash.set(expandedRun, nextFreeID);
                 nextFreeID++;
             }
@@ -85,22 +89,14 @@ void Compressor::compress(const string& s, vector<unsigned short>& numbers)
     if (runSoFar != "") {
         hash.get(runSoFar, val);
         V.push_back(val);
-        cout << val << " - " << runSoFar << endl;
+//        cout << val << " - " << runSoFar << endl;
     }
     
     // append capacity as the last number in the vector
     V.push_back(cap);
     
     numbers = V;
-    cout << "COMPRESSED NUMBER SIZE (with cap at end): " << numbers.size() << endl;
-    
-//    for (const auto& num : numbers) {
-//        cout << num;
-//        if (num <= 255) {
-//            cout << string(1, static_cast<char>(num));
-//        }
-//        cout << endl;
-//    }
+//    cout << "COMPRESSED NUMBER SIZE (with cap at end): " << numbers.size() << endl;
 }
 
 bool Compressor::decompress(const vector<unsigned short>& numbers, string& s)
@@ -108,9 +104,9 @@ bool Compressor::decompress(const vector<unsigned short>& numbers, string& s)
     unsigned int cap = numbers[numbers.size()-1];
     HashTable<unsigned short, string> hash(cap * 2, cap);
     
-    for (auto num : numbers) {
-        cout << num << endl;
-    }
+//    for (auto num : numbers) {
+//        cout << num << endl;
+//    }
     
     for (unsigned short j = 0; j < 256; j++) {
         string str(1, static_cast<char>(j));

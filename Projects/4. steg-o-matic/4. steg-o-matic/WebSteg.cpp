@@ -11,7 +11,6 @@ bool WebSteg::hideMessageInPage(const string& url, const string& msg, string& ho
     if (HTTP().get(url, host)) {
         string hostOut;
         Steg::hide(host, msg, hostOut);
-        HTTP().set(url, hostOut);
         host = hostOut;
         return true;
     }

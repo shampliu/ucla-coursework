@@ -5,7 +5,8 @@ using namespace std;
 
 bool Steg::hide(const string& hostIn, const string& msg, string& hostOut) 
 {
-    cout << "MESSAGE: " << msg << " OF LENGTH: " << msg.length() << endl;
+//    cout << "MESSAGE: " << msg << " OF LENGTH: " << msg.length() << endl;
+    
     // empty string
     if (hostIn == "") {
         return false;
@@ -28,10 +29,15 @@ bool Steg::hide(const string& hostIn, const string& msg, string& hostOut)
             continue;
         }
         else if (hostIn[i] == '\r') {
-            i++;
-            lines.push_back(line);
-            line = "";
-            continue;
+            if (hostIn[i+1] == '\n') {
+                i++;
+                lines.push_back(line);
+                line = "";
+                continue;
+            }
+            else {
+                line+= hostIn[i];
+            }
         }
         else {
             line += hostIn[i];
@@ -58,12 +64,12 @@ bool Steg::hide(const string& hostIn, const string& msg, string& hostOut)
         }
     }
     
-    int l = code.length(); // 128
-    int n = lines.size(); // 5
+    int l = code.length();
+    int n = lines.size();
     
     
-    cout << "CODE SIZE: " << l << endl;
-    cout << "NUMBER OF LINES: " << n << endl;
+//    cout << "CODE SIZE: " << l << endl;
+//    cout << "NUMBER OF LINES: " << n << endl;
 
     
     
@@ -72,8 +78,8 @@ bool Steg::hide(const string& hostIn, const string& msg, string& hostOut)
     int count = 0;
 //    int index = 0;
     int inc = l/n; // 25
-    cout << "L/N: " << inc << endl;
-    cout << "L%N: " << l%n << endl;
+//    cout << "L/N: " << inc << endl;
+//    cout << "L%N: " << l%n << endl;
     
 //    cout << l%n << endl;
     
@@ -82,23 +88,15 @@ bool Steg::hide(const string& hostIn, const string& msg, string& hostOut)
 //        cout << lines[i].length() << endl;
         if (i < l%n) { // i < 3
             string b = code.substr(count, inc + 1);
-            cout << b.length() << endl;
+//            cout << b.length() << endl;
 
             lines[i] += code.substr(count, inc + 1);
             count += inc + 1;
-//            for (int j = 0; j < inc + 1; j++) {
-//                lines[i] += code[index];
-//                index++;
-//            }
         }
         // the rest
         else {
             string b = code.substr(count, inc);
-            cout << b.length() << endl;
-//            for (int j = 0; j < inc; j++) {
-//                lines[i] += code[index];
-//                index++;
-//            }
+//            cout << b.length() << endl;
 
             lines[i] += code.substr(count, inc);
             count += inc;
@@ -113,8 +111,8 @@ bool Steg::hide(const string& hostIn, const string& msg, string& hostOut)
         co += str.length();
         hostOut = hostOut + str + '\n';
     }
-    cout << "HOSTOUT LENGTH (without newlines): " << co << endl;
-    cout << "HOSTOUT LENGTH: " << hostOut.length() << endl;;
+//    cout << "HOSTOUT LENGTH (without newlines): " << co << endl;
+//    cout << "HOSTOUT LENGTH: " << hostOut.length() << endl;;
     
 	return true;  // This compiles, but may not be correct
 }
@@ -123,7 +121,7 @@ bool Steg::hide(const string& hostIn, const string& msg, string& hostOut)
 
 bool Steg::reveal(const string& hostIn, string& msg) 
 {
-    cout << "HOSTIN LINE LENGTH (with newlines): " << hostIn.length() << endl;
+//    cout << "HOSTIN LINE LENGTH (with newlines): " << hostIn.length() << endl;
 
     vector<string> lines;
     string line = "";
@@ -174,14 +172,11 @@ bool Steg::reveal(const string& hostIn, string& msg)
 //        cout << count << endl;
         result += str.substr(i+1, count);
     }
-    cout << "CODE SIZE: " << result.length() << endl;
+//    cout << "CODE SIZE: " << result.length() << endl;
     
     vector<unsigned short> numbers;
     BinaryConverter::decode(result, numbers);
-//    cout << numbers.size();
     Compressor::decompress(numbers, msg);
-    
-    
     
     return true;
 }
