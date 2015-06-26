@@ -1,0 +1,97 @@
+Chang Liu
+hw9.txt
+CS 35L Lab 4
+
+======
+Part 1
+======
+
+I first followed the instructions posted on CCLE on setting up an EC2 instance.
+I launched a 64bit Ubuntu instance and then I downloaded the key pair as 
+key.pem to my own computer. To connect to the server, I ran
+
+chmod 400 key.pem
+
+ssh -i key.pem ubuntu@<public_IP>
+- I copied the public IP from the instance info on the AWS page
+
+I then installed the necessary programs on the secure shell by running
+
+sudo apt-get update
+sudo apt-get install gcc
+sudo apt-get install make
+sudo apt-get install gdb
+
+Next, I downloaded the server by running wget <URL>. I untarred it with 
+tar -xvf, and applied the new patch by creating a hw.patch file outside the
+directory and running patch -p1 < ../hw.patch within the directory. Before 
+this, I modified the patch file by setting size_t const size_expansion_times_4
+to a large int. I only needed to do this with one of the const's declared 
+because the function uses the maximum of both. 
+
+After configuring and making the file, I ran ./thttpd -p 12100 and wget 
+http://localhost:12100 to make sure the server worked normally. I then ran
+the same wget command I used in the lab to crash the server. I received this
+as a response:
+
+Connecting to localhost (localhost)|127.0.0.1|:12100... connected.
+HTTP request sent, awaiting response... 500 Internal Error
+2015-03-07 03:59:45 ERROR 500: Internal Error.
+
+which means that the server caught the error and could not be crashed because
+it threw this error first. I then modified the patch file by setting both the
+constants to 1,000,000 times their original values, to 2 million and 5 million
+respectively. When I tried to apply the patch, it says that a HUNK failed so I 
+just manually applied the changes to the libthttpd.c file inside the src 
+folder. 
+
+After this, I ran make, which worked successfully. Then I opened another EC2 
+shell and ran sudo gdb ./thttpd. I attached the right PID for the server
+running and then ran the same commands before to try to crash the server.
+In gdb, I enter "c" to continue and this time, I got:
+
+Connecting to localhost (localhost)|127.0.0.1|:12167... failed: Connection refused.
+Resolving localhost (localhost)... 127.0.0.1
+Connecting to localhost (localhost)|127.0.0.1|:12167... failed: Connection refused.
+
+meaning that the server crashed.
+
+======
+Part 2
+======
+VU#695940 - Medium
+- I rated this as medium because they do not yet know the complete impact of
+  this vulnerability. It only affects a certain regular expression library 
+  which is used in different ways by people. The case which would allow
+  a malicious actor to execute their own code is somewhat of a rare case but
+  it would be bad if it succeeded. 
+
+VU#787252 - High
+- This poses a serious threat to computer users in case they accidentally
+  connect to an attacker-controlled network using Group Policy. Since servers
+  do not need to authenticate themselves, the users are powerless in these 
+  situations as the attackers can just execute their arbitrary code and
+  completely compromise vulnerable systems.
+
+VU#967332 - Medium
+- This is a threat because the buffer overflow allows for arbitrary code to be
+  executed. The severity of this depends on whether the function is called
+  remotely or locally but either way, the buffer overflow can be exploited and
+  malicious code can be run. 
+
+VU#976132 - High
+- I rated this as a highly urgent matter even though the attacker must first
+  be authenticated in order to do any damage. Once they are authenticated,
+  they are able to bypass the update enforcement of the platform firmware.
+  Even worse, they can arbitrarily read or write to the SMRAM region, which is
+  the System Management Mode. By doing so, they can corrupt the system and
+  make it inoperable.
+
+VU#252743 - High
+- This is an urgent issue as well because Bash is widely used in UNIX-like
+  operating systems, especially Linux and Mac OS X. It says that the
+  vulnerability is being actively exploited and the danger will vary depending
+  on the application that calls it. If the application is from the system,
+  then that would cause serious problems because the app has access to
+  everything. 
+    

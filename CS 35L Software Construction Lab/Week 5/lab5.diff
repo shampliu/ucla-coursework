@@ -1,0 +1,17 @@
+--- ChangeLog: cast the diff in timespec_cmp to a signed long long int in 
+---            in order to prevent integer overflow
+--- coreutils-with-bug/lib/timespec.h	2015-02-06 02:29:54.621422000 -0800
++++ coreutils-with-bug-v2/lib/timespec.h	2015-02-06 02:04:12.667333000 -0800
+@@ -45,8 +45,10 @@
+ static inline int
+ timespec_cmp (struct timespec a, struct timespec b)
+ {
+-  int diff = a.tv_sec - b.tv_sec;
+-  return diff ? diff : a.tv_nsec - b.tv_nsec;
++  signed long long int diff = (signed long long int)a.tv_sec - (signed long long int)b.tv_sec;
++  if (diff < 0) { return -1; }
++  else if (diff == 0) { return 0; }
++  else { return 1; }
+ }
+ 
+ # if ! HAVE_DECL_NANOSLEEP

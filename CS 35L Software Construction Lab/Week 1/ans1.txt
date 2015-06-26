@@ -1,0 +1,104 @@
+Chang Liu
+key1.txt
+CS 35L Lab 4
+
+1. man man 
+man -K  <word>
+
+2. cp is in /bin/cp and wc is in /usr/bin/wc
+
+whereis cp
+whereis wc
+
+3. w: show who's logged on and what they are doing
+[: check file types and compare values 
+X: a portable, network-transparent window system 
+
+find /bin/ /usr/bin/ -path */?
+
+4. gcc
+
+file /usr/bin/cc
+
+5. chmod g-s removes the other users in the file group's ability to set user or
+group ID on execution 
+
+man chmod 
+
+6. find -mtime -3
+
+7. /usr/public/www/ccas
+/usr/public/.snapshot
+/usr/local/cs
+/usr/public/www/swe
+/usr/public/www/lc
+/usr/public/www/aiche
+etc.
+
+find / -type d -mtime -3
+
+8. 18
+
+whereis find 
+cd /bin RET
+find -type l 
+find -type l | wc -l 
+
+9. libICE.so.6.3.0
+
+cd /usr/lib 
+ls -l -a -t 
+
+10. The locale command gets its data from the local categories defined by the 
+LC_* environment variables. 
+
+man locale
+
+11. Buffer-menu-sort
+rmail-sort-by-author
+sort-columns 
+sort-field
+sort-lines
+sort-pages
+etc.
+
+M-x command-apropos Enter sort
+(or C-h ? Enter a sort)
+
+12. C-a: to beginning of line
+C-b: backward one char
+C-c: prefix command
+C-d: delete one char to right of cursor
+C-e: to end of line
+C-f: forward one char
+C-g: quit keyboard / minibuffer
+C-h: help command
+C-i: indent for tab
+C-j: newline and indent
+C-k: kill from cursor to end of line
+C-l: center cursor on window
+C-m: newline
+C-n: next line
+C-o: open line
+C-p: previous line
+C-q: read next input char and insert it
+C-r: reverse incremental search
+C-s: forward incremental search
+C-t: transpose characters
+C-u: universal argument
+C-v: scroll down one page
+C-w: kill text between mark and cursor
+C-x: prefix command
+C-y: yank
+C-z: suspend emacs
+
+13. C-g can stop a command that's taking too long to execute. It can also 
+discard a numeric argument or the beginning of a command that one does not want
+to finish.
+
+14. The yank function reinserts killed text.
+
+15. The ls -l command only allows you to view the files but emacs dired command
+allows you to operate on files, by using remove, rename, encrypt, decrypt, etc.
+
+C-x d     

@@ -1,0 +1,49 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\b\fs24 \cf0 CS 35L Week 3
+\b0 \
+\
+wget\
+tar -xzvf\
+\
+./configure \'97prefix=PATH\
+make \
+make install\
+\
+./ls -l /bin/bash\
+\
+vim patch_file\
+patch -p1 < patch_file \
+ ignores a/ and b/\
+make\
+ none of the commands are needed except the ls.c one because that\'92s the only executable that we changed\
+make install\
+\
+export PATH="/usr/local/cs/Python-3.4.2/bin:$PATH"\
+\
+\
+\
+
+\b Q1: 
+\b0 He removed it because the line before it had the same exact line. It wasn\'92t technically necessary to remove that line, since the code would function the same either way, but it eliminates redundancy from the file and makes it easier to read. 
+\b \
+\
+Q2: 
+\b0 To non-English speakers, the date format may confuse them, since other countries may be accustomed to seeing the day before the month. Also, the months are abbreviated in English which would pose another problem. Lastly, the traditional Unix format omits the time in hours and minutes. \
+\
+
+\b Q3: 
+\b0 Running the python script on /dev/null causes the program to throw an exception because the index is out of range. This is because the argument file, /dev/null, that we passed into randline.py is completely empty so the script cannot index it at all. \
+
+\b \
+Q4: 
+\b0 Running the same script under Python 3 after exporting the path also results in an error. This time, it is a syntax error rather than an exception, probably resulting from switching over to Python 3.\
+\
+
+\b \
+\
+}

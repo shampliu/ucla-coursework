@@ -1,0 +1,16 @@
+Chang Liu
+gitk-description.txt
+CS 35L Lab 4
+
+The top panel of the gitk interface shows the history of commits, separated by
+branch. It has three panels. The leftmost panel shows the branching, if a 
+user merged a branch, we would see that as a diagonal line. The second panel 
+lists the corresponding authors and their e-mails, and the last panel shows
+the dates of these commits. 
+
+Below, the top left panel gives the details of the specific commit we 
+highlight, like its parents, children, branches and author. Below that, is
+the diff file so we can see the changes that were applied.
+
+Lastly, the right panel shows the files that were modified in the highlighted
+commit.

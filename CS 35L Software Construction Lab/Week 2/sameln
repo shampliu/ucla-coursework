@@ -1,0 +1,46 @@
+#!/bin/bash
+
+D=$1
+FILES=`ls -a $D | sort`
+declare -a ARR
+#let size= `find $D -type f | wc -l`
+let count=0
+let i=0
+let j=0
+
+IFS='
+'
+for FILE in $FILES; do
+ if [ -L "$FILE" ]; then
+  continue
+ else
+  if [ -f "$D/$FILE" ]; then
+   echo "$D/$FILE is a regular file"
+   ARR[$count]="$D/$FILE"
+   let count=count+1
+  fi
+ fi
+done
+
+while [ "$i" -lt "$count" ]; do
+ while [ "$j" -lt "$count" ]; do
+#  if [ `cmp -s "${ARR[i]}" "${ARR[j]}"` -eq 0 ]; then
+  cmp -s "${ARR[i]}" "${ARR[j]}"
+  check=$?
+  if [ $check -eq 0 ]; then
+   if [ "$i" -le "$j" ]; then
+    ln -f "${ARR[$i]}" "${ARR[$j]}"
+   else  
+    ln -f "${ARR[$j]}" "${ARR[$i]}" 
+   fi
+  fi
+  let j=j+1 
+ done
+ let i=i+1
+ let j=0
+done
+
+#echo "$count regular files." 
+
+
+

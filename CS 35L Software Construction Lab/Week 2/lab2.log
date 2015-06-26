@@ -1,0 +1,141 @@
+Chang Liu
+lab2.log
+CS 35L Lab 4
+
+#locale did not yield the correct output so I used the export command
+export LC_ALL='C'
+
+#makes a file of the local dictionary file with the words sorted
+cat < /usr/share/dict/words > words | sort  
+
+#grabs the web page
+wget http://cs.ucla.edu/classes/winter15/cs35L/assign/assign2.html
+
+#copies it into a text file
+cp assign2.html assign2.txt
+
+tr commands
+===========
+#replaces all the complements of alphabetic characters (i.e. non-alpha 
+characters) with newlines
+tr -c 'A-Za-z' '[\n*]' < assign2.txt
+
+#replaces all non-alpha characters with just a single newline (even with 
+consecutive non-alpha characters)
+tr -cs 'A-Za-z' '[\n*]' < assign2.txt
+
+#sorts each word of the HTML page, separated by a newline, while omitting
+non-alpha characters
+tr -cs 'A-Za-z' '[\n*]' < assign2.txt | sort 
+
+#sorts each word of the page, separated by a newline, while omitting 
+duplicates and non-alpha characters
+tr -cs 'A-Za-z' '[\n*]' < assign2.txt | sort -u
+
+#sorted list of the page's words is compared to the dictionary file created
+and three columns are outputted (first being words unique to the webpage, 
+second being words unique to the dictionary and third being shared words)
+tr -cs 'A-Za-z' '[\n*]' < assign2.txt | sort -u | comm - words
+
+#sorted list of the page's words is compared to the dictionary file and only
+the words unique to the HTML page's words are outputted
+tr -cs 'A-Za-z' '[\n*]' < assign2.txt | sort -u | comm -23 - words
+
+hwords
+=====
+#gets the Hawaiian dictionary page
+wget http://mauimapp.com/moolelo/hwnwdseng.htm
+
+#I used two test files to debug my code and check the output
+
+#grab all the non-blank <td> elements from the HTML page
+grep -E '<td>.+</td>' < hwnwdseng.htm > test1
+
+#change everything to lowercase
+tr '[:upper:]' '[:lower:]' < test1 > test2
+
+#delete every odd line, to show only Hawaiian words
+sed -n '1~2!p' < test2 > test1
+
+#delete the HTML tags
+sed 's/<[^>]*>//g' < test1 > test2
+
+#replace the ASCII grave accents with ASCII apostrophes ("okinas")
+sed 's/` /\x27/g' < test2 > test1
+
+#replace commas with newlines
+sed ’s/, /\n/g' < test1 > test2
+
+#replace spaces with newlines
+sed 's/ /\n/g' < test2 > test1
+
+#separate each line by not allowing consecutive newlines or any non-alpha or
+apostrophe character
+tr -cs "A-Za-z'" '[\n*]' < test1 > test2
+
+#display only words made of the valid Hawaiian letters
+grep -E "[pk'mnwlhaeiou]*" < test2 > test1
+
+#sort the Hawaiian words without displaying duplicates
+sort -u < test1 > test2
+
+#delete first blank line
+sed '1d'
+
+#grant permission for buildwords to run
+chmod 755 buildwords 
+
+buildwords
+==========
+#!/bin/bash
+grep -E '<td>.+</td>' | \
+tr '[:upper:]' '[:lower:]' | \
+sed -n '1~2!p' | \
+sed 's/<[^>]*>//g' | \
+sed 's/` /\x27/g' | \
+sed 's/, /\n/g' | \
+sed 's/ /\n/g' | \
+tr -cs "A-Za-z'" '[\n*]' | \
+grep "[pk'mnwlhaeiou]*" | \
+sort -u | \
+sed '1d'
+
+checks
+======
+#check the English to Hawaiian page against the generated hwords file to find 
+misspelled Hawaiian words 
+#found 391 misspelled Hawaiian words
+tr -cs "[A-Za-z']" "[\n*]" < hwndseng.htm | tr '[:upper:]' '[:lower:]' | sort
+-u | comm -23 - hwords | wc -l
+
+#get the webpage for the assignment
+wget http://www.cs.ucla.edu/classes/winter15/cs35L/assign/assign2.html
+
+#compare webpage to hwords to find "misspelled" Hawaiian words
+#found 417 
+tr -cs "[A-Za-z]" "[\n*]" < assign2.html | tr '[:upper:]' '[:lower:]' | sort -u
+| comm -23 - hwords | wc -l
+
+#put misspelled Hawaiian words into file
+tr -cs "[A-Za-z]" "[\n*]" < assign2.html | tr '[:upper:]' '[:lower:]' | sort -u
+| comm -23 - hwords > misH
+
+#find "misspelled" English words
+#found 41
+tr -cs "[A-Za-z]" "[\n*]" < assign2.html | tr '[:upper:]' '[:lower:]' | sort -u
+| comm -23 - words | wc -l
+
+#put into file
+tr -cs "[A-Za-z]" "[\n*]" < assign2.html | tr '[:upper:]' '[:lower:]' | sort -u
+| comm -23 - hwords > misE
+
+#find misspelled Hawaiian words that pass as English words
+#found 370 e.g. work, transcript, and single
+cat misH | comm -12 - words | wc -l
+
+#find misspelled English words that pass as Hawaiian words
+#found 3 e.g. halau, wiki, and lau
+cat misE | comm -12 - hwords | wc -l
+
+
+

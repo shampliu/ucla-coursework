@@ -1,0 +1,151 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf140
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Consolas;\f2\fmodern\fcharset0 Courier;
+\f3\fmodern\fcharset0 Courier-Bold;\f4\fmodern\fcharset0 Courier-Oblique;}
+{\colortbl;\red255\green255\blue255;\red38\green38\blue38;}
+\margl1440\margr1440\vieww10580\viewh11060\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 Chang Liu \
+lab2.log\
+CS 35L Lab 4\
+\
+\pard\pardeftab720\sl336
+
+\f1 \cf2 \expnd0\expndtw0\kerning0
+The locale command did not have the correct output, so I used export LC_ALL='C' to fix it, then locale to verify the change.\
+\
+cat < 
+\f2 \cf0 \expnd0\expndtw0\kerning0
+/usr/share/dict/words > words | sort\
+OR 	
+\f1 \cf2 \expnd0\expndtw0\kerning0
+cp /usr/share/dict/words words\
+	sort words\
+\
+curl {\field{\*\fldinst{HYPERLINK "http://www.cs.ucla.edu/classes/winter15/cs35L/assign/assign2.html"}}{\fldrslt \expnd0\expndtw0\kerning0
+http://www.cs.ucla.edu/classes/winter15/cs35L/assign/assign2.html}}
+\f2 \cf0 \expnd0\expndtw0\kerning0
+ > assign2.html\
+cp assign2.html assign2.txt\
+\
+
+\f3\b \expnd0\expndtw0\kerning0
+TR COMMANDS\
+
+\f2\b0 \expnd0\expndtw0\kerning0
+===========\
+tr -c \'91A-Za-z\'92 \'91[\\n*]\'92 < assign2.txt	\
+replaces all the complement of alphabetic characters (i.e. non-alpha characters) with newlines\
+\
+tr -cs \'91A-Za-z\'92 \'91[\\n*]\'92 < assign2.txt	\
+replaces all non-alpha characters with just a single newline (even with consecutive non-alpha chars)\
+\pard\pardeftab720
+\cf0 \expnd0\expndtw0\kerning0
+\
+tr -cs 'A-Za-z' '[\\n*]' < assign2.txt | sort \
+sorts all the words of the HTML page, separated by a newline, while omitting the non-alpha characters\
+\
+tr -cs 'A-Za-z' '[\\n*]' < assign2.txt | sort -u\
+sorts all the words sorts all the words of the HTML page, separated by a newline, while omitting duplicates of the same word as well as non-alpha characters\
+\
+tr -cs 'A-Za-z' '[\\n*]' < assign2.txt | sort -u | comm - words\
+sorted list of the HTML words is compared to the dictionary file created and the mutual words are outputted\
+\
+tr -cs 'A-Za-z' '[\\n*]' < assign2.txt | sort -u | comm -23 - words\
+sorted list of the HTML words is compared to the dictionary file created and only the first column words, which are unique to the HTML words list is outputted\
+\
+\pard\pardeftab720
+
+\f3\b \cf0 \expnd0\expndtw0\kerning0
+HWORDS\
+======\
+\pard\pardeftab720
+
+\f2\b0 \cf0 \expnd0\expndtw0\kerning0
+wget {\field{\*\fldinst{HYPERLINK "http://mauimapp.com/moolelo/hwnwdseng.htm"}}{\fldrslt \expnd0\expndtw0\kerning0
+http://mauimapp.com/moolelo/hwnwdseng.htm}}\
+\
+#grab all the non-blank <td> elements from the HTML document\
+grep -E \'91<td>.+</td>\'92 < hwnwdseng.htm > test1\
+\
+#change everything to lowercase\
+tr \'91[:upper:]\'92 \'91[:lower:]\'92 < test1 > test2\
+\
+#delete every odd numbered line, to show only Hawaiian words\
+sed -n \'911~2!p\'92 < test2 > test1\
+\
+#delete the HTML tags\
+sed \'92s/<[^>]*>//g\'92 < test1 > test2\
+\
+#replace the ASCII grave accents with ASCII apostrophes\
+\pard\pardeftab720\sl336
+
+\f1 \cf2 \expnd0\expndtw0\kerning0
+sed \'92s/`/\\x27/g' < test2 > test1\
+\
+#replace commas with newlines\
+
+\f2 \cf0 \expnd0\expndtw0\kerning0
+sed \'92s/, /\\n/g\'92 < test1 > test2\
+\
+#replace spaces with newlines\
+sed \'92s/ /\\n/g\'92 < test2 > test1\
+\
+#separate each line by not allowing consecutive newlines or any non-alpha or apostrophe character\
+tr -cs \'93A-Za-z\'92\'94 \'91[\\n*]\'92 < test1 > test2\
+\
+#display only words made of the valid Hawaiian characters\
+grep -E \'93^[pk'mnwlhaeiou]*$\'94 < test2 > test1\
+\
+#sort the Hawaiian words without displaying duplicates\
+sort -u < test1 > test2\
+\
+#delete first blank line	\
+sed \'911d\'92\
+\
+\
+\
+COPY BUILDWORDS OVER\
+\
+chmod 755 buildwords\
+\
+#391 misspelled Hawaiian words \
+tr -cs \'93[A-Za-z\'92]\'94 \'93[\\n*]\'94 < hwnwdseng.htm | tr \'91[:upper:]\'92 \'91[:lower:]\'92 | sort -u | comm -23 - hwords | wc -l\
+\
+wget {\field{\*\fldinst{HYPERLINK "http://www.cs.ucla.edu/classes/winter15/cs35L/assign/assign2.html"}}{\fldrslt \expnd0\expndtw0\kerning0
+http://www.cs.ucla.edu/classes/winter15/cs35L/assign/assign2.html}}\
+\
+#see how many \'93misspelled\'94 Hawaiian words there are by only showing the first column (417)\
+tr -cs \'93[A-Za-z]\'94 \'93[\\n*]\'94 < assign2.html | tr \'91[:upper:]\'92 \'91[:lower:]\'92 | sort -u | comm -23 - hwords | wc -l\
+\
+#put into file\
+tr -cs \'93[A-Za-z]\'94 \'93[\\n*]\'94 < assign2.html | tr \'91[:upper:]\'92 \'91[:lower:]\'92 | sort -u | comm -23 - hwords > misH\
+\
+#show the \'93misspelled\'94 English words (41)\
+tr -cs \'93[A-Za-z]\'94 \'93[\\n*]\'94 < assign2.html | tr \'91[:upper:]\'92 \'91[:lower:]\'92 | sort -u | comm -23 - words | wc -l\
+\
+#put into file\
+tr -cs \'93[A-Za-z\'92]\'94 \'93[\\n*]\'94 < assign2.html | tr \'91[:upper:]\'92 \'91[:lower:]\'92 | sort -u | comm -23 - words > misE\
+\
+#find misspelled Hawaiian words that pass as English words (370)\
+cat misH | comm -12 - words | wc -l\
+
+\f4\i e.g. 
+\f2\i0 work, transcript, and single\
+\
+#find misspelled English words that pass as Hawaiian words (3)\
+cat misE | comm -12 - hwords | wc -l\
+
+\f4\i e.g. 
+\f2\i0 halau, wiki, and lau\
+\
+\
+\pard\pardeftab720
+\cf0 \expnd0\expndtw0\kerning0
+\
+\
+\
+\
+\
+\
+}

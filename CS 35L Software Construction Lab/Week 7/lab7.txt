@@ -1,0 +1,46 @@
+Chang Liu
+lab7.txt
+CS 35L Lab 4
+
+=========
+Problem 1
+=========
+For the buffered version of cat, I used the stdio.h library's functions 
+getchar() and putchar() to read and write respectively. To read one character
+at a time, I just set getchar()'s return to a char variable and looped until
+the end of the file.
+
+=========
+Problem 2
+=========
+For the unbuffered version of cat, I used the unistd.h library's functions
+read and write, reading from 0 (stdin) and output to 1 (stdout). To read in
+one character at a time, I created an array of 1 and passed it into the read
+function.  
+
+=========
+Problem 3
+=========
+To see the system calls I made a shell script to echo 5 million 0's into a
+file to ensure that it would be 5mb. Then I built the two cat programs using
+gcc and then ran strace ./catu < file and strace./catb < file. 
+
+=========
+Problem 4
+=========
+time ./catu < file
+
+Running this yielded the results:
+ real 0m 6.030s
+ user 0m 0.285s
+ sys  0m 5.737s
+
+time ./catb < file
+
+Running this yielded the results:
+ real 0m 1.830s
+ user 0m 0.148s
+ sys  0m 0.037s
+
+The unbuffered version takes longer as expected because of the system calls
+it must make.  

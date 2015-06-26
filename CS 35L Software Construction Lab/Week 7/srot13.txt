@@ -1,0 +1,39 @@
+Chang Liu
+srot13.txt
+CS 35L Lab 4	
+
+When running printf on the same sequence of characters as in Lab 5 with the 
+newly built srotu function, I got the same results and 17 comparisons which
+was the correct value. 
+
+To compare srot13 to srot13u I used the time command for both on the file of 5
+million 0's I made for the lab. The results I got were
+
+srot13:
+ real 0m 1.926s
+ user 0m 0.242s
+ sys  0m 0.034s
+
+srot13u:
+ real 0m 3.740s
+ user 0m 0.256s
+ sys  0m 3.484s
+
+It was expected that srot13u would take longer with the system calls it has to
+make. We can see that the time spent in the sys space is considerably longer
+in with srot13u than srot13. 
+
+To find the complexity I made a program to generate a certain of lines given
+by user input. Running srot13u on this yielded the following results:
+
+Input Lines			# of Comparisons
+------------------------------------------------
+10				22
+100				538
+1,000				8592
+10,000				115964
+100,000 			1465447
+1 million			17670510
+
+The Big O for qsort is O(nlog(n)) and these results hold true to that by 
+doing nlog(n) comparisons for n input lines.  

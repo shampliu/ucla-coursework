@@ -1,0 +1,48 @@
+Chang Liu
+lab6.txt
+CS 35L Lab 4
+
+Upon installing Ubuntu onto my Virtual Machine (VirtualBox), I ran the
+following commands in the Linux CLI to install OpenSSH.
+
+sudo apt-get update
+sudo apt-get install openssh-server
+sudo apt-get install openssh-client
+
+To create an account on my server, I ran the following commands as admin
+
+sudo useradd -d /home/newuser -m newuser
+sudo passwd newuser 
+- after this I typed in a simple password for newuser
+
+I then cd'd into the newly created directory and created a new directory
+called .ssh with the sudo command. Next, I changed the permissions of the
+folder by doing
+
+sudo chown -R newuser .ssh
+sudo chmod 700 .ssh
+
+After this, I used the ifconfig command to get my server IP address. To check
+if the server is working, I used 
+
+ps aux | grep ssh
+- this showed a process named 'sshd' which means it was workingi
+
+As a client, I ran the following commands
+
+ssh-keygen
+- make public and private keys
+ping <serverIPAddress> 
+- check to see if server is responding
+ssh-copy-id -i <userName>@<serverIPAddress>
+- gives server the client's pub key
+ssh-add
+- adds client's private key to ssh-agent so no need to type password again to
+  login
+ssh <userName>@<serverIPAddress>
+ssh -X <userName>@<serverIPAddress>
+- X-session forwarding to show GUI elements on our computer
+
+I then tested this X-session forwarding by runnign commands like xterm,
+firefox, and gedit. The GUI successfully displayed on my windows, indicating
+that it worked.

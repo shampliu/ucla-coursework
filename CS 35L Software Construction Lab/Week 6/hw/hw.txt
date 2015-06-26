@@ -1,0 +1,34 @@
+Chang Liu
+hw6.txt
+CS 35L Lab 4
+
+==========
+Question 1
+==========
+If the other teams had been observing all the bytes going across the network, 
+my resulting network would still be secure. This is because we used ssh to 
+connect and so all the data being sent across has already been encrypted first
+by the session key. The other teams would basically be seeing gibberish being
+sent.
+
+However, if the other teams had recorded my team's keystrokes, then our network
+would be at risk. The encryption only happens in between the connections but 
+if they know what we type at each end, then they know the decrypted messages
+that may contain our usernames or passwords.
+
+Similarly, if the other teams had physical control of the USB I'm using to 
+boot, our security would also be compromised. They would have access to my 
+private key, especially if it's not passphrase protected, and therefore be 
+able to decrypt messages that are sent to me.
+
+==========
+Question 2
+==========
+The gpg --verify command does not actually verify that whoever signed the
+file question personally created it. Anyone can use the command and so anyone
+can sign a file and pose as another person.
+
+A solution to this would be to have a third party manage the public keys. The
+senders would then use the third party's public key to encrypt. The only con 
+for this is that senders must trust that third party to manage their keys.
+

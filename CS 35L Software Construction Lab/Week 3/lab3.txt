@@ -1,0 +1,43 @@
+Chang Liu
+lab3.txt
+CS 35L Lab 4
+
+wget ftp://ftp.gnu.org/gnu/coreutils/coreutils-7.6.tar.gz
+tar -xzvf coreutils-7.6.tar.gz
+- get the tar.gz file and unpack it
+
+mkdir utilsInstall, pwd
+- make directory for install destination and get the path of it
+
+cd coreutils-7.6, ./configure --prefix=[path of new directory]
+- set install destination to the directory we just made
+
+make
+- compiles Makefile source code into binaries
+make install
+- takes those binaries and copies them into the appropriate location, in this
+  case the utilsInstall directory
+
+cd utilsInstall, ./bin/ls -l /bin/bash
+- check the installed ls to make sure it's the wrong format
+
+vim patch_file, copy in patch from website
+- copy the lines starting from index
+- add space before every line except those that start with -, + or @
+  - for proper diff indentation, since I copied from the browser
+patch -p1 < patch_file
+- p1 option ignores up to the first backslash when reading the patch file, so
+  a/NEWS becomes NEWS, since we are working in the curren directory
+make
+- compile the patch 
+- none of the commands are needed except the ls.c one because that's the only 
+  executable that we changed
+make install
+- install the patch
+
+cd utilInstall
+touch -d 20120101 testfile
+- create a test file, that was "created" Jan 1, 2012
+./bin/ls -l testfile
+- test our installed ls function on the new file, which works and displays
+  Jan 1 2012

@@ -1,0 +1,24 @@
+Chang Liu
+log.txt
+CS 35L Lab 4
+
+First I ran /usr/local/cs/bin/sort to check the version of my sort which was 
+new enough (2014).
+
+Next I generated a file of 10,000,000 random double-precision floats, each 
+separated by a newline, by running od -An -f -N 40000000 < /dev/urandom | tr -s
+' ' '\n' | sed '1d' > random.txt
+
+I then ran wc -l random.txt to make sure it had 10 million lines of text
+
+Next, I ran time -p /usr/local/cs/bin/sort -g --parallel=N random.txt > 
+/dev/null to run a benchmark test with N being the number of threads. I started with N as 1, then 2, 4, and 8 threads. My results were as follows:
+
+Threads		real		user		sys
+1		95.78		95.63		0.18
+2		51.79		97.72		0.21
+4		32.27		102.78		1.40
+8		24.74		114.56		2.90
+
+Given these results, one can see that by using more threads, the real time 
+decreases and the process finishes faster. 

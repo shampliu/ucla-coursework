@@ -1,0 +1,83 @@
+Chang Liu
+lab4.txt
+CS 35L Lab 4
+
+1. git clone git://git.savannah.gnu.org/diffutils.git
+cd diffutils
+pwd
+
+2. git log > git-log.txt
+
+3. git tag > git-tags.txt
+
+4. git log --oneline --grep="maint: quote"
+- find the commit, id is 62ca21c
+
+git format-patch -1 62ca21c --stdout > ../quote-patch.txt
+- -1 targets only this commit
+- creates patch file in directory above
+
+5. git checkout v3.0
+- goes to version 3.0, as shown in the tags
+
+6. patch -f -p1 < ../quote-patch.txt
+- apply patch forcefully
+
+7. git status
+- I see that some files were changed that were not .c files
+
+8. emacs [non .c file] 
+C-x v =
+- brings up the vc-diff buffer in Emacs
+C-x v u
+- reverts all the changes to a file while in vc-diff buffer
+- I did this procedure for every non .c file
+ 
+// alternative to #8
+git checkout NEWS README TODO doc/diagmeet.note ms/config.bat
+ms/config.site po/en.po tests/help-version src/diff.h src/system.h
+
+
+9. git checkout -p
+- delete changes to comments, variable declarations
+
+10. emacs diff3.c.rej, emacs diff.c.rej
+- find the changes made and apply them manually to the corresponding files
+  diff3.c and diff.c 
+
+11. git clean -f
+- remove untracked files (not under version control)
+
+12. git diff | wc -l
+- I got 326 lines, which falls within the 300-400 line range
+
+git diff > ../quote-3.0-patch.txt
+- creates a patch file from the diff
+
+13. export PATH=$PATH:/usr/local/cs/bin
+- need help2man command
+
+./bootstrap
+./configure
+make
+
+./src/diff . -
+- outputs "cannot compare '-' to a directory"
+- has the right quotation marks
+
+14. mkdir diffutils-3.0-patch, mkdir diffutils-3.0
+cp -r src/ ../diffutils-3.0-patch/
+- copy src directory recursively into newly created directory
+
+git checkout v3.0
+cp -r src/ ../diffutils-3.0/
+- copy original src directory into other directory
+
+diffutils-3.0-patch/src/diff -pru diffutils-3.0 diffutils-3.0-patch/ >
+quote-3.0-test.txt
+
+diff -pru diffutils-3.0 diffutils-3.0-patch > quote-3.0-test.txt
+- the files are not identical because I reverted the changes in the .c files
+  that affected character string constants
+- these differences are expected and not innocuous since they change only
+  the string literals 

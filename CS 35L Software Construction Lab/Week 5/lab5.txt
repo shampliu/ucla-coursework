@@ -1,0 +1,89 @@
+Chang Liu
+lab5.txt
+CS 35L Lab 4
+
+wget 
+http://www.cs.ucla.edu/classes/winter15/cs35L/assign/coreutils-with-bug.tar.gz
+tar -xvf [file]
+- get the coreutils tar and untar it
+
+cd coreutils-with-bug
+./configure CFLAGS='-g3 -O0'
+- unoptimized code for debugging
+
+make
+- make sure that running this fails
+
+wget http://www.cs.ucla.edu/classes/winter15/cs35L/assign/coreutils.diff
+
+patch -p0 < coreutils.diff
+
+make clean
+- clear binaries compiled before
+make
+- this should work now
+- the patch fixed the make command because it prepended "coreutils_" before 
+  all the functions which I assume is the correct name of those functions
+  which previously were not working. 
+
+- run commands on spec
+- instead of the ls command listed on the spec I did:
+TZ=UTCO ~/Downloads/coreutils-with-bug/src/ls -lt --full-time wwi-armistice
+now now1
+- this was because I was in the tmp directory and just calling ls wouldn't
+  work for me
+- now the bug has been successfully reproduced
+- error was because a very negative number becomes a positive (overflow)
+
+vim src/ls.c
+/sort
+- I examined the ls.c file and searched for the keyword "sort" 
+- I found a static void function called sort_files that I could start with
+
+gdb [path to the ls function I downloaded]
+break sort_files
+run -lt wwi-armistice now now1
+- I do this while in the tmp directory 
+- set a breakpoint at sort_files and run it
+- I found a condition that went
+func = sort_reverse ? rev_cmp_mtime : compare_mtime
+- I then ran list on rev_cmp_mtime first and found that it also calls 
+  compare_mtime. Listing compare_mtime then led me to the function called
+  cmp_mtime. Following the same procedure, I find that this function returns 
+  an int, which is determind by another function called timespec_cmp. 
+
+break timespec_cmp
+- the breakpoint shows that the function is located in another file, called
+  timespec.h in the lib directory
+- the function evaluates a int diff from a.tv_sec - b.tv_sec
+- I print the diff result and it's a very negative number.
+    - this was because a was a very high positive number and b was a very
+      negative number; the difference exceeded the limit for ints and turned
+      into a negative number by overflowing. 
+
+cd ../lib
+vim timespec.h 
+- I edited the file and changed diff into an unsigned long long so it could
+  hold more extreme values. I also typecasted its arguments a.tv_sec and 
+  b.tv_sec into unsigned long longs.
+- I then added if statements for the result of diff
+  - if it was positive, I returned 1, 0 I returned 0 and negative I returned
+    -1 
+- After this, I ran gdb again with the same breakpoints and got an error 
+  saying that the source file is more recent than the executable.
+
+./configure
+make
+- making the tmp directory again after this and running commands, the order
+  was corrected
+- I realized I needed to keep a copy of the lib dir so I went and untar'd 
+  the coreutils again
+
+diff -u /path/to/modified/timespec.h /path/to/original/timespec.h > lab5.diff
+- create the unified diff file
+- I then modified the beginning to make --- and +++ point to the same timespec
+  file and then added a ChangeLog
+
+- running the same commands on the SEASNet Linux servers instead of a tmp
+  directory, the ls command listed the files in the wrong order, with the 
+  wwi-armistice file shown as being created in the year 2054. 

@@ -1,0 +1,31 @@
+Chang Liu
+hw3.txt
+CS 35L Lab 4
+
+Question 1
+==========
+Brady removed the line because the line before it had the exact same line. It 
+wasn't technically necessary to remove that line, since the switch statement
+in the code would function the same either way, but it eliminates redundancy
+from the file and makes it easier to read.
+
+Question 2
+==========
+To non-English speakers, the date format may confuse them, since other 
+countries may be accustomed to seeing the day before the month, or some other
+order. Also, the months are abbreviated in English which would pose another
+problem, since non-English speakers may interpret them as meaning something
+else. 
+
+Question 3
+==========
+Running the python script on /dev/null causes the program to throw an
+exception because the index is out of range. This is because the argument file
+/dev/null that we passed into randline.py is completely empty so the script 
+cannot index it at all.
+
+Question 4
+==========
+Running the same script under Python 3 after exporting the path also results
+in an error. This time however, it is a syntax error than an exception, 
+probably because of switching over to Python 3 from Python 2.

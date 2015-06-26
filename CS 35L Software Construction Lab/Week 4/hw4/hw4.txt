@@ -1,0 +1,52 @@
+Chang Liu
+hw4.txt
+CS 35L Lab 4
+
+1. git clean -df
+git reset --hard
+git checkout master
+- resets the branch to master so I can checkout another branch
+
+2. git checkout -b quote master
+- create and switch to new branch off of master
+git checkout v3.0
+- go to v3.0 on the new branch
+
+3. patch -p1 < ../quote-3.0-patch.txt
+- apply patch from the parent directory
+
+4-5. emacs ChangeLog
+- C-x 4-a to add entries to the change log
+- examine 3.0 patch txt file to see changes
+
+6. git add .
+git commit --file=ChangeLog
+git commit --amend --author='Chang Liu <liu.chang@ucla.edu>'
+
+7. git log
+git format-patch -1 --stdout > formatted-patch.txt
+
+8. git checkout -b tmp v3.0
+git am ../formatted-patch.txt
+
+export PATH=$PATH:/usr/local/cs/bin
+./bootstrap
+./configure
+make
+make check
+
+9. make distdir
+cat diffutils-3.0.1-8569/ChangeLog
+- scrolled up and saw my changes at the top
+
+10. open lnxsrv on Remote Desktop
+ssh -X myusername@lnxsrv.seas.ucla.edu
+cd ~eggert/src/gnu/emacs
+- change into the directory
+ 
+export PATH=/usr/local/cs/bin:$PATH
+- allows for gitk command
+
+gitk
+- scroll through the interface, until I see the first merge, which was by 
+  Stefan Monnier on Jan. 23, 2015
