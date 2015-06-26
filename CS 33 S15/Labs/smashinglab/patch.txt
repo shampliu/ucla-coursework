@@ -1,0 +1,20 @@
+--- sthttpd-2.27.0/src/thttpd.c	2014-10-02 15:02:36.000000000 -0700
++++ sthttpd-2.27.0-delta/src/thttpd.c	2015-04-30 19:15:24.820042000 -0700
+@@ -999,7 +999,7 @@ static void
+ read_config( char* filename )
+     {
+     FILE* fp;
+-    char line[10000];
++    char line[100];
+     char* cp;
+     char* cp2;
+     char* name;
+@@ -1012,7 +1012,7 @@ read_config( char* filename )
+ 	exit( 1 );
+ 	}
+
+-    while ( fgets( line, sizeof(line), fp ) != (char*) 0 )
++    while ( fgets( line, 1000, fp ) != (char*) 0 )
+ 	{
+ 	/* Trim comments. */
+ 	if ( ( cp = strchr( line, '#' ) ) != (char*) 0 )

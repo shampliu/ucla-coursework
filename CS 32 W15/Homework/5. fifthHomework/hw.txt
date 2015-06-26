@@ -1,0 +1,116 @@
+Chang Liu
+CS 32
+Homework 5
+
+==========
+Question 1
+==========
+a.
+
+50
+  20
+    10
+      xx
+      xx
+    40
+      30
+        25
+          xx
+          xx
+        35
+          xx
+          xx
+      45
+        xx
+        xx
+  60
+    xx
+    70
+      65
+        xx
+        xx
+      80
+        75
+          xx
+          xx
+        xx
+
+b.
+
+50
+  25
+    10
+      xx
+      xx
+    40
+      35
+      45
+  60
+    xx
+    70
+      65
+        xx
+        xx
+      80
+        75
+          xx
+          xx
+        xx
+
+c. 
+
+In Order
+10 20 25 30 35 40 45 50 60 65 70 75 80
+
+Pre Order
+50 20 10 40 30 25 35 45 60 70 65 80 75
+
+Post Order
+10 25 35 30 45 40 20 65 75 80 70 60 50
+
+==========
+Question 2
+==========
+a.
+
+6
+  3
+    1
+    2
+  5
+    4
+
+b. 
+
+[ 6, 3, 5, 1, 2, 4 ]
+c. 
+
+[ 5, 3, 4, 1, 2 ]
+      
+
+==========
+Question 3
+==========
+a. 
+
+struct Node {
+ 
+ int data;
+ Node* leftChild;
+ Node* rightChild;
+ Node* parent; 
+ 
+}
+
+b. 
+
+void insert(Node*& root, Node*& parent, Node*& new)
+
+if root is null, set to new Node
+ set new Node’s parent pointer to parent
+else
+ if new Node’s data is less than root’s data
+  do recursion on the left by calling insert(leftChild, root, new)
+ or else
+  do recursion on the right by calling insert (rightChild, root, new)
+      

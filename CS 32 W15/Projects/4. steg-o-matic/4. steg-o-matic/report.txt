@@ -1,0 +1,98 @@
+Chang Liu
+CS 32
+Project 4 Report
+
+==========
+Question 1
+========== 
+There are no bugs that I am aware of for my program. It runs successfully on both Visual C++ and Xcode. 
+
+==========
+Question 2
+==========
+HashTable()
+This function complies with the required O(B) time complexity where B is the number of buckets for the HashTable. I first dynamically allocate my linked list to hold the recently updated items and my array of Nodes objects, both each taking a constant O(1). Then I loop through each bucket (Node) of my HashTable and set it equal to nullptr. This equates to a Big-O of O(B). 
+
+~HashTable()
+This method runs in O(B+N) as desired. It iterates through every bucket B of the HashTable. If the item in the bucket is not a nullptr, then it will delete that item and move on to the next one in the same bucket for a total of N items. Therefore, the time complexity of this is O(B+N).
+
+HashTable set()
+It takes O(1) steps to get to the hashed index of the array. From here, we traverse through the items until we reach the one we want to set or a nullptr, in which case we would add a new Node at the empty spot. This would take an average of C/B steps because there are an average of C/B items in each bucket. Therefore the Big O of this is O(C/B). This function can also call the linked list of recently updated item’s move and insert functions, to add or move a non-permanent item to the top of the list. However, we disregard these functions because they both run in Big O of constant time. 
+
+HashTable get()
+Similarly, this function iterates through each item in a bucket, for an average of C/B items. Therefore, the time complexity is O(C/B). 
+
+HashTable touch()
+Like get(), this function iterates through each item in a bucket, looking for the right one. If it finds one with a key that matches the input key, it will call the linked list’s move function, which runs in constant time. There is an average of C/B items to iterate through per bucket so the time complexity is O(C/B). 
+
+HashTable discard()
+This would also run in O(C/B) time. It could also run at O(1) constant time, only if the recently updated list is empty, in which case it would return immediately. If the list is not empty, then this gets the array item at the hashed index, in O(1) time, and iterates through, for an average of C/B times, until it finds the correct item to delete. Then it deletes the item and decrements a variable, and both these tasks run in constant time. The only non-constant is the iteration through the items in the bucket which amounts to a time complexity of O(C/B). 
+
+==========
+Question 3
+==========
+
+*/
+HashTable set
+--------------- */
+
+compute integer hash from key
+get item pointer in array at the hash value
+
+if item pointer isn’t null
+ loop through bucket linked list, find item pointer pointing to the same key
+  update the value
+ if not found, add new item pointer to the end of the linked list
+  add to the recently updated list if it was not set as permanent
+  increment number of associations
+return true
+
+return false if table is full
+create new item pointer at the index
+ increment number of associations
+ if not set as permanent, add to the recently updated list
+
+return true
+
+*/
+HashTable touch
+--------------- */
+
+compute integer hash from key
+get item pointer in array at the hash value
+
+while item pointer is not null
+ if the key matches the input key
+  move the item pointer to the top of the recently updated list (using the
+  struct’s own function)
+  return true
+ go to next item pointer in the bucket
+ 
+return false
+
+*/
+HashTable discard
+--------------- */
+
+get the bottom of the recently updated linked list (the least recently updated)
+
+if not a nullptr
+ change the input key / value to the discarded key / value
+ call the recently updated list’s remove function on it
+return false if it is a nullptr
+
+compute integer hash from key
+get item pointer in array at the hash value
+
+iterate through array to find item pointer with the same key
+ if the previous item in the bucket is not a nullptr
+  set its next pointer to the next item pointed to by this item pointer
+ if the next item in the bucket is not a nullptr
+  set its prev pointer to the previous item pointed to by this item pointer
+ delete the current item 
+ decrement the number of associations
+ return true
+
+return false 
+ 
+ 

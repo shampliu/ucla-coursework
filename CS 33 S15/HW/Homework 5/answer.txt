@@ -1,0 +1,23 @@
+Chang Liu
+CS 33
+Homework 5
+
+12.18
+
+A. Unsafe
+
+B. Safe 
+
+C. Unsafe 
+
+12.24
+
+rio_readn - not reentrant
+rio_writen - not reentrant
+rio_readinitb - reentrant 
+rio_read - not reentrant
+rio_readlineb - not reentrant
+rio_readnb - reentrant
+
+
+

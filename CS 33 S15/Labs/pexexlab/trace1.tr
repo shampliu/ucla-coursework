@@ -1,0 +1,101 @@
+0x08120c40 <Ftimes+0>:2768	mov 0x8(%esp),%ecx	ecx=0xffffcc50 
+0x08120c44 <Ftimes+4>:2768	mov $0x2,%eax	eax=0x2	
+0x08120c49 <Ftimes+9>:2768	mov 0x4(%esp),%edx	edx=0x2 
+0x08120c4d <Ftimes+13>:2768	jmp 0x8120920 <arith_driver>	eip=0x8120920 
+0x08120920 <arith_driver+0>:2577	push %ebp	M[0xffffcc38]=0xffffccb8 esp=0xffffcc38 
+0x08120921 <arith_driver+1>:2577	push %edi	M[0xffffcc34]=0x84073c2 esp=0xffffcc34 
+0x08120922 <arith_driver+2>:2577	push %esi	M[0xffffcc30]=0x83ad290 esp=0xffffcc30
+0x08120923 <arith_driver+3>:2593	mov $0x1,%esi	esi=0x1	
+0x08120928 <arith_driver+8>:2577	push %ebx	esp=0xffffcc2c
+0x08120928 <arith_driver+8>:2577	sub $0x1c,%esp	esp=0xffffcc10
+0x0812092c <arith_driver+12>:2584	cmp $0x2,%eax
+0x0812092f <arith_driver+15>:2584	je 0x812093e <arith_driver+30>	eip=0x812093e
+0x0812093e <arith_driver+30>:2602	test %edx,%edx
+0x08120940 <arith_driver+32>:2602	jle 0x8120a38 <arith_driver+280>	eip=0x8120946
+0x08120946 <arith_driver+38>:2602	mov %ecx,%ebp	ebp=0xffffcc50	
+0x08120948 <arith_driver+40>:2602	mov %edx,0x8(%esp)	M[0xffffcc18]=2	
+0x0812094c <arith_driver+44>:2602	xor %ebx,%ebx	ebx=0x0	
+0x0812094e <arith_driver+46>:2602	xor %edi,%edi	edi=0x0	
+0x08120950 <arith_driver+48>:2602	mov %eax,0xc(%esp)
+0x08120957 <arith_driver+55>:2602	movb $0x0,0x7(%esp)	M[0xffffcc07]=0x0
+0x0812095c <arith_driver+60>:2611	mov 0x0(%ebp,%ebx,4),%ecx	ecx=0x94
+0x08120960 <arith_driver+64>:703	mov %ecx,%eax	eax=0x94
+0x08120962 <arith_driver+66>:703	and $0x7,$eax	eax=0x4
+0x08120965 <arith_driver+69>:2384	cmp $0x3,%eax
+0x08120968 <arith_driver+72>:2384	je 0x8120a0e <arith_driver+238>	eip=0x812096e
+0x0812096e <arith_driver+78>:2384	xchg %ax,%ax
+0x08120970 <arith_driver+80>:2612	mov 0x83fc154,%edx	edx=0x840f7b2
+0x08120976 <arith_driver+86>:2612	test $0x3,%cl
+0x08120979 <arith_driver+89>:2612	je 0x81209a8 <arith_driver+136>	eip=0x81209a8
+0x081209a8 <arith_driver+136>:2614	je 0x8120b90 <arith_driver+624>	eip=0x81209ab
+0x081209b1 <arith_driver+145>:2619	mov 0xc(%esp),%eax	eax=0x2
+0x081209b5 <arith_driver+149>:2617	mov %ecx,0x0(%ebp,%ebx,4)	ebp=0xffffcc30
+0x081209b9 <arith_driver+153>:701	sar $0x2,%ecx	ecx=0x25
+0x081209bc <arith_driver+156>:2619	cmp $0x8,%eax
+0x081209bf <arith_driver+159>:2619	ja 0x81209e0 <arith_driver+192>	
+0x081209c1 <arith_driver+161>:2619	jmp *0x81a668c(,%eax,4)	eip=0x8120a80
+0x08120a80 <arith_driver+352>:2638	test %ecx,%ecx
+0x08120a82 <arith_driver+354>:2638	js 0x8120b50 <arith_driver+560>	
+0x08120a88 <arith_driver+360>:2638	je 0x8120b40 <arith_driver+544>	
+0x08120a8e <arith_driver+366>:2638	test %esisdf,%esi
+0x08120a90 <arith_driver+368>:2638	js 0x8120bb8 <arith_driver+664>
+0x08120a96 <arith_driver+374>:2638	mov $0x7fffffff,%eax	eax=0x7fffffff
+0x08120a9b <arith_driver+379>:2638	cltd	edx=0x0
+0X08120a9c <arith_driver+380>:2638	idiv %ecx	eax=0x3759f22 edx=0x15
+0x08120a9e <arith_driver+382>:2638	cmp %esi,%eax
+0x08120aa0 <arith_driver+384>:2638	setl %al	al=0x1
+0x08120aa3 <arith_driver+387>:2638	test %al,%al
+0x08120aa5 <arith_driver+389>:2638	je 0x8120b40 <arith_driver+544>	eip=0x8120b40
+0x08120b40 <arith_driver+544>:2645	imul %ecx,%esi	esi=0x25
+0x08120b43 <arith_driver+547>:2645	jmp 0x81209e0 <arith_driver+192>	eip=0x81209e0
+0x081209e0 <arith_driver+192>:2602	add $0x1,$ebx	ebx=0x1
+0x081209e3 <arith_driver+195>:2602	cmp 0x8(%esp),%ebx
+0x081209e7 <arith_driver+199>:2602	je 0x8120a38 <arith_driver+280>	
+0x081209e9 <arith_driver+201>:2604	movzbl 0x7(%esp),%eax	eax=0x0
+0x081209ee <arith_driver+206>:2604	mov (%esp),%edx	edx=0x1
+0x081209f1 <arith_driver+209>:2611	mov 0x0(%ebp,%ebx,4),%ecx	ecx=0xffffff98
+0x081209f5 <arith_driver+213>:2604	test %al,%al
+0x081209f7 <arith_driver+215>:2604	cmove %esi,%edx	edx=0x25
+0x081209fa <arith_driver+218>:2604	cmove %ebx,%edi	edi=0x1
+0x081209fd <arith_driver+221>:703	mov %ecx,%eax	eax=0xffffff98
+0x081209ff <arith_driver+223>:703	and $0x7,%eax	eax=0x0
+0x08120a02 <arith_driver+226>:2604	mov %edx,(%esp)	M[0xffffcc00]=0x25
+0x08120a05 <arith_driver+229>:2384	cmp $0x3,%eax
+0x08120a08 <arith_driver+232>:2384	jne 0x8120970 <arith_driver+80> eip=0x8120970
+0x08120970 <arith_driver+80>:2612	mov 0x83fc154,%edx	edx=0x83fc154
+0x08120976 <arith_driver+86>:2612	test $0x3,%cl
+0x08120979 <arith_driver+89>:2612	je 0x81209a8 <arith_driver+136>	eip=0x81209a8
+0x081209a8 <arith_driver+136>:2614	cmp $0x7,%eax
+0x081209ab <arith_driver+139>:2614	je 0x8120b90 <arith_driver+624>	
+0x081209b1 <arith_driver+145>:2619	mov 0xc(%esp),%eax	eax=0x2
+0x081209b5 <arith_driver+149>:2617	mov %ecx,0x0(%ebp,%ebx,4)	M[0xffffcc44]=0xffffff98
+0x081209b9 <arith_driver+153>:701	sar $0x2,%ecx	ecx=0xffffffe6
+0x081209bc <arith_driver+156>:2619	cmp $0x8,%eax
+0x081209bf <arith_driver+159>:2619	ja 0x81209e0 <arith_driver+192>
+0x081209c1 <arith_driver+161>:2619	jmp *0x81a668c(,%eax,4)	eip=0x8120a80
+0x08120a80 <arith_driver+352>:2638	test %ecx,%ecx
+0x08120a82 <arith_driver+354>:2638	js 0x8120b50 <arith_driver+560>	eip=0x8120b50
+0x08120b50 <arith_driver+560>:2638	test %esi,%esi	
+0x08120b52 <arith_driver+562>:2638	js 0x8120bca <arith_driver+682>
+0x08120b54 <arith_driver+564>:2638	cmp $0xffffffff,%ecx
+0x08120b57 <arith_driver+567>:2638	je 0x8120b40 <arith_driver+544>	
+0x08120b59 <arith_driver+569>:2638	mov $0x80000000,%eax	eax=$0x80000000
+0x08120b5e <arith_driver+574>:2638	cltd	edx=0xffffffff	
+0x08120b5f <arith_driver+575>:2638	idiv %ecx	eax=0x4ec4ec4 edx=0xffffffe8
+0x08120b61 <arith_driver+577>:2638	cmp %eax,%esi
+0x08120b63 <arith_driver+579>:2638	setg %al	al=0x0	
+0x08120b66 <arith_driver+582>:2638	jmp 0x8120aa3 <arith_driver+387>	eip=0x8120aa3
+0x08120aa3 <arith_driver+387>:2638	test %al,%al
+0x08120aa5 <arith_driver+389>:2638	je 0x8120b40 <arith_driver+544>	eip=0x8120b40
+0x08120b40 <arith_driver+544>:2645	imul %ecx,%esi	esi=0xfffffc3e
+0x08120b43 <arith_driver+547>:2645	jmp 0x81209e0 <arith_driver+192>	eip=0x81209e0
+0x081209e0 <arith_driver+192>:2602	add $0x1,%ebx	ebx=0x2
+0x081209e3 <arith_driver+195>:2602	cmp 0x8(%esp),%ebx
+0x081209e7 <arith_driver+199>:2602	je 0x8120a38 <arith_driver+280>	eip=0x8120a38
+0x08120a38 <arith_driver+280>:700	lea 0x0(,%esi,4),%eax	eax=0xfffff0f8
+0x08120a3f <arith_driver+287>:2679	add $0x1c,%esp	esp=0xffffcc0c
+0x08120a42 <arith_driver+290>:2679	pop %ebx	esp=0xffffcc10
+0x08120a43 <arith_driver+291>:2679	pop %esi	esp=0xffffcc14
+0x08120a44 <arith_driver+292>:2679	pop %edi	esp=0xffffcc18
+0x08120a45 <arith_driver+293>:2679	pop %ebp	esp=0xffffcc1c
+0x08120a46 <arith_driver+294>:2679	ret	eip=0x8133339

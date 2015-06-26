@@ -1,0 +1,56 @@
+Chang Liu 
+CS 33 
+Lab 4
+
+I began by downloading the .tgz file from CCLE onto my local disk. I then scp'd
+the file over to the Linux server and untarred it by running
+- scp openmplab.tgz classgiu@lnxsrv.seas.ucla.edu:/u/eng/class/classgiu/
+Downloads/
+- tar -xvf openmplab.tgz
+
+I first compiled the executable normally by running 
+- make seq
+- ./seq
+and this yielded an output of
+
+FUNC TIME : 0.600505
+TOTAL TIME : 3.267308
+
+Running with omp then
+- make omp
+- ./omp
+yielded the following results
+
+FUNC TIME : 0.600269
+TOTAL TIME : 2.948577
+
+I then profiled the program by compiling with gprof enabled
+- make seq GPROF=1
+- ./seq
+- gprof seq
+
+I check the flat profile table and see that the most time consuming regions
+are func1 (taking up 58.90% of the runtime) and rand2 (taking 24.05%). 
+
+I then go to the func.c file to modify func1. For the first for loop, I use a
+- #pragma omp parallel for
+OpenMP directive to just parallelize the loop. The second loop is a nested
+loop and so that means that the variables inside the inner loop are
+uninitialized at the beginning and end of the outer loop. With that, I used
+the directive
+- #pragma omp parallel for private(j, index_X, index_Y) 
+to make those inner variables private.
+
+I did used the same first directive for the initial for loops in func2 and 
+func3. 
+
+I then clear the executables / output files and compile with omp again
+- make clean
+- make omp
+- ./omp
+and I get the results
+
+FUNC TIME : 0.145182
+TOTAL TIME : 2.755551
+
+Dividing the original FUNC TIME by this one, I get a 4.14x speedup. 

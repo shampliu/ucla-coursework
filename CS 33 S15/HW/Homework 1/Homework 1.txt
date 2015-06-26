@@ -1,0 +1,60 @@
+Chang Liu
+CS 33 Homework 1
+Discussion 1A
+
+2.66
+
+int leftmost_one(unsigned x) {
+ x |= (x >> 16);
+ x |= (x >> 8);
+ x |= (x >> 4);
+ x |= (x >> 2);
+ x |= (x >> 1);
+ return x -= (x >> 1);
+}
+
+2.71
+
+A. The function correctly grabs the byte at the inputted bytenum and shifts it to the rightmost side. However, it doesn’t perform the sign extension and that is due to the ‘& 0xFF’ operation at the end.  
+
+
+B. The correct implementation would be:
+
+int xbyte(packed_t word, int bytenum) 
+{
+ return ((word << (24 - (bytenum << 3))) >> 24);
+}
+
+
+2.72
+
+A. I tried writing a similar expression in C and when I compile it, it gives a warning that ‘comparison of unsigned expression >= 0 is always true.’ This means that in the if statement, since the sizeof operator returns a size_t value (which is unsigned), the whole expression is treated as unsigned and so it will always satisfy the condition of being positive. 
+
+B. To correct it, I casted the unsigned value from the sizeof op to a signed int.  
+
+void copy_int(int val, void*buf, int maxbytes) { 
+ if (maxbytes - (int) sizeof(val) >= 0) 
+  memcpy(buf, (void *) &val, sizeof(val)); 
+}
+
+2.81
+
+A. Does not always yield 1. If y = INT_MIN, negating y would still give INT_MIN and cause the latter expression to be false. 
+
+B. Always yields 1. Left shifting by 4 is equivalent to multiplying by 16 so
+
+((x+y)<<4) + y-x = 16x+16y + y - x = 17y +15x
+
+C. Always yields 1. The logical ~ operator negates the expression after it and subtracts 1. So the equation can be simplified:
+
+~x + ~y + 1 = (-x - 1) + (-y - 1) + 1 = -x + -y - 1
+
+which is the same as the right side:
+
+~(x+y) = -x + -y - 1
+
+D. Always yields 1. Unsigned values cannot overflow but instead just operate with modular arithmetic, truncating off the top bits if the value is greater than Umax. The right side of the expression will equal the left because casting from signed to unsigned will not change the underlying bit representations. 
+
+
+E. Always yields 1. The arithmetic right shift by 2 will be cancelled out by the logical left shift by 2. If there were 1’s in those last 2 bits that got cut off, it does not matter since the result after the logical shift would be less than the original value, and will still satisfy the inequality. 
+

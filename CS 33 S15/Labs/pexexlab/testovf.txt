@@ -1,0 +1,26 @@
+Compiling the code with 
+
+(1) -O2
+
+The output of the testovf function was 0. In the assembly code, I saw neither
+any mov instructions to store the value of big nor any lea instructions to add
+1 to big. My conclusion then is that without ftrapv or fwrapv semantics, the
+compiler executed undefined behavior from the signed overflow where anything
+could happen. 
+
+(2) -O2 -ftrapv
+
+The output of the testovf function was 1. Here, the instructions move INT_MAX
+into eax and adds one to it by the leal instruction. At this point, edx stores
+the result, -1 because of signed overflow and so when big + 1 (edx) is
+compared to big (eax), it is "less". There was also no trap or abort to
+indicate signed overflow here, most likey due to the O2 optimization we used. 
+
+(3) -O2 -fwrapv
+
+The output of the testovf function was 1. The assembly code was almost
+identical to the code when using ftrapv. This also used leal to add and ended
+up returning 1 due to signed overflow and the compiler interpreting big + 1 to
+be less than big. 
+
+

@@ -1,0 +1,237 @@
+Chang Liu 
+CS 33 Lab 3
+Dis 1A
+
+To get the tarball, I ran:
+- wget http://cs.ucla.edu/classes/spring15/cs33/lab/sthttpd-2.27.0.tar.gz
+
+Un-tarring it after took this command:
+- tar -xvzf sthttpd-2.27.0.tar.gz
+
+1. To get the right path, I edited my ~/.profile by adding in:
+- export PATH=/usr/local/cs/bin:$PATH
+
+2. I then applied the patch by first copying the diff file into a .txt file. I
+scp'd that over to the Linux server and did:
+- patch -p1 < [path_to_patch_file]
+
+After this, I entered the shttpd-2.27.0 directory and generated the Makefiles
+by running:
+- ./configure \
+   CFLAGS='-m32' \
+      LDFLAGS="-Xlinker --rpath=/usr/local/cs/gcc-$(gcc -dumpversion)/lib"
+
+To build each executable I did:
+
+(SP) 
+- make clean
+- make CFLAGS='-m32 -g3 -O2 -fno-inline -fstack-protector-strong'
+- mv src/thttpd src/thttpd­sp
+
+(AS)
+- make clean
+- make CFLAGS='-m32 -g3 -O2 -fno-inline -fsanitize=address' 
+- mv src/thttpd src/thttpd-as
+
+(NO)
+- make clean
+- make CFLAGS='-m32 -g3 -O2 -fno-inline'
+- mv src/thttpd src/thttp-no
+
+3. I then checked what ports I should be running my daemons on:
+(SP) 12876
+(AS) 12877
+(NO) 12878
+
+I started by running the SP server by doing this:
+- ./src/thttpd-sp -p 12876
+
+4. To test it, I did:
+- ps aux | grep classgiu
+
+The output showed that my server was running on the right port. I then created
+a testfile.txt inside the sthttp-d-2.27.0 directory and curled it to ensure 
+that it worked:
+- curl http://localhost:12876/testfile.txt
+
+I then kill the server by running:
+- kill [PID of the server instance] 
+and restart it with debugging enabled by doing:
+- ./src/thttpd-sp -p 12876
+
+I open another instance of terminal, making sure it is connected to the same
+linux server and run:
+- ps -u classgiu
+to make sure it's still running. I also curl the testfile again to make extra
+sure that it works. 
+
+5. After, I made a config file called config.txt and in it I put:
+- pidfile=[PATH_TO_config.txt]
+I made the filename longer than 100 characters so I could exceed the buffer
+size of 100 created by the patch. 
+
+Next, I ran the server under GDB by invoking:
+- gdb --args src/thttpd-sp -p 12876 -D -C <PATH_TO_config.txt>
+
+I get a message that the program received a signal SIGSEGV, a Segmentation
+fault and that stack smashing was detected. 
+
+Program received signal SIGSEGV, Segmentation fault.
+uw_frame_state_for (context=context@entry=0xffffb998, fs=fs@entry=0xffffba18)
+    at ../../../../gcc-4.9.2/libgcc/unwind-dw2.c:1253
+	1253	../../../../gcc-4.9.2/libgcc/unwind-dw2.c: No such file or
+	directory.
+
+From here I do a backtrace by
+running:
+- bt
+
+#0  uw_frame_state_for (context=context@entry=0xffffb998,
+fs=fs@entry=0xffffba18) at ../../../../gcc-4.9.2/libgcc/unwind-dw2.c:1253
+#1  0x00158b20 in _Unwind_Backtrace (trace=0xa77670 <backtrace_helper>,
+trace_argument=0xffffbaf4) at ../../../../gcc-4.9.2/libgcc/unwind.inc:290
+#2  0x00a77865 in backtrace () from /lib/libc.so.6
+#3  0x009e874b in __libc_message () from /lib/libc.so.6
+#4  0x00a7adad in __fortify_fail () from /lib/libc.so.6
+#5  0x00a7ad5a in __stack_chk_fail () from /lib/libc.so.6
+#6  0x0804b69f in read_config (filename=<optimized out>) at thttpd.c:1190
+#7  0x67676767 in ?? ()
+
+In the backtrace, I see that the last address it is trying to access is
+0x6767676767 and that causes errors because the compiler cannot locate a
+function there. In the config.txt file, I put a very long string that ended in
+lowercase g's. The ASCII number for 'g' is 67 so this makes sense. 
+
+Before the incorrect address, there's a call to the read_config function at
+line 1190. I then check it out by doing:
+- b read_config
+- c
+- b 1190
+
+When I disassemble the code, I get: 
+
+0x0804b607 <read_config+1287>:	65 33 05 14 00 00 00	xor    %gs:0x14,%eax
+0x0804b60e <read_config+1294>:	0f 85 86 00 00 00	jne    0x804b69a <read_config+1434>
+
+Because we had stack protection enabled, gcc put canaries in the program. The
+xor instruction checks the value of the canary and jumps to another function
+if it's not equal, meaning there was a buffer overflow and the canary value
+was changed. From here, the __stack_chk_fail function is called and then leads
+to a segmentation fault and an alert that stack smashing was detected. 
+
+6. I ran thttpd-as with the same config.txt file I used for thttpd-sp and
+received a seg fault again. The server crashes and says:
+
+Program received signal SIGSEGV, Segmentation fault.
+0x67676767 in ?? ()
+
+The segfaulted address contains a lot of 67s because I used a lot of g's in the
+config file to overflow, and the hexadecimal ASCII code of g is 0x67.
+
+The call that caused the crash in read_config was:
+0x0804b391 <read_config+977>:	83 ec 0c	sub    $0xc,%esp
+0x0804b394 <read_config+980>:	56	push   %esi
+=> 0x0804b395 <read_config+981>:	e8 c2 e6 ff ff	call   
+0x8049a5c <atoi@plt>
+0x0804b39a <read_config+986>:	83 c4 10	add    $0x10,%esp
+		 
+where it calls atoi to parse and store the long string of g's into the port. 
+However the string is too long and the g's overflow to other registers.
+
+7. Running the program under thttpd-no yields a Segmentation fault again. 
+
+Program received signal SIGSEGV, Segmentation fault.
+0x67676767 in ?? ()
+
+I then break the program at the read_config function. As I step through, I see
+that the call to the fget function is the one that causes the seg fault:
+
+0x0804aff7 <read_config+55>:	e8 00 e8 ff ff	call   0x80497fc <fgets@plt>
+
+This makes sense because there is no stack protection enabled so the fgets
+function overwrites the buffer of 100 characters that we allocated since fgets
+has a parameter of 1000 for its read size as per line 1015 of the code:
+
+1015	    while ( fgets( line, 1000, fp ) != (char*) 0 )
+
+8. To compile each of the assembly files I ran:
+
+(SP) gcc -I .. -I . -m32 -S -O2 -fno-inline thttpd.c -o thttpd-sp.s
+(AS) gcc -I .. -I . -m32 -S -O2 -fno-inline -fsanitize=address thttpd.c -o
+thttpd-as.s 
+(NO) gcc -I .. -I . -m32 -S -O2 -fno-inline thttpd.c -o thttpd-no.s
+
+I then opened each file in Vim to compare the implementation of the
+handle_read function. 
+
+I first noticed that the handle_read function is identical in both thttpd-sp.s
+and thttpd-no.s. To my knowledge, compiling with stack protection enabled
+only protects some functions. That means that handle_read is one of the
+exceptions, which is why the assembly code for it in thttpd-sp is identical to
+the one found in thttpd-no. 
+
+As for thttpd-as.s, the implementation does more checking for bounds. It
+allocates more space on the stack as well by subtracting $44 from esp rather
+than $12. Here is an instruction where it checks the bounds 
+
+movzbl  536870912(%edx), %edx
+testb   %dl, %dl
+
+9. To begin, I downloaded the hex2raw executable file from website and scp'd 
+it over to the Linux server. Then I ran:
+- chmod 777 
+to get permission to use the file. 
+
+Next, I wrote a simple C program that invoked the unistd.h library's unlink
+function to remove a file called "target.txt"
+
+#include <unistd.h>
+int main()
+{
+ unlink("target.txt");
+}
+
+When I compile this, the file is removed successfully. 
+
+Next, I made sure I had two shells open that were ssh'd to the same lnxsrv.
+This way, the memory layouts would be the same. 
+
+I compiled the C program and ran it under gdb on lnxsrv02. I then did:
+- break unlink 
+to find the address of the unlink function. 
+- Breakpoint 1 at 0x292d20
+
+I then went back to my config file and found which point overrode the return
+address of thttpd. From here, I put the address of unlink into a txt file,
+backwards (to account for endianness) and with each hex character separated by
+whitespace to be fed into the hex2raw function. 
+- 20 2d 29 00
+The last 00 was to pad the beginning to make it a valid address. I then ran:
+- cat hex.txt | ./hex2raw >> config.cfg 
+to append the raw text to the config file. I then went into the config file
+and made sure what I appended began at the point which would override the
+return address. Then, when I ran the thttpd-no under gdb with the config file
+and a breakpoint at unlink, the function successfully hits the breakpoint. 
+
+Next, I ran disassemble on the unlink function to see the assembly code and
+notice that the file is deleted at the instructioN:
+- call *%gs:0x10
+I notice that the function dereferences the address stored in ebx and deletes
+the file pointed to by it. 
+
+I then go back into the config.cfg file and change the dummy comments to see
+which section would overwrite the ebx register, if any. The posts on Piazza
+also recommended that I put the "./target.txt\0" string at the beginning of
+the comment section. I did just this, and entered the null byte in Vim by
+doing:
+- CTRL-V + 10
+
+Next, I had to find the address of the "." at the beginnign of
+"./target.txt\0". I did this through guess and check by doing:
+- (gdb) p/x $esp - <arbitrary number>
+- (gdb) x/s <address from previous command>
+
+I found it at esp - 119 which was the address 0xffffc169. I then converted
+this to raw using the method I used for getting the address of unlink and
+inserted the raw code at the area that would overwrite the %ebx register. When
+I ran the program now, the target.txt file was successfully deleted. 

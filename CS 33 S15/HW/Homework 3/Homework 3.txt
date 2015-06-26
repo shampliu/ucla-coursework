@@ -1,0 +1,35 @@
+Chang Liu
+CS 33 HW 3
+Dis 1A
+
+3.64
+
+A. 
+
+8(%ebp) holds the address of the arg s1 (&s1)
+12(%ebp) holds the int a in str1 (str.a) 
+16(%ebp) holds the int *p in the struct (str.p)
+
+B. 16 bytes are used to hold the attributes of each struct (s1.a, s1.p, s2.sum, s2.diff) and the last 4 bytes are used to store &s2 as a return address. 
+
+C. Passing structures as arguments to a function will push the attributes of the struct onto the stack in reverse order. 
+
+D. The caller will reserve space for the returned structure along with its attributes. 
+
+
+3.67
+
+A. 
+
+e1.p : 0 bytes
+e1.y : 4 bytes
+e2.x : 0 bytes
+e2.next : 4 bytes
+
+B. The structure would require 8 bytes.
+
+C. 
+
+void proc (union else *up) {
+ up->e1.y = *(up->e2.next->e1.p) - up->e2.x; 
+}

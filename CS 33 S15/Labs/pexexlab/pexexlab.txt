@@ -1,0 +1,54 @@
+Chang Liu
+CS 33 Lab 2
+Dis 1A
+
+=========================
+Gather instruction traces
+=========================
+
+irst I ran the command:
+ - emacs -batch -eval '(print (* 37 -26))'
+
+I then put that command through gdb with arguments by running:
+ - gdb --args ~eggert/bin32/bin/emacs-24.5 -batch -eval '(print (* 37 -26))'
+
+From this, I got an error saying the source code could not be located. To fix
+this, I had to run within gdb:
+ - dir ~eggert/src/emacs-24.5/src
+to set the correct directory to find the source code. 
+
+I then ran the program through gdb by entering "r" and it printed out the
+correct result. Next I turned on the disassemble-next-line option of gdb and 
+set a breakpoint at the Ftimes function by entering:
+- set disassemble-next-line on
+- b Ftimes
+
+When I run this now, it stops at Ftimes and I can step through each line by 
+doing:
+- si
+
+The arrow in the disassembly points to the next instruction to be executed. To
+get the current information about the registers for trace1, I run:
+- info registers
+
+To get trace2 info, I changed the directory to the 64-bit one by doing:
+- gdb --args ~eggert/bin64/bin/emacs-24.5 -batch -eval '(print (* 37 -26))'
+
+I then did the same procedures for trace1. And for the last trace, I ran:
+- gdb --args ~eggert/bin32/bin/emacs-24.5 -batch -eval '(print (*
+  most-positive-fixnum most-positive-fixnum))'
+
+=================================
+Examine integer overflow handling
+=================================
+To compile this code, I copied the code from the spec and also included 
+<stdio.h> to use the printf function. I then put a main function at the 
+bottom to print the value that the testovf function returned. 
+
+==============
+More questions
+==============
+To answer these questions, I looked inside the source code at
+~eggert/src/emacs-24.5/src specifically in the files data.c and lisp.h. I also
+looked at intprops.h in ~eggert/src/emacs-24.5/lib
+

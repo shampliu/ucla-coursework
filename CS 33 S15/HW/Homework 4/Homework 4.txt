@@ -1,0 +1,47 @@
+Chang Liu
+CS 33 HW 4
+Dis 1A
+
+2.88
+
+A. Always yields 1. Converting an int to a float and a double (previously casted from an int) to a float will result in rounding. No overflow will occur since floats can store a larger range than an int.
+
+B. No. If x = INT_MIN and y = 1, the right side of the expression will underflow and then be casted to a double while the left side won’t underflow. 
+
+C. Yes. Since the random() function creates 32-bit ints which are then casted to doubles, adding them together no matter how large will not be a problem since doubles can store 2^53.
+
+D. No. This is not associative because if we have large 32-bit numbers multiplying each other, then the result can well exceed 2^53 and cause a loss in precision.
+
+E. Always yields 1. 
+
+2.89
+
+float fpwr2(int x) 
+{
+ /* Result exponent and fraction */
+ unsigned exp, frac;
+ unsigned u; 
+
+ if (x < -149) {
+  /* Too small. Return 0.0 */
+  exp = 0;
+  frac = 0;
+ } else if (x < -126)
+  /* Denormalized result */
+  exp = 0;
+  frac = 1 << (x + 149);
+ } else if (x < 128)
+  /* Normalized result */
+  exp = x + 127; 
+  frac = 0; 
+ } else {
+  /* Too big. Return +infinity */
+  exp = 255;
+  frac = 0;
+ }
+
+ /* Pack exp and frac into 32 bits */
+ u = exp << 23 | frac;
+ /* Return as float */
+ return u2f(u); 
+}

@@ -1,0 +1,30 @@
+1. Multiplying the highest possible positive number by itself caused a signed
+overflow in trace3. 
+
+2. If I just count instructions, the most efficient traces would be trace 1
+and trace3, both having 101 total instructions. Both were run on similar
+environments (32-bit) with similar instructions (2 operands multiplying) so
+this makes sence.
+
+3. The least efficient trace was trace1, which had 117 instructions. In the
+assembly code, I noticed more div and mul instructions, which are the slowest
+commands. This trace also involved using a 64-bit system which takes longer to
+store addresses and therefore is less efficient. 
+
+4. This number is the maximum value a Lisp int can hold, which can be computed
+as 2^29 - 1. Lisp data types reserve some bits to hold tags, thereby
+restricting the maximum address size of an int in this case to 2^29 - 1
+instead of 2^31 - 1. 
+
+5. Compiling the code with -ftrapv would not have changed anything. The
+program would still run fine but that would be a problem since it would not
+trap in the case of integer overflow. Using gcc with -ftrapv and -O2
+optimization simultaneously causes -ftrapv to not behave like it should.
+Optimization makes the compiler assume that overflow cannot happen.
+
+6. Compiling the code with -fwrapv would not have any problems unless the
+person running the code does not expect it to wrap. 
+
+7.
+
+8. 
