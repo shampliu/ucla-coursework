@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Book:</strong>
+  <%= @on_shelf.book_id %>
+</p>
+
+<p>
+  <strong>Shelf:</strong>
+  <%= @on_shelf.shelf_id %>
+</p>
+
+<%= link_to 'Edit', edit_on_shelf_path(@on_shelf) %> |
+<%= link_to 'Back', on_shelves_path %>

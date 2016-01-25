@@ -1,0 +1,4 @@
+* did not seed, or may have aborted early
+* app server on master at388dda27be5f3eed9391b30fcb4be826a4609e6b
+* tsung on c1.medium
+

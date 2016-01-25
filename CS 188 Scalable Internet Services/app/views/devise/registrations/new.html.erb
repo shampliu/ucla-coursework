@@ -1,0 +1,55 @@
+<%= stylesheet_link_tag "devise" %>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+
+<div class="ui center aligned grid">
+  <div class="column">
+    <h2 class="ui image header">
+      <div class="content">
+        Sign-up for GreatReads
+      </div>
+    </h2>
+    <form class="ui large form">
+      <div class="ui stacked segment">
+        <div class="field">
+         <div class="two fields">
+          <div class="field">
+            <div class="ui input">
+              <%= f.text_field :first, autofocus: true, :placeholder => "First Name" %>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui input">
+              <%= f.text_field :last, :placeholder => "Last Name" %>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+      <div class="field">
+        <div class="ui left icon input">
+          <i class="user icon"></i>
+          <%= f.email_field :email, :placeholder => "E-mail address" %>
+        </div>
+      </div>
+      <div class="field">
+
+        <div class="ui left icon input">
+          <i class="lock icon"></i> 
+          <%= f.password_field :password, autocomplete: "off", :placeholder => "Password (8 characters minimum)" %>
+        </div>
+      </div>
+      <%= f.submit "Sign up", class: "ui fluid large submit button" %>
+    </div>
+  </form>
+
+
+  <% end %>
+  <div class="ui message">
+    <%= render "devise/shared/links" %>
+    <%= devise_error_messages! %>
+  </div>
+</div>
+</div>

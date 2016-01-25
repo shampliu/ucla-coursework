@@ -1,0 +1,30 @@
+<%= render :partial => "layouts/navbar" %>
+
+<div class="ui text container">
+  
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Back', users_path %>
+
+  <%= render "profile", user: @user %>
+  <p>
+    
+    <% if current_user %>
+    <%= form_for(Shelf.new) do |f| %>
+    <div class="field">
+      <%= f.hidden_field :shelf_owner, :value => current_user.id %>
+      <%= f.text_field :shelf_name %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+    <% end %>
+    <% end %>
+    <br>
+    Shelves:
+    <% @shelves.each do |shelf| %>
+    <br>
+    Shelf:
+    <%= link_to shelf.shelf_name, shelf %>
+    <%end%>
+  </p>
+</div>

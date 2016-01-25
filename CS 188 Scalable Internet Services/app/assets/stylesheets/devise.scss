@@ -1,0 +1,41 @@
+@import "settings";
+
+.content {
+	color: $color1;
+}
+
+div.ui.stacked.segment, .ui.message {
+	a {
+		color: $color4;
+	}
+	background-color: $color3;
+
+	input.ui.fluid.large.submit.button {
+		background-color: $color1;
+	}
+}
+
+body {
+  background: 
+  	linear-gradient(to bottom right, rgba(41, 41, 41, 0.7) , rgba(91, 120, 118, 0.7)),
+  	url(https://images.unsplash.com/photo-1445445290350-18a3b86e0b5a?fit=crop&fm=jpg&h=700&ixlib=rb-0.3.5&q=80&w=1250);
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; 
+}
+body > .grid {
+  height: 100%;
+}
+#new_user {
+  padding-top: 150px;
+}
+.image {
+  margin-top: -100px;
+}
+.column {
+  max-width: 450px;
+}
+.ui .input {
+  width: 100%;
+}

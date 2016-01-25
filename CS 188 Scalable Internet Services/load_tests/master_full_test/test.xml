@@ -1,0 +1,160 @@
+<?xml version="1.0"?><tsung loglevel="notice" version="1.0">
+
+  <clients>
+    <client host="localhost" use_controller_vm="true" maxusers="15000"/>
+  </clients>
+
+  <servers>
+    <server host="ec2-52-34-26-160.us-west-2.compute.amazonaws.com" port="80" type="tcp"/>
+  </servers>
+
+
+  <load>
+    <arrivalphase phase="1" duration="30" unit="second">
+      <users arrivalrate="1" unit="second"/>
+    </arrivalphase>
+    <arrivalphase phase="2" duration="30" unit="second">
+      <users arrivalrate="2" unit="second"/>
+    </arrivalphase>
+    <arrivalphase phase="3" duration="30" unit="second">
+      <users arrivalrate="4" unit="second"/>
+    </arrivalphase>
+   <arrivalphase phase="4" duration="30" unit="second">
+     <users arrivalrate="8" unit="second"/>
+   </arrivalphase>
+   <arrivalphase phase="5" duration="30" unit="second">
+     <users arrivalrate="16" unit="second"/>
+   </arrivalphase>
+   <arrivalphase phase="6" duration="30" unit="second">
+     <users arrivalrate="32" unit="second"/>
+   </arrivalphase>
+   <arrivalphase phase="7" duration="30" unit="second">
+     <users arrivalrate="64" unit="second"/>
+   </arrivalphase>
+   <arrivalphase phase="8" duration="30" unit="second">
+     <users arrivalrate="128" unit="second"/>
+   </arrivalphase>
+   <arrivalphase phase="9" duration="30" unit="second">
+     <users arrivalrate="256" unit="second"/>
+   </arrivalphase>
+   <arrivalphase phase="10" duration="30" unit="second">
+     <users arrivalrate="512" unit="second"/>
+   </arrivalphase>
+  </load>
+
+  <options>
+    <option name="global_ack_timeout" value="2000"/>
+
+    <option type="ts_http" name="user_agent">
+      <user_agent probability="100">Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox/1.0.4</user_agent>
+    </option>
+  </options>
+
+  <sessions>
+    <session name="http-example" probability="100" type="ts_http">
+
+      <request>
+        <http url="/" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request>
+          <dyn_variable name="authenticity_token"/> 
+          <http url="/users/sign_up" version="1.1" method="GET"/>
+      </request>
+
+	<setdynvars sourcetype="random_number" start="1000" end="9999999">
+        <var name="first"/>
+      </setdynvars>
+      <setdynvars sourcetype="random_number" start="1000" end="9999999">
+        <var name="last"/>
+      </setdynvars>
+      <setdynvars sourcetype="random_number" start="1" end="3000">
+        <var name="followee"/>
+      </setdynvars>
+
+      <request subst="true">
+          <dyn_variable name="response" re="(.*)"/>
+	  <dyn_variable name="root_url" re="[Ll]ocation: (http://.*)\?"/>
+	  <dyn_variable name="user_id" re="[Ll]ocation: http://.*?user_id=(.*)\r"/>
+          <http url="/users" method="POST" version="1.1" contents="utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;user%5Bemail%5D=user%%_first%%%40%%_last%%.com&amp;user%5Bpassword%5D=password%%_first%%%%_last%%&amp;commit=Sign+up"/>
+      </request>
+	
+      <thinktime value="2" random="true"/>
+
+      <request subst="true">
+	<dyn_variable name="following_id" re="[Ll]ocation: http://.*/(.*)\r"/>
+        <http url="/followings" method="POST" contents="following%5bperson_id%5D=%%_followee%%&amp;following%5Bfollower_id=%%_user_id%%"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request subst="true">
+	<dyn_variable name="book_id" re="[Ll]ocation: http://.*/(.*)\r"/>
+        <http url="/books" method="POST" contents="book%5btitle%5D=book_for_user_%%_first%%%%_last%%"/>
+      </request>
+
+      <request>
+        <http url="/books" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request subst="true">
+	<dyn_variable name="shelf_id" re="[Ll]ocation: http://.*/(.*)\r"/>
+        <http url="/shelves" method="POST" contents="shelf%5Bshelf_name%5D=shelf_for_user_%%_first%%%%_last%%&amp;shelf%5Bshelf_owner%5D=%%_user_id%%"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request subst="true">
+	<dyn_variable name="on_shelf_id" re="[Ll]ocation: http://.*/(.*)\r"/>
+        <http url="/on_shelves" method="POST" contents="on_shelf%5Bshelf_id%5D=%%_shelf_id%%&amp;on_shelf%5Bbook_id%5D=%%_book_id%%"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request subst="true">
+        <http url="/comments" method="POST" contents="comment%5Bauthor_id%5D=%%_user_id%%&amp;comment%5Bbook_id%5D=%%_book_id%%&amp;comment%5Bbody=comment_for_user_%%_first%%%%_last%%"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request>
+        <http url="/users" version="1.1" method="GET"/>
+      </request>
+
+      <request>
+        <http url="/" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request subst="true">
+        <http url="%%_root_url%%on_shelves/%%_on_shelf_id%%" method="DELETE">
+        </http>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request subst="true">
+        <http url="%%_root_url%%shelves/%%_shelf_id%%" method="DELETE">
+        </http>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request subst="true">
+        <http url="%%_root_url%%users/%%_user_id%%" method="DELETE">
+        </http>
+      </request>
+
+      <setdynvars sourcetype="eval" code="fun( {Pid, DynVars} ) ->           io:format([126, $p, 126, $n, 126, $n], [DynVars]),           ok end.">
+          <var name="dump"/>
+      </setdynvars>
+
+
+    </session>
+  </sessions>
+</tsung>

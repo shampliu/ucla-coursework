@@ -1,0 +1,13 @@
+<%= render :partial => "layouts/navbar", :locals => { :active => "home" } %>
+
+<% if current_user %>
+<div class="ui text container">
+	<h3 class="ui dividing header">Feed</h3>
+	<div class="ui feed">
+		<%= render_activities @activities %>
+	</div>
+
+</div>
+<% else %>
+<%= render 'signedout' %>
+<% end %>

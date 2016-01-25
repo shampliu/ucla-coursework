@@ -1,0 +1,89 @@
+<div class="ui vertical inverted sidebar menu">
+  <a class="active item">Home</a>
+  <a class="item">About</a>
+</div>
+
+<div class="pusher">
+  <div id="banner" class="ui vertical masthead center aligned segment">
+
+    <div class="ui text container" style="padding-top: 50px;">
+      <h1 class="ui header" style="color: beige;">
+        <i class="fa fa-book"></i>
+      </h1>
+      <h2 style="color: beige;">GoodReads wasn't enough.</h2>
+    </div>
+  </div>
+
+
+  <div class="ui vertical stripe segment">
+    <div class="ui middle aligned stackable grid container">
+      <div class="row">
+        <div class="eight wide column">
+          <h3 class="ui header">Header 1</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <h3 class="ui header">Header Two</h3>
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+        <div class="six wide right floated column">
+          <img src="http://placehold.it/200x100" class="ui large bordered rounded image">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="ui inverted vertical footer segment" id="footer">
+    <div class="ui container">
+      <div class="ui stackable inverted divided equal height stackable grid">
+        <div class="three wide column">
+          <h4 class="ui inverted header">About</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">Link 1</a>
+            <a href="#" class="item">Link 2</a>
+          </div>
+        </div>
+        <div class="three wide column">
+          <h4 class="ui inverted header">Services</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">Link 1</a>
+            <a href="#" class="item">Link 2</a>
+          </div>
+        </div>
+        <div class="seven wide column">
+          <h4 class="ui inverted header">Footer Header</h4>
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script>
+$(document)
+  .ready(function() {
+    if ($(window).width() > 700) {
+      $(window).on({
+        scroll: function() {
+          var y = $(window).scrollTop();
+          var h = 75 - (y / 500) * 25; 
+          $('#menu').css({
+            height: h,
+          });
+          $('#title > a > img').css({
+            height: h,
+          });
+        }
+      });
+
+    }
+
+    $('.ui.sidebar')
+      .sidebar('attach events', '.toc.item')
+    ;
+  })
+;
+</script>
+

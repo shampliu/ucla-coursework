@@ -1,0 +1,79 @@
+subset 
+- For this function, I chose to split it into two functions, having a helper 
+function called "check" to loop through the second set passed in as an arg. It
+basically works like a nested for loop, the outer subset function iterating 
+through the first set and the check function through the second. I could've 
+done everything in one function but I chose two for the sake of readability.
+
+equal_sets
+- The method I used was the first solution to come to mind and also a very 
+simple one to understand. In terms of efficiency, I believe you need to 
+always check both lists against one another in case one of them is larger than
+the other. 
+
+set_union
+- My solution involves first checking every element of one set to see if it is
+already contained in the second set and concatenating it if it isn't. The 
+easier and shorter-line solution would be to just concatenate the whole first 
+list to the second since in set theory, duplicates would not matter. I chose 
+my method so I could have a cleaner and less redundant resulting set. 
+
+set_intersection
+- To implement this I iterated through the set and called subset on the current
+item and the second set, appending the item only if subset returned true. I 
+could change the function to make it more concise by only appending the item to
+the result if it wasn't already in the result; that way I could a resulting set
+of only unique values but this wouldn't change anything so I decided not to. 
+
+set_diff
+- For this function, I did exactly the opposite of set_intersection. Similarly,
+I could have done the same and only append unique values to the result but 
+again, that wouldn't change any test results.
+
+computed_fixed_point
+- For this, I made sure to pass in an eq variable for the comparison function 
+rather than the predicate "=". At first I was stuck on how to stop the function
+but then read the part of the spec that said it could have undefined behavior
+in the case of an infinite loop. Given that, I did the simplest recursion 
+function for this problem. In the cases of infinite loops, this function would
+not stop. 
+
+computed_periodic_point
+- I approached this in a similar way to the fixed point function. Instead of 
+using the comparison function to compare just one call of (f x) to x, I 
+compared p calls of (f x) to x. This was achieved by adding a helper loop 
+function. I originally tried doing this all in one function but I had trouble
+keeping the original value of p throughout the recursive calls.
+
+filter_blind_alleys
+- For this, I started with the most basic helper function, to check a symbol. I
+knew that I wanted to construct a list of the "good" rules so this function 
+would effectively check a symbol against that list to verify it isn't a blind
+alley. To do so, I used the subset function.
+- Next, since the RHS of a rule is a list and therefore can have many symbols, 
+I made a function called check_rhs to iterate through each item and check it
+against my whitelist. 
+- Next, the build_list_once and the build_full_list functions work similar to 
+the Bellman-Ford algorithm. build_list_once iterates through the list of rules 
+once, updating the whitelist with the new symbols that aren't blind alleys. So
+the first iteration would result in a whitelist of symbols that only end in
+terminal symbol(s). The second iteration would search the RHS for both the 
+terminal symbols and these newly added symbols. This would go on for a max of 
+n times where n is the length of the rules list. 
+- However, instead of getting the length of the rules list and terminating 
+after that many iterations, I decided to use computed_fixed_point to 
+continuously call the build_list_once function and terminating when the 
+resulting whitelist is equal to the previous one passed in, meaning that no new
+symbols were added. 
+- This was the big issue I had because for some reason when I tried using my 
+prewritten computed_fixed_point function, I was getting a type mismatch error. 
+For that reason, I decided to write my own variation of the fixed point 
+function, called build_full_list, and I used my equal_sets function as the 
+comparison predicate.
+- The filter_rules function then constructs the list without blind_alley rules
+by iterating through the rules and checking the RHS if it is a subset of the
+whitelist generated from build_full_list.
+- Finally, the filter_blind_alleys is a wrapper for all these functions, only
+requiring one argument to be passed in, which is the grammar.  
+
+filter_blind_alleys

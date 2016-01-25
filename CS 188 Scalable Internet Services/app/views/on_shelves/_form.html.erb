@@ -1,0 +1,25 @@
+<%= form_for(@on_shelf) do |f| %>
+  <% if @on_shelf.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@on_shelf.errors.count, "error") %> prohibited this on_shelf from being saved:</h2>
+
+      <ul>
+      <% @on_shelf.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :book_id %><br>
+    <%= f.number_field :book_id %>
+  </div>
+  <div class="field">
+    <%= f.label :shelf_id %><br>
+    <%= f.number_field :shelf_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

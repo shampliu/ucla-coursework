@@ -1,0 +1,15 @@
+<div class="event">
+	<div class="label">
+		<img src="http://icons.iconarchive.com/icons/hopstarter/face-avatars/256/Male-Face-J3-icon.png">
+	</div>
+	<div class="content">
+		<div class="summary">
+			<a class="user">
+				<%= activity.owner ? activity.owner.first : 'Guest' %>
+			</a> added the book, <em><%= a.trackable.title %></em>.
+			<div class="date">
+				<%= a.created_at.strftime('%H:%M %B %-d %Y') %> 
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,11 @@
+/log/*
+!/log/.keep
+/tmp
+*.sqlite3
+.idea/
+*.swp
+public/system/
+setup.sh
+/app/assets/images/logo.ai
+GreatReads.pem
+*.pdf

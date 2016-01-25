@@ -1,0 +1,121 @@
+<%= render :partial => "layouts/navbar", :locals => { :active => "books" } %>
+
+<!-- <p id="notice"><%= notice %></p> -->
+
+<div class="ui text container" style="margin-top: 50px;">
+
+	<h1><a style="background: #F2E6B6; padding: 5px 10px; color: #8F9E8B; font-weight: bold; font-size: 0.8em;" href = "<%= books_path %>"><i style="color: #8F9E8B;" class="fa fa-chevron-left"></i>&nbsp;BACK</a></h1>
+	<h1 style="font-size: 2.8em; color: #F2E6B6"> <%= @book.title %></h1>
+	<div style="height: 350px; width: 100%; background-size: cover; background: url('<%= @book.avatar.url %>');"></div>
+	
+
+	<h3 class="ui dividing header">Read Story</h3>
+	<p id="story" style="font-size: 1.2em; padding: 10px; font-weight: normal; background: #F2E6B6; color: #433F32;">
+		<%= @book.story %>
+	</p>
+
+
+
+	<h3 class="ui dividing header">My Quotes</h3>
+	<% current_user.quotes.each do |quote| %>
+	<%= quote.body %>
+	<br>
+	<% end %>
+
+	<h3 class="ui dividing header">My Shelves</h3>
+	<% @shelves.each do |shelf| %>
+	<%= shelf.shelf_name %>
+
+	<%= link_to "Add  to shelf", on_shelves_path(:book_id => @book.id, :shelf_id => shelf.id), :method => :post %>
+	<br>
+	<% end %>
+
+	<h3 class="ui dividing header">Other People's Quotes</h3>
+
+	
+
+	<div class="ui comments">
+		<h3 class="ui dividing header">Comments</h3>
+		<% @comments.each do |comment| %>
+		<div class="comment">
+			<a class="avatar">
+				<img src="/images/avatar/small/matt.jpg">
+			</a>
+			<div class="content">
+				<a class="author"><%= User.find(comment.author_id).email %></a>
+				<div class="metadata">
+					<span class="date"><%= comment.updated_at %></span>
+				</div>
+				<div class="text">
+					<%= comment.body %>
+				</div>
+			</div>
+		</div>
+		<%end%>
+
+
+		<%= form_for(@new_comment, :html => {:class => "ui reply form"}) do |f| %>
+		<div class="field">
+			<%= f.hidden_field :book_id, :value => @new_comment.book_id %>
+			<%= f.hidden_field :author_id, :value => current_user.id %>
+			<%= f.text_area :body %>
+		</div>
+
+		<%= f.submit "Add Comment", class: "ui fluid large submit button" %>
+
+		<% end %>
+
+	</div>
+
+	<br>
+	<br>
+
+</div>
+
+
+
+
+<div id="quotes" style="position: fixed; right: 15px; bottom: 15px; width: 200px; height: 120px; padding: 15px; background: white;">	
+	<%= form_for @new_quote, :html => {:class => "ui form"} do |f| %>
+	<div class="field">
+		<%= f.hidden_field :book_id, :value => @new_comment.book_id %>
+		<%= f.hidden_field :user_id, :value => current_user.id %>
+		<%= f.text_field :body %>
+	</div>
+	<div class="actions">
+		<%= f.submit "Add Quote", class: "ui submit button" %>
+	</div>
+	<% end %>
+	
+</div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.5/components/modal.min.js"></script>
+<script>
+	if(!window.Medium){
+		Medium = {};
+	}
+
+	Medium.Selector = {};
+	Medium.Selector.getSelected = function(){
+		var t = '';
+		if(window.getSelection){
+			t = window.getSelection();
+		}
+		return t;
+	}
+	Medium.Selector.mouseup = function(){
+		var st = Medium.Selector.getSelected();
+
+		if(st!=''){
+			$('#quote_body').val(st);
+		}
+	}
+
+	
+
+	$(document).ready(function(){
+		$('#current_quote').value = "asdfasdf";
+		$(document).bind("mouseup", Medium.Selector.mouseup);
+	});
+</script>

@@ -1,0 +1,4458 @@
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+    ts_config_server:(5:<0.39.0>) Config server started, logdir is "/home/ec2-user/.tsung/log/20151201-0217"
+ 
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+              ts_mon:(5:<0.38.0>) starting monitor, global 
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+           ts_config:(5:<0.39.0>) Reading config file: test.xml
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+      ts_config_http:(4:<0.39.0>) Get user agent: 100 "Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox/1.0.4" 
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+           ts_config:(5:<0.39.0>) Session name for id 1 is "http-example"
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+    ts_config_server:(4:<0.39.0>) SYSINFO:Tsung version: 1.5.0
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+    ts_config_server:(4:<0.39.0>) SYSINFO:Erlang version: Erlang R16B03-1 (erts-5.10.4) [source] [64-bit] [smp:2:2] [async-threads:16] [hipe] [kernel-poll:true]
+
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+    ts_config_server:(4:<0.39.0>) SYSINFO:System architecture x86_64-unknown-linux-gnu
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+    ts_config_server:(4:<0.39.0>) SYSINFO:Current path: /home/ec2-user/opt/tsung-1.5.0/lib/erlang/lib/tsung-1.5.0/ebin/tsung.beam
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+           ts_os_mon:(5:<0.36.0>) os_mon disabled
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+              ts_mon:(5:<0.40.0>) Activate clients with text backend
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+              ts_mon:(5:<0.40.0>) Starting tsung clients on hosts: [localhost]
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+    ts_config_server:(5:<0.39.0>) Start a launcher on the controller beam localhost
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+  ts_launcher_static:(5:<0.73.0>) Launch msg receive ("localhost")
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+         ts_launcher:(5:<0.74.0>) Launch msg receive ("localhost")
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+    ts_config_server:(5:<0.39.0>) All remote beams started, syncing 
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 1 for client "localhost" (last ? true): will start 30 users
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 2 for client "localhost" (last ? true): will start 60 users
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 3 for client "localhost" (last ? true): will start 120 users
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 4 for client "localhost" (last ? true): will start 240 users
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 5 for client "localhost" (last ? true): will start 480 users
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 6 for client "localhost" (last ? true): will start 960 users
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 7 for client "localhost" (last ? true): will start 1920 users
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 8 for client "localhost" (last ? true): will start 3840 users
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 9 for client "localhost" (last ? true): will start 7680 users
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 10 for client "localhost" (last ? true): will start 15360 users
+
+=INFO REPORT==== 1-Dec-2015::02:17:48 ===
+         ts_launcher:(5:<0.74.0>) Expected duration of first phase: 30.0 sec (30 users) 
+
+=INFO REPORT==== 1-Dec-2015::02:17:49 ===
+         ts_launcher:(5:<0.74.0>) Activate launcher (30 users) in 9250 msec 
+
+=INFO REPORT==== 1-Dec-2015::02:18:12 ===
+           ts_search:(4:<0.83.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:18:13 ===
+           ts_search:(4:<0.82.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:18:15 ===
+           ts_search:(4:<0.79.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:18:29 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (60 users, 0.002); expected duration=30.0 sec
+
+=INFO REPORT==== 1-Dec-2015::02:18:59 ===
+         ts_launcher:(4:<0.74.0>) Phase duration exceeded, more than 20% (21.7%) of users were not launched in time (13 users), tsung may be overloaded !
+
+=INFO REPORT==== 1-Dec-2015::02:18:59 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (120 users, 0.004); expected duration=30.0 sec
+
+=INFO REPORT==== 1-Dec-2015::02:19:28 ===
+         ts_launcher:(4:<0.74.0>) Need to wait 0.774 sec before changing phase, going to sleep
+
+=INFO REPORT==== 1-Dec-2015::02:19:29 ===
+         ts_launcher:(5:<0.74.0>) Waking up
+
+=INFO REPORT==== 1-Dec-2015::02:19:29 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (240 users, 0.008); expected duration=30.0 sec
+
+=INFO REPORT==== 1-Dec-2015::02:19:59 ===
+         ts_launcher:(5:<0.74.0>) Phase duration exceeded, but not all users were launched (15 users, 6.3% of phase)
+
+=INFO REPORT==== 1-Dec-2015::02:19:59 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (480 users, 0.016); expected duration=30.0 sec
+
+=INFO REPORT==== 1-Dec-2015::02:20:25 ===
+           ts_search:(4:<0.88.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:20:27 ===
+         ts_launcher:(4:<0.74.0>) Need to wait 2.095 sec before changing phase, going to sleep
+
+=INFO REPORT==== 1-Dec-2015::02:20:29 ===
+         ts_launcher:(5:<0.74.0>) Waking up
+
+=INFO REPORT==== 1-Dec-2015::02:20:29 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (960 users, 0.032); expected duration=30.0 sec
+
+=INFO REPORT==== 1-Dec-2015::02:20:59 ===
+         ts_launcher:(5:<0.74.0>) Phase duration exceeded, but not all users were launched (19 users, 2.0% of phase)
+
+=INFO REPORT==== 1-Dec-2015::02:20:59 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (1920 users, 0.064); expected duration=30.0 sec
+
+=INFO REPORT==== 1-Dec-2015::02:21:28 ===
+           ts_search:(4:<0.85.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:21:29 ===
+         ts_launcher:(5:<0.74.0>) Phase duration exceeded, but not all users were launched (79 users, 4.1% of phase)
+
+=INFO REPORT==== 1-Dec-2015::02:21:29 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (3840 users, 0.128); expected duration=30.0 sec
+
+=INFO REPORT==== 1-Dec-2015::02:21:40 ===
+           ts_search:(4:<0.84.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:21:40 ===
+           ts_search:(4:<0.86.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:21:40 ===
+           ts_search:(4:<0.87.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:21:59 ===
+         ts_launcher:(5:<0.74.0>) Phase duration exceeded, but not all users were launched (75 users, 2.0% of phase)
+
+=INFO REPORT==== 1-Dec-2015::02:21:59 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (7680 users, 0.256); expected duration=30.0 sec
+
+=INFO REPORT==== 1-Dec-2015::02:22:29 ===
+         ts_launcher:(5:<0.74.0>) Phase duration exceeded, but not all users were launched (280 users, 3.6% of phase)
+
+=INFO REPORT==== 1-Dec-2015::02:22:29 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (15360 users, 0.512); expected duration=30.0 sec
+
+=INFO REPORT==== 1-Dec-2015::02:22:29 ===
+         ts_launcher:(5:<0.74.0>) Max number of concurrent clients reached, must start a new beam
+
+=INFO REPORT==== 1-Dec-2015::02:22:29 ===
+    ts_config_server:(0:<0.39.0>) Maximum number of concurrent users in a single VM reached and 'use_controller_vm' is true, can't start new beam !!! Check 'maxusers' value in <client> configuration.
+
+=INFO REPORT==== 1-Dec-2015::02:22:29 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 15010 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:23:09 ===
+           ts_search:(4:<0.329.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:23:29 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 15010 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:23:57 ===
+           ts_search:(4:<0.90.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:24:29 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 15009 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:24:49 ===
+           ts_search:(4:<0.2398.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:24:50 ===
+           ts_search:(4:<0.2782.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:24:57 ===
+           ts_search:(4:<0.821.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:24:58 ===
+           ts_search:(4:<0.763.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:25:05 ===
+           ts_search:(4:<0.3824.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:25:24 ===
+           ts_search:(4:<0.2839.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:25:27 ===
+           ts_search:(4:<0.4070.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:25:27 ===
+           ts_search:(4:<0.1143.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:25:29 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 15007 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:25:33 ===
+           ts_search:(4:<0.6590.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:25:46 ===
+           ts_search:(4:<0.8920.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:25:56 ===
+           ts_search:(4:<0.11919.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:26:16 ===
+           ts_search:(4:<0.12486.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:26:19 ===
+           ts_search:(4:<0.4266.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:26:22 ===
+           ts_search:(4:<0.11471.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:26:29 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 15007 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:26:39 ===
+           ts_search:(4:<0.14862.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:26:44 ===
+           ts_search:(4:<0.1715.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:26:45 ===
+           ts_search:(4:<0.7915.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:26:46 ===
+           ts_search:(4:<0.763.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:26:46 ===
+           ts_search:(4:<0.763.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:26:50 ===
+           ts_search:(4:<0.1802.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:26:53 ===
+           ts_search:(4:<0.9841.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:26:55 ===
+           ts_search:(4:<0.1768.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:26:57 ===
+           ts_search:(4:<0.11994.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:26:58 ===
+           ts_search:(4:<0.2189.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:27:00 ===
+           ts_search:(4:<0.13141.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:27:05 ===
+           ts_search:(4:<0.1686.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:27:07 ===
+           ts_search:(4:<0.2727.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:27:14 ===
+           ts_search:(4:<0.1677.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:27:16 ===
+           ts_search:(4:<0.3448.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:27:20 ===
+           ts_search:(4:<0.2599.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:27:21 ===
+           ts_search:(4:<0.10531.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:27:21 ===
+           ts_search:(4:<0.1180.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:27:23 ===
+           ts_search:(4:<0.4004.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:27:29 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 15001 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:27:32 ===
+           ts_search:(4:<0.4617.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:27:34 ===
+           ts_search:(4:<0.4694.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:27:37 ===
+           ts_search:(4:<0.1582.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:27:40 ===
+           ts_search:(4:<0.4692.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:27:44 ===
+           ts_search:(4:<0.1384.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:27:45 ===
+           ts_search:(4:<0.3295.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:27:47 ===
+           ts_search:(4:<0.2552.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:27:48 ===
+           ts_search:(4:<0.8920.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:27:48 ===
+           ts_search:(4:<0.8920.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:27:50 ===
+           ts_search:(4:<0.3538.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:27:55 ===
+           ts_search:(4:<0.3824.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:27:55 ===
+           ts_search:(4:<0.3824.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:28:00 ===
+           ts_search:(4:<0.4410.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:28:02 ===
+           ts_search:(4:<0.6321.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:28:03 ===
+           ts_search:(4:<0.10794.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:28:04 ===
+           ts_search:(4:<0.5405.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:28:05 ===
+           ts_search:(4:<0.13462.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:28:13 ===
+           ts_search:(4:<0.91.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:28:18 ===
+           ts_search:(4:<0.3221.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:28:21 ===
+           ts_search:(4:<0.460.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:28:27 ===
+           ts_search:(4:<0.3845.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:28:29 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 14978 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:28:34 ===
+           ts_search:(4:<0.788.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:28:37 ===
+           ts_search:(4:<0.2586.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:28:48 ===
+           ts_search:(4:<0.5667.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:28:53 ===
+           ts_search:(4:<0.7210.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:28:56 ===
+           ts_search:(4:<0.7403.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:28:59 ===
+           ts_search:(4:<0.1089.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:29:03 ===
+           ts_search:(4:<0.995.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:29:06 ===
+           ts_search:(4:<0.5073.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:29:07 ===
+           ts_search:(4:<0.1397.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:29:16 ===
+           ts_search:(4:<0.12004.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:29:17 ===
+           ts_search:(4:<0.11218.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:29:27 ===
+           ts_search:(4:<0.1939.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:29:28 ===
+           ts_search:(4:<0.461.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:29:29 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 14754 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:29:32 ===
+           ts_search:(4:<0.2640.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:29:34 ===
+           ts_search:(4:<0.13958.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:29:35 ===
+           ts_search:(4:<0.14094.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:29:37 ===
+           ts_search:(4:<0.2552.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:29:37 ===
+           ts_search:(4:<0.2552.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:29:38 ===
+           ts_search:(4:<0.10599.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:29:39 ===
+           ts_search:(4:<0.3105.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:29:43 ===
+           ts_search:(4:<0.2494.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:29:46 ===
+           ts_search:(4:<0.3505.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:29:49 ===
+           ts_search:(4:<0.3072.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:29:50 ===
+           ts_search:(4:<0.904.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:29:52 ===
+           ts_search:(4:<0.13553.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:29:54 ===
+           ts_search:(4:<0.3213.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:29:54 ===
+           ts_search:(4:<0.1787.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:29:57 ===
+           ts_search:(4:<0.1189.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:00 ===
+           ts_search:(4:<0.2525.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:01 ===
+           ts_search:(4:<0.4688.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:02 ===
+           ts_search:(4:<0.5576.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:04 ===
+           ts_search:(4:<0.1429.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:07 ===
+           ts_search:(4:<0.1431.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:08 ===
+           ts_search:(4:<0.5218.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:09 ===
+           ts_search:(4:<0.460.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:09 ===
+           ts_search:(4:<0.460.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:11 ===
+           ts_search:(4:<0.2315.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:13 ===
+           ts_search:(4:<0.4669.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:15 ===
+           ts_search:(4:<0.894.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:20 ===
+           ts_search:(4:<0.5501.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:21 ===
+           ts_search:(4:<0.6818.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:22 ===
+           ts_search:(4:<0.3087.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:23 ===
+           ts_search:(4:<0.4100.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:24 ===
+           ts_search:(4:<0.1920.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:25 ===
+           ts_search:(4:<0.8132.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:27 ===
+           ts_search:(4:<0.8485.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:27 ===
+           ts_search:(4:<0.1667.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:28 ===
+           ts_search:(4:<0.3845.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:28 ===
+           ts_search:(4:<0.3845.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:29 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 13482 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:30:30 ===
+           ts_search:(4:<0.1759.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:31 ===
+           ts_search:(4:<0.4133.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:33 ===
+           ts_search:(4:<0.2353.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:33 ===
+           ts_search:(4:<0.5544.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:34 ===
+           ts_search:(4:<0.2185.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:36 ===
+           ts_search:(4:<0.92.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:36 ===
+           ts_search:(4:<0.4865.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:36 ===
+           ts_search:(4:<0.5422.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:40 ===
+           ts_search:(4:<0.6394.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:40 ===
+           ts_search:(4:<0.6464.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:45 ===
+           ts_search:(4:<0.6880.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:46 ===
+           ts_search:(4:<0.6622.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:49 ===
+           ts_search:(4:<0.5573.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:50 ===
+           ts_search:(4:<0.7421.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:50 ===
+           ts_search:(4:<0.93.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:51 ===
+           ts_search:(4:<0.10099.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:52 ===
+           ts_search:(4:<0.7000.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:56 ===
+           ts_search:(4:<0.7915.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:56 ===
+           ts_search:(4:<0.7915.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:30:59 ===
+           ts_search:(4:<0.4807.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.108.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.138.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.103.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.96.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.168.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.131.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.119.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.183.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.148.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.139.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.142.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.159.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.160.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.100.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.102.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.178.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.122.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.174.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.176.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.145.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.157.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.137.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.136.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.99.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.175.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.117.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.135.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.151.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.115.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.177.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.130.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.128.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.120.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.105.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.166.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.154.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.121.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.124.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.184.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.109.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.101.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.144.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.118.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.113.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.107.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.169.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.180.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.123.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.186.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.141.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.94.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.164.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.158.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.173.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.150.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.172.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.171.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.153.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.116.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.182.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.152.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.162.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.156.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.140.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.179.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.155.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:00 ===
+           ts_search:(4:<0.98.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:04 ===
+           ts_search:(4:<0.10455.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:05 ===
+           ts_search:(4:<0.498.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:06 ===
+           ts_search:(4:<0.14826.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:08 ===
+           ts_search:(4:<0.1216.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:09 ===
+           ts_search:(4:<0.1344.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:09 ===
+           ts_search:(4:<0.12445.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:10 ===
+           ts_search:(4:<0.748.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:11 ===
+           ts_search:(4:<0.11218.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:11 ===
+           ts_search:(4:<0.11218.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:12 ===
+           ts_search:(4:<0.12704.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:16 ===
+           ts_search:(4:<0.6256.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:17 ===
+           ts_search:(4:<0.14655.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:18 ===
+           ts_search:(4:<0.13490.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:19 ===
+           ts_search:(4:<0.7550.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:21 ===
+           ts_search:(4:<0.7417.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:23 ===
+           ts_search:(4:<0.13210.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:25 ===
+           ts_search:(4:<0.1397.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:25 ===
+           ts_search:(4:<0.1397.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:26 ===
+           ts_search:(4:<0.3599.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:26 ===
+           ts_search:(4:<0.12881.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:28 ===
+           ts_search:(4:<0.2727.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:28 ===
+           ts_search:(4:<0.2727.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:29 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 7872 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:31:30 ===
+           ts_search:(4:<0.9230.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:31 ===
+           ts_search:(4:<0.1677.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:31 ===
+           ts_search:(4:<0.1677.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:37 ===
+           ts_search:(4:<0.996.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:37 ===
+           ts_search:(4:<0.5195.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:39 ===
+           ts_search:(4:<0.603.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:40 ===
+           ts_search:(4:<0.5990.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:40 ===
+           ts_search:(4:<0.853.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:41 ===
+           ts_search:(4:<0.1388.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:43 ===
+           ts_search:(4:<0.875.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:46 ===
+           ts_search:(4:<0.13553.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:46 ===
+           ts_search:(4:<0.13553.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:47 ===
+           ts_search:(4:<0.13185.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:47 ===
+           ts_search:(4:<0.1664.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:48 ===
+           ts_search:(4:<0.3401.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:48 ===
+           ts_search:(4:<0.4688.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:48 ===
+           ts_search:(4:<0.4688.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:49 ===
+           ts_search:(4:<0.1165.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:49 ===
+           ts_search:(4:<0.793.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:50 ===
+           ts_search:(4:<0.7445.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:51 ===
+           ts_search:(4:<0.12765.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:55 ===
+           ts_search:(4:<0.1786.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:55 ===
+           ts_search:(4:<0.1431.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:55 ===
+           ts_search:(4:<0.1431.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:56 ===
+           ts_search:(4:<0.917.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:59 ===
+           ts_search:(4:<0.1189.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:59 ===
+           ts_search:(4:<0.1189.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:31:59 ===
+           ts_search:(4:<0.14806.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:00 ===
+           ts_search:(4:<0.460.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:03 ===
+           ts_search:(4:<0.1742.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:03 ===
+           ts_search:(4:<0.894.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:03 ===
+           ts_search:(4:<0.894.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:04 ===
+           ts_search:(4:<0.1239.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:04 ===
+           ts_search:(4:<0.11994.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:04 ===
+           ts_search:(4:<0.11994.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:05 ===
+           ts_search:(4:<0.147.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:05 ===
+           ts_search:(4:<0.146.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:05 ===
+           ts_search:(4:<0.163.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:05 ===
+           ts_search:(4:<0.111.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:05 ===
+           ts_search:(4:<0.165.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:05 ===
+           ts_search:(4:<0.132.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:05 ===
+           ts_search:(4:<0.134.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:06 ===
+           ts_search:(4:<0.95.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:06 ===
+           ts_search:(4:<0.185.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:06 ===
+           ts_search:(4:<0.125.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:06 ===
+           ts_search:(4:<0.114.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:06 ===
+           ts_search:(4:<0.2027.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:06 ===
+           ts_search:(4:<0.126.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:07 ===
+           ts_search:(4:<0.1293.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:08 ===
+           ts_search:(4:<0.904.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:08 ===
+           ts_search:(4:<0.904.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:09 ===
+           ts_search:(4:<0.545.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:10 ===
+           ts_search:(4:<0.1338.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:10 ===
+           ts_search:(4:<0.2563.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:11 ===
+           ts_search:(4:<0.1920.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:11 ===
+           ts_search:(4:<0.1920.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:12 ===
+           ts_search:(4:<0.2568.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:13 ===
+           ts_search:(4:<0.675.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:14 ===
+           ts_search:(4:<0.2087.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:14 ===
+           ts_search:(4:<0.5838.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:15 ===
+           ts_search:(4:<0.1223.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:16 ===
+           ts_search:(4:<0.568.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:18 ===
+           ts_search:(4:<0.1697.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:18 ===
+           ts_search:(4:<0.14063.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:19 ===
+           ts_search:(4:<0.5405.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:19 ===
+           ts_search:(4:<0.3384.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:19 ===
+           ts_search:(4:<0.5405.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:21 ===
+           ts_search:(4:<0.2806.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:21 ===
+           ts_search:(4:<0.3325.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:22 ===
+           ts_search:(4:<0.1794.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:23 ===
+           ts_search:(4:<0.8920.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:24 ===
+           ts_search:(4:<0.3398.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:25 ===
+           ts_search:(4:<0.3119.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:25 ===
+           ts_search:(4:<0.3371.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:26 ===
+           ts_search:(4:<0.5422.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:26 ===
+           ts_search:(4:<0.5422.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:26 ===
+           ts_search:(4:<0.3961.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:28 ===
+           ts_search:(4:<0.10531.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:28 ===
+           ts_search:(4:<0.10531.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:29 ===
+           ts_search:(4:<0.8462.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:29 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 787 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:32:32 ===
+           ts_search:(4:<0.1114.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:32 ===
+           ts_search:(4:<0.4617.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:32 ===
+           ts_search:(4:<0.4617.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:33 ===
+           ts_search:(4:<0.2179.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:34 ===
+           ts_search:(4:<0.2385.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:34 ===
+           ts_search:(4:<0.2168.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:36 ===
+           ts_search:(4:<0.3796.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:37 ===
+           ts_search:(4:<0.3623.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:37 ===
+           ts_search:(4:<0.1842.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:39 ===
+           ts_search:(4:<0.2432.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:39 ===
+           ts_search:(4:<0.3130.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:41 ===
+           ts_search:(4:<0.10099.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:41 ===
+           ts_search:(4:<0.10099.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:41 ===
+           ts_search:(4:<0.5745.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:42 ===
+           ts_search:(4:<0.3000.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:43 ===
+           ts_search:(4:<0.4064.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:43 ===
+           ts_search:(4:<0.3993.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:44 ===
+           ts_search:(4:<0.1346.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:45 ===
+           ts_search:(4:<0.5114.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:45 ===
+           ts_search:(4:<0.4410.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:45 ===
+           ts_search:(4:<0.4410.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:46 ===
+           ts_search:(4:<0.6131.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:47 ===
+           ts_search:(4:<0.3001.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:47 ===
+           ts_search:(4:<0.3319.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:48 ===
+           ts_search:(4:<0.6622.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:48 ===
+           ts_search:(4:<0.6622.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:48 ===
+           ts_search:(4:<0.3203.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:49 ===
+           ts_search:(4:<0.5975.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:50 ===
+           ts_search:(4:<0.4226.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:50 ===
+           ts_search:(4:<0.4266.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:50 ===
+           ts_search:(4:<0.4266.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:51 ===
+           ts_search:(4:<0.6204.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:52 ===
+           ts_search:(4:<0.5576.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:52 ===
+           ts_search:(4:<0.5576.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:52 ===
+           ts_search:(4:<0.4800.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:53 ===
+           ts_search:(4:<0.11471.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:53 ===
+           ts_search:(4:<0.11471.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:54 ===
+           ts_search:(4:<0.1547.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:54 ===
+           ts_search:(4:<0.951.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:55 ===
+           ts_search:(4:<0.1639.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:55 ===
+           ts_search:(4:<0.7721.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:57 ===
+           ts_search:(4:<0.1629.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:57 ===
+           ts_search:(4:<0.6744.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:58 ===
+           ts_search:(4:<0.6819.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:58 ===
+           ts_search:(4:<0.493.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:59 ===
+           ts_search:(4:<0.1890.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:32:59 ===
+           ts_search:(4:<0.1860.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:01 ===
+           ts_search:(4:<0.7257.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:01 ===
+           ts_search:(4:<0.8810.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:02 ===
+           ts_search:(4:<0.3824.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:02 ===
+           ts_search:(4:<0.8066.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:03 ===
+           ts_search:(4:<0.9213.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:04 ===
+           ts_search:(4:<0.9181.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:05 ===
+           ts_search:(4:<0.1862.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:05 ===
+           ts_search:(4:<0.8854.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:06 ===
+           ts_search:(4:<0.7117.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:06 ===
+           ts_search:(4:<0.6209.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:08 ===
+           ts_search:(4:<0.2409.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:08 ===
+           ts_search:(4:<0.6590.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:08 ===
+           ts_search:(4:<0.6590.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:09 ===
+           ts_search:(4:<0.4911.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:09 ===
+           ts_search:(4:<0.5042.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:10 ===
+           ts_search:(4:<0.3673.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:10 ===
+           ts_search:(4:<0.5501.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:10 ===
+           ts_search:(4:<0.5501.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:11 ===
+           ts_search:(4:<0.104.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:11 ===
+           ts_search:(4:<0.110.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:11 ===
+           ts_search:(4:<0.129.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:12 ===
+           ts_search:(4:<0.13462.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:12 ===
+           ts_search:(4:<0.5380.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:12 ===
+           ts_search:(4:<0.13462.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:13 ===
+           ts_search:(4:<0.10776.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:13 ===
+           ts_search:(4:<0.8498.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:14 ===
+           ts_search:(4:<0.8384.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:14 ===
+           ts_search:(4:<0.11378.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:15 ===
+           ts_search:(4:<0.12341.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:16 ===
+           ts_search:(4:<0.6244.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:17 ===
+           ts_search:(4:<0.7403.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:17 ===
+           ts_search:(4:<0.7403.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:17 ===
+           ts_search:(4:<0.14862.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:17 ===
+           ts_search:(4:<0.14862.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:18 ===
+           ts_search:(4:<0.12536.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:18 ===
+           ts_search:(4:<0.12253.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:19 ===
+           ts_search:(4:<0.1397.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:20 ===
+           ts_search:(4:<0.12784.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:20 ===
+           ts_search:(4:<0.9826.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:21 ===
+           ts_search:(4:<0.2904.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:22 ===
+           ts_search:(4:<0.12018.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:22 ===
+           ts_search:(4:<0.9423.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:24 ===
+           ts_search:(4:<0.996.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:24 ===
+           ts_search:(4:<0.996.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:24 ===
+           ts_search:(4:<0.10463.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:25 ===
+           ts_search:(4:<0.7412.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:25 ===
+           ts_search:(4:<0.2605.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:26 ===
+           ts_search:(4:<0.3491.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:26 ===
+           ts_search:(4:<0.5598.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:28 ===
+           ts_search:(4:<0.12881.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:28 ===
+           ts_search:(4:<0.12881.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:28 ===
+           ts_search:(4:<0.7508.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:29 ===
+           ts_search:(4:<0.14131.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:29 ===
+           ts_search:(4:<0.10891.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 603 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:33:30 ===
+           ts_search:(4:<0.3455.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:30 ===
+           ts_search:(4:<0.11919.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:30 ===
+           ts_search:(4:<0.11919.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:32 ===
+           ts_search:(4:<0.1039.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:32 ===
+           ts_search:(4:<0.12086.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:33 ===
+           ts_search:(4:<0.12004.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:33 ===
+           ts_search:(4:<0.12004.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:33 ===
+           ts_search:(4:<0.3997.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:34 ===
+           ts_search:(4:<0.6256.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:34 ===
+           ts_search:(4:<0.6256.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:35 ===
+           ts_search:(4:<0.4182.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:36 ===
+           ts_search:(4:<0.14155.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:36 ===
+           ts_search:(4:<0.13321.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:37 ===
+           ts_search:(4:<0.7445.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:37 ===
+           ts_search:(4:<0.7445.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:38 ===
+           ts_search:(4:<0.10457.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:38 ===
+           ts_search:(4:<0.13633.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:39 ===
+           ts_search:(4:<0.12090.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:40 ===
+           ts_search:(4:<0.15076.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:41 ===
+           ts_search:(4:<0.9239.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:41 ===
+           ts_search:(4:<0.11045.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:42 ===
+           ts_search:(4:<0.5592.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:42 ===
+           ts_search:(4:<0.11470.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:44 ===
+           ts_search:(4:<0.11137.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:44 ===
+           ts_search:(4:<0.1385.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:45 ===
+           ts_search:(4:<0.5991.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:45 ===
+           ts_search:(4:<0.10834.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:47 ===
+           ts_search:(4:<0.14806.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:47 ===
+           ts_search:(4:<0.14806.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:47 ===
+           ts_search:(4:<0.5359.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:48 ===
+           ts_search:(4:<0.9113.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:48 ===
+           ts_search:(4:<0.6255.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:49 ===
+           ts_search:(4:<0.2189.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:49 ===
+           ts_search:(4:<0.2189.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:49 ===
+           ts_search:(4:<0.1189.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:50 ===
+           ts_search:(4:<0.13255.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:50 ===
+           ts_search:(4:<0.6399.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:51 ===
+           ts_search:(4:<0.3144.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:51 ===
+           ts_search:(4:<0.1939.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:51 ===
+           ts_search:(4:<0.1939.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:51 ===
+           ts_search:(4:<0.13202.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:51 ===
+           ts_search:(4:<0.5921.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:52 ===
+           ts_search:(4:<0.11994.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:52 ===
+           ts_search:(4:<0.14300.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:54 ===
+           ts_search:(4:<0.6810.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:54 ===
+           ts_search:(4:<0.6339.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:55 ===
+           ts_search:(4:<0.2398.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:55 ===
+           ts_search:(4:<0.2398.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:55 ===
+           ts_search:(4:<0.13049.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:56 ===
+           ts_search:(4:<0.14659.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:57 ===
+           ts_search:(4:<0.11913.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:57 ===
+           ts_search:(4:<0.1893.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:58 ===
+           ts_search:(4:<0.2568.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:58 ===
+           ts_search:(4:<0.2568.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:59 ===
+           ts_search:(4:<0.5838.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:59 ===
+           ts_search:(4:<0.5838.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:59 ===
+           ts_search:(4:<0.12704.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:33:59 ===
+           ts_search:(4:<0.12704.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:00 ===
+           ts_search:(4:<0.904.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:01 ===
+           ts_search:(4:<0.7725.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:02 ===
+           ts_search:(4:<0.8520.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:02 ===
+           ts_search:(4:<0.13553.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:04 ===
+           ts_search:(4:<0.7510.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:04 ===
+           ts_search:(4:<0.9046.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:05 ===
+           ts_search:(4:<0.9184.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:05 ===
+           ts_search:(4:<0.8861.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:06 ===
+           ts_search:(4:<0.9759.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:07 ===
+           ts_search:(4:<0.10240.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:08 ===
+           ts_search:(4:<0.8950.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:08 ===
+           ts_search:(4:<0.14472.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:09 ===
+           ts_search:(4:<0.9633.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:09 ===
+           ts_search:(4:<0.1686.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:09 ===
+           ts_search:(4:<0.1686.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:11 ===
+           ts_search:(4:<0.11185.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:11 ===
+           ts_search:(4:<0.3072.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:11 ===
+           ts_search:(4:<0.3072.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:12 ===
+           ts_search:(4:<0.2599.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:12 ===
+           ts_search:(4:<0.2599.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:12 ===
+           ts_search:(4:<0.2494.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:12 ===
+           ts_search:(4:<0.2494.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:13 ===
+           ts_search:(4:<0.5829.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:14 ===
+           ts_search:(4:<0.7480.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:14 ===
+           ts_search:(4:<0.10531.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:15 ===
+           ts_search:(4:<0.5919.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:16 ===
+           ts_search:(4:<0.2934.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:17 ===
+           ts_search:(4:<0.12806.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:17 ===
+           ts_search:(4:<0.8462.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:17 ===
+           ts_search:(4:<0.8462.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:18 ===
+           ts_search:(4:<0.14063.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:18 ===
+           ts_search:(4:<0.14063.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:19 ===
+           ts_search:(4:<0.763.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:19 ===
+           ts_search:(4:<0.13958.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:19 ===
+           ts_search:(4:<0.13958.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:20 ===
+           ts_search:(4:<0.3002.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:20 ===
+           ts_search:(4:<0.2552.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:21 ===
+           ts_search:(4:<0.12116.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:22 ===
+           ts_search:(4:<0.2525.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:22 ===
+           ts_search:(4:<0.2525.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:23 ===
+           ts_search:(4:<0.4617.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:23 ===
+           ts_search:(4:<0.13895.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:24 ===
+           ts_search:(4:<0.12753.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:25 ===
+           ts_search:(4:<0.545.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:25 ===
+           ts_search:(4:<0.545.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:26 ===
+           ts_search:(4:<0.14778.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:26 ===
+           ts_search:(4:<0.7473.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:27 ===
+           ts_search:(4:<0.14157.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:27 ===
+           ts_search:(4:<0.1920.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:28 ===
+           ts_search:(4:<0.3623.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:28 ===
+           ts_search:(4:<0.3623.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:29 ===
+           ts_search:(4:<0.1346.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:29 ===
+           ts_search:(4:<0.1346.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 492 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:34:30 ===
+           ts_search:(4:<0.2087.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:30 ===
+           ts_search:(4:<0.2087.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:30 ===
+           ts_search:(4:<0.4692.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:30 ===
+           ts_search:(4:<0.4692.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:31 ===
+           ts_search:(4:<0.3130.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:31 ===
+           ts_search:(4:<0.3130.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:31 ===
+           ts_search:(4:<0.6131.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:31 ===
+           ts_search:(4:<0.6131.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:33 ===
+           ts_search:(4:<0.1384.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:33 ===
+           ts_search:(4:<0.1384.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:33 ===
+           ts_search:(4:<0.3319.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:33 ===
+           ts_search:(4:<0.3319.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:34 ===
+           ts_search:(4:<0.2315.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:34 ===
+           ts_search:(4:<0.2315.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:34 ===
+           ts_search:(4:<0.4064.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:34 ===
+           ts_search:(4:<0.4064.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:35 ===
+           ts_search:(4:<0.4226.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:35 ===
+           ts_search:(4:<0.4226.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:36 ===
+           ts_search:(4:<0.1715.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:36 ===
+           ts_search:(4:<0.1715.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:36 ===
+           ts_search:(4:<0.4688.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:37 ===
+           ts_search:(4:<0.793.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:37 ===
+           ts_search:(4:<0.793.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:38 ===
+           ts_search:(4:<0.1794.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:38 ===
+           ts_search:(4:<0.1794.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:39 ===
+           ts_search:(4:<0.6204.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:39 ===
+           ts_search:(4:<0.6204.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:40 ===
+           ts_search:(4:<0.1639.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:40 ===
+           ts_search:(4:<0.1639.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:40 ===
+           ts_search:(4:<0.3203.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:40 ===
+           ts_search:(4:<0.3203.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:41 ===
+           ts_search:(4:<0.5975.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:41 ===
+           ts_search:(4:<0.5975.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:41 ===
+           ts_search:(4:<0.1629.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:41 ===
+           ts_search:(4:<0.1629.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:42 ===
+           ts_search:(4:<0.3961.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:42 ===
+           ts_search:(4:<0.3961.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:43 ===
+           ts_search:(4:<0.6818.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:43 ===
+           ts_search:(4:<0.6818.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:44 ===
+           ts_search:(4:<0.1431.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:44 ===
+           ts_search:(4:<0.3845.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:45 ===
+           ts_search:(4:<0.5842.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:46 ===
+           ts_search:(4:<0.493.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:46 ===
+           ts_search:(4:<0.493.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:47 ===
+           ts_search:(4:<0.8132.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:47 ===
+           ts_search:(4:<0.8132.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:47 ===
+           ts_search:(4:<0.1890.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:47 ===
+           ts_search:(4:<0.1890.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:48 ===
+           ts_search:(4:<0.8066.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:48 ===
+           ts_search:(4:<0.8066.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:48 ===
+           ts_search:(4:<0.6744.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:48 ===
+           ts_search:(4:<0.6744.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:49 ===
+           ts_search:(4:<0.14094.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:49 ===
+           ts_search:(4:<0.14094.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:50 ===
+           ts_search:(4:<0.6260.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:50 ===
+           ts_search:(4:<0.1862.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:50 ===
+           ts_search:(4:<0.1862.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:51 ===
+           ts_search:(4:<0.3824.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:52 ===
+           ts_search:(4:<0.13588.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:52 ===
+           ts_search:(4:<0.5576.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:53 ===
+           ts_search:(4:<0.1759.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:53 ===
+           ts_search:(4:<0.1759.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:54 ===
+           ts_search:(4:<0.7117.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:54 ===
+           ts_search:(4:<0.6209.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:54 ===
+           ts_search:(4:<0.7117.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:54 ===
+           ts_search:(4:<0.6209.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:55 ===
+           ts_search:(4:<0.2409.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:55 ===
+           ts_search:(4:<0.2409.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:55 ===
+           ts_search:(4:<0.2353.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:55 ===
+           ts_search:(4:<0.2353.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:56 ===
+           ts_search:(4:<0.6590.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:57 ===
+           ts_search:(4:<0.2185.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:57 ===
+           ts_search:(4:<0.2185.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:58 ===
+           ts_search:(4:<0.7427.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:58 ===
+           ts_search:(4:<0.3673.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:58 ===
+           ts_search:(4:<0.3673.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:59 ===
+           ts_search:(4:<0.3993.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:59 ===
+           ts_search:(4:<0.3993.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:59 ===
+           ts_search:(4:<0.4865.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:34:59 ===
+           ts_search:(4:<0.4865.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:00 ===
+           ts_search:(4:<0.13462.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:00 ===
+           ts_search:(4:<0.10099.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:01 ===
+           ts_search:(4:<0.14901.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:02 ===
+           ts_search:(4:<0.6464.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:02 ===
+           ts_search:(4:<0.6464.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:03 ===
+           ts_search:(4:<0.9213.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:03 ===
+           ts_search:(4:<0.9213.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:03 ===
+           ts_search:(4:<0.14862.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:04 ===
+           ts_search:(4:<0.1667.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:04 ===
+           ts_search:(4:<0.1667.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:05 ===
+           ts_search:(4:<0.4070.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:05 ===
+           ts_search:(4:<0.4070.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:06 ===
+           ts_search:(4:<0.4669.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:06 ===
+           ts_search:(4:<0.4669.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:06 ===
+           ts_search:(4:<0.11378.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:06 ===
+           ts_search:(4:<0.11378.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:07 ===
+           ts_search:(4:<0.2904.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:07 ===
+           ts_search:(4:<0.2904.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:08 ===
+           ts_search:(4:<0.3221.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:08 ===
+           ts_search:(4:<0.3221.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:08 ===
+           ts_search:(4:<0.6394.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:08 ===
+           ts_search:(4:<0.6394.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:09 ===
+           ts_search:(4:<0.7915.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:10 ===
+           ts_search:(4:<0.1547.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:10 ===
+           ts_search:(4:<0.1547.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:10 ===
+           ts_search:(4:<0.9423.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:10 ===
+           ts_search:(4:<0.9423.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:11 ===
+           ts_search:(4:<0.9626.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:12 ===
+           ts_search:(4:<0.3398.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:12 ===
+           ts_search:(4:<0.3398.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:12 ===
+           ts_search:(4:<0.9826.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:12 ===
+           ts_search:(4:<0.9826.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:13 ===
+           ts_search:(4:<0.10776.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:13 ===
+           ts_search:(4:<0.10776.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:14 ===
+           ts_search:(4:<0.6880.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:14 ===
+           ts_search:(4:<0.6880.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:14 ===
+           ts_search:(4:<0.3491.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:14 ===
+           ts_search:(4:<0.3491.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:15 ===
+           ts_search:(4:<0.4004.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:15 ===
+           ts_search:(4:<0.4004.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:16 ===
+           ts_search:(4:<0.3455.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:16 ===
+           ts_search:(4:<0.3455.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:16 ===
+           ts_search:(4:<0.8810.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:16 ===
+           ts_search:(4:<0.8810.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:18 ===
+           ts_search:(4:<0.12536.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:18 ===
+           ts_search:(4:<0.12536.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:18 ===
+           ts_search:(4:<0.12253.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:18 ===
+           ts_search:(4:<0.12253.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:19 ===
+           ts_search:(4:<0.3213.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:19 ===
+           ts_search:(4:<0.3213.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:19 ===
+           ts_search:(4:<0.3997.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:19 ===
+           ts_search:(4:<0.3997.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:20 ===
+           ts_search:(4:<0.6256.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:20 ===
+           ts_search:(4:<0.4182.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:20 ===
+           ts_search:(4:<0.4182.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:21 ===
+           ts_search:(4:<0.460.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:22 ===
+           ts_search:(4:<0.11762.0>) Dyn Var (RE): no Match (varname=authenticity_token), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:23 ===
+           ts_search:(4:<0.10457.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:23 ===
+           ts_search:(4:<0.10457.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:23 ===
+           ts_search:(4:<0.12486.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:23 ===
+           ts_search:(4:<0.12486.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:24 ===
+           ts_search:(4:<0.13633.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:24 ===
+           ts_search:(4:<0.13633.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:24 ===
+           ts_search:(4:<0.15076.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:24 ===
+           ts_search:(4:<0.15076.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:25 ===
+           ts_search:(4:<0.10455.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:25 ===
+           ts_search:(4:<0.10455.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:26 ===
+           ts_search:(4:<0.2586.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:26 ===
+           ts_search:(4:<0.2586.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:27 ===
+           ts_search:(4:<0.11045.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:27 ===
+           ts_search:(4:<0.11045.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:27 ===
+           ts_search:(4:<0.5380.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:27 ===
+           ts_search:(4:<0.5380.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:28 ===
+           ts_search:(4:<0.11470.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:28 ===
+           ts_search:(4:<0.11470.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:29 ===
+           ts_search:(4:<0.10891.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:29 ===
+           ts_search:(4:<0.10891.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:29 ===
+           ts_search:(4:<0.1429.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:29 ===
+           ts_search:(4:<0.1429.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 444 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:35:31 ===
+           ts_search:(4:<0.14826.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:31 ===
+           ts_search:(4:<0.14826.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:31 ===
+           ts_search:(4:<0.12090.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:31 ===
+           ts_search:(4:<0.12090.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:32 ===
+           ts_search:(4:<0.11919.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:32 ===
+           ts_search:(4:<0.12445.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:32 ===
+           ts_search:(4:<0.12445.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:33 ===
+           ts_search:(4:<0.5991.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:33 ===
+           ts_search:(4:<0.5991.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:34 ===
+           ts_search:(4:<0.6255.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:34 ===
+           ts_search:(4:<0.6255.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:34 ===
+           ts_search:(4:<0.1344.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:34 ===
+           ts_search:(4:<0.1344.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:35 ===
+           ts_search:(4:<0.3144.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:35 ===
+           ts_search:(4:<0.3144.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:36 ===
+           ts_search:(4:<0.1385.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:36 ===
+           ts_search:(4:<0.1385.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:37 ===
+           ts_search:(4:<0.1189.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:37 ===
+           ts_search:(4:<0.13202.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:37 ===
+           ts_search:(4:<0.13202.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:38 ===
+           ts_search:(4:<0.14300.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:38 ===
+           ts_search:(4:<0.14300.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:38 ===
+           ts_search:(4:<0.6810.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:38 ===
+           ts_search:(4:<0.6810.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:39 ===
+           ts_search:(4:<0.2189.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:40 ===
+           ts_search:(4:<0.14655.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:40 ===
+           ts_search:(4:<0.14655.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:40 ===
+           ts_search:(4:<0.11994.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:41 ===
+           ts_search:(4:<0.14659.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:41 ===
+           ts_search:(4:<0.14659.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:42 ===
+           ts_search:(4:<0.996.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:42 ===
+           ts_search:(4:<0.1893.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:42 ===
+           ts_search:(4:<0.1893.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:43 ===
+           ts_search:(4:<0.7421.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:43 ===
+           ts_search:(4:<0.7421.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:44 ===
+           ts_search:(4:<0.7508.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:44 ===
+           ts_search:(4:<0.7508.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:44 ===
+           ts_search:(4:<0.2568.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:45 ===
+           ts_search:(4:<0.14131.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:45 ===
+           ts_search:(4:<0.14131.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:46 ===
+           ts_search:(4:<0.6819.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:46 ===
+           ts_search:(4:<0.6819.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:46 ===
+           ts_search:(4:<0.12704.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:47 ===
+           ts_search:(4:<0.3087.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:47 ===
+           ts_search:(4:<0.3087.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:48 ===
+           ts_search:(4:<0.12086.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:48 ===
+           ts_search:(4:<0.12086.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:48 ===
+           ts_search:(4:<0.7725.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:48 ===
+           ts_search:(4:<0.7725.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:49 ===
+           ts_search:(4:<0.7210.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:49 ===
+           ts_search:(4:<0.7210.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:50 ===
+           ts_search:(4:<0.9184.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:50 ===
+           ts_search:(4:<0.9184.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:51 ===
+           ts_search:(4:<0.8861.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:51 ===
+           ts_search:(4:<0.8861.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:51 ===
+           ts_search:(4:<0.9759.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:51 ===
+           ts_search:(4:<0.9759.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:52 ===
+           ts_search:(4:<0.13553.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:52 ===
+           ts_search:(4:<0.4807.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:52 ===
+           ts_search:(4:<0.4807.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:53 ===
+           ts_search:(4:<0.904.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:54 ===
+           ts_search:(4:<0.6321.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:54 ===
+           ts_search:(4:<0.6321.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:55 ===
+           ts_search:(4:<0.9230.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:55 ===
+           ts_search:(4:<0.9230.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:55 ===
+           ts_search:(4:<0.8950.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:55 ===
+           ts_search:(4:<0.8950.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:56 ===
+           ts_search:(4:<0.5073.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:56 ===
+           ts_search:(4:<0.5073.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:57 ===
+           ts_search:(4:<0.4911.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:57 ===
+           ts_search:(4:<0.4911.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:57 ===
+           ts_search:(4:<0.1686.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:58 ===
+           ts_search:(4:<0.10240.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:58 ===
+           ts_search:(4:<0.10240.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:59 ===
+           ts_search:(4:<0.5829.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:35:59 ===
+           ts_search:(4:<0.5829.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:00 ===
+           ts_search:(4:<0.2494.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:00 ===
+           ts_search:(4:<0.10531.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:01 ===
+           ts_search:(4:<0.5919.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:01 ===
+           ts_search:(4:<0.5919.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:01 ===
+           ts_search:(4:<0.3072.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:03 ===
+           ts_search:(4:<0.12806.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:03 ===
+           ts_search:(4:<0.12806.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:03 ===
+           ts_search:(4:<0.5990.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:03 ===
+           ts_search:(4:<0.5990.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:04 ===
+           ts_search:(4:<0.1677.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:04 ===
+           ts_search:(4:<0.13958.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:05 ===
+           ts_search:(4:<0.3002.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:05 ===
+           ts_search:(4:<0.3002.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:06 ===
+           ts_search:(4:<0.13255.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:06 ===
+           ts_search:(4:<0.13255.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:07 ===
+           ts_search:(4:<0.7403.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:07 ===
+           ts_search:(4:<0.8462.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:08 ===
+           ts_search:(4:<0.1397.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:09 ===
+           ts_search:(4:<0.12753.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:09 ===
+           ts_search:(4:<0.12753.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:10 ===
+           ts_search:(4:<0.13185.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:10 ===
+           ts_search:(4:<0.13185.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:10 ===
+           ts_search:(4:<0.12018.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:10 ===
+           ts_search:(4:<0.12018.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:11 ===
+           ts_search:(4:<0.13049.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:11 ===
+           ts_search:(4:<0.545.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:11 ===
+           ts_search:(4:<0.13049.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:12 ===
+           ts_search:(4:<0.7550.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:12 ===
+           ts_search:(4:<0.7550.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:13 ===
+           ts_search:(4:<0.14157.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:13 ===
+           ts_search:(4:<0.14157.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:14 ===
+           ts_search:(4:<0.7417.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:14 ===
+           ts_search:(4:<0.7417.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:14 ===
+           ts_search:(4:<0.9841.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:14 ===
+           ts_search:(4:<0.9841.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:15 ===
+           ts_search:(4:<0.2934.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:15 ===
+           ts_search:(4:<0.2934.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:16 ===
+           ts_search:(4:<0.13210.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:16 ===
+           ts_search:(4:<0.13210.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:17 ===
+           ts_search:(4:<0.12881.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:17 ===
+           ts_search:(4:<0.2087.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:18 ===
+           ts_search:(4:<0.1346.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:18 ===
+           ts_search:(4:<0.6131.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:19 ===
+           ts_search:(4:<0.4692.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:20 ===
+           ts_search:(4:<0.1039.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:20 ===
+           ts_search:(4:<0.1039.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:21 ===
+           ts_search:(4:<0.2525.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:22 ===
+           ts_search:(4:<0.13141.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:22 ===
+           ts_search:(4:<0.13141.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:22 ===
+           ts_search:(4:<0.2315.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:23 ===
+           ts_search:(4:<0.1715.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:23 ===
+           ts_search:(4:<0.12004.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:24 ===
+           ts_search:(4:<0.3319.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:25 ===
+           ts_search:(4:<0.3130.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:26 ===
+           ts_search:(4:<0.1384.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:26 ===
+           ts_search:(4:<0.11185.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:26 ===
+           ts_search:(4:<0.11185.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:28 ===
+           ts_search:(4:<0.3203.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:28 ===
+           ts_search:(4:<0.3961.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:29 ===
+           ts_search:(4:<0.4688.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 418 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:36:30 ===
+           ts_search:(4:<0.7480.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:30 ===
+           ts_search:(4:<0.7480.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:31 ===
+           ts_search:(4:<0.493.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:31 ===
+           ts_search:(4:<0.5842.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:31 ===
+           ts_search:(4:<0.5842.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:32 ===
+           ts_search:(4:<0.5975.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:33 ===
+           ts_search:(4:<0.8132.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:33 ===
+           ts_search:(4:<0.10834.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:33 ===
+           ts_search:(4:<0.10834.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:34 ===
+           ts_search:(4:<0.4064.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:35 ===
+           ts_search:(4:<0.4226.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:36 ===
+           ts_search:(4:<0.6744.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:38 ===
+           ts_search:(4:<0.1862.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:38 ===
+           ts_search:(4:<0.6399.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:38 ===
+           ts_search:(4:<0.6399.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:39 ===
+           ts_search:(4:<0.8920.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:39 ===
+           ts_search:(4:<0.6204.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:41 ===
+           ts_search:(4:<0.1431.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:41 ===
+           ts_search:(4:<0.2353.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:42 ===
+           ts_search:(4:<0.7473.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:42 ===
+           ts_search:(4:<0.7473.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:42 ===
+           ts_search:(4:<0.6209.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:43 ===
+           ts_search:(4:<0.7117.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:43 ===
+           ts_search:(4:<0.1920.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:45 ===
+           ts_search:(4:<0.2185.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:45 ===
+           ts_search:(4:<0.6590.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:46 ===
+           ts_search:(4:<0.14901.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:46 ===
+           ts_search:(4:<0.14901.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:46 ===
+           ts_search:(4:<0.894.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:47 ===
+           ts_search:(4:<0.4865.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:47 ===
+           ts_search:(4:<0.13462.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:49 ===
+           ts_search:(4:<0.3623.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:49 ===
+           ts_search:(4:<0.1667.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:51 ===
+           ts_search:(4:<0.14862.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:51 ===
+           ts_search:(4:<0.5405.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:52 ===
+           ts_search:(4:<0.6464.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:52 ===
+           ts_search:(4:<0.14094.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:53 ===
+           ts_search:(4:<0.3993.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:53 ===
+           ts_search:(4:<0.793.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:55 ===
+           ts_search:(4:<0.6394.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:55 ===
+           ts_search:(4:<0.2904.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:56 ===
+           ts_search:(4:<0.9213.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:57 ===
+           ts_search:(4:<0.9626.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:57 ===
+           ts_search:(4:<0.9626.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:57 ===
+           ts_search:(4:<0.3398.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:58 ===
+           ts_search:(4:<0.9423.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:36:59 ===
+           ts_search:(4:<0.11378.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:00 ===
+           ts_search:(4:<0.6880.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:00 ===
+           ts_search:(4:<0.3491.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:01 ===
+           ts_search:(4:<0.3845.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:01 ===
+           ts_search:(4:<0.1794.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:03 ===
+           ts_search:(4:<0.1547.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:03 ===
+           ts_search:(4:<0.9826.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:04 ===
+           ts_search:(4:<0.12253.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:05 ===
+           ts_search:(4:<0.4004.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:06 ===
+           ts_search:(4:<0.8810.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:07 ===
+           ts_search:(4:<0.11762.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:07 ===
+           ts_search:(4:<0.11762.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:08 ===
+           ts_search:(4:<0.3455.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:09 ===
+           ts_search:(4:<0.2552.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:09 ===
+           ts_search:(4:<0.12116.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:09 ===
+           ts_search:(4:<0.12116.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:10 ===
+           ts_search:(4:<0.12486.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:11 ===
+           ts_search:(4:<0.6256.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:12 ===
+           ts_search:(4:<0.2586.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:12 ===
+           ts_search:(4:<0.11045.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:14 ===
+           ts_search:(4:<0.3673.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:14 ===
+           ts_search:(4:<0.7427.0>) Dyn Var (RE): no Match (varname=user_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:14 ===
+           ts_search:(4:<0.7427.0>) Dyn Var (RE): no Match (varname=root_url), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:15 ===
+           ts_search:(4:<0.10457.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:15 ===
+           ts_search:(4:<0.10776.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:16 ===
+           ts_search:(4:<0.14826.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:17 ===
+           ts_search:(4:<0.11919.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:17 ===
+           ts_search:(4:<0.11470.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:18 ===
+           ts_search:(4:<0.11471.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:19 ===
+           ts_search:(4:<0.5991.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:20 ===
+           ts_search:(4:<0.1344.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:20 ===
+           ts_search:(4:<0.1429.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:21 ===
+           ts_search:(4:<0.12445.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:22 ===
+           ts_search:(4:<0.3144.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:22 ===
+           ts_search:(4:<0.13202.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:23 ===
+           ts_search:(4:<0.4182.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:24 ===
+           ts_search:(4:<0.1385.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:24 ===
+           ts_search:(4:<0.14655.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:25 ===
+           ts_search:(4:<0.13633.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:26 ===
+           ts_search:(4:<0.3221.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:27 ===
+           ts_search:(4:<0.6622.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:27 ===
+           ts_search:(4:<0.6810.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:28 ===
+           ts_search:(4:<0.14300.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:29 ===
+           ts_search:(4:<0.1893.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 402 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:37:30 ===
+           ts_search:(4:<0.5380.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:31 ===
+           ts_search:(4:<0.996.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:31 ===
+           ts_search:(4:<0.2568.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:32 ===
+           ts_search:(4:<0.12086.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:33 ===
+           ts_search:(4:<0.12090.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:34 ===
+           ts_search:(4:<0.12704.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:34 ===
+           ts_search:(4:<0.6819.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:35 ===
+           ts_search:(4:<0.7210.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:36 ===
+           ts_search:(4:<0.9759.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:37 ===
+           ts_search:(4:<0.7725.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:38 ===
+           ts_search:(4:<0.4807.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:40 ===
+           ts_search:(4:<0.4410.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:41 ===
+           ts_search:(4:<0.8066.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:41 ===
+           ts_search:(4:<0.8950.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:42 ===
+           ts_search:(4:<0.3087.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:43 ===
+           ts_search:(4:<0.1686.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:44 ===
+           ts_search:(4:<0.10240.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:44 ===
+           ts_search:(4:<0.7421.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:46 ===
+           ts_search:(4:<0.2494.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:46 ===
+           ts_search:(4:<0.7508.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:47 ===
+           ts_search:(4:<0.14659.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:47 ===
+           ts_search:(4:<0.4266.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:48 ===
+           ts_search:(4:<0.4911.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:49 ===
+           ts_search:(4:<0.5829.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:49 ===
+           ts_search:(4:<0.12806.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:50 ===
+           ts_search:(4:<0.5073.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:51 ===
+           ts_search:(4:<0.13255.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:52 ===
+           ts_search:(4:<0.13958.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:52 ===
+           ts_search:(4:<0.1677.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:53 ===
+           ts_search:(4:<0.7403.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:53 ===
+           ts_search:(4:<0.3072.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:54 ===
+           ts_search:(4:<0.6321.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:55 ===
+           ts_search:(4:<0.5990.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:56 ===
+           ts_search:(4:<0.6255.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:57 ===
+           ts_search:(4:<0.545.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:57 ===
+           ts_search:(4:<0.8462.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:58 ===
+           ts_search:(4:<0.12018.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:59 ===
+           ts_search:(4:<0.12753.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:37:59 ===
+           ts_search:(4:<0.7445.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:01 ===
+           ts_search:(4:<0.13049.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:01 ===
+           ts_search:(4:<0.11218.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:02 ===
+           ts_search:(4:<0.2087.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:02 ===
+           ts_search:(4:<0.5919.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:04 ===
+           ts_search:(4:<0.12881.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:04 ===
+           ts_search:(4:<0.2934.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:05 ===
+           ts_search:(4:<0.4692.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:05 ===
+           ts_search:(4:<0.7550.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:07 ===
+           ts_search:(4:<0.3002.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:07 ===
+           ts_search:(4:<0.1039.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:08 ===
+           ts_search:(4:<0.12004.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:09 ===
+           ts_search:(4:<0.3319.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:09 ===
+           ts_search:(4:<0.14806.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:11 ===
+           ts_search:(4:<0.3130.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:11 ===
+           ts_search:(4:<0.1384.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:13 ===
+           ts_search:(4:<0.11185.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:13 ===
+           ts_search:(4:<0.3203.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:15 ===
+           ts_search:(4:<0.7417.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:16 ===
+           ts_search:(4:<0.2315.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:17 ===
+           ts_search:(4:<0.5842.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:17 ===
+           ts_search:(4:<0.10891.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:19 ===
+           ts_search:(4:<0.4064.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:19 ===
+           ts_search:(4:<0.10834.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:21 ===
+           ts_search:(4:<0.10455.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:21 ===
+           ts_search:(4:<0.3961.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:23 ===
+           ts_search:(4:<0.4226.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:23 ===
+           ts_search:(4:<0.493.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:24 ===
+           ts_search:(4:<0.1862.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:25 ===
+           ts_search:(4:<0.5838.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:26 ===
+           ts_search:(4:<0.13185.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:27 ===
+           ts_search:(4:<0.2353.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:28 ===
+           ts_search:(4:<0.2189.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:29 ===
+           ts_search:(4:<0.7117.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 392 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:38:31 ===
+           ts_search:(4:<0.6399.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:31 ===
+           ts_search:(4:<0.7480.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:32 ===
+           ts_search:(4:<0.894.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:33 ===
+           ts_search:(4:<0.4865.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:34 ===
+           ts_search:(4:<0.149.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:34 ===
+           ts_search:(4:<0.170.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:34 ===
+           ts_search:(4:<0.1667.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:35 ===
+           ts_search:(4:<0.14901.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:36 ===
+           ts_search:(4:<0.6131.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:37 ===
+           ts_search:(4:<0.3623.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:37 ===
+           ts_search:(4:<0.14131.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:39 ===
+           ts_search:(4:<0.793.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:39 ===
+           ts_search:(4:<0.5405.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:40 ===
+           ts_search:(4:<0.14094.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:42 ===
+           ts_search:(4:<0.9626.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:42 ===
+           ts_search:(4:<0.3993.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:43 ===
+           ts_search:(4:<0.6209.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:44 ===
+           ts_search:(4:<0.6394.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:44 ===
+           ts_search:(4:<0.11378.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:45 ===
+           ts_search:(4:<0.9213.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:46 ===
+           ts_search:(4:<0.9423.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:47 ===
+           ts_search:(4:<0.3398.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:48 ===
+           ts_search:(4:<0.1547.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:49 ===
+           ts_search:(4:<0.9826.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:49 ===
+           ts_search:(4:<0.14063.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:51 ===
+           ts_search:(4:<0.4004.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:52 ===
+           ts_search:(4:<0.3491.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:52 ===
+           ts_search:(4:<0.8810.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:54 ===
+           ts_search:(4:<0.1794.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:55 ===
+           ts_search:(4:<0.6744.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:55 ===
+           ts_search:(4:<0.3824.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:57 ===
+           ts_search:(4:<0.12116.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:57 ===
+           ts_search:(4:<0.12253.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:58 ===
+           ts_search:(4:<0.460.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:59 ===
+           ts_search:(4:<0.11045.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:38:59 ===
+           ts_search:(4:<0.11762.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:01 ===
+           ts_search:(4:<0.6880.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:01 ===
+           ts_search:(4:<0.10457.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:02 ===
+           ts_search:(4:<0.7427.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:03 ===
+           ts_search:(4:<0.2586.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:03 ===
+           ts_search:(4:<0.14826.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:04 ===
+           ts_search:(4:<0.7473.0>) Dyn Var (RE): no Match (varname=following_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:04 ===
+           ts_search:(4:<0.5991.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:05 ===
+           ts_search:(4:<0.1344.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:06 ===
+           ts_search:(4:<0.1429.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:06 ===
+           ts_search:(4:<0.12445.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:08 ===
+           ts_search:(4:<0.11471.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:08 ===
+           ts_search:(4:<0.3455.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:09 ===
+           ts_search:(4:<0.6464.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:10 ===
+           ts_search:(4:<0.1385.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:10 ===
+           ts_search:(4:<0.3221.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:12 ===
+           ts_search:(4:<0.14655.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:12 ===
+           ts_search:(4:<0.1715.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:13 ===
+           ts_search:(4:<0.6810.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:13 ===
+           ts_search:(4:<0.6622.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:14 ===
+           ts_search:(4:<0.13633.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:15 ===
+           ts_search:(4:<0.13202.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:16 ===
+           ts_search:(4:<0.5576.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:16 ===
+           ts_search:(4:<0.10776.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:18 ===
+           ts_search:(4:<0.1893.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:20 ===
+           ts_search:(4:<0.12090.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:21 ===
+           ts_search:(4:<0.14300.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:22 ===
+           ts_search:(4:<0.7725.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:23 ===
+           ts_search:(4:<0.5380.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:23 ===
+           ts_search:(4:<0.12086.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:25 ===
+           ts_search:(4:<0.9759.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:25 ===
+           ts_search:(4:<0.904.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:26 ===
+           ts_search:(4:<0.13553.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:26 ===
+           ts_search:(4:<0.6819.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:27 ===
+           ts_search:(4:<0.7210.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:28 ===
+           ts_search:(4:<0.3087.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:29 ===
+           ts_search:(4:<0.7421.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:29 ===
+           ts_search:(4:<0.4807.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 383 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:39:31 ===
+           ts_search:(4:<0.7508.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:32 ===
+           ts_search:(4:<0.3673.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:33 ===
+           ts_search:(4:<0.10099.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:33 ===
+           ts_search:(4:<0.4410.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:34 ===
+           ts_search:(4:<0.8066.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:34 ===
+           ts_search:(4:<0.1189.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:36 ===
+           ts_search:(4:<0.5073.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:36 ===
+           ts_search:(4:<0.12806.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:37 ===
+           ts_search:(4:<0.5829.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:40 ===
+           ts_search:(4:<0.4911.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:40 ===
+           ts_search:(4:<0.6321.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:41 ===
+           ts_search:(4:<0.6255.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:43 ===
+           ts_search:(4:<0.10240.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:44 ===
+           ts_search:(4:<0.12018.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:44 ===
+           ts_search:(4:<0.13255.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:46 ===
+           ts_search:(4:<0.12753.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:48 ===
+           ts_search:(4:<0.5990.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:48 ===
+           ts_search:(4:<0.11218.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:49 ===
+           ts_search:(4:<0.14659.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:50 ===
+           ts_search:(4:<0.13049.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:51 ===
+           ts_search:(4:<0.7445.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:53 ===
+           ts_search:(4:<0.1397.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:55 ===
+           ts_search:(4:<0.3002.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:57 ===
+           ts_search:(4:<0.14806.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:57 ===
+           ts_search:(4:<0.2934.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:58 ===
+           ts_search:(4:<0.7550.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:39:59 ===
+           ts_search:(4:<0.12486.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:02 ===
+           ts_search:(4:<0.11185.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:02 ===
+           ts_search:(4:<0.5842.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:04 ===
+           ts_search:(4:<0.10834.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:06 ===
+           ts_search:(4:<0.4688.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:06 ===
+           ts_search:(4:<0.10455.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:09 ===
+           ts_search:(4:<0.7417.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:10 ===
+           ts_search:(4:<0.8920.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:13 ===
+           ts_search:(4:<0.3144.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:14 ===
+           ts_search:(4:<0.13185.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:17 ===
+           ts_search:(4:<0.6590.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:20 ===
+           ts_search:(4:<0.5838.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:21 ===
+           ts_search:(4:<0.6399.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:23 ===
+           ts_search:(4:<0.14131.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:26 ===
+           ts_search:(4:<0.13462.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:29 ===
+           ts_search:(4:<0.14901.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 378 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:40:30 ===
+           ts_search:(4:<0.9626.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:35 ===
+           ts_search:(4:<0.14862.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:38 ===
+           ts_search:(4:<0.3845.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:38 ===
+           ts_search:(4:<0.14063.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:40 ===
+           ts_search:(4:<0.2552.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:41 ===
+           ts_search:(4:<0.10891.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:42 ===
+           ts_search:(4:<0.12116.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:44 ===
+           ts_search:(4:<0.3824.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:46 ===
+           ts_search:(4:<0.11762.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:48 ===
+           ts_search:(4:<0.7427.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:49 ===
+           ts_search:(4:<0.10531.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:50 ===
+           ts_search:(4:<0.1920.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:52 ===
+           ts_search:(4:<0.460.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:52 ===
+           ts_search:(4:<0.5919.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:56 ===
+           ts_search:(4:<0.1039.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:57 ===
+           ts_search:(4:<0.11919.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:40:59 ===
+           ts_search:(4:<0.7473.0>) Dyn Var (RE): no Match (varname=book_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:03 ===
+           ts_search:(4:<0.996.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:05 ===
+           ts_search:(4:<0.12704.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:05 ===
+           ts_search:(4:<0.2568.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:13 ===
+           ts_search:(4:<0.13553.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:17 ===
+           ts_search:(4:<0.2494.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:21 ===
+           ts_search:(4:<0.1189.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:25 ===
+           ts_search:(4:<0.1677.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:27 ===
+           ts_search:(4:<0.3072.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:27 ===
+           ts_search:(4:<0.7403.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:28 ===
+           ts_search:(4:<0.1431.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 372 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:41:30 ===
+           ts_search:(4:<0.545.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:32 ===
+           ts_search:(4:<0.2087.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:37 ===
+           ts_search:(4:<0.4692.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:37 ===
+           ts_search:(4:<0.8462.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:38 ===
+           ts_search:(4:<0.12004.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:39 ===
+           ts_search:(4:<0.1397.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:41 ===
+           ts_search:(4:<0.12881.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:42 ===
+           ts_search:(4:<0.3319.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:46 ===
+           ts_search:(4:<0.11994.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:48 ===
+           ts_search:(4:<0.1686.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:50 ===
+           ts_search:(4:<0.2315.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:52 ===
+           ts_search:(4:<0.4688.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:53 ===
+           ts_search:(4:<0.13958.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:55 ===
+           ts_search:(4:<0.8920.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:56 ===
+           ts_search:(4:<0.4064.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:57 ===
+           ts_search:(4:<0.1862.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:41:58 ===
+           ts_search:(4:<0.3203.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:00 ===
+           ts_search:(4:<0.2353.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:01 ===
+           ts_search:(4:<0.3130.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:02 ===
+           ts_search:(4:<0.4226.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:03 ===
+           ts_search:(4:<0.493.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:03 ===
+           ts_search:(4:<0.894.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:04 ===
+           ts_search:(4:<0.4865.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:05 ===
+           ts_search:(4:<0.6590.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:07 ===
+           ts_search:(4:<0.3961.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:08 ===
+           ts_search:(4:<0.1667.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:09 ===
+           ts_search:(4:<0.3623.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:11 ===
+           ts_search:(4:<0.5405.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:11 ===
+           ts_search:(4:<0.14094.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:13 ===
+           ts_search:(4:<0.6131.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:14 ===
+           ts_search:(4:<0.13462.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:14 ===
+           ts_search:(4:<0.904.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:15 ===
+           ts_search:(4:<0.3993.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:17 ===
+           ts_search:(4:<0.6209.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:17 ===
+           ts_search:(4:<0.7117.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:18 ===
+           ts_search:(4:<0.3398.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:18 ===
+           ts_search:(4:<0.6394.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:19 ===
+           ts_search:(4:<0.9213.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:20 ===
+           ts_search:(4:<0.11378.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:22 ===
+           ts_search:(4:<0.9826.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:23 ===
+           ts_search:(4:<0.3845.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:23 ===
+           ts_search:(4:<0.3491.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:25 ===
+           ts_search:(4:<0.1547.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:25 ===
+           ts_search:(4:<0.4004.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:26 ===
+           ts_search:(4:<0.2552.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:29 ===
+           ts_search:(4:<0.2189.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 371 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:42:31 ===
+           ts_search:(4:<0.12253.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:32 ===
+           ts_search:(4:<0.8810.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:32 ===
+           ts_search:(4:<0.6880.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:34 ===
+           ts_search:(4:<0.2586.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:34 ===
+           ts_search:(4:<0.9423.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:35 ===
+           ts_search:(4:<0.1920.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:35 ===
+           ts_search:(4:<0.10457.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:37 ===
+           ts_search:(4:<0.1429.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:38 ===
+           ts_search:(4:<0.10531.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:40 ===
+           ts_search:(4:<0.11471.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:41 ===
+           ts_search:(4:<0.1344.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:42 ===
+           ts_search:(4:<0.6464.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:43 ===
+           ts_search:(4:<0.793.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:44 ===
+           ts_search:(4:<0.1385.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:46 ===
+           ts_search:(4:<0.5576.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:47 ===
+           ts_search:(4:<0.6810.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:47 ===
+           ts_search:(4:<0.11919.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:48 ===
+           ts_search:(4:<0.996.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:49 ===
+           ts_search:(4:<0.3221.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:50 ===
+           ts_search:(4:<0.13202.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:50 ===
+           ts_search:(4:<0.1893.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:52 ===
+           ts_search:(4:<0.10776.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:52 ===
+           ts_search:(4:<0.13633.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:53 ===
+           ts_search:(4:<0.12090.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:53 ===
+           ts_search:(4:<0.5380.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:54 ===
+           ts_search:(4:<0.12086.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:55 ===
+           ts_search:(4:<0.7725.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:56 ===
+           ts_search:(4:<0.1794.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:56 ===
+           ts_search:(4:<0.14300.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:57 ===
+           ts_search:(4:<0.14655.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:58 ===
+           ts_search:(4:<0.9759.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:42:59 ===
+           ts_search:(4:<0.6819.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:00 ===
+           ts_search:(4:<0.3087.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:00 ===
+           ts_search:(4:<0.1715.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:01 ===
+           ts_search:(4:<0.7508.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:02 ===
+           ts_search:(4:<0.11045.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:02 ===
+           ts_search:(4:<0.7210.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:03 ===
+           ts_search:(4:<0.4807.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:04 ===
+           ts_search:(4:<0.10099.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:04 ===
+           ts_search:(4:<0.2494.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:06 ===
+           ts_search:(4:<0.8066.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:08 ===
+           ts_search:(4:<0.5073.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:09 ===
+           ts_search:(4:<0.12806.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:10 ===
+           ts_search:(4:<0.5829.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:11 ===
+           ts_search:(4:<0.4410.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:12 ===
+           ts_search:(4:<0.4911.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:12 ===
+           ts_search:(4:<0.1677.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:13 ===
+           ts_search:(4:<0.10240.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:15 ===
+           ts_search:(4:<0.1431.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:16 ===
+           ts_search:(4:<0.12753.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:17 ===
+           ts_search:(4:<0.2087.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:18 ===
+           ts_search:(4:<0.13255.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:19 ===
+           ts_search:(4:<0.11218.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:21 ===
+           ts_search:(4:<0.12704.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:21 ===
+           ts_search:(4:<0.14659.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:22 ===
+           ts_search:(4:<0.2568.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:23 ===
+           ts_search:(4:<0.5990.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:24 ===
+           ts_search:(4:<0.8462.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:24 ===
+           ts_search:(4:<0.7445.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:25 ===
+           ts_search:(4:<0.545.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:27 ===
+           ts_search:(4:<0.12004.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:28 ===
+           ts_search:(4:<0.3072.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:29 ===
+           ts_search:(4:<0.3319.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:29 ===
+           ts_search:(4:<0.7550.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 368 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:43:30 ===
+           ts_search:(4:<0.7421.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:30 ===
+           ts_search:(4:<0.14806.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:31 ===
+           ts_search:(4:<0.13049.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:32 ===
+           ts_search:(4:<0.12018.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:33 ===
+           ts_search:(4:<0.3002.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:33 ===
+           ts_search:(4:<0.11185.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:35 ===
+           ts_search:(4:<0.1686.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:35 ===
+           ts_search:(4:<0.12881.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:37 ===
+           ts_search:(4:<0.10834.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:37 ===
+           ts_search:(4:<0.2315.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:38 ===
+           ts_search:(4:<0.10455.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:39 ===
+           ts_search:(4:<0.4692.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:40 ===
+           ts_search:(4:<0.7417.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:41 ===
+           ts_search:(4:<0.4064.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:42 ===
+           ts_search:(4:<0.13958.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:44 ===
+           ts_search:(4:<0.6255.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:44 ===
+           ts_search:(4:<0.3144.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:45 ===
+           ts_search:(4:<0.5842.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:46 ===
+           ts_search:(4:<0.3203.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:47 ===
+           ts_search:(4:<0.3130.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:47 ===
+           ts_search:(4:<0.12486.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:49 ===
+           ts_search:(4:<0.1862.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:49 ===
+           ts_search:(4:<0.5838.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:51 ===
+           ts_search:(4:<0.13185.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:51 ===
+           ts_search:(4:<0.4226.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:53 ===
+           ts_search:(4:<0.493.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:54 ===
+           ts_search:(4:<0.3623.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:55 ===
+           ts_search:(4:<0.14131.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:55 ===
+           ts_search:(4:<0.1667.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:57 ===
+           ts_search:(4:<0.4865.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:57 ===
+           ts_search:(4:<0.5405.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:59 ===
+           ts_search:(4:<0.3961.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:43:59 ===
+           ts_search:(4:<0.14094.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:00 ===
+           ts_search:(4:<0.6131.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:01 ===
+           ts_search:(4:<0.14901.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:02 ===
+           ts_search:(4:<0.2934.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:02 ===
+           ts_search:(4:<0.7117.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:04 ===
+           ts_search:(4:<0.6209.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:04 ===
+           ts_search:(4:<0.11994.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:05 ===
+           ts_search:(4:<0.9213.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:07 ===
+           ts_search:(4:<0.3398.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:08 ===
+           ts_search:(4:<0.11378.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:09 ===
+           ts_search:(4:<0.3673.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:10 ===
+           ts_search:(4:<0.3491.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:11 ===
+           ts_search:(4:<0.4004.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:11 ===
+           ts_search:(4:<0.1547.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:13 ===
+           ts_search:(4:<0.9826.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:14 ===
+           ts_search:(4:<0.6321.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:14 ===
+           ts_search:(4:<0.2189.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:15 ===
+           ts_search:(4:<0.9626.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:16 ===
+           ts_search:(4:<0.11762.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:17 ===
+           ts_search:(4:<0.6880.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:17 ===
+           ts_search:(4:<0.10891.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:19 ===
+           ts_search:(4:<0.12253.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:20 ===
+           ts_search:(4:<0.2586.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:20 ===
+           ts_search:(4:<0.6394.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:22 ===
+           ts_search:(4:<0.9423.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:23 ===
+           ts_search:(4:<0.10457.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:23 ===
+           ts_search:(4:<0.1429.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:25 ===
+           ts_search:(4:<0.8810.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:26 ===
+           ts_search:(4:<0.1039.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:28 ===
+           ts_search:(4:<0.6464.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:28 ===
+           ts_search:(4:<0.5919.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:29 ===
+           ts_search:(4:<0.7473.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:29 ===
+           ts_search:(4:<0.11471.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 367 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:44:31 ===
+           ts_search:(4:<0.793.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:31 ===
+           ts_search:(4:<0.5576.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:33 ===
+           ts_search:(4:<0.6810.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:33 ===
+           ts_search:(4:<0.3993.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:36 ===
+           ts_search:(4:<0.1344.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:37 ===
+           ts_search:(4:<0.13633.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:37 ===
+           ts_search:(4:<0.1893.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:38 ===
+           ts_search:(4:<0.12090.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:39 ===
+           ts_search:(4:<0.13202.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:40 ===
+           ts_search:(4:<0.10776.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:42 ===
+           ts_search:(4:<0.14300.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:42 ===
+           ts_search:(4:<0.12086.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:43 ===
+           ts_search:(4:<0.14655.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:44 ===
+           ts_search:(4:<0.3221.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:44 ===
+           ts_search:(4:<0.3087.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:45 ===
+           ts_search:(4:<0.6819.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:46 ===
+           ts_search:(4:<0.9759.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:47 ===
+           ts_search:(4:<0.12116.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:48 ===
+           ts_search:(4:<0.7508.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:48 ===
+           ts_search:(4:<0.4807.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:50 ===
+           ts_search:(4:<0.1794.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:50 ===
+           ts_search:(4:<0.2353.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:52 ===
+           ts_search:(4:<0.8066.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:53 ===
+           ts_search:(4:<0.1715.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:54 ===
+           ts_search:(4:<0.6399.0>) Dyn Var (RE): no Match (varname=shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:56 ===
+           ts_search:(4:<0.12806.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:56 ===
+           ts_search:(4:<0.7210.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:57 ===
+           ts_search:(4:<0.4911.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:57 ===
+           ts_search:(4:<0.7725.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:44:59 ===
+           ts_search:(4:<0.5829.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:00 ===
+           ts_search:(4:<0.4410.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:00 ===
+           ts_search:(4:<0.10240.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:01 ===
+           ts_search:(4:<0.5073.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:02 ===
+           ts_search:(4:<0.12753.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:04 ===
+           ts_search:(4:<0.13255.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:05 ===
+           ts_search:(4:<0.14659.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:07 ===
+           ts_search:(4:<0.11218.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:10 ===
+           ts_search:(4:<0.5380.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:11 ===
+           ts_search:(4:<0.7445.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:15 ===
+           ts_search:(4:<0.14862.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:16 ===
+           ts_search:(4:<0.7550.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:18 ===
+           ts_search:(4:<0.13049.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:18 ===
+           ts_search:(4:<0.12018.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:19 ===
+           ts_search:(4:<0.7421.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:19 ===
+           ts_search:(4:<0.11185.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:23 ===
+           ts_search:(4:<0.10834.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:26 ===
+           ts_search:(4:<0.10455.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:26 ===
+           ts_search:(4:<0.7417.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:29 ===
+           ts_search:(4:<0.3002.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 366 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:45:31 ===
+           ts_search:(4:<0.6255.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:35 ===
+           ts_search:(4:<0.14806.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:36 ===
+           ts_search:(4:<0.13185.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:41 ===
+           ts_search:(4:<0.5990.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:41 ===
+           ts_search:(4:<0.14131.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:47 ===
+           ts_search:(4:<0.14901.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:50 ===
+           ts_search:(4:<0.7403.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:51 ===
+           ts_search:(4:<0.11045.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:45:52 ===
+           ts_search:(4:<0.10099.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:46:00 ===
+           ts_search:(4:<0.3144.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:46:02 ===
+           ts_search:(4:<0.11762.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:46:03 ===
+           ts_search:(4:<0.6321.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:46:04 ===
+           ts_search:(4:<0.10891.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:46:05 ===
+           ts_search:(4:<0.5842.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:46:08 ===
+           ts_search:(4:<0.9626.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:46:10 ===
+           ts_search:(4:<0.3673.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:46:14 ===
+           ts_search:(4:<0.5919.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:46:17 ===
+           ts_search:(4:<0.7473.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:46:19 ===
+           ts_search:(4:<0.2934.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:46:22 ===
+           ts_search:(4:<0.1039.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:46:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 365 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:46:35 ===
+           ts_search:(4:<0.12486.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:46:42 ===
+           ts_search:(4:<0.12116.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:46:42 ===
+           ts_search:(4:<0.6399.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:47:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 362 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:48:14 ===
+           ts_search:(4:<0.133.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::02:48:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 360 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:49:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 359 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:50:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 359 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:51:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 359 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:52:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 356 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:53:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 350 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:54:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 333 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:55:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 289 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:56:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 252 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:57:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 232 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:58:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::02:59:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:00:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:01:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:02:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:03:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:04:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:05:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:06:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:07:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:08:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:08:39 ===
+           ts_search:(4:<0.167.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::03:09:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:10:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:11:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:12:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:13:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:14:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:15:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:16:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:17:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:18:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:19:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:20:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:21:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 229 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:22:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 228 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:23:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 228 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:24:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 228 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:25:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 228 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:26:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 228 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:27:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 228 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:28:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 228 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:29:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 228 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:30:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 228 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:31:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 228 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:32:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 228 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:33:22 ===
+           ts_search:(4:<0.181.0>) Dyn Var (RE): no Match (varname=on_shelf_id), 
+
+=INFO REPORT==== 1-Dec-2015::03:33:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 228 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:34:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 228 active client(s)
+
+=INFO REPORT==== 1-Dec-2015::03:35:30 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 228 active client(s)

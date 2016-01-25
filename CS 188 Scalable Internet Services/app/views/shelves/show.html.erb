@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <strong>Shelf name:</strong>
+  <%= @shelf.shelf_name %>
+</p>
+
+<p>
+  <strong>Shelf owner:</strong>
+  <%= @shelf.shelf_owner %>
+</p>
+<p>
+<h4>Books</h4>
+<% @books.each do |book| %>
+    <br>
+    Book: <%= link_to book.title, book%>
+<%end%>
+</p>
+<%= link_to 'Edit', edit_shelf_path(@shelf) %> |
+<%= link_to 'Back', shelves_path %>

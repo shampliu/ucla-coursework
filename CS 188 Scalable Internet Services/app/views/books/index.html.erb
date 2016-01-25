@@ -1,0 +1,90 @@
+<%= render :partial => "layouts/navbar", :locals => { :active => "books" } %>
+
+<!-- <p id="notice"><%= notice %></p> -->
+<div class="ui text container">
+  <div class="ui link three cards">
+    <% @books.each do |book| %>
+    <div class="ui card">
+      <div class="image" style="height: 150px; background-image: url('<%= book.avatar.url %>'); background-size: 100%;">
+
+
+
+      </div>
+      <div class="content">
+        <div class="header"><%=link_to book.title, book %> </div>
+        <div class="meta">
+          <a>Genre</a>
+        </div>
+        <!-- <div class="description">
+          < %= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div> -->
+      </div>
+      <div class="extra content">
+        <span>
+          <i class="comment icon"></i>
+          <%= Comment.where(book_id: book.id).count %> Comments
+        </span>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<br>
+
+<div class="ui modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Add a New Book
+  </div>
+  <%= form_for(@book) do |f| %>
+  <% if @book.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar %>
+  </div>
+  <div class="field">
+    <%= f.label :story %>
+    <%= f.text_area :story %>
+  </div>
+  
+  <div class="actions">
+    <div class="ui black deny button">
+      Nevermind
+    </div>
+    <a id="submit">
+      <div class="ui right labeled icon button">
+        Add
+        <i class="checkmark icon"></i>
+      </div>
+    </a>
+  </div>
+  <% end %>
+</div>
+
+<button style="position: fixed; bottom: 10px; right: 10px;"id="new_book_modal" class="ui button"><i class="fa fa-plus"></i> Add</button>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.5/components/modal.min.js"></script>
+<script>
+  $('#new_book_modal').click(function() {
+    $('.ui.modal').modal('show');
+  })
+  $(document).on("click", "#submit", function(){
+   $("#new_book").submit();
+ });
+</script>
