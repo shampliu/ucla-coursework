@@ -1,0 +1,55 @@
+convert_grammar 
+===============
+For this function, I made two additional helper functions, format_rules and
+format_rules helper. I call format_rules first on the rhs of the input grammar
+and it returns a function. This function takes in one argument and returns a 
+call to the format_rules_helper function. The argument in this case would be
+the nonterminal symbol (Expr, Term, Lvalue, etc.) to pattern match and the 
+helper function would return the alternative list of rules for the input 
+symbol. I used function instead of fun to be concise since the former can take
+only argument (which is all I need) while the latter can take multiple. The
+helper function is a recursive function that iterates through the rules list 
+and using the constructor operator "::", constructs a list of rhs rules if the 
+lhs matches the input symbol. 
+
+parse_prefix
+============
+To solve this, I split the problem into three functions, parse_prefix, 
+check_symbols, and check_rhs. I originally looked at the spec for the old hw2, 
+as advised by this homework's spec but that only confused me more. 
+
+I then looked over the TA's advice on Piazza and that's where I started my 
+functions. The grammar structure is a tuple of (Expr, <fun>) where fun returns 
+a list of lists. My check_rhs simply iterates through the parent list to check 
+each rule by calling check_symbols on them. The check_symbols funciton does the 
+matching of the rule in question against the fragment, returning Some if it 
+matches. If it doesn't return Some and all the rules have been exhausted, then 
+check_rhs will return None, indicating no matches. 
+
+The check_symbols function was the tricky one. It checks a specific rule to see
+if it matches with the fragment. The easiest case is when the rule consists of
+all terminal symbols, because the fragment consists of all terminal symbols as
+well. This would mean simply checking each terminal symbol of the rule against
+the corresponding symbols in the fragment for a match. 
+
+If the rule did contain a nonterminal symbol, my solution was to just call the
+check_rhs on that symbol. This would be a DFS algorithm, by searching each
+nonterminal upon encounter. The result of the acceptor would be passed up as 
+the recursive calls return, thus verifying whether the nonterminals are good. 
+I had a huge issue at first with passing the acceptor through this function. 
+At first, I just used the same acceptor in the recursive calls but that turned
+out to be incorrect. As recommended in the TA's hints, I needed to pass a 
+modified acceptor function in the recursive check_symbols calls where I call 
+check_symbols on the rest of the rules, but leave out the last two args so it
+just returns a curried acceptor function. I do this upon every nonterminal call
+so that the acceptor actually ends up growing, to account for nested grammar. 
+
+In terms of the implementation, I tried at first to do simple recursion because
+the TA mentioned that mutual recursion was not needed for this. I could not get
+that working however so I ended up with mutual recursion. 
+
+This function does not handle well with blind alley cases, as it would enter
+an infinite loop by continuously checking each nonterminal and never stopping. 
+Specifically, it is left-associative, meaning it greedily checks the left rules
+first. So if there is a nonterminal rhs with a first rule of calling itself,
+like Expr -> [[N Expr; N Term]] then this could cause trouble. 
