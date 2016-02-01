@@ -159,6 +159,7 @@ Animation.prototype.draw_bee = function(model_transform) {
 	model_transform = mult( model_transform, scale( 1/9, 1/4, 1/4 ) );	
 
 	// left wing & legs
+	//model_transform = mult( model_transform, rotate( Math.cos(this.graphicsState.animation_time / 200), 0, 0, 1 ) );
 	model_transform = mult( model_transform, translate( 0, 2.25, 8) );	
 	model_transform = mult( model_transform, scale( 4, 0.5, 12 ) );	
 	this.m_cube.draw( this.graphicsState, model_transform, light_grey );	
@@ -241,8 +242,10 @@ Animation.prototype.draw_tree = function(model_transform)
 
 	// model_transform = mult( model_transform, scale( 2, 5, 2 ) );
 	for (var i = 0; i < 8; i++) {
-		model_transform = mult( model_transform, translate( 0, 5, 0 ) );	
-		model_transform = mult( model_transform, rotate( 10, 0, 0, 1 ) );
+
+		model_transform = mult( model_transform, translate( 0, 2.5, 0 ) );	
+		model_transform = mult( model_transform, rotate( 8 * Math.cos(this.graphicsState.animation_time / 400), 0, 0, 1 ) );
+		model_transform = mult( model_transform, translate( 0, 2.5, 0 ) );	
 		model_transform = mult( model_transform, scale( 2, 5, 2 ) );
 
 
@@ -254,7 +257,7 @@ Animation.prototype.draw_tree = function(model_transform)
 		model_transform = mult( model_transform, scale( 1/2, 1/5, 1/2 ) );
 
 	}
-	model_transform = mult( model_transform, rotate( -80, 0, 0, 1 ) );
+	// model_transform = mult( model_transform, rotate( -80, 0, 0, 1 ) );
 
 	model_transform = mult( model_transform, translate( 0, -40, 0 ) );	
 
