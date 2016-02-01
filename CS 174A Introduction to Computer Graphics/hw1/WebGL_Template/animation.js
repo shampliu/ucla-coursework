@@ -117,11 +117,8 @@ Animation.prototype.display = function(time)
 	Start coding here!!!!
 	**********************************/		
 
-
-	model_transform = mult( model_transform, translate( 0, 15, 0) );		// Position the next shape by post-multiplying another matrix onto the current matrix product
-	this.m_cube.draw( this.graphicsState, model_transform, purple );			// Draw a cube, passing in the current matrices
-	CURRENT_BASIS_IS_WORTH_SHOWING(this, model_transform);							// How to draw a set of axes, conditionally displayed - cycle through by pressing p and m
-	model_transform = mult( model_transform, translate( 0, -15, 0 ) );											
+	var stack = []; 
+	stack.push(model_transform);								
 										
 	// model_transform = mult( model_transform, rotate( this.graphicsState.animation_time/20, 0, 1, 0 ) );			
 	this.draw_ground(model_transform); 		
@@ -141,72 +138,86 @@ Animation.prototype.display = function(time)
 Animation.prototype.draw_bee = function(model_transform) {
 	var purple = new Material( vec4( .9, .5, .9, 1 ), 1, 1, 1, 40 ), // Omit the string parameter if you want no texture
 		yellow = new Material( vec4( 1.0, 1.0, 0.2), 1, 1, 1, 40 ),
-		light_grey = new Material( vec4( 0.40, 0.40, 0.40), 1, 1, 1, 40 ),
 		grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
+
+	var stack = []; 
+	stack.push(model_transform); 
 
 	// head
 	model_transform = mult( model_transform, scale( 2.5, 2.5, 2.5 ) );	
 	this.m_sphere.draw( this.graphicsState, model_transform, purple );	
 
-	model_transform = mult( model_transform, scale( 1/2.5, 1/2.5, 1/2.5 ) );
+	model_transform = stack.pop();
+	stack.push(model_transform);
 
 	// body
 	model_transform = mult( model_transform, translate( 7, 0, 0) );												
 	model_transform = mult( model_transform, scale( 9, 4, 4 ) );												
 	this.m_cube.draw( this.graphicsState, model_transform, grey );	
-	CURRENT_BASIS_IS_WORTH_SHOWING(this, model_transform);	
 
-	model_transform = mult( model_transform, scale( 1/9, 1/4, 1/4 ) );	
+	model_transform = stack.pop();
+	stack.push(model_transform);
 
-	// left wing & legs
-	//model_transform = mult( model_transform, rotate( Math.cos(this.graphicsState.animation_time / 200), 0, 0, 1 ) );
-	model_transform = mult( model_transform, translate( 0, 2.25, 8) );	
-	model_transform = mult( model_transform, scale( 4, 0.5, 12 ) );	
-	this.m_cube.draw( this.graphicsState, model_transform, light_grey );	
+	this.draw_wing(model_transform, 1);
+	this.draw_wing(model_transform, -1);
 
-	model_transform = mult( model_transform, scale( 1/4, 2, 1/12 ) );	
-	model_transform = mult( model_transform, translate( 0, -2.25, -8) );	
-
-	model_transform = mult( model_transform, translate( -2, -4, 2.5) );	
-	for (var i = 0; i < 3; i++) {
-		this.draw_leg(model_transform);
-		model_transform = mult( model_transform, translate( 2, 0, 0) );
-	}	
-	model_transform = mult( model_transform, translate( -4, 4, -2.5) );
-
-	// right side
-	model_transform = mult( model_transform, rotate( 180, 0, 1, 0 ) );
-	model_transform = mult( model_transform, translate( 0, 2.25, 8) );	
-	model_transform = mult( model_transform, scale( 4, 0.5, 12 ) );	
-	this.m_cube.draw( this.graphicsState, model_transform, light_grey );	
-
-	model_transform = mult( model_transform, scale( 1/4, 2, 1/12 ) );	
-	model_transform = mult( model_transform, translate( 0, -2.25, -8) );	
-
-	model_transform = mult( model_transform, translate( -2, -4, 2.5) );	
-	for (var i = 0; i < 3; i++) {
-		this.draw_leg(model_transform);
-		model_transform = mult( model_transform, translate( 2, 0, 0) );
-	}	
-	model_transform = mult( model_transform, translate( -3.5, 4, -2.5) );	
-	model_transform = mult( model_transform, rotate( 180, 0, 1, 0 ) );
+	this.draw_legs(model_transform);
 
 
 
 	// tail
-	model_transform = mult( model_transform, translate( 12.5, 0, 0 ) );												
+	model_transform = mult( model_transform, translate( 19.5, 0, 0 ) );												
 	model_transform = mult( model_transform, scale( 8, 5, 4.5 ) );												
 	this.m_sphere.draw( this.graphicsState, model_transform, yellow );	
-	CURRENT_BASIS_IS_WORTH_SHOWING(this, model_transform);	
 
 	model_transform = mult( model_transform, scale( 1/8, 1/5, 1/4.5 ) );
 	model_transform = mult( model_transform, translate( -12.5, 0, 0 ) );		
 
 }
 
-Animation.prototype.draw_leg = function(model_transform) {
+Animation.prototype.draw_wing = function(model_transform, orientation) {
+	var light_grey = new Material( vec4( 0.40, 0.40, 0.40), 1, 1, 1, 40 );
+
+	var stack = [];
+	stack.push(model_transform);
+
+	model_transform = mult( model_transform, translate( 7, 2.25, 8 * orientation) );	
+		model_transform = mult( model_transform, translate( 0, -0.25, 6 * -orientation) );	
+			// model_transform = mult( model_transform, rotate( 30 * orientation, 1, 0, 0 ) );
+			model_transform = mult( model_transform, rotate( 30 * orientation * Math.cos(this.graphicsState.animation_time/200), 1, 0, 0 ) );
+		model_transform = mult( model_transform, translate( 0, 0.25, 6 * orientation) );	
+	model_transform = mult( model_transform, scale( 4, 0.5, 12 ) );	
+	this.m_cube.draw( this.graphicsState, model_transform, light_grey );	
+
+	model_transform = stack.pop();
+	return model_transform; 
+}
+
+Animation.prototype.draw_legs = function(model_transform) {
+
+	var stack = [];
+	stack.push(model_transform);
+
+	model_transform = mult( model_transform, translate( 5, -3, 0) );	
+
+	for (var i = 0; i < 3; i++) {
+		this.draw_leg(model_transform, 1);
+		this.draw_leg(model_transform, -1);
+		model_transform = mult( model_transform, translate( 2, 0, 0) );
+	}	
+
+	model_transform = stack.pop();
+	return model_transform; 
+}
+
+Animation.prototype.draw_leg = function(model_transform, orientation) {
 	var purple = new Material( vec4( .9, .5, .9, 1 ), 1, 1, 1, 40 ),
 	    grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
+
+	var stack = [];
+	stack.push(model_transform);
+
+	model_transform = mult( model_transform, translate( 0, -1, 2.5 * orientation ) );
 
 	model_transform = mult( model_transform, scale( 1, 4, 1 ) );
 	this.m_cube.draw( this.graphicsState, model_transform, grey );
@@ -214,8 +225,8 @@ Animation.prototype.draw_leg = function(model_transform) {
 	model_transform = mult( model_transform, translate( 0, -1, 0 ) );
 	this.m_cube.draw( this.graphicsState, model_transform, purple );
 
-	model_transform = mult( model_transform, translate( 0, 1, 0 ) );
-	model_transform = mult( model_transform, scale( 1, 1/4, 1 ) );
+	model_transform = stack.pop();
+	return model_transform; 
 
 
 }
@@ -225,7 +236,6 @@ Animation.prototype.draw_ground = function(model_transform) {
 
 	model_transform = mult( model_transform, scale( 100, 1, 100 ) );												
 	this.m_cube.draw( this.graphicsState, model_transform, green );		
-	CURRENT_BASIS_IS_WORTH_SHOWING(this, model_transform);		
 
 	model_transform = mult( model_transform, scale( 1/100, 1, 1/100 ) );
 
@@ -236,9 +246,7 @@ Animation.prototype.draw_tree = function(model_transform)
 {
 
 	var	brown = new Material( vec4( 0.4, 0.2, 0.0), 1, 1, 1, 40 ),
-		red = new Material( vec4( 1.0, 0.0, 0.0), 1, 1, 1, 40 );
-
-	// model_transform = mult( model_transform, rotate( this.graphicsState.animation_time/20, 0, 1, 0 ) );	
+		red = new Material( vec4( 1.0, 0.0, 0.0), 1, 1, 1, 40 );	
 
 	// model_transform = mult( model_transform, scale( 2, 5, 2 ) );
 	for (var i = 0; i < 8; i++) {
@@ -253,7 +261,6 @@ Animation.prototype.draw_tree = function(model_transform)
 			this.m_cube.draw( this.graphicsState, model_transform, red );	
 		}
 		this.m_cube.draw( this.graphicsState, model_transform, brown );	
-		CURRENT_BASIS_IS_WORTH_SHOWING(this, model_transform);		
 		model_transform = mult( model_transform, scale( 1/2, 1/5, 1/2 ) );
 
 	}
@@ -264,7 +271,6 @@ Animation.prototype.draw_tree = function(model_transform)
 	model_transform = mult( model_transform, translate( 0, 40, 0 ) );
 	model_transform = mult( model_transform, scale( 5, 5, 5 ) );	
 	this.m_sphere.draw( this.graphicsState, model_transform, red );		
-	CURRENT_BASIS_IS_WORTH_SHOWING(this, model_transform);	
 
 	model_transform = mult( model_transform, translate( 0, -40, 0 ) );
 	model_transform = mult( model_transform, scale( 1/5, 1/5, 1/5 ) );
