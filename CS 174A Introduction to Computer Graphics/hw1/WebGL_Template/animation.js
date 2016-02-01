@@ -123,9 +123,12 @@ Animation.prototype.display = function(time)
 	// model_transform = mult( model_transform, rotate( this.graphicsState.animation_time/20, 0, 1, 0 ) );			
 	this.draw_ground(model_transform); 		
 
-	model_transform = mult( model_transform, translate( 8, 10, 20) );	
+	model_transform = mult( model_transform, translate( 8, 16 + 4 * Math.cos(this.graphicsState.animation_time/200), 20) );	
+
 	this.draw_bee(model_transform);			
-	model_transform = mult( model_transform, translate( -8, -10, -20) );	
+	
+	model_transform = stack.pop();
+	stack.push(model_transform);
 
 	
 
@@ -137,8 +140,8 @@ Animation.prototype.display = function(time)
 
 Animation.prototype.draw_bee = function(model_transform) {
 	var purple = new Material( vec4( .9, .5, .9, 1 ), 1, 1, 1, 40 ), // Omit the string parameter if you want no texture
-		yellow = new Material( vec4( 1.0, 1.0, 0.2), 1, 1, 1, 40 ),
-		grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
+			yellow = new Material( vec4( 1.0, 1.0, 0.2), 1, 1, 1, 40 ),
+			grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
 
 	var stack = []; 
 	stack.push(model_transform); 
@@ -163,8 +166,6 @@ Animation.prototype.draw_bee = function(model_transform) {
 
 	this.draw_legs(model_transform);
 
-
-
 	// tail
 	model_transform = mult( model_transform, translate( 19.5, 0, 0 ) );												
 	model_transform = mult( model_transform, scale( 8, 5, 4.5 ) );												
@@ -183,8 +184,7 @@ Animation.prototype.draw_wing = function(model_transform, orientation) {
 
 	model_transform = mult( model_transform, translate( 7, 2.25, 8 * orientation) );	
 		model_transform = mult( model_transform, translate( 0, -0.25, 6 * -orientation) );	
-			// model_transform = mult( model_transform, rotate( 30 * orientation, 1, 0, 0 ) );
-			model_transform = mult( model_transform, rotate( 30 * orientation * Math.cos(this.graphicsState.animation_time/200), 1, 0, 0 ) );
+			model_transform = mult( model_transform, rotate( 55 * orientation * Math.cos(this.graphicsState.animation_time/200), 1, 0, 0 ) );
 		model_transform = mult( model_transform, translate( 0, 0.25, 6 * orientation) );	
 	model_transform = mult( model_transform, scale( 4, 0.5, 12 ) );	
 	this.m_cube.draw( this.graphicsState, model_transform, light_grey );	
@@ -219,10 +219,24 @@ Animation.prototype.draw_leg = function(model_transform, orientation) {
 
 	model_transform = mult( model_transform, translate( 0, -1, 2.5 * orientation ) );
 
+	model_transform = mult( model_transform, translate( 0, 2, 0.5 * -orientation) );
+		model_transform = mult( model_transform, rotate( 17.5 * orientation + (17.5 * orientation * Math.cos(this.graphicsState.animation_time/200)), 1, 0, 0 ) );
+	model_transform = mult( model_transform, translate( 0, -2, 0.5 * orientation ) );
+
 	model_transform = mult( model_transform, scale( 1, 4, 1 ) );
+
 	this.m_cube.draw( this.graphicsState, model_transform, grey );
 
-	model_transform = mult( model_transform, translate( 0, -1, 0 ) );
+	model_transform = mult( model_transform, scale( 1, 1/4, 1 ) );
+
+	model_transform = mult( model_transform, translate( 0, -4, 0 ) );
+
+	model_transform = mult( model_transform, translate( 0, 2, 0.5 * -orientation) );
+		model_transform = mult( model_transform, rotate( 10 * orientation + (10 * orientation * Math.cos(this.graphicsState.animation_time/200)), 1, 0, 0 ) );
+	model_transform = mult( model_transform, translate( 0, -2, 0.5 * orientation ) );
+
+	model_transform = mult( model_transform, scale( 1, 4, 1 ) );
+
 	this.m_cube.draw( this.graphicsState, model_transform, purple );
 
 	model_transform = stack.pop();
