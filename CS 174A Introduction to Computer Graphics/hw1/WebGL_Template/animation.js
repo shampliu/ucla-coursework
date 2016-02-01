@@ -106,82 +106,156 @@ Animation.prototype.display = function(time)
 	
 	var model_transform = mat4();
 	
-	var purplePlastic = new Material( vec4( .9,.5,.9,1 ), 1, 1, 1, 40 ), // Omit the string parameter if you want no texture
+	var purple = new Material( vec4( .9, .5, .9, 1 ), 1, 1, 1, 40 ), // Omit the string parameter if you want no texture
 		greyPlastic = new Material( vec4( .5,.5,.5,1 ), 1, 1, .5, 20 ),
 		earth = new Material( vec4( .5,.5,.5,1 ), 1, 1, 1, 40, "earth.gif" ),
 		stars = new Material( vec4( .5,.5,.5,1 ), 1, 1, 1, 40, "stars.png" ),
 		yellow = new Material( vec4( 1.0, 1.0, 0.2), 1, 1, 1, 40 ),
-		green = new Material( vec4( 0.2, 0.6, 0.0), 1, 1, 1, 40 ),
 		grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
 		
 	/**********************************
 	Start coding here!!!!
-	**********************************/
+	**********************************/		
 
-	// model_transform = mult( model_transform, translate( 0, 20, 0 ) );											
-	// model_transform = mult( model_transform, rotate( this.graphicsState.animation_time/20, 0, 1, 0 ) );			
-	// model_transform = mult( model_transform, scale( 5, 1, 5 ) );												
-	// this.m_sphere.draw( this.graphicsState, model_transform, earth );											
+
 	model_transform = mult( model_transform, translate( 0, 15, 0) );		// Position the next shape by post-multiplying another matrix onto the current matrix product
-	this.m_cube.draw( this.graphicsState, model_transform, purplePlastic );			// Draw a cube, passing in the current matrices
+	this.m_cube.draw( this.graphicsState, model_transform, purple );			// Draw a cube, passing in the current matrices
 	CURRENT_BASIS_IS_WORTH_SHOWING(this, model_transform);							// How to draw a set of axes, conditionally displayed - cycle through by pressing p and m
 	model_transform = mult( model_transform, translate( 0, -15, 0 ) );											
-
-	/* Ground Plane */
-	model_transform = mult( model_transform, translate( 0, 0, 0 ) );											
+										
 	// model_transform = mult( model_transform, rotate( this.graphicsState.animation_time/20, 0, 1, 0 ) );			
+	this.draw_ground(model_transform); 		
+
+	model_transform = mult( model_transform, translate( 8, 10, 20) );	
+	this.draw_bee(model_transform);			
+	model_transform = mult( model_transform, translate( -8, -10, -20) );	
+
+	
+
+
+	model_transform = mult( model_transform, translate( 0, -5/2, 0 ) ); // to position tree
+	this.draw_tree(model_transform); 				
+
+}	
+
+Animation.prototype.draw_bee = function(model_transform) {
+	var purple = new Material( vec4( .9, .5, .9, 1 ), 1, 1, 1, 40 ), // Omit the string parameter if you want no texture
+		yellow = new Material( vec4( 1.0, 1.0, 0.2), 1, 1, 1, 40 ),
+		light_grey = new Material( vec4( 0.40, 0.40, 0.40), 1, 1, 1, 40 ),
+		grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
+
+	// head
+	model_transform = mult( model_transform, scale( 2.5, 2.5, 2.5 ) );	
+	this.m_sphere.draw( this.graphicsState, model_transform, purple );	
+
+	model_transform = mult( model_transform, scale( 1/2.5, 1/2.5, 1/2.5 ) );
+
+	// body
+	model_transform = mult( model_transform, translate( 7, 0, 0) );												
+	model_transform = mult( model_transform, scale( 9, 4, 4 ) );												
+	this.m_cube.draw( this.graphicsState, model_transform, grey );	
+	CURRENT_BASIS_IS_WORTH_SHOWING(this, model_transform);	
+
+	model_transform = mult( model_transform, scale( 1/9, 1/4, 1/4 ) );	
+
+	// left wing & legs
+	model_transform = mult( model_transform, translate( 0, 2.25, 8) );	
+	model_transform = mult( model_transform, scale( 4, 0.5, 12 ) );	
+	this.m_cube.draw( this.graphicsState, model_transform, light_grey );	
+
+	model_transform = mult( model_transform, scale( 1/4, 2, 1/12 ) );	
+	model_transform = mult( model_transform, translate( 0, -2.25, -8) );	
+
+	model_transform = mult( model_transform, translate( -2, -4, 2.5) );	
+	for (var i = 0; i < 3; i++) {
+		this.draw_leg(model_transform);
+		model_transform = mult( model_transform, translate( 2, 0, 0) );
+	}	
+	model_transform = mult( model_transform, translate( -4, 4, -2.5) );
+
+	// right side
+	model_transform = mult( model_transform, rotate( 180, 0, 1, 0 ) );
+	model_transform = mult( model_transform, translate( 0, 2.25, 8) );	
+	model_transform = mult( model_transform, scale( 4, 0.5, 12 ) );	
+	this.m_cube.draw( this.graphicsState, model_transform, light_grey );	
+
+	model_transform = mult( model_transform, scale( 1/4, 2, 1/12 ) );	
+	model_transform = mult( model_transform, translate( 0, -2.25, -8) );	
+
+	model_transform = mult( model_transform, translate( -2, -4, 2.5) );	
+	for (var i = 0; i < 3; i++) {
+		this.draw_leg(model_transform);
+		model_transform = mult( model_transform, translate( 2, 0, 0) );
+	}	
+	model_transform = mult( model_transform, translate( -3.5, 4, -2.5) );	
+	model_transform = mult( model_transform, rotate( 180, 0, 1, 0 ) );
+
+
+
+	// tail
+	model_transform = mult( model_transform, translate( 12.5, 0, 0 ) );												
+	model_transform = mult( model_transform, scale( 8, 5, 4.5 ) );												
+	this.m_sphere.draw( this.graphicsState, model_transform, yellow );	
+	CURRENT_BASIS_IS_WORTH_SHOWING(this, model_transform);	
+
+	model_transform = mult( model_transform, scale( 1/8, 1/5, 1/4.5 ) );
+	model_transform = mult( model_transform, translate( -12.5, 0, 0 ) );		
+
+}
+
+Animation.prototype.draw_leg = function(model_transform) {
+	var purple = new Material( vec4( .9, .5, .9, 1 ), 1, 1, 1, 40 ),
+	    grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
+
+	model_transform = mult( model_transform, scale( 1, 4, 1 ) );
+	this.m_cube.draw( this.graphicsState, model_transform, grey );
+
+	model_transform = mult( model_transform, translate( 0, -1, 0 ) );
+	this.m_cube.draw( this.graphicsState, model_transform, purple );
+
+	model_transform = mult( model_transform, translate( 0, 1, 0 ) );
+	model_transform = mult( model_transform, scale( 1, 1/4, 1 ) );
+
+
+}
+
+Animation.prototype.draw_ground = function(model_transform) {
+	var green = new Material( vec4( 0.2, 0.6, 0.0), 1, 1, 1, 40 );
+
 	model_transform = mult( model_transform, scale( 100, 1, 100 ) );												
 	this.m_cube.draw( this.graphicsState, model_transform, green );		
 	CURRENT_BASIS_IS_WORTH_SHOWING(this, model_transform);		
 
 	model_transform = mult( model_transform, scale( 1/100, 1, 1/100 ) );
 
-	/* Bee */
-	model_transform = mult( model_transform, translate( 0, 10, 20 ) );												
-	model_transform = mult( model_transform, scale( 5, 2, 5 ) );												
-	this.m_sphere.draw( this.graphicsState, model_transform, yellow );	
-	CURRENT_BASIS_IS_WORTH_SHOWING(this, model_transform);	
-
-	model_transform = mult( model_transform, scale( 1/5, 1/2, 1/5 ) );
-	model_transform = mult( model_transform, translate( 0, -10, -20 ) );	
-
-	model_transform = mult( model_transform, translate( 8, 10, 20) );												
-	model_transform = mult( model_transform, scale( 6, 2.5, 2.5 ) );												
-	this.m_cube.draw( this.graphicsState, model_transform, grey );	
-	CURRENT_BASIS_IS_WORTH_SHOWING(this, model_transform);	
-
-	model_transform = mult( model_transform, scale( 1/6, 1/2.5, 1/2.5 ) );	
-	model_transform = mult( model_transform, translate( -8, -10, -20 ) );	
-
-	model_transform = mult( model_transform, translate( 0, -5, 0 ) ); // to position tree
-	this.draw_tree(model_transform); 				
-
-}	
+	return model_transform;
+}
 
 Animation.prototype.draw_tree = function(model_transform) 
 {
 
 	var	brown = new Material( vec4( 0.4, 0.2, 0.0), 1, 1, 1, 40 ),
 		red = new Material( vec4( 1.0, 0.0, 0.0), 1, 1, 1, 40 );
-	/* Tree */
-	// model_transform = mult( model_transform, rotate( this.graphicsState.animation_time/20, 0, 1, 0 ) );	
-	// model_transform = mult( model_transform, translate( 0, 0, 0 ) );
 
-	model_transform = mult( model_transform, scale( 2, 5, 2 ) );
+	// model_transform = mult( model_transform, rotate( this.graphicsState.animation_time/20, 0, 1, 0 ) );	
+
+	// model_transform = mult( model_transform, scale( 2, 5, 2 ) );
 	for (var i = 0; i < 8; i++) {
-		model_transform = mult( model_transform, translate( 0, 1, 0 ) );	
+		model_transform = mult( model_transform, translate( 0, 5, 0 ) );	
+		model_transform = mult( model_transform, rotate( 10, 0, 0, 1 ) );
+		model_transform = mult( model_transform, scale( 2, 5, 2 ) );
+
+
+		if (i % 2 == 0) {
+			this.m_cube.draw( this.graphicsState, model_transform, red );	
+		}
 		this.m_cube.draw( this.graphicsState, model_transform, brown );	
 		CURRENT_BASIS_IS_WORTH_SHOWING(this, model_transform);		
+		model_transform = mult( model_transform, scale( 1/2, 1/5, 1/2 ) );
 
 	}
-	// model_transform = mult( model_transform, translate( 0, 0, 0 ) );													
-	// model_transform = mult( model_transform, scale( 2, 60, 2 ) );												
-	// this.m_cube.draw( this.graphicsState, model_transform, brown );		
-	// CURRENT_BASIS_IS_WORTH_SHOWING(this, model_transform);		
-												
-	// model_transform = mult( model_transform, scale( 1/2, 1/60, 1/2 ) );	
+	model_transform = mult( model_transform, rotate( -80, 0, 0, 1 ) );
 
-	model_transform = mult( model_transform, scale( 1/2, 1/5, 1/2 ) );
 	model_transform = mult( model_transform, translate( 0, -40, 0 ) );	
 
 	model_transform = mult( model_transform, translate( 0, 40, 0 ) );
@@ -191,6 +265,8 @@ Animation.prototype.draw_tree = function(model_transform)
 
 	model_transform = mult( model_transform, translate( 0, -40, 0 ) );
 	model_transform = mult( model_transform, scale( 1/5, 1/5, 1/5 ) );
+
+	return model_transform;
 }
 
 
