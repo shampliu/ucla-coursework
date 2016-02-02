@@ -34,7 +34,7 @@ function Animation()
 		self.m_cylinder = new cylindrical_strip( 10, mat4() );
 		
 		// 1st parameter is camera matrix.  2nd parameter is the projection:  The matrix that determines how depth is treated.  It projects 3D points onto a plane.
-		self.graphicsState = new GraphicsState( translate(0, 0,-40), perspective(45, canvas.width/canvas.height, .1, 1000), 0 );
+		self.graphicsState = new GraphicsState( translate(0, -15,-80), perspective(45, canvas.width/canvas.height, .1, 1000), 2000 );
 
 		gl.uniform1i( g_addrs.GOURAUD_loc, gouraud);		gl.uniform1i( g_addrs.COLOR_NORMALS_loc, color_normals);		gl.uniform1i( g_addrs.SOLID_loc, solid);
 		
@@ -105,33 +105,23 @@ Animation.prototype.display = function(time)
 	this.basis_id = 0;
 	
 	var model_transform = mat4();
-	
-	var purple = new Material( vec4( .9, .5, .9, 1 ), 1, 1, 1, 40 ), // Omit the string parameter if you want no texture
-		greyPlastic = new Material( vec4( .5,.5,.5,1 ), 1, 1, .5, 20 ),
-		earth = new Material( vec4( .5,.5,.5,1 ), 1, 1, 1, 40, "earth.gif" ),
-		stars = new Material( vec4( .5,.5,.5,1 ), 1, 1, 1, 40, "stars.png" ),
-		yellow = new Material( vec4( 1.0, 1.0, 0.2), 1, 1, 1, 40 ),
-		grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
 		
 	/**********************************
-	Start coding here!!!!
+	Code Begins Here
 	**********************************/		
 
 	var stack = []; 
 	stack.push(model_transform);								
-										
-	// model_transform = mult( model_transform, rotate( this.graphicsState.animation_time/20, 0, 1, 0 ) );			
+													
 	this.draw_ground(model_transform); 		
 
-	model_transform = mult( model_transform, translate( 8, 16 + 4 * Math.cos(this.graphicsState.animation_time/200), 20) );	
+	model_transform = mult( model_transform, rotate( -this.graphicsState.animation_time/20, 0, 1, 0 ) );
+	model_transform = mult( model_transform, translate( -4, 14 + 4 * Math.cos(this.graphicsState.animation_time/200), 24) );	
 
 	this.draw_bee(model_transform);			
 	
 	model_transform = stack.pop();
 	stack.push(model_transform);
-
-	
-
 
 	model_transform = mult( model_transform, translate( 0, -5/2, 0 ) ); // to position tree
 	this.draw_tree(model_transform); 				
@@ -139,16 +129,16 @@ Animation.prototype.display = function(time)
 }	
 
 Animation.prototype.draw_bee = function(model_transform) {
-	var purple = new Material( vec4( .9, .5, .9, 1 ), 1, 1, 1, 40 ), // Omit the string parameter if you want no texture
-			yellow = new Material( vec4( 1.0, 1.0, 0.2), 1, 1, 1, 40 ),
-			grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
+	var head = new Material( vec4( 86/256, 35/256, 168/256, 1 ), 1, 1, 1, 40 ), 
+		tail = new Material( vec4( 244/256, 247/256, 74/256), 1, 1, 1, 40 ),
+		grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
 
 	var stack = []; 
 	stack.push(model_transform); 
 
 	// head
 	model_transform = mult( model_transform, scale( 2.5, 2.5, 2.5 ) );	
-	this.m_sphere.draw( this.graphicsState, model_transform, purple );	
+	this.m_sphere.draw( this.graphicsState, model_transform, head );	
 
 	model_transform = stack.pop();
 	stack.push(model_transform);
@@ -169,11 +159,9 @@ Animation.prototype.draw_bee = function(model_transform) {
 	// tail
 	model_transform = mult( model_transform, translate( 19.5, 0, 0 ) );												
 	model_transform = mult( model_transform, scale( 8, 5, 4.5 ) );												
-	this.m_sphere.draw( this.graphicsState, model_transform, yellow );	
+	this.m_sphere.draw( this.graphicsState, model_transform, tail );	
 
-	model_transform = mult( model_transform, scale( 1/8, 1/5, 1/4.5 ) );
-	model_transform = mult( model_transform, translate( -12.5, 0, 0 ) );		
-
+	return model_transform;	
 }
 
 Animation.prototype.draw_wing = function(model_transform, orientation) {
@@ -183,9 +171,11 @@ Animation.prototype.draw_wing = function(model_transform, orientation) {
 	stack.push(model_transform);
 
 	model_transform = mult( model_transform, translate( 7, 2.25, 8 * orientation) );	
-		model_transform = mult( model_transform, translate( 0, -0.25, 6 * -orientation) );	
-			model_transform = mult( model_transform, rotate( 55 * orientation * Math.cos(this.graphicsState.animation_time/200), 1, 0, 0 ) );
-		model_transform = mult( model_transform, translate( 0, 0.25, 6 * orientation) );	
+
+	model_transform = mult( model_transform, translate( 0, -0.25, 6 * -orientation) );	
+		model_transform = mult( model_transform, rotate( 55 * orientation * Math.cos(this.graphicsState.animation_time/200), 1, 0, 0 ) );
+	model_transform = mult( model_transform, translate( 0, 0.25, 6 * orientation) );	
+	
 	model_transform = mult( model_transform, scale( 4, 0.5, 12 ) );	
 	this.m_cube.draw( this.graphicsState, model_transform, light_grey );	
 
@@ -211,11 +201,10 @@ Animation.prototype.draw_legs = function(model_transform) {
 }
 
 Animation.prototype.draw_leg = function(model_transform, orientation) {
-	var purple = new Material( vec4( .9, .5, .9, 1 ), 1, 1, 1, 40 ),
-	    grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
-
 	var stack = [];
 	stack.push(model_transform);
+
+	var leg_color = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
 
 	model_transform = mult( model_transform, translate( 0, -1, 2.5 * orientation ) );
 
@@ -223,11 +212,12 @@ Animation.prototype.draw_leg = function(model_transform, orientation) {
 		model_transform = mult( model_transform, rotate( 17.5 * orientation + (17.5 * orientation * Math.cos(this.graphicsState.animation_time/200)), 1, 0, 0 ) );
 	model_transform = mult( model_transform, translate( 0, -2, 0.5 * orientation ) );
 
+	stack.push(model_transform);
+
 	model_transform = mult( model_transform, scale( 1, 4, 1 ) );
+	this.m_cube.draw( this.graphicsState, model_transform, leg_color );
 
-	this.m_cube.draw( this.graphicsState, model_transform, grey );
-
-	model_transform = mult( model_transform, scale( 1, 1/4, 1 ) );
+	model_transform = stack.pop(); 
 
 	model_transform = mult( model_transform, translate( 0, -4, 0 ) );
 
@@ -236,63 +226,51 @@ Animation.prototype.draw_leg = function(model_transform, orientation) {
 	model_transform = mult( model_transform, translate( 0, -2, 0.5 * orientation ) );
 
 	model_transform = mult( model_transform, scale( 1, 4, 1 ) );
-
-	this.m_cube.draw( this.graphicsState, model_transform, purple );
+	this.m_cube.draw( this.graphicsState, model_transform, leg_color );
 
 	model_transform = stack.pop();
 	return model_transform; 
-
-
 }
 
 Animation.prototype.draw_ground = function(model_transform) {
-	var green = new Material( vec4( 0.2, 0.6, 0.0), 1, 1, 1, 40 );
+	var stack = [];
+	stack.push(model_transform);
+
+	var ground_color = new Material( vec4( 0.2, 0.6, 0.0), 1, 1, 1, 40 );
 
 	model_transform = mult( model_transform, scale( 100, 1, 100 ) );												
-	this.m_cube.draw( this.graphicsState, model_transform, green );		
+	this.m_cube.draw( this.graphicsState, model_transform, ground_color );		
 
-	model_transform = mult( model_transform, scale( 1/100, 1, 1/100 ) );
-
+	model_transform = stack.pop();
 	return model_transform;
 }
 
 Animation.prototype.draw_tree = function(model_transform) 
 {
+	var stack = [];
+	stack.push(model_transform);
 
-	var	brown = new Material( vec4( 0.4, 0.2, 0.0), 1, 1, 1, 40 ),
-		red = new Material( vec4( 1.0, 0.0, 0.0), 1, 1, 1, 40 );	
+	var	trunk_color = new Material( vec4( 87/256, 47/256, 24/256), 1, 1, 1, 40 ),
+			foliage_color = new Material( vec4( 1.0, 0.0, 0.0), 1, 1, 1, 40 );	
 
-	// model_transform = mult( model_transform, scale( 2, 5, 2 ) );
 	for (var i = 0; i < 8; i++) {
 
 		model_transform = mult( model_transform, translate( 0, 2.5, 0 ) );	
-		model_transform = mult( model_transform, rotate( 8 * Math.cos(this.graphicsState.animation_time / 400), 0, 0, 1 ) );
+			model_transform = mult( model_transform, rotate( 8 * Math.cos(this.graphicsState.animation_time / 400), 0, 0, 1 ) );
 		model_transform = mult( model_transform, translate( 0, 2.5, 0 ) );	
+		
 		model_transform = mult( model_transform, scale( 2, 5, 2 ) );
+		this.m_cube.draw( this.graphicsState, model_transform, trunk_color );	
 
-
-		if (i % 2 == 0) {
-			this.m_cube.draw( this.graphicsState, model_transform, red );	
-		}
-		this.m_cube.draw( this.graphicsState, model_transform, brown );	
 		model_transform = mult( model_transform, scale( 1/2, 1/5, 1/2 ) );
-
 	}
-	// model_transform = mult( model_transform, rotate( -80, 0, 0, 1 ) );
 
-	model_transform = mult( model_transform, translate( 0, -40, 0 ) );	
-
-	model_transform = mult( model_transform, translate( 0, 40, 0 ) );
 	model_transform = mult( model_transform, scale( 5, 5, 5 ) );	
-	this.m_sphere.draw( this.graphicsState, model_transform, red );		
+	this.m_sphere.draw( this.graphicsState, model_transform, foliage_color );		
 
-	model_transform = mult( model_transform, translate( 0, -40, 0 ) );
-	model_transform = mult( model_transform, scale( 1/5, 1/5, 1/5 ) );
-
+	model_transform = stack.pop();
 	return model_transform;
 }
-
-
 
 Animation.prototype.update_strings = function( debug_screen_object )		// Strings this particular class contributes to the UI
 {
