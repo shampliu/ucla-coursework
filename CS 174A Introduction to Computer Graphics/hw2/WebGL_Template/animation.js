@@ -38,6 +38,7 @@ function Animation()
 		self.m_capped_cylinder = new windmill( mat4() );
 
 		self.m_top_half = new shape_from_file( "top.obj" )
+		self.m_bottom_half = new shape_from_file( "bottom.obj" )
 		
 		// 1st parameter is camera matrix.  2nd parameter is the projection:  The matrix that determines how depth is treated.  It projects 3D points onto a plane.
 		self.graphicsState = new GraphicsState( translate(0, 0,-40), perspective(45, canvas.width/canvas.height, .1, 1000), 0 );
@@ -124,7 +125,8 @@ Animation.prototype.display = function(time)
 	var stack = []; 
 	stack.push(model_transform);	
 
-	this.m_top_half.draw( this.graphicsState, model_transform, purplePlastic );												
+	this.m_top_half.draw( this.graphicsState, model_transform, purplePlastic );		
+	this.m_bottom_half.draw( this.graphicsState, model_transform, purplePlastic );												
 													
 	// this.draw_ground(model_transform); 
 
