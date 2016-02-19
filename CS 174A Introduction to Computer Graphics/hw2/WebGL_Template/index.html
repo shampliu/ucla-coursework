@@ -1,0 +1,151 @@
+<!-- 
+// *******************************************************
+// CS 174a Graphics Example Code
+index.html - The web page document containing the canvas (drawing surface), that launches your javascript files, and hides the vertex and fragment shader programs in strings. //-->
+<!DOCTYPE html>
+<html>
+<head>
+<script id="vertex-shader" type="x-shader/x-vertex">
+// *******************************************************
+// The following string is loaded by our javascript and then used as the Vertex Shader program.  Our javascript sends this code to the graphics card at runtime, where on each run it gets 
+// compiled and linked there.  Thereafter, all of your calls to draw shapes will launch the vertex shader program once per vertex in the shape (three times per triangle), sending results on 
+// to the next phase.  The purpose of this program is to calculate the final resting place of vertices in screen coordinates; each of them starts out in local object coordinates.
+
+precision mediump float;
+const int N_LIGHTS = 2;
+
+attribute vec4 vColor;
+attribute vec3 vPosition, vNormal;
+attribute vec2 vTexCoord;
+varying vec2 fTexCoord;
+varying vec3 N, E, pos;
+
+uniform float ambient, diffusivity, shininess, smoothness, attenuation_factor[N_LIGHTS];
+uniform bool SOLID, GOURAUD, COLOR_NORMALS, COLOR_VERTICES;		// Flags for alternate shading methods
+
+uniform vec4 lightPosition[N_LIGHTS], lightColor[N_LIGHTS], color, SOLID_COLOR;
+varying vec4 VERTEX_COLOR;
+varying vec3 L[N_LIGHTS], H[N_LIGHTS];
+varying float dist[N_LIGHTS];
+
+uniform mat4 camera_transform, camera_model_transform, projection_camera_model_transform;
+uniform mat3 camera_model_transform_normal;
+
+void main()
+{
+    N = normalize( camera_model_transform_normal * vNormal );
+	
+	vec4 object_space_pos = vec4(vPosition, 1.0);
+    gl_Position = projection_camera_model_transform * object_space_pos;
+
+	if( SOLID || COLOR_NORMALS || COLOR_VERTICES )		// Bypass phong lighting if we're lighting up vertices some other way
+	{
+		VERTEX_COLOR   = SOLID ? SOLID_COLOR : ( COLOR_NORMALS ? abs( vec4( N, 1.0 ) ) : vColor );
+		VERTEX_COLOR.a = VERTEX_COLOR.w;
+		return;
+	}
+
+    pos = ( camera_model_transform * object_space_pos ).xyz;
+	E = -pos; 
+	
+	for( int i = 0; i < N_LIGHTS; i++ )
+	{
+		L[i] = normalize( ( camera_transform * lightPosition[i] ).xyz - lightPosition[i].w * pos );		// Use w = 0 for a directional light -- a vector instead of a point.   
+		H[i] = normalize( L[i] + E );
+		
+		dist[i]  = distance((camera_transform * lightPosition[i]).xyz, pos);
+	}
+
+	if( GOURAUD )
+	{
+		VERTEX_COLOR = color * ambient;
+		for(int i = 0; i < N_LIGHTS; i++)
+		{
+			float attenuation = 1.0 / (1.0 + attenuation_factor[i] * (dist[i] * dist[i])); 
+			float diffuse  = max( dot(L[i], N), 0.0 );
+			float specular = pow( max(dot(N, H[i]), 0.0), smoothness );
+
+			VERTEX_COLOR.xyz += attenuation * ( color.xyz * diffusivity * diffuse + lightColor[i].xyz * shininess * specular );
+		}
+		VERTEX_COLOR.a = VERTEX_COLOR.w;
+	}  
+	fTexCoord = vTexCoord;  
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+// *******************************************************
+// Likewise, the following string is loaded by our javascript and then used as the Fragment Shader program, which gets sent to the graphics card at runtime.  The fragment shader runs 
+// once all vertices in a triangle / element finish their vertex shader programs, and thus have finished finding out where they land on the screen.  The fragment shader fills in (shades)
+// every pixel (fragment) overlapping where the triangle landed.  At each pixel it interpolates different values from the three extreme points of the triangle, and uses them in formulas
+// to determine color.
+
+precision mediump float;
+
+const int N_LIGHTS = 2;
+
+uniform vec4 lightColor[N_LIGHTS], color;
+varying vec3 L[N_LIGHTS], H[N_LIGHTS];
+varying float dist[N_LIGHTS];
+varying vec4 VERTEX_COLOR;
+
+uniform float ambient, diffusivity, shininess, smoothness, animation_time, attenuation_factor[N_LIGHTS];
+
+varying vec2 fTexCoord;		// per-fragment interpolated values from the vertex shader
+varying vec3 N, E, pos;
+
+uniform sampler2D texture; 
+uniform bool SOLID, GOURAUD, COLOR_NORMALS, COLOR_VERTICES, USE_TEXTURE;
+
+void main()
+{    
+	if( SOLID || GOURAUD || COLOR_NORMALS )		// Bypass phong lighting if we're only interpolating predefined colors across vertices
+	{
+		gl_FragColor = VERTEX_COLOR;
+		return;
+	}
+	
+	vec4 tex_color = texture2D( texture, fTexCoord );
+	if( tex_color.w < .2 && USE_TEXTURE ) discard;
+	gl_FragColor = (USE_TEXTURE ? tex_color : vec4(1,1,1,1) ) * color * ambient;
+	for( int i = 0; i < N_LIGHTS; i++ )
+	{
+		float attenuation = 1.0 / (1.0 + attenuation_factor[i] * (dist[i] * dist[i])); 
+		float diffuse  = max( dot(L[i], N), 0.0 );
+		float specular = pow( max(dot(N, H[i]), 0.0), smoothness );
+	
+		gl_FragColor.xyz += attenuation * (color.xyz * diffusivity * diffuse  + lightColor[i].xyz * shininess * specular );
+	}
+	gl_FragColor.a = gl_FragColor.w;
+}
+</script>
+
+<!-- 
+// *******************************************************
+Javascript "include" files.  Any code in them gets executed as part of the page loading.
+//-->
+
+
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/underscore.js"></script>
+<script type="text/javascript" src="../Common/shortcut.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="../Common/shapes.js"></script>
+<script type="text/javascript" src="../Common/webgl-obj-loader.js"></script>
+<script type="text/javascript" src="../Common/GL_Context.js"></script>
+<script type="text/javascript" src="animation.js"></script>
+
+</head><body>
+<canvas id="gl-canvas" width="940" height="560"></canvas><p>
+Controlling this Graphics Canvas: 
+<ul><li>Animation is paused when this program starts, so first you should press ALT+a to play or pause animation. <li>
+		Fly around the scene to adjust your vantage point using the keys w a s d to move in the plane that's along the ground, 
+		and the keys space and z to float up and down.  At any time press r to reset the camera and vantage point back to the origin. <li>
+		The f key unfreezes the camera's rotation setting so you can aim it around while flying or sitting still.  Move the mouse around away from the 
+		center of the window to steer, and press f again to stop this and to freeze the steering again.  Any roll rotation is controlled
+		separately with the comma and period keys. <li>The keys ALT+n, ALT+g, and ALT+s switch shading behaviors.  ALT+n directly shows you normal vectors on shapes 
+		by interpreting X,Y,Z vectors as R,G,B colors.  ALT+g toggles Gouraud shading vs Smooth Phong shading with textures, and ALT+s colors everything a random solid color. <li>
+		Press 1 and 2 to cycle through a live feed of important strings and values of the program -- each Displayable object has a function where it can provide these. <li>
+		The keys p and m cycle through a list of the coordinate axes (bases) you have listed down as worth drawing (at various points within your drawing routine). <li>
+		Have fun.
+</p></body></html>
