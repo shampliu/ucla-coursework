@@ -1,5 +1,3 @@
-
-
 function triangle( points_transform ) // Argument points_transform: Always identity if we’re just building a triangle. It does good when building other
 // compound shapes by populating them with a pre-transformed triangle
 {
@@ -23,6 +21,44 @@ triangle.prototype.populate = function( recipient, points_transform ) // The mea
   for( var i = offset; i < recipient.vertices.length; i++ )                // Apply points_transform to those points added during this call 
     recipient.vertices[i] = vec3( mult_vec( points_transform, vec4( recipient.vertices[ i ], 1 ) ) );    
 };
+
+function plane( points_transform )
+{
+
+	shape.call(this); // Inherit class shape’s array members by calling parent constructor
+    if( !arguments.length) return; // Pass no arguments if you just want to make an empty dummy object that inherits everything, for populating other shapes
+    this.populate( this, points_transform ); // Otherwise, a new triangle immediately populates its own arrays with triangle points,
+    this.init_buffers(); // Then sends its arrays to the graphics card into new buffers
+}
+
+inherit(plane, shape); 
+plane.prototype.populate = function( recipient, points_transform) 
+{
+
+ 	// var uvs = []; 
+
+  	for (var y = 0; y <= 10; ++y) {
+  	  var v = y;
+  	  for (var x = 0; x <= 10; ++x) {
+  	    var u = x;
+  	    recipient.vertices.push( vec3(u * 5, 0, v * 5))
+  	    recipient.normals.push( vec3(0, 1, 0))
+  	    // uvs.push(u, v);
+  	  }
+  	}
+
+  	var rowSize = 11;
+  	for (var y = 0; y < 10; ++y) {
+  	  var rowOffset0 = (y + 0) * rowSize;
+  	  var rowOffset1 = (y + 1) * rowSize;
+  	  for (var x = 0; x < 10; ++x) {
+  	    var offset0 = rowOffset0 + x;
+	    var offset1 = rowOffset1 + x;
+	    recipient.indices.push(offset0, offset0 + 1, offset1);
+	    recipient.indices.push(offset1, offset0 + 1, offset1 + 1);
+  	  }
+  	}
+}
 
 function windmill( points_transform )// Argument points_transform: Always identity if we’re just building a windmill. It does good when building other
 // compound shapes by populating them with a pre-transformed windmill

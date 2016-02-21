@@ -27,20 +27,12 @@ function Animation()
 		gl.clearColor( 0, 0, 0, 1 );			// Background color
 
 		self.m_cube = new cube();
+		self.m_obj = new shape_from_file( "teapot.obj" )
 		self.m_axis = new axis();
 		self.m_sphere = new sphere( mat4(), 4 );	
 		self.m_fan = new triangle_fan_full( 10, mat4() );
 		self.m_strip = new rectangular_strip( 1, mat4() );
 		self.m_cylinder = new cylindrical_strip( 10, mat4() );
-
-		self.m_triangle = new triangle( mat4() );
-		self.m_windmill = new windmill( mat4() );
-		self.m_capped_cylinder = new windmill( mat4() );
-
-		self.m_top_half = new shape_from_file( "top.obj" );
-		self.m_bottom_half = new shape_from_file( "bottom.obj" )
-
-		self.m_plane = new plane( mat4() );
 		
 		// 1st parameter is camera matrix.  2nd parameter is the projection:  The matrix that determines how depth is treated.  It projects 3D points onto a plane.
 		self.graphicsState = new GraphicsState( translate(0, 0,-40), perspective(45, canvas.width/canvas.height, .1, 1000), 0 );
@@ -103,80 +95,70 @@ function update_camera( self, animation_delta_time )
 // display(): called once per frame, whenever OpenGL decides it's time to redraw.
 
 Animation.prototype.display = function(time)
-{
-	if(!time) time = 0;
-	this.animation_delta_time = time - prev_time;
-	if(animate) this.graphicsState.animation_time += this.animation_delta_time;
-	prev_time = time;
-	
-	update_camera( this, this.animation_delta_time );
+	{
+		if(!time) time = 0;
+		this.animation_delta_time = time - prev_time;
+		if(animate) this.graphicsState.animation_time += this.animation_delta_time;
+		prev_time = time;
 		
-	this.basis_id = 0;
-	
-	var model_transform = mat4();
-	
-	var purplePlastic = new Material( vec4( .9,.5,.9,1 ), 1, 1, 1, 40 ), // Omit the string parameter if you want no texture
-		greyPlastic = new Material( vec4( .5,.5,.5,1 ), 1, 1, .5, 20 ),
-		earth = new Material( vec4( .5,.5,.5,1 ), 1, 1, 1, 40, "earth.gif" ),
-		stars = new Material( vec4( .5,.5,.5,1 ), 1, 1, 1, 40, "stars.png" );
+		update_camera( this, this.animation_delta_time );
+			
+		this.basis_id = 0;
 		
-	/**********************************
-	Start coding here!!!!
-	**********************************/
+		var model_transform = mat4();
+		
+		var purplePlastic = new Material( vec4( .9,.5,.9,1 ), 1, 1, 1, 40 ), // Omit the string parameter if you want no texture
+			greyPlastic = new Material( vec4( .5,.5,.5,1 ), 1, 1, .5, 20 ),
+			earth = new Material( vec4( .5,.5,.5,1 ), 1, 1, 1, 40, "earth.gif" ),
+			stars = new Material( vec4( .5,.5,.5,1 ), 1, 1, 1, 40, "stars.png" );
+			
+		/**********************************
+		Start coding here!!!!
+		**********************************/
+		
+		model_transform = mult( model_transform, rotate( this.graphicsState.animation_time/20, 0, 1, 0 ) );	
+		this.m_sphere.draw( this.graphicsState, model_transform, earth );
+		
+		
+		model_transform = mult( model_transform, translate( 0, 0, 2 ) );
+			model_transform = mult( model_transform, scale( .3, .3, 1 ) );	
+				this.m_fan.draw( this.graphicsState, model_transform, greyPlastic );
+			model_transform = mult( model_transform, scale( 1/.3, 1/.3, 1/1 ) );	
+		model_transform = mult( model_transform, translate( 0, 0, -2 ) );
+		
+		
+		
+		model_transform = mult( model_transform, translate( 0, -3, 0 ) );
+		model_transform = mult( model_transform, scale( 2, 2, 2 ) )
+		this.m_sphere.draw( this.graphicsState, model_transform, earth );
+		
+		
+		model_transform = mult( model_transform, rotate( 90, 0, 1, 0 ) );
+			model_transform = mult( model_transform, translate( 0, 0, 2 ) );
+				model_transform = mult( model_transform, scale( .1, .1, 2 ) )
+					this.m_cylinder.draw( this.graphicsState, model_transform, greyPlastic );
+				model_transform = mult( model_transform, scale( 1/.1, 1/.1, 1/2 ) )
+			model_transform = mult( model_transform, translate( 0, 0, -2 ) );
+		model_transform = mult( model_transform, rotate( -90, 0, 1, 0 ) );
+		
+		
+		model_transform = mult( model_transform, rotate( -90, 0, 1, 0 ) );
+			model_transform = mult( model_transform, translate( 0, 0, 2 ) );
+				model_transform = mult( model_transform, scale( .1, .1, 2 ) )
+					this.m_cylinder.draw( this.graphicsState, model_transform, greyPlastic );
+				model_transform = mult( model_transform, scale( 1/.1, 1/.1, 1/2 ) )
+			model_transform = mult( model_transform, translate( 0, 0, -2 ) );
+		model_transform = mult( model_transform, rotate( 90, 0, 1, 0 ) );
+		
+		
+		
+		model_transform = mult( model_transform, translate( 0, -3, 0 ) );
+		model_transform = mult( model_transform, scale( 2, 2, 2 ) )
+		this.m_sphere.draw( this.graphicsState, model_transform, earth );
+        
+	}	
 
-	var stack = []; 
-	stack.push(model_transform);	
-											
-													
-	// this.draw_ground(model_transform); 
-	this.m_plane.draw( this.graphicsState, model_transform, greyPlastic );	
-	model_transform = mult( model_transform, translate( 0, 10, 0 ) );	
 
-
-	this.draw_BB(model_transform);
-
-	
-	// // this.m_triangle.draw( this.graphicsState, model_transform, purplePlastic );
-	// this.m_windmill.draw( this.graphicsState, model_transform, purplePlastic );
-	// this.m_capped_cylinder.draw( this.graphicsState, model_transform, purplePlastic );
-	
-}	
-
-Animation.prototype.draw_BB = function(model_transform) {
-
-	var grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
-
-	var stack = [];
-	stack.push(model_transform);
-
-	model_transform = mult( model_transform, rotate( -90, 0, 0, 1 ) );
-
-	this.m_top_half.draw( this.graphicsState, model_transform, grey );	
-	this.m_bottom_half.draw( this.graphicsState, model_transform, grey );	
-
-	model_transform = mult( model_transform, translate( 1.4, 0, 0 ) );
-	model_transform = mult( model_transform, scale( 1.4, 1.4, 1.4 ) );	
-	this.m_sphere.draw( this.graphicsState, model_transform, grey );	
-
-	model_transform = stack.pop();
-	stack.push(model_transform);
-
-
-	return model_transform;
-}
-
-Animation.prototype.draw_ground = function(model_transform) {
-	var stack = [];
-	stack.push(model_transform);
-
-	var ground_color = new Material( vec4( 0.2, 0.6, 0.0), 1, 1, 1, 40 );
-
-	model_transform = mult( model_transform, scale( 100, 1, 100 ) );												
-	this.m_cube.draw( this.graphicsState, model_transform, ground_color );		
-
-	model_transform = stack.pop();
-	return model_transform;
-}
 
 Animation.prototype.update_strings = function( debug_screen_object )		// Strings this particular class contributes to the UI
 {
