@@ -37,8 +37,15 @@ function Animation()
 		self.m_windmill = new windmill( mat4() );
 		self.m_capped_cylinder = new windmill( mat4() );
 
+		// BB-8 OBJECTS
 		self.m_top_half = new shape_from_file( "top.obj" );
-		self.m_bottom_half = new shape_from_file( "bottom.obj" )
+		self.m_bottom_half = new shape_from_file( "bottom.obj" );
+
+		// DROID OBJECTS
+		self.m_droid_head1 = new shape_from_file( "droid-head-1.obj" );
+		self.m_droid_head2 = new shape_from_file( "droid-head-2.obj" );
+		self.m_droid_head3 = new shape_from_file( "droid-head-3.obj" );
+		self.m_droid_head4 = new shape_from_file( "droid-head-4.obj" );
 
 		self.m_plane = new plane( mat4() );
 		
@@ -135,11 +142,31 @@ Animation.prototype.display = function(time)
 
 	this.draw_BB(model_transform);
 
+	model_transform = mult( model_transform, translate( 0, 10, 0 ) );	
+	this.draw_droid(model_transform);
+
 	
 	// // this.m_triangle.draw( this.graphicsState, model_transform, purplePlastic );
 	// this.m_windmill.draw( this.graphicsState, model_transform, purplePlastic );
 	// this.m_capped_cylinder.draw( this.graphicsState, model_transform, purplePlastic );
 	
+}
+
+Animation.prototype.draw_droid = function(model_transform) {
+	var grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
+
+	var stack = [];
+	stack.push(model_transform);
+
+	model_transform = mult( model_transform, scale( 3, 3, 3 ) ); 
+	this.m_droid_head1.draw( this.graphicsState, model_transform, grey );	
+	this.m_droid_head2.draw( this.graphicsState, model_transform, grey );
+	this.m_droid_head3.draw( this.graphicsState, model_transform, grey );
+	this.m_droid_head4.draw( this.graphicsState, model_transform, grey );		
+
+
+
+
 }	
 
 Animation.prototype.draw_BB = function(model_transform) {
@@ -150,16 +177,30 @@ Animation.prototype.draw_BB = function(model_transform) {
 	stack.push(model_transform);
 
 	model_transform = mult( model_transform, rotate( -90, 0, 0, 1 ) );
+	model_transform = mult( model_transform, scale( 3, 3, 3 ) ); // small obj file	
 
 	this.m_top_half.draw( this.graphicsState, model_transform, grey );	
 	this.m_bottom_half.draw( this.graphicsState, model_transform, grey );	
 
-	model_transform = mult( model_transform, translate( 1.4, 0, 0 ) );
-	model_transform = mult( model_transform, scale( 1.4, 1.4, 1.4 ) );	
+	model_transform = mult( model_transform, translate( 1.6, 0, 0 ) );
+	model_transform = mult( model_transform, scale( 1.5, 1.5, 1.5 ) );	
 	this.m_sphere.draw( this.graphicsState, model_transform, grey );	
 
 	model_transform = stack.pop();
 	stack.push(model_transform);
+
+	model_transform = mult( model_transform, translate( 1, 4, 0 ) );
+	model_transform = mult( model_transform, scale( 0.1, 2.5, 0.1 ) );	
+	model_transform = mult( model_transform, rotate( 90, 1, 0, 0 ) );
+	this.m_cylinder.draw( this.graphicsState, model_transform, grey );
+
+	model_transform = stack.pop();
+	stack.push(model_transform);
+
+	model_transform = mult( model_transform, translate( -1, 3, 0 ) );
+	model_transform = mult( model_transform, scale( 0.1, 1.2, 0.1 ) );	
+	model_transform = mult( model_transform, rotate( 90, 1, 0, 0 ) );
+	this.m_cylinder.draw( this.graphicsState, model_transform, grey );
 
 
 	return model_transform;
