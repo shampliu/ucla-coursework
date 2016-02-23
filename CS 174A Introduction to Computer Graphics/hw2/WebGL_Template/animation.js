@@ -242,9 +242,8 @@ Animation.prototype.draw_droid_leg = function(model_transform, orientation) {
 
 Animation.prototype.draw_BB = function(model_transform) {
 	var t = new Material( vec4( .5,.5,.5,1 ), 1, 1, 1, 40, "bb8.png" );
-	var stars = new Material( vec4( .5,.5,.5,1 ), 1, 1, 1, 40, "stars.png" );
-
 	var grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
+	var black = new Material( vec4( 0, 0, 0), 1, 1, 1, 40 );
 
 	var stack = [];
 	stack.push(model_transform);
@@ -252,8 +251,8 @@ Animation.prototype.draw_BB = function(model_transform) {
 	model_transform = mult( model_transform, rotate( -90, 0, 0, 1 ) );
 	model_transform = mult( model_transform, scale( 3, 3, 3 ) ); // small obj file	
 
-	this.m_top_half.draw( this.graphicsState, model_transform, stars );	
-	this.m_bottom_half.draw( this.graphicsState, model_transform, stars );	
+	this.m_top_half.draw( this.graphicsState, model_transform, t );	
+	this.m_bottom_half.draw( this.graphicsState, model_transform, grey );	
 
 	model_transform = mult( model_transform, translate( 1.6, 0, 0 ) );
 	model_transform = mult( model_transform, scale( 1.5, 1.5, 1.5 ) );	
@@ -274,6 +273,20 @@ Animation.prototype.draw_BB = function(model_transform) {
 	model_transform = mult( model_transform, scale( 0.1, 1.2, 0.1 ) );	
 	model_transform = mult( model_transform, rotate( 90, 1, 0, 0 ) );
 	this.m_cylinder.draw( this.graphicsState, model_transform, grey );
+
+	model_transform = stack.pop();
+	stack.push(model_transform);
+
+	model_transform = mult( model_transform, translate( 1, 0.75, 2.5 ) );
+	model_transform = mult( model_transform, scale( 0.45, 0.45, 0.45 ) );	
+	this.m_sphere.draw( this.graphicsState, model_transform, grey );	
+
+	model_transform = stack.pop();
+	stack.push(model_transform);
+
+	model_transform = mult( model_transform, translate( 0, 1.75, 2.5 ) );
+	model_transform = mult( model_transform, scale( 0.75, 0.75, 0.75 ) );	
+	this.m_sphere.draw( this.graphicsState, model_transform, grey );	
 
 
 	return model_transform;
