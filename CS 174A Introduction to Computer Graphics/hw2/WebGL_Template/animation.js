@@ -50,6 +50,15 @@ function Animation()
 		self.m_droid_leg1 = new shape_from_file( "droid-leg-1.obj" );
 		self.m_droid_leg3 = new shape_from_file( "droid-leg-3.obj" );
 
+		self.m_droid_blaster = new shape_from_file( "droid-blaster.obj" );
+
+		// JEDI OBJECTS
+		self.m_jedi_cloak = new shape_from_file( "jedi-cloak.obj" );
+		self.m_jedi_head = new shape_from_file( "jedi-head.obj" );
+		self.m_jedi_body = new shape_from_file( "jedi-body.obj" );
+		self.m_jedi_leg = new shape_from_file( "jedi-leg.obj" );
+		self.m_jedi_lightsaber = new shape_from_file( "jedi-lightsaber.obj" );
+
 		self.m_plane = new plane( mat4() );
 		
 		// 1st parameter is camera matrix.  2nd parameter is the projection:  The matrix that determines how depth is treated.  It projects 3D points onto a plane.
@@ -142,12 +151,22 @@ Animation.prototype.display = function(time)
 	// this.m_plane.draw( this.graphicsState, model_transform, greyPlastic );	
 	// model_transform = mult( model_transform, translate( 0, 10, 0 ) );	
 
+	this.draw_jedi(model_transform);
 
 	// this.draw_BB(model_transform);
 
-	model_transform = mult( model_transform, translate( 0, 10, 0 ) );	
-	this.draw_droid(model_transform);
+	// model_transform = mult( model_transform, translate( 0, 10, 0 ) );	
+	// this.draw_droid(model_transform);
 	
+}
+
+Animation.prototype.draw_jedi = function(model_transform) {
+	var grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
+
+	var stack = [];
+	stack.push(model_transform);
+
+	this.m_jedi_cloak.draw( this.graphicsState, model_transform, grey );
 }
 
 Animation.prototype.draw_droid = function(model_transform) {
@@ -179,6 +198,12 @@ Animation.prototype.draw_droid = function(model_transform) {
 	model_transform = mult( model_transform, translate( 0, -6, 0 ) );
 	this.draw_droid_legs(model_transform);
 
+	model_transform = stack.pop();
+	stack.push(model_transform);
+
+	model_transform = mult( model_transform, translate( -1.5, -3, 0 ) );
+	this.m_droid_blaster.draw( this.graphicsState, model_transform, grey );
+
 
 
 }	
@@ -190,7 +215,7 @@ Animation.prototype.draw_droid_legs = function(model_transform) {
 }
 
 Animation.prototype.draw_droid_leg = function(model_transform, orientation) {
-	var grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
+	var grey = new Material( vec4( 0.27, 0.27, 0.27 ), 1, 1, 1, 40 );
 
 	model_transform = mult( model_transform, translate( 0, 0, 0.75 * orientation ) );  
 
