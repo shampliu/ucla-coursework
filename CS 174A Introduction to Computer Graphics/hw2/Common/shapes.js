@@ -33,15 +33,13 @@ function plane( points_transform )
 
 inherit(plane, shape); 
 plane.prototype.populate = function( recipient, points_transform) 
-{
-
- 	// var uvs = []; 
+{ 
 
   	for (var y = 0; y <= 10; ++y) {
   	  var v = y;
   	  for (var x = 0; x <= 10; ++x) {
   	    var u = x;
-  	    recipient.vertices.push( vec3(u * 5, 0, v * 5))
+  	    recipient.vertices.push( vec3(u * 20, 0, v * 20))
   	    recipient.normals.push( vec3(0, 1, 0))
   	    // uvs.push(u, v);
   	  }

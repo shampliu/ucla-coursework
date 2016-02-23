@@ -34,8 +34,6 @@ function Animation()
 		self.m_cylinder = new cylindrical_strip( 10, mat4() );
 
 		self.m_triangle = new triangle( mat4() );
-		self.m_windmill = new windmill( mat4() );
-		self.m_capped_cylinder = new windmill( mat4() );
 
 		// BB-8 OBJECTS
 		self.m_top_half = new shape_from_file( "top.obj" );
@@ -46,6 +44,11 @@ function Animation()
 		self.m_droid_head2 = new shape_from_file( "droid-head-2.obj" );
 		self.m_droid_head3 = new shape_from_file( "droid-head-3.obj" );
 		self.m_droid_head4 = new shape_from_file( "droid-head-4.obj" );
+
+		self.m_droid_body = new shape_from_file( "droid-body.obj" );
+
+		self.m_droid_leg1 = new shape_from_file( "droid-leg-1.obj" );
+		self.m_droid_leg3 = new shape_from_file( "droid-leg-3.obj" );
 
 		self.m_plane = new plane( mat4() );
 		
@@ -136,19 +139,14 @@ Animation.prototype.display = function(time)
 											
 													
 	// this.draw_ground(model_transform); 
-	this.m_plane.draw( this.graphicsState, model_transform, greyPlastic );	
-	model_transform = mult( model_transform, translate( 0, 10, 0 ) );	
+	// this.m_plane.draw( this.graphicsState, model_transform, greyPlastic );	
+	// model_transform = mult( model_transform, translate( 0, 10, 0 ) );	
 
 
-	this.draw_BB(model_transform);
+	// this.draw_BB(model_transform);
 
 	model_transform = mult( model_transform, translate( 0, 10, 0 ) );	
 	this.draw_droid(model_transform);
-
-	
-	// // this.m_triangle.draw( this.graphicsState, model_transform, purplePlastic );
-	// this.m_windmill.draw( this.graphicsState, model_transform, purplePlastic );
-	// this.m_capped_cylinder.draw( this.graphicsState, model_transform, purplePlastic );
 	
 }
 
@@ -158,16 +156,66 @@ Animation.prototype.draw_droid = function(model_transform) {
 	var stack = [];
 	stack.push(model_transform);
 
+	model_transform = mult( model_transform, translate( 0, 8, 0 ) ); 
 	model_transform = mult( model_transform, scale( 3, 3, 3 ) ); 
+
+	stack.push(model_transform);
+	model_transform = mult( model_transform, scale( 0.5, 1, 1 ) ); 
 	this.m_droid_head1.draw( this.graphicsState, model_transform, grey );	
 	this.m_droid_head2.draw( this.graphicsState, model_transform, grey );
 	this.m_droid_head3.draw( this.graphicsState, model_transform, grey );
-	this.m_droid_head4.draw( this.graphicsState, model_transform, grey );		
+	this.m_droid_head4.draw( this.graphicsState, model_transform, grey );
 
+	model_transform = stack.pop();
+	stack.push(model_transform);
+
+	model_transform = mult( model_transform, translate( 0, -3, 0 ) ); 
+	model_transform = mult( model_transform, scale( 1.2, 1.2, 1.6 ) ); 
+	this.m_droid_body.draw( this.graphicsState, model_transform, grey );	
+
+	model_transform = stack.pop();
+	stack.push(model_transform);
+
+	model_transform = mult( model_transform, translate( 0, -6, 0 ) );
+	this.draw_droid_legs(model_transform);
 
 
 
 }	
+
+Animation.prototype.draw_droid_legs = function(model_transform) {
+	this.draw_droid_leg(model_transform, 1);
+	this.draw_droid_leg(model_transform, -1);
+	return model_transform;
+}
+
+Animation.prototype.draw_droid_leg = function(model_transform, orientation) {
+	var grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
+
+	model_transform = mult( model_transform, translate( 0, 0, 0.75 * orientation ) );  
+
+	var stack = [];
+	stack.push(model_transform);
+
+	model_transform = mult( model_transform, scale( 1, 1.4, 1 ) ); 
+	this.m_droid_leg1.draw( this.graphicsState, model_transform, grey );
+
+	model_transform = stack.pop();
+	stack.push(model_transform);
+
+	model_transform = mult( model_transform, translate( 0, -1, 0 ) ); 
+	model_transform = mult( model_transform, scale( .3, .3, .3 ) ); 
+	this.m_sphere.draw( this.graphicsState, model_transform, grey );
+
+	model_transform = stack.pop();
+	stack.push(model_transform);
+
+	model_transform = mult( model_transform, translate( 0, -3, 0 ) ); 
+	model_transform = mult( model_transform, scale( 1, 1.4, 1 ) ); 
+	this.m_droid_leg3.draw( this.graphicsState, model_transform, grey );
+
+	return model_transform;
+}
 
 Animation.prototype.draw_BB = function(model_transform) {
 
