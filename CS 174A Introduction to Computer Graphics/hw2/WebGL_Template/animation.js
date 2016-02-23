@@ -136,8 +136,7 @@ Animation.prototype.display = function(time)
 	
 	var purplePlastic = new Material( vec4( .9,.5,.9,1 ), 1, 1, 1, 40 ), // Omit the string parameter if you want no texture
 		greyPlastic = new Material( vec4( .5,.5,.5,1 ), 1, 1, .5, 20 ),
-		earth = new Material( vec4( .5,.5,.5,1 ), 1, 1, 1, 40, "earth.gif" ),
-		stars = new Material( vec4( .5,.5,.5,1 ), 1, 1, 1, 40, "stars.png" );
+		earth = new Material( vec4( .5,.5,.5,1 ), 1, 1, 1, 40, "earth.gif" );
 		
 	/**********************************
 	Start coding here!!!!
@@ -153,7 +152,8 @@ Animation.prototype.display = function(time)
 
 	this.draw_jedi(model_transform);
 
-	// this.draw_BB(model_transform);
+	model_transform = mult( model_transform, translate( 10, 0, 0 ) );	
+	this.draw_BB(model_transform);
 
 	// model_transform = mult( model_transform, translate( 0, 10, 0 ) );	
 	// this.draw_droid(model_transform);
@@ -204,8 +204,6 @@ Animation.prototype.draw_droid = function(model_transform) {
 	model_transform = mult( model_transform, translate( -1.5, -3, 0 ) );
 	this.m_droid_blaster.draw( this.graphicsState, model_transform, grey );
 
-
-
 }	
 
 Animation.prototype.draw_droid_legs = function(model_transform) {
@@ -243,6 +241,8 @@ Animation.prototype.draw_droid_leg = function(model_transform, orientation) {
 }
 
 Animation.prototype.draw_BB = function(model_transform) {
+	var t = new Material( vec4( .5,.5,.5,1 ), 1, 1, 1, 40, "bb8.png" );
+	var stars = new Material( vec4( .5,.5,.5,1 ), 1, 1, 1, 40, "stars.png" );
 
 	var grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
 
@@ -252,12 +252,12 @@ Animation.prototype.draw_BB = function(model_transform) {
 	model_transform = mult( model_transform, rotate( -90, 0, 0, 1 ) );
 	model_transform = mult( model_transform, scale( 3, 3, 3 ) ); // small obj file	
 
-	this.m_top_half.draw( this.graphicsState, model_transform, grey );	
-	this.m_bottom_half.draw( this.graphicsState, model_transform, grey );	
+	this.m_top_half.draw( this.graphicsState, model_transform, stars );	
+	this.m_bottom_half.draw( this.graphicsState, model_transform, stars );	
 
 	model_transform = mult( model_transform, translate( 1.6, 0, 0 ) );
 	model_transform = mult( model_transform, scale( 1.5, 1.5, 1.5 ) );	
-	this.m_sphere.draw( this.graphicsState, model_transform, grey );	
+	this.m_sphere.draw( this.graphicsState, model_transform, t );	
 
 	model_transform = stack.pop();
 	stack.push(model_transform);
