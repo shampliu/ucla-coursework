@@ -59,7 +59,8 @@ function Animation()
 		self.m_jedi_leg = new shape_from_file( "jedi-leg.obj" );
 		self.m_jedi_lightsaber = new shape_from_file( "jedi-lightsaber.obj" );
 
-		self.m_plane = new plane( mat4() );
+		self.m_plane = new plane( mat4(), 0 );
+		self.m_hill = new plane( mat4(), 1/80 );
 		
 		// 1st parameter is camera matrix.  2nd parameter is the projection:  The matrix that determines how depth is treated.  It projects 3D points onto a plane.
 		self.graphicsState = new GraphicsState( translate(0, 0,-40), perspective(45, canvas.width/canvas.height, .1, 1000), 0 );
@@ -147,7 +148,9 @@ Animation.prototype.display = function(time)
 											
 													
 	// this.draw_ground(model_transform); 
-	this.m_plane.draw( this.graphicsState, model_transform, greyPlastic );	
+	this.m_plane.draw( this.graphicsState, model_transform, greyPlastic );
+	model_transform = mult( model_transform, translate( 10, 0, 0 ) );
+	this.m_hill.draw( this.graphicsState, model_transform, greyPlastic );	
 	// model_transform = mult( model_transform, translate( 0, 10, 0 ) );	
 
 	// this.draw_jedi(model_transform);

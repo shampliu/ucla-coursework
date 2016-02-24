@@ -22,35 +22,39 @@ triangle.prototype.populate = function( recipient, points_transform ) // The mea
     recipient.vertices[i] = vec3( mult_vec( points_transform, vec4( recipient.vertices[ i ], 1 ) ) );    
 };
 
-function plane( points_transform )
+function plane( points_transform, height_multiplier )
 {
 
 	shape.call(this); // Inherit class shape’s array members by calling parent constructor
     if( !arguments.length) return; // Pass no arguments if you just want to make an empty dummy object that inherits everything, for populating other shapes
-    this.populate( this, points_transform ); // Otherwise, a new triangle immediately populates its own arrays with triangle points,
+    this.populate( this, points_transform, height_multiplier ); // Otherwise, a new triangle immediately populates its own arrays with triangle points,
     this.init_buffers(); // Then sends its arrays to the graphics card into new buffers
 }
 
 inherit(plane, shape); 
-plane.prototype.populate = function( recipient, points_transform) 
+plane.prototype.populate = function( recipient, points_transform, height_multiplier) 
 { 
 	var index_offset = recipient.indices.length;
 
-  	for (var y = 0; y <= 10; ++y) {
-  	  var v = y;
-  	  for (var x = 0; x <= 10; ++x) {
-  	    var u = x;
-  	    recipient.vertices.push( vec3(u * 20, 0, v * 20))
-  	    // recipient.normals.push( vec3(0, 1, 0))
-  	    // uvs.push(u, v);
+	var num = 80;
+	var mid = num / 2;
+
+  	for (var z = 0; z <= num; ++z) {
+  	  var v = mid - Math.abs(z-mid);
+
+  	  for (var x = 0; x <= num; ++x) {
+  	    var u = mid - Math.abs(x-mid);
+  	    var y = u * v;
+  	    // recipient.vertices.push( vec3(u * 5, Math.cos(90 * (x/num)), v * 5))
+  	    recipient.vertices.push( vec3(x, y * height_multiplier, z))
   	  }
   	}
 
-  	var rowSize = 11;
-  	for (var y = 0; y < 10; ++y) {
+  	var rowSize = num + 1;
+  	for (var y = 0; y < num; ++y) {
   	  var rowOffset0 = (y + 0) * rowSize;
   	  var rowOffset1 = (y + 1) * rowSize;
-  	  for (var x = 0; x < 10; ++x) {
+  	  for (var x = 0; x < num; ++x) {
   	    var offset0 = rowOffset0 + x;
 	    var offset1 = rowOffset1 + x;
 	    recipient.indices.push(offset0, offset0 + 1, offset1);
