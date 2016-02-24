@@ -34,13 +34,14 @@ function plane( points_transform )
 inherit(plane, shape); 
 plane.prototype.populate = function( recipient, points_transform) 
 { 
+	var index_offset = recipient.indices.length;
 
   	for (var y = 0; y <= 10; ++y) {
   	  var v = y;
   	  for (var x = 0; x <= 10; ++x) {
   	    var u = x;
   	    recipient.vertices.push( vec3(u * 20, 0, v * 20))
-  	    recipient.normals.push( vec3(0, 1, 0))
+  	    // recipient.normals.push( vec3(0, 1, 0))
   	    // uvs.push(u, v);
   	  }
   	}
@@ -56,6 +57,8 @@ plane.prototype.populate = function( recipient, points_transform)
 	    recipient.indices.push(offset1, offset0 + 1, offset1 + 1);
   	  }
   	}
+
+  	recipient.flat_normals_from_triples( index_offset );
 }
 
 function windmill( points_transform )// Argument points_transform: Always identity if we’re just building a windmill. It does good when building other
