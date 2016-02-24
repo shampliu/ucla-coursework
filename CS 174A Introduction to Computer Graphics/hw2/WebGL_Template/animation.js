@@ -24,7 +24,7 @@ function Animation()
 		self.context = new GL_Context( "gl-canvas" );
 		self.context.register_display_object( self );
 		
-		gl.clearColor( 0, 0, 0, 1 );			// Background color
+		gl.clearColor( 245/255,208/255,182/255, 1 );			// Background color
 
 		self.m_cube = new cube();
 		self.m_axis = new axis();
@@ -147,13 +147,11 @@ Animation.prototype.display = function(time)
 	stack.push(model_transform);	
 											
 													
-	// this.draw_ground(model_transform); 
-	this.m_plane.draw( this.graphicsState, model_transform, greyPlastic );
-	model_transform = mult( model_transform, translate( 10, 0, 0 ) );
-	this.m_hill.draw( this.graphicsState, model_transform, greyPlastic );	
+	this.draw_ground(model_transform); 
+	
 	// model_transform = mult( model_transform, translate( 0, 10, 0 ) );	
 
-	// this.draw_jedi(model_transform);
+	this.draw_jedi(model_transform);
 
 	// model_transform = mult( model_transform, translate( 10, 0, 0 ) );	
 	// this.draw_BB(model_transform);
@@ -167,10 +165,13 @@ Animation.prototype.draw_ground = function(model_transform) {
 	var stack = [];
 	stack.push(model_transform);
 
-	var ground_color = new Material( vec4( 0.2, 0.6, 0.0), 1, 1, 1, 40 );
+	var ground_color = new Material( vec4( 246/255, 180/255, 102/255 ), 1, 1, 1, 40 );
 
-	model_transform = mult( model_transform, scale( 100, 1, 100 ) );												
-	this.m_cube.draw( this.graphicsState, model_transform, ground_color );		
+	this.m_hill.draw( this.graphicsState, model_transform, ground_color );	
+
+	model_transform = mult( model_transform, translate( 10, 0, 0 ) );
+
+	this.m_plane.draw( this.graphicsState, model_transform, ground_color );		
 
 	model_transform = stack.pop();
 	return model_transform;
@@ -183,6 +184,10 @@ Animation.prototype.draw_jedi = function(model_transform) {
 	stack.push(model_transform);
 
 	this.m_jedi_cloak.draw( this.graphicsState, model_transform, grey );
+	this.m_jedi_head.draw( this.graphicsState, model_transform, grey );
+	this.m_jedi_body.draw( this.graphicsState, model_transform, grey );
+	this.m_jedi_leg.draw( this.graphicsState, model_transform, grey );
+	this.m_jedi_lightsaber.draw( this.graphicsState, model_transform, grey );
 }
 
 Animation.prototype.draw_droid = function(model_transform) {
@@ -311,6 +316,8 @@ Animation.prototype.draw_BB = function(model_transform) {
 Animation.prototype.update_strings = function( debug_screen_object )		// Strings this particular class contributes to the UI
 {
 	debug_screen_object.string_map["time"] = "Animation Time: " + this.graphicsState.animation_time/1000 + "s";
+	debug_screen_object.string_map["fps"] = "FPS: " + Math.round(1000 / this.animation_delta_time);
+
 	debug_screen_object.string_map["basis"] = "Showing basis: " + this.m_axis.basis_selection;
 	debug_screen_object.string_map["animate"] = "Animation " + (animate ? "on" : "off") ;
 	debug_screen_object.string_map["thrust"] = "Thrust: " + thrust;
