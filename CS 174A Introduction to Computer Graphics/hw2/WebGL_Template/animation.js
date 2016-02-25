@@ -52,6 +52,9 @@ function Animation()
 
 		self.m_droid_blaster = new shape_from_file( "droid-blaster.obj" );
 
+		// MATERIAL'D STUFF
+		self.m_laser = new shape_from_file( "laser.obj" );
+
 		// JEDI OBJECTS
 		self.m_jedi_cloak = new shape_from_file( "jedi-cloak.obj" );
 		self.m_jedi_head = new shape_from_file( "jedi-head.obj" );
@@ -137,6 +140,7 @@ Animation.prototype.display = function(time)
 	
 	var purplePlastic = new Material( vec4( .9,.5,.9,1 ), 1, 1, 1, 40 ), // Omit the string parameter if you want no texture
 		greyPlastic = new Material( vec4( .5,.5,.5,1 ), 1, 1, .5, 20 ),
+		laser = new Material( vec4( 0.9, 0, 0 ), .5, 1, 1, 10 ),
 		earth = new Material( vec4( .5,.5,.5,1 ), 1, 1, 1, 40, "earth.gif" );
 		
 	/**********************************
@@ -151,7 +155,9 @@ Animation.prototype.display = function(time)
 	
 	// model_transform = mult( model_transform, translate( 0, 10, 0 ) );	
 
-	this.draw_jedi(model_transform);
+	// this.draw_jedi(model_transform);
+
+	this.m_laser.draw( this.graphicsState, model_transform, laser );	
 
 	// model_transform = mult( model_transform, translate( 10, 0, 0 ) );	
 	// this.draw_BB(model_transform);
@@ -167,13 +173,34 @@ Animation.prototype.draw_ground = function(model_transform) {
 
 	var ground_color = new Material( vec4( 246/255, 180/255, 102/255 ), 1, 1, 1, 40 );
 
+	model_transform = mult( model_transform, translate( 20, 0, 0 ) );
+
 	this.m_hill.draw( this.graphicsState, model_transform, ground_color );	
 
-	model_transform = mult( model_transform, translate( 10, 0, 0 ) );
+	model_transform = stack.pop();
+	stack.push(model_transform);
+
+	model_transform = mult( model_transform, translate( 0, 0, 0 ) );
+	model_transform = mult( model_transform, scale( 4, 1, 3 ) ); 
 
 	this.m_plane.draw( this.graphicsState, model_transform, ground_color );		
 
 	model_transform = stack.pop();
+	stack.push(model_transform);
+
+	model_transform = mult( model_transform, translate( 60, 0, 0 ) );
+	model_transform = mult( model_transform, scale( 1, 0.8, 0.8 ) ); 
+
+	this.m_hill.draw( this.graphicsState, model_transform, ground_color );	
+
+	model_transform = stack.pop();
+	stack.push(model_transform);
+
+	model_transform = mult( model_transform, translate( 100, 0, 0 ) );
+	model_transform = mult( model_transform, scale( 1.2, 0.8, 0.8 ) ); 
+
+	this.m_hill.draw( this.graphicsState, model_transform, ground_color );	
+
 	return model_transform;
 }
 
