@@ -12,6 +12,7 @@ var canvas, canvas_size, gl = null, g_addrs,
 function CURRENT_BASIS_IS_WORTH_SHOWING(self, model_transform) { self.m_axis.draw( self.basis_id++, self.graphicsState, model_transform, new Material( vec4( .8,.3,.8,1 ), 1, 1, 1, 40, "" ) ); }
 
 
+
 // *******************************************************	
 // When the web page's window loads it creates an "Animation" object.  It registers itself as a displayable object to our other class "GL_Context" -- which OpenGL is told to call upon every time a
 // draw / keyboard / mouse event happens.
@@ -64,13 +65,19 @@ function Animation()
 
 		self.m_plane = new plane( mat4(), 0 );
 		self.m_hill = new plane( mat4(), 1/80 );
+
+		self.global_bb = { };
+		self.global_bb.model_transform = mat4();
 		
 		// 1st parameter is camera matrix.  2nd parameter is the projection:  The matrix that determines how depth is treated.  It projects 3D points onto a plane.
-		self.graphicsState = new GraphicsState( translate(0, -20, -100), perspective(45, canvas.width/canvas.height, .1, 1000), 0 );
+		self.graphicsState = new GraphicsState( translate(-120, -20, -200), perspective(45, canvas.width/canvas.height, .1, 1000), 0 );
 
 		gl.uniform1i( g_addrs.GOURAUD_loc, gouraud);		gl.uniform1i( g_addrs.COLOR_NORMALS_loc, color_normals);		gl.uniform1i( g_addrs.SOLID_loc, solid);
 		
+
+
 		self.context.render();	
+
 	} ) ( this );	
 	
 	canvas.addEventListener('mousemove', function(e)	{		e = e || window.event;		movement = vec2( e.clientX - canvas.width/2, e.clientY - canvas.height/2, 0);	});
@@ -160,8 +167,17 @@ Animation.prototype.display = function(time)
 
 	this.draw_droid(model_transform);
 
-	model_transform = mult( model_transform, translate( 10, 0, 0 ) );	
-	this.draw_BB(model_transform);
+	model_transform = mult( model_transform, translate( 10, 0, 0 ) );
+
+	if (this.graphicsState.animation_time < 2000) {
+		this.draw_BB(this.global_bb);
+	}
+	else {
+		this.global_bb.model_transform = mult( this.global_bb.model_transform, translate( 4, 0, 0 ) );
+		this.draw_BB(this.global_bb);
+
+	}
+	
 
 	// this.graphicsState.camera_transform = lookAt( vec3(0,0,5), vec3(0,0,-1), vec3(0,1,0) );
 
@@ -291,14 +307,15 @@ Animation.prototype.draw_droid_leg = function(model_transform, orientation) {
 	return model_transform;
 }
 
-Animation.prototype.draw_BB = function(model_transform) {
+Animation.prototype.draw_BB = function(bb) {
 	var t = new Material( vec4( .5,.5,.5,1 ), 1, 1, 1, 40, "bb8.png" );
 	var grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
 	var black = new Material( vec4( 0, 0, 0), 1, 1, 1, 40 );
 
 	// var bb = {};
+	console.log(bb.model_transform[0][3] + ' ' + bb.model_transform[1][3] + ' ' + bb.model_transform[2][3])
 
-	model_transform = mult( model_transform, translate( 0, 9, 0 ) ); 
+	var model_transform = mult( bb.model_transform, translate( 0, 9, 0 ) ); 
 
 	var stack = [];
 	stack.push(model_transform);
@@ -346,7 +363,7 @@ Animation.prototype.draw_BB = function(model_transform) {
 	this.m_sphere.draw( this.graphicsState, model_transform, grey );	
 
 
-	return model_transform;
+	return bb;
 }
 
 Animation.prototype.update_strings = function( debug_screen_object )		// Strings this particular class contributes to the UI
