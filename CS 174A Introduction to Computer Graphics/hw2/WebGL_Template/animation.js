@@ -66,7 +66,7 @@ function Animation()
 		self.m_hill = new plane( mat4(), 1/80 );
 		
 		// 1st parameter is camera matrix.  2nd parameter is the projection:  The matrix that determines how depth is treated.  It projects 3D points onto a plane.
-		self.graphicsState = new GraphicsState( translate(0, 0,-40), perspective(45, canvas.width/canvas.height, .1, 1000), 0 );
+		self.graphicsState = new GraphicsState( translate(0, -20, -100), perspective(45, canvas.width/canvas.height, .1, 1000), 0 );
 
 		gl.uniform1i( g_addrs.GOURAUD_loc, gouraud);		gl.uniform1i( g_addrs.COLOR_NORMALS_loc, color_normals);		gl.uniform1i( g_addrs.SOLID_loc, solid);
 		
@@ -140,8 +140,7 @@ Animation.prototype.display = function(time)
 	
 	var purplePlastic = new Material( vec4( .9,.5,.9,1 ), 1, 1, 1, 40 ), // Omit the string parameter if you want no texture
 		greyPlastic = new Material( vec4( .5,.5,.5,1 ), 1, 1, .5, 20 ),
-		laser = new Material( vec4( 0.9, 0, 0 ), .5, 1, 1, 10 ),
-		earth = new Material( vec4( .5,.5,.5,1 ), 1, 1, 1, 40, "earth.gif" );
+		laser = new Material( vec4( 0.9, 0, 0 ), .5, 1, 1, 10 );
 		
 	/**********************************
 	Start coding here!!!!
@@ -157,13 +156,16 @@ Animation.prototype.display = function(time)
 
 	// this.draw_jedi(model_transform);
 
-	this.m_laser.draw( this.graphicsState, model_transform, laser );	
+	// this.m_laser.draw( this.graphicsState, model_transform, laser );	
 
-	// model_transform = mult( model_transform, translate( 10, 0, 0 ) );	
-	// this.draw_BB(model_transform);
+	this.draw_droid(model_transform);
+
+	model_transform = mult( model_transform, translate( 10, 0, 0 ) );	
+	this.draw_BB(model_transform);
+
+	// this.graphicsState.camera_transform = lookAt( vec3(0,0,5), vec3(0,0,-1), vec3(0,1,0) );
 
 	// model_transform = mult( model_transform, translate( 0, 10, 0 ) );	
-	// this.draw_droid(model_transform);
 	
 }
 
@@ -172,8 +174,9 @@ Animation.prototype.draw_ground = function(model_transform) {
 	stack.push(model_transform);
 
 	var ground_color = new Material( vec4( 246/255, 180/255, 102/255 ), 1, 1, 1, 40 );
+	// var back_color = new Material( vec4( 189/255, 138/255, 78/255 ), 1, 1, 1, 40 );
 
-	model_transform = mult( model_transform, translate( 20, 0, 0 ) );
+	model_transform = mult( model_transform, translate( 55, 0, 0 ) );
 
 	this.m_hill.draw( this.graphicsState, model_transform, ground_color );	
 
@@ -188,7 +191,7 @@ Animation.prototype.draw_ground = function(model_transform) {
 	model_transform = stack.pop();
 	stack.push(model_transform);
 
-	model_transform = mult( model_transform, translate( 60, 0, 0 ) );
+	model_transform = mult( model_transform, translate( 100, 0, -20 ) );
 	model_transform = mult( model_transform, scale( 1, 0.8, 0.8 ) ); 
 
 	this.m_hill.draw( this.graphicsState, model_transform, ground_color );	
@@ -196,7 +199,7 @@ Animation.prototype.draw_ground = function(model_transform) {
 	model_transform = stack.pop();
 	stack.push(model_transform);
 
-	model_transform = mult( model_transform, translate( 100, 0, 0 ) );
+	model_transform = mult( model_transform, translate( 140, 0, 0 ) );
 	model_transform = mult( model_transform, scale( 1.2, 0.8, 0.8 ) ); 
 
 	this.m_hill.draw( this.graphicsState, model_transform, ground_color );	
@@ -223,8 +226,8 @@ Animation.prototype.draw_droid = function(model_transform) {
 	var stack = [];
 	stack.push(model_transform);
 
-	model_transform = mult( model_transform, translate( 0, 8, 0 ) ); 
-	model_transform = mult( model_transform, scale( 3, 3, 3 ) ); 
+	model_transform = mult( model_transform, translate( 0, 14, 0 ) ); 
+	model_transform = mult( model_transform, scale( 1.5, 1.5, 1.5 ) ); 
 
 	stack.push(model_transform);
 	model_transform = mult( model_transform, scale( 0.5, 1, 1 ) ); 
@@ -293,6 +296,10 @@ Animation.prototype.draw_BB = function(model_transform) {
 	var grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
 	var black = new Material( vec4( 0, 0, 0), 1, 1, 1, 40 );
 
+	// var bb = {};
+
+	model_transform = mult( model_transform, translate( 0, 9, 0 ) ); 
+
 	var stack = [];
 	stack.push(model_transform);
 
@@ -304,6 +311,8 @@ Animation.prototype.draw_BB = function(model_transform) {
 
 	model_transform = mult( model_transform, translate( 1.6, 0, 0 ) );
 	model_transform = mult( model_transform, scale( 1.5, 1.5, 1.5 ) );	
+	model_transform = mult( model_transform, rotate( 90, 1, 0, 0 ) );
+	model_transform = mult( model_transform, rotate( -this.graphicsState.animation_time/2, 0, 0, 1 ) );
 	this.m_sphere.draw( this.graphicsState, model_transform, t );	
 
 	model_transform = stack.pop();
