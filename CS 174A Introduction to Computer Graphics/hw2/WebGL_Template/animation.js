@@ -67,7 +67,8 @@ function Animation()
 		self.m_hill = new plane( mat4(), 1/80 );
 
 		self.global_bb = { };
-		self.global_bb.model_transform = mat4();
+		self.global_bb.all = mat4();
+		self.global_bb.body = mat4();
 		
 		// 1st parameter is camera matrix.  2nd parameter is the projection:  The matrix that determines how depth is treated.  It projects 3D points onto a plane.
 		self.graphicsState = new GraphicsState( translate(-140, -20, -200), perspective(45, canvas.width/canvas.height, .1, 1000), 0 );
@@ -174,16 +175,18 @@ Animation.prototype.display = function(time)
 
 
 	if (t < 3000) {
-		this.global_bb.model_transform = mult( this.global_bb.model_transform, translate( 0, 0.14 * (t / 3000), 0.4 * (t / 3000)) )
+		this.global_bb.all = mult( this.global_bb.all, translate( 0, 0.14 * (t / 3000), 0.4 * (t / 3000)) )
+		this.global_bb.body = mult( this.global_bb.body, rotate( (t/2 * -1), 0, 0, 1 ) );
+
 		this.draw_BB(this.global_bb);
 	}
 	else if (t < 4000) {
-		this.global_bb.model_transform = mult( this.global_bb.model_transform, translate( 0, -0.1 * (t / 3000), 0.4 * (t / 3000) ) );
+		this.global_bb.all = mult( this.global_bb.all, translate( 0, -0.1 * (t / 3000), 0.4 * (t / 3000) ) );
 		this.draw_BB(this.global_bb);
 
 	}
 	else if (t < 9000) {
-		this.global_bb.model_transform = mult( this.global_bb.model_transform, translate( 0, 0, 0.4 * (t / 3000) ) );
+		this.global_bb.all = mult( this.global_bb.all, translate( 0, 0, 0.4 * (t / 3000) ) );
 		this.draw_BB(this.global_bb);
 
 	}
@@ -324,53 +327,55 @@ Animation.prototype.draw_BB = function(bb) {
 	var grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
 	var black = new Material( vec4( 0, 0, 0), 1, 1, 1, 40 );
 
-	var model_transform = mult( bb.model_transform, translate( 150, 6, -20 ) ); 
-	model_transform = mult( model_transform, scale( .67, .67, .67 ) );
+	var all_transform = mult( bb.all, translate( 150, 6, -20 ) ); 
+	var body_transform = bb.body;
+
+	all_transform = mult( all_transform, scale( .67, .67, .67 ) );
 
 	var stack = [];
-	stack.push(model_transform);
+	stack.push(all_transform);
 
-	model_transform = mult( model_transform, rotate( -90, 0, 0, 1 ) );
-	model_transform = mult( model_transform, scale( 3, 3, 3 ) ); // small obj file	
+	all_transform = mult( all_transform, rotate( -90, 0, 0, 1 ) );
+	all_transform = mult( all_transform, scale( 3, 3, 3 ) ); // small obj file	
 
-	this.m_top_half.draw( this.graphicsState, model_transform, t );	
-	this.m_bottom_half.draw( this.graphicsState, model_transform, grey );	
+	this.m_top_half.draw( this.graphicsState, all_transform, t );	
+	this.m_bottom_half.draw( this.graphicsState, all_transform, grey );	
 
-	model_transform = mult( model_transform, translate( 1.6, 0, 0 ) );
-	model_transform = mult( model_transform, scale( 1.5, 1.5, 1.5 ) );	
-	model_transform = mult( model_transform, rotate( 90, 1, 0, 0 ) );
-	model_transform = mult( model_transform, rotate( -this.graphicsState.animation_time/2, 0, 0, 1 ) );
-	this.m_sphere.draw( this.graphicsState, model_transform, t );	
+	all_transform = mult( all_transform, translate( 1.6, 0, 0 ) );
+	all_transform = mult( all_transform, scale( 1.5, 1.5, 1.5 ) );	
+	all_transform = mult( all_transform, rotate( 90, 1, 0, 0 ) );
+	// all_transform = mult( all_transform, rotate( -this.graphicsState.animation_time/2, 0, 0, 1 ) );
+	this.m_sphere.draw( this.graphicsState, mult(all_transform, body_transform), t );	
 
-	model_transform = stack.pop();
-	stack.push(model_transform);
+	all_transform = stack.pop();
+	stack.push(all_transform);
 
-	model_transform = mult( model_transform, translate( 1, 4, 0 ) );
-	model_transform = mult( model_transform, scale( 0.1, 2.5, 0.1 ) );	
-	model_transform = mult( model_transform, rotate( 90, 1, 0, 0 ) );
-	this.m_cylinder.draw( this.graphicsState, model_transform, grey );
+	all_transform = mult( all_transform, translate( 1, 4, 0 ) );
+	all_transform = mult( all_transform, scale( 0.1, 2.5, 0.1 ) );	
+	all_transform = mult( all_transform, rotate( 90, 1, 0, 0 ) );
+	this.m_cylinder.draw( this.graphicsState, all_transform, grey );
 
-	model_transform = stack.pop();
-	stack.push(model_transform);
+	all_transform = stack.pop();
+	stack.push(all_transform);
 
-	model_transform = mult( model_transform, translate( -1, 3, 0 ) );
-	model_transform = mult( model_transform, scale( 0.1, 1.2, 0.1 ) );	
-	model_transform = mult( model_transform, rotate( 90, 1, 0, 0 ) );
-	this.m_cylinder.draw( this.graphicsState, model_transform, grey );
+	all_transform = mult( all_transform, translate( -1, 3, 0 ) );
+	all_transform = mult( all_transform, scale( 0.1, 1.2, 0.1 ) );	
+	all_transform = mult( all_transform, rotate( 90, 1, 0, 0 ) );
+	this.m_cylinder.draw( this.graphicsState, all_transform, grey );
 
-	model_transform = stack.pop();
-	stack.push(model_transform);
+	all_transform = stack.pop();
+	stack.push(all_transform);
 
-	model_transform = mult( model_transform, translate( 1, 0.75, 2.5 ) );
-	model_transform = mult( model_transform, scale( 0.45, 0.45, 0.45 ) );	
-	this.m_sphere.draw( this.graphicsState, model_transform, grey );	
+	all_transform = mult( all_transform, translate( 1, 0.75, 2.5 ) );
+	all_transform = mult( all_transform, scale( 0.45, 0.45, 0.45 ) );	
+	this.m_sphere.draw( this.graphicsState, all_transform, grey );	
 
-	model_transform = stack.pop();
-	stack.push(model_transform);
+	all_transform = stack.pop();
+	stack.push(all_transform);
 
-	model_transform = mult( model_transform, translate( 0, 1.75, 2.5 ) );
-	model_transform = mult( model_transform, scale( 0.75, 0.75, 0.75 ) );	
-	this.m_sphere.draw( this.graphicsState, model_transform, grey );	
+	all_transform = mult( all_transform, translate( 0, 1.75, 2.5 ) );
+	all_transform = mult( all_transform, scale( 0.75, 0.75, 0.75 ) );	
+	this.m_sphere.draw( this.graphicsState, all_transform, grey );	
 
 
 	return bb;
