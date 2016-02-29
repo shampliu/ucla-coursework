@@ -6,7 +6,7 @@
 // *******************************************************
 // IMPORTANT -- In the line below, add the filenames of any new images you want to include for textures!
 
-var texture_filenames_to_load = [ "stars.png", "text.png", "bb8.png" ];
+var texture_filenames_to_load = [ "stars.png", "text.png", "bb8.png", "sand.png" ];
 
 // *******************************************************
 // IMPORTANT -- Any new shader variables you define need to have a line added to class Graphics_Addresses below, so their addresses can be retrieved.
@@ -49,6 +49,8 @@ function GL_Context( canvas_id )
 
 		function Graphics_Addresses( program )		// Find out the memory addresses internal to the graphics card of each of its variables, and store them here locally for the Javascript to use
 		{	
+			this.attenuation_factor_loc = gl.getUniformLocation(program, "attenuation_factor");   
+			
 			this.shader_attributes = [ 	new Shader_Attribute( gl.getAttribLocation( program, "vPosition"), 3, gl.FLOAT, true, false, 0, 0 ),
 										new Shader_Attribute( gl.getAttribLocation( program, "vNormal"), 3, gl.FLOAT, true, false, 0, 0 ),
 										new Shader_Attribute( gl.getAttribLocation( program, "vTexCoord"), 2, gl.FLOAT, false, false, 0, 0 ),

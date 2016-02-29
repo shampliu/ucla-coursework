@@ -46,7 +46,7 @@ void main()
 	}
 
     pos = ( camera_model_transform * object_space_pos ).xyz;
-	E = -pos; 
+	E = normalize( -pos ); 
 	
 	for( int i = 0; i < N_LIGHTS; i++ )
 	{

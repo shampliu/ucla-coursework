@@ -200,8 +200,7 @@ Animation.prototype.display = function(time)
 
 	}
 	else if (t < 9000) {
-		this.global_droid1.all = mult( this.global_droid1.all, translate( 0, 0.14 * (t / 3000), 0.4 * (t / 3000)) )
-		
+
 		this.global_bb.all = mult( this.global_bb.all, translate( 0, 0, 0.4 * (t / 3000) ) );
 		this.global_bb.body = mult( this.global_bb.body, rotate( (t/2 * -1), 0, 0, 1 ) );
 		this.draw_BB(this.global_bb);
@@ -222,6 +221,7 @@ Animation.prototype.draw_ground = function(model_transform) {
 	stack.push(model_transform);
 
 	var ground_color = new Material( vec4( 246/255, 180/255, 102/255 ), 1, 1, 1, 40 );
+	// var t = new Material( vec4( .5,.5,.5,1 ), 1, 1, 1, 40, "sand.png" );
 	// var back_color = new Material( vec4( 189/255, 138/255, 78/255 ), 1, 1, 1, 40 );
 
 	model_transform = mult( model_transform, translate( 55, 0, 0 ) );

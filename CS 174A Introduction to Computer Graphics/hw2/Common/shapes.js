@@ -10,7 +10,7 @@ function triangle( points_transform ) // Argument points_transform: Always ident
 inherit(triangle, shape);
 triangle.prototype.populate = function( recipient, points_transform ) // The meat of the triangle starts here:
 {
-  var offset = recipient.vertices.length;        
+	var offset = recipient.vertices.length;        
   var index_offset = recipient.indices.length;                // Recipient's previous size
 
   recipient.vertices.push( vec3(0,0,0), vec3(0,1,0), vec3(1,0,0) );
@@ -19,7 +19,7 @@ triangle.prototype.populate = function( recipient, points_transform ) // The mea
   recipient.indices.push( offset + 0, offset + 1, offset + 2 );
 
   for( var i = offset; i < recipient.vertices.length; i++ )                // Apply points_transform to those points added during this call 
-    recipient.vertices[i] = vec3( mult_vec( points_transform, vec4( recipient.vertices[ i ], 1 ) ) );    
+  	recipient.vertices[i] = vec3( mult_vec( points_transform, vec4( recipient.vertices[ i ], 1 ) ) );    
 };
 
 function plane( points_transform, height_multiplier )
@@ -39,30 +39,30 @@ plane.prototype.populate = function( recipient, points_transform, height_multipl
 	var num = 80;
 	var mid = num / 2;
 
-  	for (var z = 0; z <= num; ++z) {
-  	  var v = mid - Math.abs(z-mid);
+	for (var z = 0; z <= num; ++z) {
+		var v = mid - Math.abs(z-mid);
 
-  	  for (var x = 0; x <= num; ++x) {
-  	    var u = mid - Math.abs(x-mid);
-  	    var y = u * v;
+		for (var x = 0; x <= num; ++x) {
+			var u = mid - Math.abs(x-mid);
+			var y = u * v;
   	    // recipient.vertices.push( vec3(u * 5, Math.cos(90 * (x/num)), v * 5))
   	    recipient.vertices.push( vec3(x, y * height_multiplier, z))
-  	  }
   	}
+  }
 
-  	var rowSize = num + 1;
-  	for (var y = 0; y < num; ++y) {
-  	  var rowOffset0 = (y + 0) * rowSize;
-  	  var rowOffset1 = (y + 1) * rowSize;
-  	  for (var x = 0; x < num; ++x) {
-  	    var offset0 = rowOffset0 + x;
-	    var offset1 = rowOffset1 + x;
-	    recipient.indices.push(offset0, offset0 + 1, offset1);
-	    recipient.indices.push(offset1, offset0 + 1, offset1 + 1);
-  	  }
+  var rowSize = num + 1;
+  for (var y = 0; y < num; ++y) {
+  	var rowOffset0 = (y + 0) * rowSize;
+  	var rowOffset1 = (y + 1) * rowSize;
+  	for (var x = 0; x < num; ++x) {
+  		var offset0 = rowOffset0 + x;
+  		var offset1 = rowOffset1 + x;
+  		recipient.indices.push(offset0, offset0 + 1, offset1);
+  		recipient.indices.push(offset1, offset0 + 1, offset1 + 1);
   	}
+  }
 
-  	recipient.flat_normals_from_triples( index_offset );
+  recipient.flat_normals_from_triples( index_offset );
 }
 
 function windmill( points_transform )// Argument points_transform: Always identity if we’re just building a windmill. It does good when building other
@@ -72,8 +72,8 @@ function windmill( points_transform )// Argument points_transform: Always identi
     if( !arguments.length) return; // Pass no arguments if you just want to make an empty dummy object that inherits everything, for populating other shapes
     this.populate( this, points_transform ); // Otherwise, a new windmill immediately populates its own arrays with windmill points,
     this.init_buffers(); // Then sends its arrays to the graphics card into new buffers
-  }
-  inherit(windmill, shape);
+}
+inherit(windmill, shape);
 windmill.prototype.populate = function( recipient, points_transform ) // The meat of the windmill starts here:
 {
     var offset = recipient.vertices.length; var index_offset = recipient.indices.length; // Recipient's previous size
@@ -95,7 +95,7 @@ windmill.prototype.populate = function( recipient, points_transform ) // The mea
     }
     for( var i = offset; i < recipient.vertices.length; i++ ) // Apply points_transform to those points added during this call
     	recipient.vertices[i] = vec3( mult_vec( points_transform, vec4( recipient.vertices[ i ], 1 ) ) );
-  };
+};
 
 function capped_cylinder() // Combine a tube and two flattened triangle fans to make a solid cylinder
 {
@@ -115,10 +115,10 @@ function capped_cylinder() // Combine a tube and two flattened triangle fans to 
         object_transform = mult( object_transform, translate(0, 0, -.5)); // What if I tried doing this without the pop?
         object_transform = mult( object_transform, scale(1, 1, 0));
         self.m_fan.populate( self, 10, object_transform )
-      } )(this);
+    } )(this);
     this.init_buffers(); // Send the final arrays to the graphics card into new buffers
-  }
-  inherit(capped_cylinder, shape);
+}
+inherit(capped_cylinder, shape);
 
 // *******************************************************
 // CS 174a Graphics Example Code
@@ -253,17 +253,37 @@ function shape()
 		gl.uniformMatrix4fv( g_addrs.projection_camera_model_transform_loc, false, flatten( projection_camera_model_transform ) );
 		gl.uniformMatrix3fv( g_addrs.camera_model_transform_normal_loc, 	false, flatten( camera_model_transform_normal ) );
 
-		var N_LIGHTS = 2, lightPositions = [], lightColors = [], lightPositions_flattened = [], lightColors_flattened = [];
-		lightPositions.push( vec4( 100, 0, 0, 1 ) );			lightColors.push( vec4( 0, 0, 1, 1 ) );
-		lightPositions.push( vec4( 0, 100, 0, 1 ) );			lightColors.push( vec4( 1, 0, 0, 1 ) );
+		var N_LIGHTS = 2, lightPositions = [], lightColors = [], attenuations = [], 
+		                lightPositions_flattened = [], lightColors_flattened = [];
+		lightPositions.push( vec4( 10 * Math.sin(graphicsState.animation_time/1000), 0, 0, 1 ) );    
+		lightColors.push( vec4( 0, 1, 0, 1 ) );   
+		attenuations.push( .000001 );
+
+		lightPositions.push( vec4( 0, 10* Math.sin(graphicsState.animation_time/1000), 0, 1 ) );    
+		lightColors.push( vec4( 1, 0, 0, 1 ) );   
+		attenuations.push( .000001 );
+
 		for( var i = 0; i < 4 * N_LIGHTS; i++ )
 		{
-			lightPositions_flattened[i] = lightPositions[ Math.floor(i/4) ][i%4];
-			lightColors_flattened[i]    =    lightColors[ Math.floor(i/4) ][i%4];
+		       lightPositions_flattened[i] = lightPositions[ Math.floor(i/4) ][i%4];
+		       lightColors_flattened[i]    =    lightColors[ Math.floor(i/4) ][i%4];
 		}
 
-		gl.uniform4fv( g_addrs.lightPosition_loc, 	lightPositions_flattened );
-		gl.uniform4fv( g_addrs.lightColor_loc, 	lightColors_flattened );   
+		gl.uniform4fv( g_addrs.lightPosition_loc,     lightPositions_flattened );
+		gl.uniform4fv( g_addrs.lightColor_loc,     lightColors_flattened );   
+		gl.uniform1fv( g_addrs.attenuation_factor_loc,     attenuations );  
+		
+		// var N_LIGHTS = 2, lightPositions = [], lightColors = [], lightPositions_flattened = [], lightColors_flattened = [];
+		// lightPositions.push( vec4( 100, 0, 0, 1 ) );			lightColors.push( vec4( 0, 0, 1, 1 ) );
+		// lightPositions.push( vec4( 0, 100, 0, 1 ) );			lightColors.push( vec4( 1, 0, 0, 1 ) );
+		// for( var i = 0; i < 4 * N_LIGHTS; i++ )
+		// {
+		// 	lightPositions_flattened[i] = lightPositions[ Math.floor(i/4) ][i%4];
+		// 	lightColors_flattened[i]    =    lightColors[ Math.floor(i/4) ][i%4];
+		// }
+
+		// gl.uniform4fv( g_addrs.lightPosition_loc, 	lightPositions_flattened );
+		// gl.uniform4fv( g_addrs.lightColor_loc, 	lightColors_flattened );   
 
 
 				gl.uniform4fv( g_addrs.color_loc, 			material.color );		// Send a desired shape-wide color to the graphics card
