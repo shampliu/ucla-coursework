@@ -70,7 +70,7 @@ function Animation()
 		self.global_bb.model_transform = mat4();
 		
 		// 1st parameter is camera matrix.  2nd parameter is the projection:  The matrix that determines how depth is treated.  It projects 3D points onto a plane.
-		self.graphicsState = new GraphicsState( translate(-120, -20, -200), perspective(45, canvas.width/canvas.height, .1, 1000), 0 );
+		self.graphicsState = new GraphicsState( translate(-140, -20, -200), perspective(45, canvas.width/canvas.height, .1, 1000), 0 );
 
 		gl.uniform1i( g_addrs.GOURAUD_loc, gouraud);		gl.uniform1i( g_addrs.COLOR_NORMALS_loc, color_normals);		gl.uniform1i( g_addrs.SOLID_loc, solid);
 		
@@ -167,16 +167,28 @@ Animation.prototype.display = function(time)
 
 	this.draw_droid(model_transform);
 
-	model_transform = mult( model_transform, translate( 10, 0, 0 ) );
+	// model_transform = mult( model_transform, translate( 10, 0, 0 ) );
 
-	if (this.graphicsState.animation_time < 2000) {
+	var t = this.graphicsState.animation_time;
+
+
+
+	if (t < 3000) {
+		this.global_bb.model_transform = mult( this.global_bb.model_transform, translate( 0, 0.14 * (t / 3000), 0.4 * (t / 3000)) )
 		this.draw_BB(this.global_bb);
 	}
-	else {
-		this.global_bb.model_transform = mult( this.global_bb.model_transform, translate( 4, 0, 0 ) );
+	else if (t < 4000) {
+		this.global_bb.model_transform = mult( this.global_bb.model_transform, translate( 0, -0.1 * (t / 3000), 0.4 * (t / 3000) ) );
 		this.draw_BB(this.global_bb);
 
 	}
+	else if (t < 9000) {
+		this.global_bb.model_transform = mult( this.global_bb.model_transform, translate( 0, 0, 0.4 * (t / 3000) ) );
+		this.draw_BB(this.global_bb);
+
+	}
+	
+	
 	
 
 	// this.graphicsState.camera_transform = lookAt( vec3(0,0,5), vec3(0,0,-1), vec3(0,1,0) );
@@ -312,10 +324,8 @@ Animation.prototype.draw_BB = function(bb) {
 	var grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
 	var black = new Material( vec4( 0, 0, 0), 1, 1, 1, 40 );
 
-	// var bb = {};
-	console.log(bb.model_transform[0][3] + ' ' + bb.model_transform[1][3] + ' ' + bb.model_transform[2][3])
-
-	var model_transform = mult( bb.model_transform, translate( 0, 9, 0 ) ); 
+	var model_transform = mult( bb.model_transform, translate( 150, 6, -20 ) ); 
+	model_transform = mult( model_transform, scale( .67, .67, .67 ) );
 
 	var stack = [];
 	stack.push(model_transform);
