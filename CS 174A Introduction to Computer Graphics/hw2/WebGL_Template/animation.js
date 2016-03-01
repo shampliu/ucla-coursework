@@ -59,6 +59,7 @@ function Animation()
 		// JEDI OBJECTS
 		self.m_jedi_cloak = new shape_from_file( "jedi-cloak.obj" );
 		self.m_jedi_head = new shape_from_file( "jedi-head.obj" );
+		self.m_jedi_nose = new shape_from_file( "jedi-nose.obj" );
 		self.m_jedi_body = new shape_from_file( "jedi-body.obj" );
 		self.m_jedi_leg = new shape_from_file( "jedi-leg.obj" );
 		self.m_jedi_lightsaber = new shape_from_file( "jedi-lightsaber.obj" );
@@ -71,13 +72,20 @@ function Animation()
 		self.global_bb.body = mat4();
 		self.global_bb.head = mat4();
 
-		self.global_droid1 = { };
-		self.global_droid1.all = mat4();
-		self.global_droid1.offsetX = 0;
+		self.global_droid = { };
+		self.global_droid.all = mat4();
+		self.global_droid.offsetX = 0;
 
 		self.global_laser1 = {};
 		self.global_laser1.all = mat4();
 		self.global_laser1.fired = false; 
+
+		self.global_laser2 = {};
+		self.global_laser2.all = mat4();
+		self.global_laser2.fired = false; 
+
+		self.global_jedi = {};
+		self.global_jedi.all = mat4();
 
 		// 1st parameter is camera matrix.  2nd parameter is the projection:  The matrix that determines how depth is treated.  It projects 3D points onto a plane.
 		self.graphicsState = new GraphicsState( translate(-140, -20, -200), perspective(45, canvas.width/canvas.height, .1, 1000), 0 );
@@ -165,37 +173,24 @@ Animation.prototype.display = function(time)
 													
 	this.draw_ground(model_transform); 
 
-	// this.draw_laser(model_transform);
-
-	
-	// this.draw_BB(this.test);
-	
-	// model_transform = mult( model_transform, translate( 0, 10, 0 ) );	
-
-	// this.draw_jedi(model_transform);
-	
-
-
-
-
-
-	// model_transform = mult( model_transform, translate( 10, 0, 0 ) );
 
 	var t = this.graphicsState.animation_time - 3000;
 
-	this.global_droid1.all = mult( this.global_droid1.all, translate( 0, .1 * Math.sin (t / 100), 0 ) )
-	this.global_bb.body = mult( this.global_bb.body, rotate( (t/3 * -1), 0, 0, 1 ) );
+	this.global_droid.all = mult( this.global_droid.all, translate( 0, .1 * Math.sin (t / 100), 0 ) )
+	
 
 
 	if (t < 0) {
 
 	}
 	else if (t < 3000) {
+		this.global_bb.body = mult( this.global_bb.body, rotate( (t/3 * -1), 0, 0, 1 ) );
 		this.global_bb.all = mult( this.global_bb.all, translate( 0, 0.14 * (t / 3000), 0.4 * (t / 3000)) )
 		this.draw_BB(this.global_bb);
 	}
 	else if (t < 4500) {
-		this.global_bb.all = mult( this.global_bb.all, translate( -1.1 * Math.sin(t/120), -0.04 * (t / 3000), 0.05 * (t / 3000) ) );
+		this.global_bb.body = mult( this.global_bb.body, rotate( (t/3 * -1), 0, 0, 1 ) );
+		this.global_bb.all = mult( this.global_bb.all, translate( -1.1 * Math.sin(t/120), -0.06 * (t / 3000), 0.05 * (t / 3000) ) );
 		// this.global_bb.head = mult( this.global_bb.head, rotate( -5.5, 0, 1, 0 ) );
 		this.global_bb.head = mult( this.global_bb.head, rotate( 7.5 * Math.sin(this.graphicsState.animation_time/200), 1, 0, 0 ) );
 
@@ -204,49 +199,84 @@ Animation.prototype.display = function(time)
 
 
 	}
-	else if (t < 18000) {
+	else if (t < 12000) {
 		if (t < 6000) {
 			this.global_bb.all = mult( this.global_bb.all, translate( 0, -0.04 * (t / 3000), 0 ) );
-			this.global_droid1.all = mult( this.global_droid1.all, translate( 0, 0.09 * (t / 3000), 0.18 * (t / 3000)) )
-			this.draw_droid(this.global_droid1, -5);
+			this.global_droid.all = mult( this.global_droid.all, translate( 0, 0.08 * (t / 4000), 0.05 * (t / 3000)) )
+			this.draw_droid(this.global_droid, -5);
+			this.global_bb.head = mult( this.global_bb.head, rotate( 6 * Math.sin(this.graphicsState.animation_time/200), 1, 0, 0 ) );
 
 		}
 		else if (t < 7000) {
-			this.global_droid1.all = mult( this.global_droid1.all, translate( 0, -0.09 * (t / 3000), 0.18 * (t / 3000)) )
-			this.draw_droid(this.global_droid1, -5);
+			this.global_droid.all = mult( this.global_droid.all, translate( 0, -0.12 * (t / 4000), 0.05 * (t / 3000)) )
+			this.draw_droid(this.global_droid, -5);
+			this.global_bb.head = mult( this.global_bb.head, rotate( 6 * Math.sin(this.graphicsState.animation_time/200), 1, 0, 0 ) );
 
 		}
-		else {
-			// this.global_droid1.all = mult( this.global_droid1.all, translate( 0, 0, 0.2 * (t / 3000)) )
-			this.draw_droid(this.global_droid1, -5);
+		else if (t < 7500) {
 			this.draw_laser(this.global_laser1);
+			this.global_bb.head = mult( this.global_bb.head, rotate( 6 * Math.sin(this.graphicsState.animation_time/200), 1, 0, 0 ) );
 		}
+		else if (t < 8200) {
+			this.global_laser1.fired = false;
+			this.draw_laser(this.global_laser2);
+			this.global_bb.head = mult( this.global_bb.head, rotate( 6 * Math.sin(this.graphicsState.animation_time/200), 1, 0, 0 ) );
+		}
+		else if (t < 9000) {
+			this.draw_laser(this.global_laser1);
+			this.global_laser2.fired = false;
+		}
+		this.global_bb.body = mult( this.global_bb.body, rotate( (t/3 * -1), 0, 0, 1 ) );
+
+		this.global_droid.all = mult( this.global_droid.all, translate( 0, 0, 0.2 * (t / 3000)) )
+		this.draw_droid(this.global_droid, -5);
 		// this.global_bb.all = mult( this.global_bb.all, translate( 0, 0, 0.4 * (t / 3000) ) );
-		this.global_bb.all = mult( this.global_bb.all, translate( -1.1 * Math.sin(t/120), 0, 0.4 * (t / 3000) ) );
-		this.global_bb.head = mult( this.global_bb.head, rotate( 7.5 * Math.sin(this.graphicsState.animation_time/200), 1, 0, 0 ) );
+		if (t < 8000) {
+			this.global_bb.all = mult( this.global_bb.all, translate( -1.1 * Math.sin(t/120), 0, 0.4 * (t / 3000) ) );
+		}
+		else { 
+			this.global_bb.all = mult( this.global_bb.all, translate( 0.1 * t/20000, 0, 0.4 * (t / 3000) ) );
+			this.global_bb.head = mult( this.global_bb.head, rotate( .6 * Math.sin(this.graphicsState.animation_time/20000), 1, 0, 0 ) );
+		}
+		
+		
 		this.draw_BB(this.global_bb);
+		this.draw_jedi(this.global_jedi);
 
 	}
+	else if (t < 30000) {
+		if (t < 16000) {
+			this.global_droid.all = mult( this.global_droid.all, translate( 0, 0, 0.2 * (t / 3000)) )
+			this.draw_droid(this.global_droid, -5);
+			this.global_bb.head = mult( this.global_bb.head, rotate( -.15 * Math.sin(this.graphicsState.animation_time/20000), 0, 1, 0 ) );
+
+		}
+		this.draw_BB(this.global_bb);
+		this.draw_jedi(this.global_jedi);
+
+	}
+
 	
 	
 	
 
 	// this.graphicsState.camera_transform = lookAt( vec3(0,0,5), vec3(0,0,-1), vec3(0,1,0) );
-
-	// model_transform = mult( model_transform, translate( 0, 10, 0 ) );	
 	
 }
 
 Animation.prototype.draw_laser = function(laser) {
 	var red = new Material( vec4( 0.9, 0, 0 ), .5, 1, 1, 10 );
 	if (!laser.fired) {
-		laser.all[0][3] = this.global_droid1.offsetX;  // fix this 
-		laser.all[1][3] = this.global_droid1.all[1][3] + 5; // account for height 
-		laser.all[2][3] = this.global_droid1.all[2][3]; 
+		laser.all[0][3] = this.global_droid.offsetX;  // fix this 
+		laser.all[1][3] = this.global_droid.all[1][3] + 5; // account for height 
+		laser.all[2][3] = this.global_droid.all[2][3]; 
+
+		// laser.all = mult( laser.all, rotate( theta, 0, 1, 0 )) ;
 
 		laser.fired = true; 
 	}
-	laser.all = mult( laser.all, translate( 0, 0, 2 ) );
+	
+	laser.all = mult( laser.all, translate( 0, 0, 5 ) );
 	
 	this.m_laser.draw( this.graphicsState, laser.all, red )
 }
@@ -266,23 +296,10 @@ Animation.prototype.draw_ground = function(model_transform) {
 	model_transform = stack.pop();
 	stack.push(model_transform);
 
-	model_transform = mult( model_transform, scale( 4, 1, 3 ) ); 
+	model_transform = mult( model_transform, translate( -200, 0, 0 ) );
+	model_transform = mult( model_transform, scale( 100, 1, 100 ) ); 
 
 	this.m_plane.draw( this.graphicsState, model_transform, ground_color );		
-
-	model_transform = stack.pop();
-	stack.push(model_transform);
-
-	model_transform = mult( model_transform, translate( 0, 0, 100 ) );
-	stack.push(model_transform)
-	model_transform = mult( model_transform, scale( 4, 1, 3 ) ); 
-
-	this.m_plane.draw( this.graphicsState, model_transform, ground_color );	
-
-	model_transform = stack.pop();
-
-	model_transform = mult( model_transform, translate( 0, 0, 100 ) );
-	this.m_plane.draw( this.graphicsState, model_transform, ground_color );	
 
 
 	model_transform = stack.pop();
@@ -304,17 +321,38 @@ Animation.prototype.draw_ground = function(model_transform) {
 	return model_transform;
 }
 
-Animation.prototype.draw_jedi = function(model_transform) {
+Animation.prototype.draw_jedi = function(jedi) {
 	var grey = new Material( vec4( 0.27, 0.27, 0.27), 1, 1, 1, 40 );
+	var cloak_color = new Material( vec4( 107/255, 65/255, 37/255), 1, 1, 1, 40 );
+	var leg_color = new Material( vec4( 161/255, 144/255, 82/255), 1, 1, 1, 40 );
+	var skin_color = new Material( vec4( 237/255, 191/255, 127/255), 1, 1, 1, 40 );
+
+	var all_transform = jedi.all;
+	all_transform = mult( all_transform, translate( 150, -1, 520) ); 
+	all_transform = mult( all_transform, rotate( 180, 0, 1, 0) ); 
+	all_transform = mult( all_transform, scale( 1.75, 1.75, 1.75 ) ); 
 
 	var stack = [];
-	stack.push(model_transform);
+	stack.push(all_transform);
 
-	this.m_jedi_cloak.draw( this.graphicsState, model_transform, grey );
-	this.m_jedi_head.draw( this.graphicsState, model_transform, grey );
-	this.m_jedi_body.draw( this.graphicsState, model_transform, grey );
-	this.m_jedi_leg.draw( this.graphicsState, model_transform, grey );
-	this.m_jedi_lightsaber.draw( this.graphicsState, model_transform, grey );
+	this.m_jedi_cloak.draw( this.graphicsState, all_transform, cloak_color );
+	this.m_jedi_head.draw( this.graphicsState, all_transform, skin_color );
+	this.m_jedi_nose.draw( this.graphicsState, all_transform, skin_color );
+	this.m_jedi_body.draw( this.graphicsState, all_transform, skin_color );
+
+	all_transform = mult( all_transform, translate( 1, 0, 0) );
+	this.m_jedi_leg.draw( this.graphicsState, all_transform, grey );
+
+	all_transform = stack.pop(); 
+	stack.push(all_transform);
+
+	all_transform = mult( all_transform, translate( -1, 0, 0) );
+	this.m_jedi_leg.draw( this.graphicsState, all_transform, grey );
+
+	all_transform = stack.pop(); 
+	stack.push(all_transform);
+
+	this.m_jedi_lightsaber.draw( this.graphicsState, all_transform, grey );
 }
 
 Animation.prototype.draw_droid = function(droid, offset) {
@@ -330,7 +368,7 @@ Animation.prototype.draw_droid = function(droid, offset) {
 
 
 	all_transform = mult( all_transform, translate( 20, 10, 140 + offset) ); 
-	all_transform = mult( all_transform, scale( 1.5, 1.5, 1.5 ) ); 
+	// all_transform = mult( all_transform, scale( 2, 2, 2 ) ); 
 
 	stack.push(all_transform);
 	all_transform = mult( all_transform, scale( 0.5, 1, 1 ) ); 
@@ -378,7 +416,7 @@ Animation.prototype.draw_droid_leg = function(model_transform, orientation) {
 	var stack = [];
 	stack.push(model_transform);
 
-	model_transform = mult( model_transform, rotate( 10 * orientation * Math.sin(this.graphicsState.animation_time/200), 0, 0, 1 ) );
+	model_transform = mult( model_transform, rotate( 15 * orientation * Math.sin(this.graphicsState.animation_time/200), 0, 0, 1 ) );
 
 	stack.push(model_transform);
 
@@ -396,7 +434,7 @@ Animation.prototype.draw_droid_leg = function(model_transform, orientation) {
 	stack.push(model_transform);
 
 	model_transform = mult( model_transform, translate( 0, -1, 0 ) ); 
-		model_transform = mult( model_transform, rotate( 17.5 * orientation * Math.sin(this.graphicsState.animation_time/200), 0, 0, 1 ) );
+		model_transform = mult( model_transform, rotate( 25 * orientation * Math.sin(this.graphicsState.animation_time/200), 0, 0, 1 ) );
 	model_transform = mult( model_transform, translate( 0, -2, 0 ) ); 
 	model_transform = mult( model_transform, scale( 1, 1.4, 1 ) ); 
 	
