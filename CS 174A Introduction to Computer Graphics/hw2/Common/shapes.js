@@ -260,7 +260,7 @@ function shape()
 		attenuations.push( .000001 );
 
 		lightPositions.push( vec4( 0, 10* Math.sin(graphicsState.animation_time/1000), 0, 1 ) );    
-		lightColors.push( vec4( 1, 0, 0, 1 ) );   
+		lightColors.push( vec4( 0, 0, 0, 1 ) );   
 		attenuations.push( .000001 );
 
 		for( var i = 0; i < 4 * N_LIGHTS; i++ )
