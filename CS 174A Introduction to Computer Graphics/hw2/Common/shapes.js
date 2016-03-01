@@ -272,7 +272,7 @@ function shape()
 		gl.uniform4fv( g_addrs.lightPosition_loc,     lightPositions_flattened );
 		gl.uniform4fv( g_addrs.lightColor_loc,     lightColors_flattened );   
 		gl.uniform1fv( g_addrs.attenuation_factor_loc,     attenuations );  
-		
+
 		// var N_LIGHTS = 2, lightPositions = [], lightColors = [], lightPositions_flattened = [], lightColors_flattened = [];
 		// lightPositions.push( vec4( 100, 0, 0, 1 ) );			lightColors.push( vec4( 0, 0, 1, 1 ) );
 		// lightPositions.push( vec4( 0, 100, 0, 1 ) );			lightColors.push( vec4( 1, 0, 0, 1 ) );
@@ -286,48 +286,48 @@ function shape()
 		// gl.uniform4fv( g_addrs.lightColor_loc, 	lightColors_flattened );   
 
 
-				gl.uniform4fv( g_addrs.color_loc, 			material.color );		// Send a desired shape-wide color to the graphics card
-				gl.uniform4fv( g_addrs.lightPosition_loc, 	vec4( 10,7,3,0 ) );
-				gl.uniform4fv( g_addrs.lightColor_loc, 		vec4( 1,1,1,1 ) );
-				gl.uniform1f ( g_addrs.ambient_loc, material.ambient );
-				gl.uniform1f ( g_addrs.diffusivity_loc,  material.diffusivity );
-				gl.uniform1f ( g_addrs.shininess_loc, material.shininess );
-				gl.uniform1f ( g_addrs.smoothness_loc, material.smoothness );
-				gl.uniform1f ( g_addrs.animation_time_loc, graphicsState.animation_time / 1000 );
-			};
+		gl.uniform4fv( g_addrs.color_loc, 			material.color );		// Send a desired shape-wide color to the graphics card
+		gl.uniform4fv( g_addrs.lightPosition_loc, 	vec4( 10,7,3,0 ) );
+		gl.uniform4fv( g_addrs.lightColor_loc, 		vec4( 1,1,1,1 ) );
+		gl.uniform1f ( g_addrs.ambient_loc, material.ambient );
+		gl.uniform1f ( g_addrs.diffusivity_loc,  material.diffusivity );
+		gl.uniform1f ( g_addrs.shininess_loc, material.shininess );
+		gl.uniform1f ( g_addrs.smoothness_loc, material.smoothness );
+		gl.uniform1f ( g_addrs.animation_time_loc, graphicsState.animation_time / 1000 );
+	};
 
-		// The same draw call is used for every shape - the calls draw different things due to the different vertex lists we stored in the graphics card for them.
-		shape.prototype.draw = function( graphicsState, model_transform, material )
+	// The same draw call is used for every shape - the calls draw different things due to the different vertex lists we stored in the graphics card for them.
+	shape.prototype.draw = function( graphicsState, model_transform, material )
+	{
+		this.update_uniforms( graphicsState, model_transform, material );
+		
+		if( material.texture_filename && textures[ material.texture_filename ].loaded )			// Use a non-existent texture string parameter to signal that we don't want to texture this shape.
 		{
-			this.update_uniforms( graphicsState, model_transform, material );
-			
-			if( material.texture_filename && textures[ material.texture_filename ].loaded )			// Use a non-existent texture string parameter to signal that we don't want to texture this shape.
+			g_addrs.shader_attributes[2].enabled = true;
+			gl.uniform1f ( g_addrs.USE_TEXTURE_loc, 1 );
+			gl.bindTexture(gl.TEXTURE_2D, textures[ material.texture_filename ].id);
+		}
+		else
+			{	gl.uniform1f ( g_addrs.USE_TEXTURE_loc, 0 );		g_addrs.shader_attributes[2].enabled = false;	}
+		
+		for( var i = 0, it = g_addrs.shader_attributes[0]; i < g_addrs.shader_attributes.length, it = g_addrs.shader_attributes[i]; i++ )
+			if( it.enabled )
 			{
-				g_addrs.shader_attributes[2].enabled = true;
-				gl.uniform1f ( g_addrs.USE_TEXTURE_loc, 1 );
-				gl.bindTexture(gl.TEXTURE_2D, textures[ material.texture_filename ].id);
+				gl.enableVertexAttribArray( it.index );
+				gl.bindBuffer( gl.ARRAY_BUFFER, this.graphics_card_buffers[i] );
+				gl.vertexAttribPointer( it.index, it.size, it.type, it.normalized, it.stride, it.pointer );
 			}
 			else
-				{	gl.uniform1f ( g_addrs.USE_TEXTURE_loc, 0 );		g_addrs.shader_attributes[2].enabled = false;	}
-			
-			for( var i = 0, it = g_addrs.shader_attributes[0]; i < g_addrs.shader_attributes.length, it = g_addrs.shader_attributes[i]; i++ )
-				if( it.enabled )
-				{
-					gl.enableVertexAttribArray( it.index );
-					gl.bindBuffer( gl.ARRAY_BUFFER, this.graphics_card_buffers[i] );
-					gl.vertexAttribPointer( it.index, it.size, it.type, it.normalized, it.stride, it.pointer );
-				}
-				else
-					gl.disableVertexAttribArray( it.index );
+				gl.disableVertexAttribArray( it.index );
 
-				if( this.indexed )			
-				{
-					gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, this.index_buffer );
-					gl.drawElements( gl.TRIANGLES, this.indices.length, gl.UNSIGNED_SHORT, 0 );
-				}
-				else
-					gl.drawArrays  ( gl.TRIANGLES, 0, this.vertices.length );
-			};
+			if( this.indexed )			
+			{
+				gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, this.index_buffer );
+				gl.drawElements( gl.TRIANGLES, this.indices.length, gl.UNSIGNED_SHORT, 0 );
+			}
+			else
+				gl.drawArrays  ( gl.TRIANGLES, 0, this.vertices.length );
+	};
 
 
 function sphere( points_transform, max_subdivisions )		// Build a sphere using subdivision, starting with a tetrahedron.  Store each level of detail in separate index lists.

@@ -71,6 +71,12 @@ function Animation()
 		self.global_bb.body = mat4();
 		self.global_bb.head = mat4();
 
+		self.test = { };
+		self.test.all = mat4();
+		self.test.body = mat4();
+		self.test.head = mat4();
+
+
 		self.global_droid1 = { };
 		self.global_droid1.all = mat4();
 		
@@ -163,6 +169,9 @@ Animation.prototype.display = function(time)
 											
 													
 	this.draw_ground(model_transform); 
+
+	
+	this.draw_BB(this.test);
 	
 	// model_transform = mult( model_transform, translate( 0, 10, 0 ) );	
 
@@ -173,39 +182,48 @@ Animation.prototype.display = function(time)
 
 
 
-	// model_transform = mult( model_transform, translate( 10, 0, 0 ) );
+	// // model_transform = mult( model_transform, translate( 10, 0, 0 ) );
 
-	var t = this.graphicsState.animation_time;
+	// var t = this.graphicsState.animation_time - 3000;
 
-	this.global_droid1.all = mult( this.global_droid1.all, translate( 0, .1 * Math.sin (t / 100), 0 ) )
-
-
-
-	if (t < 3000) {
-		this.global_bb.all = mult( this.global_bb.all, translate( 0, 0.14 * (t / 3000), 0.4 * (t / 3000)) )
-		this.global_bb.body = mult( this.global_bb.body, rotate( (t/2 * -1), 0, 0, 1 ) );
-		this.draw_BB(this.global_bb);
-	}
-	else if (t < 4000) {
-		this.global_bb.all = mult( this.global_bb.all, translate( -1.1 * Math.sin(t/80), -0.1 * (t / 3000), 0.4 * (t / 3000) ) );
-		this.global_bb.body = mult( this.global_bb.body, rotate( (t/2 * -1), 0, 0, 1 ) );
-		// this.global_bb.head = mult( this.global_bb.head, rotate( ( 30 * Math.cos(t/100)), 0, 1, 0 ) );
-		this.draw_BB(this.global_bb);
-
-		this.global_droid1.all = mult( this.global_droid1.all, translate( 0, 0.14 * (t / 3000), 0.4 * (t / 3000)) )
-		this.draw_droid(this.global_droid1);
+	// this.global_droid1.all = mult( this.global_droid1.all, translate( 0, .1 * Math.sin (t / 100), 0 ) )
+	// this.global_bb.body = mult( this.global_bb.body, rotate( (t/3 * -1), 0, 0, 1 ) );
 
 
+	// if (t < 0) {
+
+	// }
+	// else if (t < 3000) {
+	// 	this.global_bb.all = mult( this.global_bb.all, translate( 0, 0.14 * (t / 3000), 0.4 * (t / 3000)) )
+	// 	this.draw_BB(this.global_bb);
+	// }
+	// else if (t < 4500) {
+	// 	this.global_bb.all = mult( this.global_bb.all, translate( -1.1 * Math.sin(t/120), -0.04 * (t / 3000), 0.05 * (t / 3000) ) );
+	// 	// this.global_bb.head = mult( this.global_bb.head, rotate( ( 30 * Math.cos(t/100)), 0, 1, 0 ) );
+	// 	this.draw_BB(this.global_bb);
 
 
-	}
-	else if (t < 9000) {
+	// }
+	// else if (t < 12000) {
+	// 	if (t < 6000) {
+	// 		this.global_bb.all = mult( this.global_bb.all, translate( 0, -0.04 * (t / 3000), 0 ) );
+	// 		this.global_droid1.all = mult( this.global_droid1.all, translate( 0, 0.1 * (t / 3000), 0.3 * (t / 3000)) )
+	// 		this.draw_droid(this.global_droid1, -5);
+	// 	}
+	// 	else if (t < 7000) {
+	// 		this.global_droid1.all = mult( this.global_droid1.all, translate( 0, -0.10 * (t / 3000), 0.2 * (t / 3000)) )
+	// 		this.draw_droid(this.global_droid1, -5);
 
-		this.global_bb.all = mult( this.global_bb.all, translate( 0, 0, 0.4 * (t / 3000) ) );
-		this.global_bb.body = mult( this.global_bb.body, rotate( (t/2 * -1), 0, 0, 1 ) );
-		this.draw_BB(this.global_bb);
+	// 	}
+	// 	else {
+	// 		this.global_droid1.all = mult( this.global_droid1.all, translate( 0, 0, 0.2 * (t / 3000)) )
+	// 		this.draw_droid(this.global_droid1, -5);
+	// 	}
+	// 	// this.global_bb.all = mult( this.global_bb.all, translate( 0, 0, 0.4 * (t / 3000) ) );
+	// 	this.global_bb.all = mult( this.global_bb.all, translate( -1.1 * Math.sin(t/120), 0, 0.4 * (t / 3000) ) );
+	// 	this.draw_BB(this.global_bb);
 
-	}
+	// }
 	
 	
 	
@@ -231,10 +249,17 @@ Animation.prototype.draw_ground = function(model_transform) {
 	model_transform = stack.pop();
 	stack.push(model_transform);
 
-	model_transform = mult( model_transform, translate( 0, 0, 0 ) );
 	model_transform = mult( model_transform, scale( 4, 1, 3 ) ); 
 
 	this.m_plane.draw( this.graphicsState, model_transform, ground_color );		
+
+	model_transform = stack.pop();
+	stack.push(model_transform);
+
+	model_transform = mult( model_transform, translate( 0, 0, 100 ) );
+	model_transform = mult( model_transform, scale( 4, 1, 3 ) ); 
+
+	this.m_plane.draw( this.graphicsState, model_transform, ground_color );	
 
 	model_transform = stack.pop();
 	stack.push(model_transform);
@@ -268,7 +293,7 @@ Animation.prototype.draw_jedi = function(model_transform) {
 	this.m_jedi_lightsaber.draw( this.graphicsState, model_transform, grey );
 }
 
-Animation.prototype.draw_droid = function(droid) {
+Animation.prototype.draw_droid = function(droid, offset) {
 	var brown = new Material( vec4( 114/255, 83/255, 47/255 ), 1, 1, 1, 40 );
 	var darkbrown = new Material( vec4( 43/255, 32/255, 18/255), 1, 1, 1, 40 );
 
@@ -278,7 +303,7 @@ Animation.prototype.draw_droid = function(droid) {
 	var stack = [];
 	stack.push(all_transform);
 
-	all_transform = mult( all_transform, translate( 20, 10, 140 ) ); 
+	all_transform = mult( all_transform, translate( 20, 10, 140 + offset) ); 
 	all_transform = mult( all_transform, scale( 1.5, 1.5, 1.5 ) ); 
 
 	stack.push(all_transform);
@@ -368,6 +393,10 @@ Animation.prototype.draw_BB = function(bb) {
 	stack.push(all_transform);
 
 	all_transform = mult( all_transform, rotate( -90, 0, 0, 1 ) );
+
+	// model_transform = mult( model_transform, translate( 0, 2, 0.5 * -orientation) );
+		head_transform = mult( head_transform, rotate( 17.5 * Math.sin(this.graphicsState.animation_time/200), 0, 1, 0 ) );
+	// model_transform = mult( model_transform, translate( 0, -2, 0.5 * orientation ) );
 	all_transform = mult( all_transform, scale( 3, 3, 3 ) ); // small obj file	
 
 	this.m_top_half.draw( this.graphicsState, mult(all_transform, head_transform), t );	
@@ -380,32 +409,34 @@ Animation.prototype.draw_BB = function(bb) {
 	this.m_sphere.draw( this.graphicsState, mult(all_transform, body_transform), t );	
 
 	all_transform = stack.pop();
+	all_transform = mult( all_transform, rotate( -90, 0, 0, 1 ) );
+	all_transform = mult(all_transform, head_transform);
 	stack.push(all_transform);
 
-	all_transform = mult( all_transform, translate( 1, 4, 0 ) );
-	all_transform = mult( all_transform, scale( 0.1, 2.5, 0.1 ) );	
-	all_transform = mult( all_transform, rotate( 90, 1, 0, 0 ) );
+	all_transform = mult( all_transform, translate( -4, -1, 0 ) );
+	all_transform = mult( all_transform, scale( 3, 0.1, 0.1 ) );	
+	all_transform = mult( all_transform, rotate( 90, 0, 1, 0 ) );
 	this.m_cylinder.draw( this.graphicsState, all_transform, grey );
 
 	all_transform = stack.pop();
 	stack.push(all_transform);
 
-	all_transform = mult( all_transform, translate( -1, 3, 0 ) );
-	all_transform = mult( all_transform, scale( 0.1, 1.2, 0.1 ) );	
-	all_transform = mult( all_transform, rotate( 90, 1, 0, 0 ) );
+	all_transform = mult( all_transform, translate( -3, 1, 0 ) );
+	all_transform = mult( all_transform, scale( 1.2, 0.1, 0.1 ) );	
+	all_transform = mult( all_transform, rotate( 90, 0, 1, 0 ) );
 	this.m_cylinder.draw( this.graphicsState, all_transform, grey );
 
 	all_transform = stack.pop();
 	stack.push(all_transform);
 
-	all_transform = mult( all_transform, translate( 1, 0.75, 2.5 ) );
+	all_transform = mult( all_transform, translate( -0.75, 1.25, 2.25 ) );
 	all_transform = mult( all_transform, scale( 0.45, 0.45, 0.45 ) );	
 	this.m_sphere.draw( this.graphicsState, all_transform, grey );	
 
 	all_transform = stack.pop();
 	stack.push(all_transform);
 
-	all_transform = mult( all_transform, translate( 0, 1.75, 2.5 ) );
+	all_transform = mult( all_transform, translate( -1.725, 0, 2.5 ) );
 	all_transform = mult( all_transform, scale( 0.75, 0.75, 0.75 ) );	
 	this.m_sphere.draw( this.graphicsState, all_transform, grey );	
 
