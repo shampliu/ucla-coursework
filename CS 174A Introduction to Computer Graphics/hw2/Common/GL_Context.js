@@ -6,7 +6,7 @@
 // *******************************************************
 // IMPORTANT -- In the line below, add the filenames of any new images you want to include for textures!
 
-var texture_filenames_to_load = [ "bb8.png" ];
+var texture_filenames_to_load = [ "text.png", "bb8.png" ];
 
 // *******************************************************
 // IMPORTANT -- Any new shader variables you define need to have a line added to class Graphics_Addresses below, so their addresses can be retrieved.
@@ -109,17 +109,17 @@ function Debug_Screen()
 				model_transform = mult( model_transform, translate( 0, 1, 0 ) );
 			} 
 			
-			model_transform     = mult( model_transform, translate( 0, 20, -32 ) );
-			this.m_text.set_string( "Controls:" );
-			this.m_text.draw( this.graphicsState, model_transform, true, vec4(1,1,1,1) );		// Comment this out to not display any strings on the UI
+			// model_transform     = mult( model_transform, translate( 0, 20, -32 ) );
+			// this.m_text.set_string( "Controls:" );
+			// this.m_text.draw( this.graphicsState, model_transform, true, vec4(1,1,1,1) );		// Comment this out to not display any strings on the UI
 			
-			var key_combinations = Object.keys( shortcut.all_shortcuts );
-			for( var i = 0; i < key_combinations.length; i++ )
-			{
-				model_transform = mult( model_transform, translate( 0, -1, 0 ) );				
-				this.m_text.set_string( key_combinations[i] );
-				this.m_text.draw( this.graphicsState, model_transform, true, vec4(1,1,1,1) );		// Comment this out to not display any controls on the UI
-			}
+			// var key_combinations = Object.keys( shortcut.all_shortcuts );
+			// for( var i = 0; i < key_combinations.length; i++ )
+			// {
+			// 	model_transform = mult( model_transform, translate( 0, -1, 0 ) );				
+			// 	this.m_text.set_string( key_combinations[i] );
+			// 	this.m_text.draw( this.graphicsState, model_transform, true, vec4(1,1,1,1) );		// Comment this out to not display any controls on the UI
+			// }
 	}
 
 	Debug_Screen.prototype.init_keys = function() 
@@ -130,7 +130,7 @@ function Debug_Screen()
 
 	Debug_Screen.prototype.update_strings = function( debug_screen_object ) 			// Strings this particular class contributes to the UI
 	{
-		debug_screen_object.string_map["tick"] = "Frame: " + this.tick++;
-		debug_screen_object.string_map["start_index"] = "start_index: " + this.start_index;
+		// debug_screen_object.string_map["tick"] = "Frame: " + this.tick++;
+		// debug_screen_object.string_map["start_index"] = "start_index: " + this.start_index;
 	}
 

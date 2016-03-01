@@ -1,4 +1,4 @@
-I chose to do a Star Wars themed animation of the BB-8 robot fleeing from an enemy droid pursuer. BB-8 eventually bumps into a hooded figure who turns out to be a jedi. If I had more time on this, I would have added a scene where the Jedi fights the droid. I also would have added sound effects.
+I chose to do a Star Wars themed animation of the BB-8 robot fleeing from an enemy droid pursuer. BB-8 eventually bumps into a hooded figure who turns out to be a jedi. If I had more time on this, I would have added a scene where the Jedi fights the droid. I also would have added sound effects and subtitles.
 
 The BB-8 model was a hierarchical model. I made a global variable to reference the object and separated the types of references by body part. One property, called "all", would modify the whole model while the variables "head" and "body" separated the parts and modified them individually. This way I was able to make BB-8 turn its head frantically as it fleed its pursuer. 
 
