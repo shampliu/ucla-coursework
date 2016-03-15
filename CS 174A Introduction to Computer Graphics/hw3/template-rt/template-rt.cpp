@@ -249,6 +249,7 @@ float intersect(Ray ray, Sphere sphere)
     }
     else {
         cout << "Sphere is not invertible!" << endl; 
+        return -1; 
     }
 
 }
@@ -308,14 +309,16 @@ vec4 trace(const Ray& ray, int depth)
 
         for (int i = 0; i < g_lights.size(); i++) {
             Light l = g_lights[i];
-            vec4 light_vec = normalize(vec4(l.pos_x - hit.x, l.pos_y - hit.y, l.pos_z - hit.z, 0.0f));
+            Ray light_ray;
+            light_ray.dir = normalize(vec4(l.pos_x - hit.x, l.pos_y - hit.y, l.pos_z - hit.z, 0.0f));
+            light_ray.origin = hit;
 
-            float d = dot(light_vec, normal_vec);
+            float d = dot(light_ray.dir, normal_vec);
 
             if (d <= 0.0f) continue;
             diffuse += (sphere.color * d * l.color);
 
-            vec4 r = normalize(((2 * d) * normal_vec) - light_vec); 
+            vec4 r = normalize(((2 * d) * normal_vec) - light_ray.dir); 
             vec4 v = normalize(ray.origin - hit);
             specular += (powf(dot(r, v), sphere.n) * l.color * sphere.ks);
         }
@@ -337,10 +340,10 @@ vec4 trace(const Ray& ray, int depth)
             color += reflection * sphere.kr; 
         }
 
-        // CHECK COLOR BOUNDS
         // SHADOW
-        // REFLECTION
 
+
+        // cap color 
         color = checkColor(color);
 
 
