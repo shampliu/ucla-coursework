@@ -21,6 +21,8 @@ struct Ray
 };
 
 // TODO: add structs for spheres, lights and anything else you may need.
+#define MAX_DEPTH 3
+
 struct Sphere {
 
     string name; 
@@ -40,15 +42,11 @@ struct Sphere {
 };
 
 struct BG {
-    float r;
-    float g;
-    float b;
+    vec4 color; 
 };
 
 struct Ambient {
-    float r;
-    float g;
-    float b;
+    vec4 color;
 };
 
 struct Light {
@@ -171,8 +169,8 @@ void parseLine(const vector<string>& vs)
             g_lights.push_back(l); 
             break;
         }
-        case 8: g_bg.r = toFloat( vs[1] ); g_bg.g = toFloat( vs[2] ); g_bg.b = toFloat( vs[3] ); break;
-        case 9: g_ambient.r = toFloat( vs[1] ); g_ambient.g = toFloat( vs[2] ); g_ambient.b = toFloat( vs[3] ); break;
+        case 8: g_bg.color = toVec4( vs[1], vs[2], vs[3] ); break;
+        case 9: g_ambient.color = toVec4( vs[1], vs[2], vs[3] ); break;
         case 10: g_output = vs[1]; break;
     }
 
@@ -255,49 +253,25 @@ float intersect(Ray ray, Sphere sphere)
 
 }
 
-vec3 illuminate(Ray ray, Sphere sphere, float t) {
-    vec4 hit = ray.origin + t * ray.dir; 
-    // vec4 normal_vec = normalize(vec4(hit.x - sphere.pos_x, hit.y - sphere.pos_y, hit.z - sphere.pos_z, 0.0f));
-    vec4 normal_vec = hit - vec4(sphere.pos_x, sphere.pos_y, sphere.pos_z, 1.0f);
-    mat4 trans = Scale(sphere.s_x, sphere.s_y, sphere.s_z);
-    mat4 inv;
-    InvertMatrix(transpose(trans), inv);
-    normal_vec.w = 0;
-    normal_vec = normalize(inv * inv * normal_vec);
-
-    vec4 ambient = vec4(g_ambient.r, g_ambient.g, g_ambient.b, 0.0f) * sphere.color * sphere.ka;
-    vec4 diffuse = vec4( 0.0f, 0.0f, 0.0f, 0.0f);
-    vec4 specular = vec4( 0.0f, 0.0f, 0.0f, 0.0f);
-
-
-    for (int i = 0; i < g_lights.size(); i++) {
-        Light l = g_lights[i];
-        vec4 light_vec = normalize(vec4(l.pos_x - hit.x, l.pos_y - hit.y, l.pos_z - hit.z, 0.0f));
-
-        float d = dot(light_vec, normal_vec);
-
-        if (d <= 0.0f) continue;
-        diffuse += (sphere.color * d * l.color);
-
-        vec4 r = normalize(((2 * d) * normal_vec) - light_vec); 
-        vec4 v = normalize(ray.origin - hit);
-        specular += (powf(dot(r, v), sphere.n) * l.color * sphere.ks);
-    }
-
-
-    diffuse = vec4(diffuse.x * sphere.kd, diffuse.y * sphere.kd, diffuse.z * sphere.kd, 0.0f);
-
-    vec4 result = diffuse + ambient + specular;
-    return toVec3(result); 
-}
-
-
-
 // -------------------------------------------------------------------
 // Ray tracing
-
-vec4 trace(const Ray& ray)
+vec4 checkColor(vec4 color) 
 {
+    vec4 result = color; 
+    if (color.x < 0.0f) { result.x = 0.0f; }
+    if (color.y < 0.0f) { result.y = 0.0f; }
+    if (color.z < 0.0f) { result.z = 0.0f; }
+    if (color.x > 1.0f) { result.x = 1.0f; }
+    if (color.y > 1.0f) { result.y = 1.0f; }
+    if (color.z > 1.0f) { result.z = 1.0f; }
+
+    return result; 
+}
+
+vec4 trace(const Ray& ray, int depth)
+{
+    if (depth > MAX_DEPTH) return g_bg.color;
+
     vector<float> t_vals; 
 
     for (int i = 0; i < g_spheres.size(); i++) {
@@ -314,16 +288,67 @@ vec4 trace(const Ray& ray)
         }
     }
 
+    // found intersection
     if (lowest_index >= 0) {
-        Sphere s = g_spheres[lowest_index];
-        vec3 in = illuminate(ray, s, lowest); // intensity
-        return vec4(in.x, in.y, in.z, 1.0f);
-        // return vec4(s.color.x, s.color.y, s.color.z, 1.0f);
+        Sphere sphere = g_spheres[lowest_index];
 
+        vec4 hit = ray.origin + t_vals[lowest_index] * ray.dir; 
+        // vec4 normal_vec = normalize(vec4(hit.x - sphere.pos_x, hit.y - sphere.pos_y, hit.z - sphere.pos_z, 0.0f));
+        vec4 normal_vec = hit - vec4(sphere.pos_x, sphere.pos_y, sphere.pos_z, 1.0f);
+        mat4 trans = Scale(sphere.s_x, sphere.s_y, sphere.s_z);
+        mat4 inv;
+        InvertMatrix(transpose(trans), inv);
+        normal_vec.w = 0;
+        normal_vec = normalize(inv * inv * normal_vec);
+
+        vec4 ambient = vec4(g_ambient.color.x, g_ambient.color.y, g_ambient.color.z, 0.0f) * sphere.color * sphere.ka;
+        vec4 diffuse = vec4( 0.0f, 0.0f, 0.0f, 0.0f);
+        vec4 specular = vec4( 0.0f, 0.0f, 0.0f, 0.0f);
+
+
+        for (int i = 0; i < g_lights.size(); i++) {
+            Light l = g_lights[i];
+            vec4 light_vec = normalize(vec4(l.pos_x - hit.x, l.pos_y - hit.y, l.pos_z - hit.z, 0.0f));
+
+            float d = dot(light_vec, normal_vec);
+
+            if (d <= 0.0f) continue;
+            diffuse += (sphere.color * d * l.color);
+
+            vec4 r = normalize(((2 * d) * normal_vec) - light_vec); 
+            vec4 v = normalize(ray.origin - hit);
+            specular += (powf(dot(r, v), sphere.n) * l.color * sphere.ks);
+        }
+
+
+        diffuse = vec4(diffuse.x * sphere.kd, diffuse.y * sphere.kd, diffuse.z * sphere.kd, 0.0f);
+
+        vec4 color = diffuse + ambient + specular;
+
+        // float r = 2 * dot(ray.dir, normal_vec);
+        float r = dot(ray.dir, normal_vec) * -2;
+        Ray reflect; 
+        reflect.dir = r * normal_vec + ray.dir;
+        reflect.origin = hit;
+
+
+        vec4 reflection = trace(reflect, depth+1);
+        if (reflection.x != g_bg.color.x && reflection.y != g_bg.color.y && reflection.z != g_bg.color.z ) {
+            color += reflection * sphere.kr; 
+        }
+
+        // CHECK COLOR BOUNDS
+        // SHADOW
+        // REFLECTION
+
+        color = checkColor(color);
+
+
+        return color;
     }
 
     // return BG if no intersection
-    return vec4(g_bg.r, g_bg.g, g_bg.b, 1.0f);
+    return g_bg.color;
 }
 
 vec4 getDir(int ix, int iy)
@@ -345,7 +370,7 @@ void renderPixel(int ix, int iy)
     ray.origin = vec4(0.0f, 0.0f, 0.0f, 1.0f);
     ray.dir = getDir(ix, iy);
 
-    vec4 color = trace(ray);
+    vec4 color = trace(ray, 0);
     setColor(ix, iy, color);
 }
 
@@ -398,12 +423,9 @@ void saveFile()
 
 void debug() 
 {
-    // cout << "LIGHTS: " << g_lights.size() << endl;
-    // cout << "BACKGROUND COLOR: rgb(" << g_bg.r << ", " << g_bg.g << ", " << g_bg.b << ")" << endl;
-    // cout << "AMBIENT COLOR: rgb(" << g_ambient.r << ", " << g_ambient.g << ", " << g_ambient.b << ")" << endl;
-    // for (int i = 0; i < g_spheres.size(); i++) {
-    //     cout << g_spheres[i].name << " : rgb(" << g_spheres[i].r << ", " << g_spheres[i].g << ", " << g_spheres[i].b << ")" << endl;
-    // }
+
+    cout << "BACKGROUND COLOR:" << g_bg.color.w << endl;
+
 
 }
 
