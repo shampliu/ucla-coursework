@@ -1,6 +1,8 @@
-//
-// template-rt.cpp
-//
+/* 
+Chang Liu
+CS 174A Project 3
+raytrace.cpp
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 #define _CRT_SECURE_NO_WARNINGS
 #include "matm.h"
@@ -20,7 +22,6 @@ struct Ray
     vec4 dir;
 };
 
-// TODO: add structs for spheres, lights and anything else you may need.
 #define MAX_DEPTH 3
 
 struct Sphere {
@@ -41,14 +42,6 @@ struct Sphere {
 
 };
 
-struct BG {
-    vec4 color; 
-};
-
-struct Ambient {
-    vec4 color;
-};
-
 struct Light {
     string name;
 
@@ -59,10 +52,11 @@ struct Light {
     vec4 color;
 };
 
+// global variables
 vector<Sphere> g_spheres;
 vector<Light> g_lights;
-Ambient g_ambient; 
-BG g_bg; 
+vec4 g_ambient; 
+vec4 g_bg; 
 
 vector<vec4> g_colors;
 
@@ -89,7 +83,6 @@ inline mat4 getSphereMatrix( Sphere s ) {
 
 // -------------------------------------------------------------------
 // Input file parsing
-
 vec4 toVec4(const string& s1, const string& s2, const string& s3)
 {
     stringstream ss(s1 + " " + s2 + " " + s3);
@@ -123,8 +116,6 @@ void parseLine(const vector<string>& vs)
         "AMBIENT",              // 9
         "OUTPUT"                // 10
     };
-
-    //TODO: add parsing of NEAR, LEFT, RIGHT, BOTTOM, TOP, SPHERE, LIGHT, BACK, AMBIENT, OUTPUT.
 
     unsigned label_id = find( labels, labels + num_labels, vs[0] ) - labels;
     switch(label_id) {
@@ -169,8 +160,8 @@ void parseLine(const vector<string>& vs)
             g_lights.push_back(l); 
             break;
         }
-        case 8: g_bg.color = toVec4( vs[1], vs[2], vs[3] ); break;
-        case 9: g_ambient.color = toVec4( vs[1], vs[2], vs[3] ); break;
+        case 8: g_bg = toVec4( vs[1], vs[2], vs[3] ); break;
+        case 9: g_ambient = toVec4( vs[1], vs[2], vs[3] ); break;
         case 10: g_output = vs[1]; break;
     }
 
@@ -206,7 +197,6 @@ void loadFile(const char* filename)
 
 // -------------------------------------------------------------------
 // Utilities
-
 void setColor(int ix, int iy, const vec4& color)
 {
     int iy2 = g_height - iy - 1; // Invert iy coordinate.
@@ -216,9 +206,6 @@ void setColor(int ix, int iy, const vec4& color)
 
 // -------------------------------------------------------------------
 // Intersection routine
-
-
-// TODO: add your ray-sphere intersection routine here.
 float intersect(Ray ray, Sphere &sphere) 
 {
     vector<float> t_vals; 
@@ -292,7 +279,7 @@ vec4 checkColor(vec4 color)
 
 vec4 trace(const Ray& ray, int depth)
 {
-    if (depth > MAX_DEPTH) return g_bg.color;
+    if (depth > MAX_DEPTH) return g_bg;
 
     Sphere sphere; 
     float t = intersect(ray, sphere);
@@ -309,7 +296,7 @@ vec4 trace(const Ray& ray, int depth)
         normal_vec.w = 0;
         normal_vec = normalize(inv * inv * normal_vec);
 
-        vec4 ambient = vec4(g_ambient.color.x, g_ambient.color.y, g_ambient.color.z, 0.0f) * sphere.color * sphere.ka;
+        vec4 ambient = vec4(g_ambient.x, g_ambient.y, g_ambient.z, 0.0f) * sphere.color * sphere.ka;
         vec4 diffuse = vec4( 0.0f, 0.0f, 0.0f, 0.0f);
         vec4 specular = vec4( 0.0f, 0.0f, 0.0f, 0.0f);
 
@@ -350,7 +337,7 @@ vec4 trace(const Ray& ray, int depth)
         reflect.origin = hit;
 
         vec4 reflection = trace(reflect, depth+1);
-        if (reflection.x != g_bg.color.x && reflection.y != g_bg.color.y && reflection.z != g_bg.color.z ) {
+        if (reflection.x != g_bg.x && reflection.y != g_bg.y && reflection.z != g_bg.z ) {
             color += reflection * sphere.kr; 
         }
 
@@ -362,7 +349,7 @@ vec4 trace(const Ray& ray, int depth)
     }
 
     // return BG if no intersection
-    return g_bg.color;
+    return g_bg;
 }
 
 vec4 getDir(int ix, int iy)
@@ -424,7 +411,6 @@ void savePPM(int Width, int Height, const char* fname, unsigned char* pixels)
 void saveFile()
 {
     // Convert color components from floats to unsigned chars.
-    // TODO: clamp values if out of range.
     unsigned char* buf = new unsigned char[g_width * g_height * 3];
     for (int y = 0; y < g_height; y++)
         for (int x = 0; x < g_width; x++)
@@ -437,6 +423,8 @@ void saveFile()
 
 void debug() 
 {
+
+
 
 
 }
