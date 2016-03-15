@@ -35,7 +35,7 @@ struct Sphere {
     vec4 color;
 
     float ka, kd, ks, kr;
-    float n;
+    float n;                    // shininess factor
 
 };
 
@@ -53,14 +53,12 @@ struct Ambient {
 
 struct Light {
     string name;
-    
+
     float pos_x; 
     float pos_y;
     float pos_z;
 
-    float i_r;
-    float i_g;
-    float i_b;
+    vec4 color;
 };
 
 vector<Sphere> g_spheres;
@@ -169,9 +167,7 @@ void parseLine(const vector<string>& vs)
             l.pos_x = toFloat( vs[2] );
             l.pos_y = toFloat( vs[3] ); 
             l.pos_z = toFloat( vs[4] );
-            l.i_r = toFloat( vs[5] );
-            l.i_g = toFloat( vs[6] );
-            l.i_b = toFloat( vs[7] );
+            l.color = toVec4( vs[5], vs[6], vs[7] );
             g_lights.push_back(l); 
             break;
         }
@@ -269,8 +265,9 @@ vec3 illuminate(Ray ray, Sphere sphere, float t) {
     normal_vec.w = 0;
     normal_vec = normalize(inv * inv * normal_vec);
 
-    vec4 ambient = vec4(sphere.ka * g_ambient.r, sphere.ka * g_ambient.g, sphere.ka * g_ambient.b, 0.0f) * sphere.color;
+    vec4 ambient = vec4(g_ambient.r, g_ambient.g, g_ambient.b, 0.0f) * sphere.color * sphere.ka;
     vec4 diffuse = vec4( 0.0f, 0.0f, 0.0f, 0.0f);
+    vec4 specular = vec4( 0.0f, 0.0f, 0.0f, 0.0f);
 
 
     for (int i = 0; i < g_lights.size(); i++) {
@@ -280,15 +277,18 @@ vec3 illuminate(Ray ray, Sphere sphere, float t) {
         float d = dot(light_vec, normal_vec);
 
         if (d <= 0.0f) continue;
-        diffuse += (vec4(d * l.i_r * sphere.color.x, d * l.i_g * sphere.color.y, d * l.i_b * sphere.color.z, 0.0f));
+        diffuse += (sphere.color * d * l.color);
+
+        vec4 r = normalize(((2 * d) * normal_vec) - light_vec); 
+        vec4 v = normalize(ray.origin - hit);
+        specular += (powf(dot(r, v), sphere.n) * l.color * sphere.ks);
     }
-    cout << diffuse.x << " " << diffuse.y << " " << diffuse.z << endl;
 
 
     diffuse = vec4(diffuse.x * sphere.kd, diffuse.y * sphere.kd, diffuse.z * sphere.kd, 0.0f);
-    vec3 result = toVec3(diffuse + ambient);
-    // cout << result.x << " " << result.y << " " << result.z << endl;
-    return toVec3(diffuse + ambient); 
+
+    vec4 result = diffuse + ambient + specular;
+    return toVec3(result); 
 }
 
 
