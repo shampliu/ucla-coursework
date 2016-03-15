@@ -219,39 +219,60 @@ void setColor(int ix, int iy, const vec4& color)
 
 
 // TODO: add your ray-sphere intersection routine here.
-float intersect(Ray ray, Sphere sphere) 
+float intersect(Ray ray, Sphere &sphere) 
 {
-    mat4 inverse_matrix = mat4();
-    if (InvertMatrix(getSphereMatrix(sphere), inverse_matrix)) {
-        vec3 origin = toVec3(inverse_matrix * ray.origin);
-        vec3 dir = toVec3(inverse_matrix * ray.dir);
+    vector<float> t_vals; 
+    for (int i = 0; i < g_spheres.size(); i++) {
+        mat4 inverse_matrix = mat4();
+        Sphere sphere = g_spheres[i];
+        if (InvertMatrix(getSphereMatrix(sphere), inverse_matrix)) {
+            vec3 origin = toVec3(inverse_matrix * ray.origin);
+            vec3 dir = toVec3(inverse_matrix * ray.dir);
 
-        // ray = dir * t + origin
-        // sphere = |P| - 1 = 0
-        // |ray| - 1 = 0
+            // ray = dir * t + origin
+            // sphere = |P| - 1 = 0
+            // |ray| - 1 = 0
 
-        float a = pow(length(dir), 2.0f);
-        float b = dot(origin, dir);
-        float c = pow(length(origin), 2.0f) - 1;
+            float a = pow(length(dir), 2.0f);
+            float b = dot(origin, dir);
+            float c = pow(length(origin), 2.0f) - 1;
 
-        float d = b * b - a * c;
-        if (d >= 0) {
-            float sol1 = -b / a + sqrt(d) / a;
-            float sol2 = -b / a - sqrt(d) / a; 
+            float d = b * b - a * c;
+            if (d >= 0) {
+                float sol1 = -b / a + sqrt(d) / a;
+                float sol2 = -b / a - sqrt(d) / a; 
 
-            return sol1 < sol2 ? sol1 : sol2; 
+                float t = (sol1 < sol2 ? sol1 : sol2);
+                t_vals.push_back(t); 
+
+            }
+            else {
+                t_vals.push_back(-1);  
+            }
+
+
         }
         else {
-            return -1; 
+            cout << "Sphere is not invertible!" << endl; 
+            t_vals.push_back(-1); 
         }
-
-
-    }
-    else {
-        cout << "Sphere is not invertible!" << endl; 
-        return -1; 
     }
 
+    int lowest_index = -1;
+    float lowest = numeric_limits<float>::max();
+
+    for (int i = 0; i < g_spheres.size(); i++) {
+        if (t_vals[i] > 1 && t_vals[i] < lowest) { // make sure hit time is > 1
+            lowest = t_vals[i];
+            lowest_index = i;
+        }
+    }
+
+    if (lowest_index != -1) {
+        sphere = g_spheres[lowest_index]; 
+    }
+
+    return lowest;
 }
 
 // -------------------------------------------------------------------
@@ -273,27 +294,13 @@ vec4 trace(const Ray& ray, int depth)
 {
     if (depth > MAX_DEPTH) return g_bg.color;
 
-    vector<float> t_vals; 
-
-    for (int i = 0; i < g_spheres.size(); i++) {
-        t_vals.push_back(intersect(ray, g_spheres[i]));
-    }
-
-    int lowest_index = -1;
-    float lowest = numeric_limits<float>::max();
-
-    for (int i = 0; i < g_spheres.size(); i++) {
-        if (t_vals[i] > 1 && t_vals[i] < lowest) { // make sure hit time is > 1
-            lowest = t_vals[i];
-            lowest_index = i;
-        }
-    }
+    Sphere sphere; 
+    float t = intersect(ray, sphere);
 
     // found intersection
-    if (lowest_index >= 0) {
-        Sphere sphere = g_spheres[lowest_index];
+    if (t != numeric_limits<float>::max()) {
 
-        vec4 hit = ray.origin + t_vals[lowest_index] * ray.dir; 
+        vec4 hit = ray.origin + t * ray.dir; 
         // vec4 normal_vec = normalize(vec4(hit.x - sphere.pos_x, hit.y - sphere.pos_y, hit.z - sphere.pos_z, 0.0f));
         vec4 normal_vec = hit - vec4(sphere.pos_x, sphere.pos_y, sphere.pos_z, 1.0f);
         mat4 trans = Scale(sphere.s_x, sphere.s_y, sphere.s_z);
@@ -312,6 +319,14 @@ vec4 trace(const Ray& ray, int depth)
             Ray light_ray;
             light_ray.dir = normalize(vec4(l.pos_x - hit.x, l.pos_y - hit.y, l.pos_z - hit.z, 0.0f));
             light_ray.origin = hit;
+
+            Sphere block;
+            float shadow = intersect(light_ray, block);
+            if (shadow != numeric_limits<float>::max()) {
+                continue;
+            }
+
+
 
             float d = dot(light_ray.dir, normal_vec);
 
@@ -334,14 +349,10 @@ vec4 trace(const Ray& ray, int depth)
         reflect.dir = r * normal_vec + ray.dir;
         reflect.origin = hit;
 
-
         vec4 reflection = trace(reflect, depth+1);
         if (reflection.x != g_bg.color.x && reflection.y != g_bg.color.y && reflection.z != g_bg.color.z ) {
             color += reflection * sphere.kr; 
         }
-
-        // SHADOW
-
 
         // cap color 
         color = checkColor(color);
@@ -426,8 +437,6 @@ void saveFile()
 
 void debug() 
 {
-
-    cout << "BACKGROUND COLOR:" << g_bg.color.w << endl;
 
 
 }
