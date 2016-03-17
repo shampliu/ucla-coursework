@@ -193,9 +193,10 @@ void setColor(int ix, int iy, const vec4& color)
 
 // -------------------------------------------------------------------
 // Intersection routine
-float intersect(Ray ray, Sphere &sphere) 
+float intersect(Ray ray, Sphere &sphere, int& type) 
 {
-    vector<float> t_vals; 
+    int lowest_index = -1; 
+    float lowest = numeric_limits<float>::max();
     for (int i = 0; i < g_spheres.size(); i++) {
         mat4 inverse_matrix = mat4();
         Sphere sphere = g_spheres[i];
@@ -207,38 +208,28 @@ float intersect(Ray ray, Sphere &sphere)
             // sphere = |P| - 1 = 0
             // |ray| - 1 = 0
 
-            float a = pow(length(dir), 2.0f);
+            float a = dot(dir, dir);
             float b = dot(origin, dir);
-            float c = pow(length(origin), 2.0f) - 1;
+            float c = dot(origin, origin) - 1;
 
             float d = b * b - a * c;
             if (d >= 0) {
-                float sol1 = -b / a + sqrt(d) / a;
-                float sol2 = -b / a - sqrt(d) / a; 
+                float sol1 = -b / a + sqrtf(d) / a;
+                float sol2 = -b / a - sqrtf(d) / a; 
 
-                float t = (sol1 < sol2 ? sol1 : sol2);
-                t_vals.push_back(t); 
-
+                if (sol1 > 1.0f && sol1 < lowest) {
+                    lowest = sol1; 
+                    if (sol2 > 1.0f) { type = 1; }      // NORMAL SPHERE
+                    else { type = 2; }                  // HOLLOW SPHERE
+                    lowest_index = i; 
+                }
+                if (sol2 > 1.0 && sol2 < lowest) {
+                    lowest = sol2;
+                    if (sol1 > 1.0f) { type = 1; }      // NORMAL SPHERE
+                    else { type = 2; }                  // HOLLOW SPHERE
+                    lowest_index = i;
+                }
             }
-            else {
-                t_vals.push_back(-1);  
-            }
-
-
-        }
-        else {
-            cout << "Sphere is not invertible!" << endl; 
-            t_vals.push_back(-1); 
-        }
-    }
-
-    int lowest_index = -1;
-    float lowest = numeric_limits<float>::max();
-
-    for (int i = 0; i < g_spheres.size(); i++) {
-        if (t_vals[i] > 0 && t_vals[i] < lowest) { // make sure hit time is > 1
-            lowest = t_vals[i];
-            lowest_index = i;
         }
     }
 
@@ -269,10 +260,11 @@ vec4 trace(const Ray& ray, int depth)
     if (depth > MAX_DEPTH) return g_bg;
 
     Sphere sphere; 
-    float t = intersect(ray, sphere);
+    int ray_intersect = -1; 
+    float t = intersect(ray, sphere, ray_intersect);
 
     // found intersection
-    if (t != numeric_limits<float>::max()) {
+    if (ray_intersect != -1) {
 
         vec4 hit = ray.origin + t * ray.dir; 
 
@@ -295,8 +287,9 @@ vec4 trace(const Ray& ray, int depth)
             light_ray.origin = hit;
 
             Sphere block;
-            float shadow = intersect(light_ray, block);
-            if (shadow != numeric_limits<float>::max() && shadow >= 0.0001f) {
+            int reflect_intersect = -1; 
+            float shadow = intersect(light_ray, block, reflect_intersect);
+            if (reflect_intersect != -1 && shadow >= 0.0001f) {
                 continue;
             }
 
@@ -315,7 +308,11 @@ vec4 trace(const Ray& ray, int depth)
 
         vec4 color = diffuse + ambient + specular;
 
-        // float r = 2 * dot(ray.dir, normal_vec);
+        if (ray_intersect == 2) {
+            color = checkColor(color);
+            return color; 
+        }
+
         float r = dot(ray.dir, normal_vec) * -2;
         Ray reflect; 
         reflect.dir = normalize(r * normal_vec + ray.dir);
@@ -414,7 +411,7 @@ string printVec(vec4 v) {
 void debug() 
 {
     for (int i = 0; i < g_spheres.size(); i++) {
-        cout << "SPHERE " << i + 1 << ": POSITION = " << printVec(g_spheres[i].pos) << endl;
+        cout << "SPHERE " << i + 1 << endl << "POSITION = " << printVec(g_spheres[i].pos) << endl << "SCALE = " << printVec(g_spheres[i].scale) << endl;
     }
 
 
