@@ -28,13 +28,8 @@ struct Sphere {
 
     string name; 
 
-    // Translations
-    float pos_x, pos_y, pos_z;
-
-    // Scale
-    float s_x, s_y, s_z;
-
-    // Color
+    vec4 pos; 
+    vec4 scale;
     vec4 color;
 
     float ka, kd, ks, kr;
@@ -45,9 +40,7 @@ struct Sphere {
 struct Light {
     string name;
 
-    float pos_x; 
-    float pos_y;
-    float pos_z;
+    vec4 pos; 
 
     vec4 color;
 };
@@ -75,8 +68,8 @@ inline vec3 toVec3( vec4 in ) { return vec3( in[0], in[1], in[2] ); }
 
 inline mat4 getSphereMatrix( Sphere s ) { 
     mat4 result = mat4();
-    result *= Translate(s.pos_x, s.pos_y, s.pos_z);
-    result *= Scale(s.s_x, s.s_y, s.s_z);
+    result *= Translate(s.pos.x, s.pos.y, s.pos.z);
+    result *= Scale(s.scale.x, s.scale.y, s.scale.z);
     return result; 
 }
 
@@ -133,12 +126,8 @@ void parseLine(const vector<string>& vs)
         {
             Sphere s;
             s.name = vs[1];
-            s.pos_x = toFloat( vs[2] );
-            s.pos_y = toFloat( vs[3] );
-            s.pos_z = toFloat( vs[4] );
-            s.s_x = toFloat( vs[5] );
-            s.s_y = toFloat( vs[6] );
-            s.s_z = toFloat( vs[7] );
+            s.pos = toVec4( vs[2], vs[3], vs[4] );
+            s.scale = toVec4( vs[5], vs[6], vs[7] );
             s.color = toVec4( vs[8], vs[9], vs[10] );
             s.ka = toFloat( vs[11] );
             s.kd = toFloat( vs[12] );
@@ -153,9 +142,7 @@ void parseLine(const vector<string>& vs)
         {
             Light l;
             l.name = vs[1];
-            l.pos_x = toFloat( vs[2] );
-            l.pos_y = toFloat( vs[3] ); 
-            l.pos_z = toFloat( vs[4] );
+            l.pos = toVec4( vs[2], vs[3], vs[4] ); 
             l.color = toVec4( vs[5], vs[6], vs[7] );
             g_lights.push_back(l); 
             break;
@@ -249,7 +236,7 @@ float intersect(Ray ray, Sphere &sphere)
     float lowest = numeric_limits<float>::max();
 
     for (int i = 0; i < g_spheres.size(); i++) {
-        if (t_vals[i] > 1 && t_vals[i] < lowest) { // make sure hit time is > 1
+        if (t_vals[i] > 0 && t_vals[i] < lowest) { // make sure hit time is > 1
             lowest = t_vals[i];
             lowest_index = i;
         }
@@ -288,9 +275,9 @@ vec4 trace(const Ray& ray, int depth)
     if (t != numeric_limits<float>::max()) {
 
         vec4 hit = ray.origin + t * ray.dir; 
-        // vec4 normal_vec = normalize(vec4(hit.x - sphere.pos_x, hit.y - sphere.pos_y, hit.z - sphere.pos_z, 0.0f));
-        vec4 normal_vec = hit - vec4(sphere.pos_x, sphere.pos_y, sphere.pos_z, 1.0f);
-        mat4 trans = Scale(sphere.s_x, sphere.s_y, sphere.s_z);
+
+        vec4 normal_vec = hit - vec4(sphere.pos.x, sphere.pos.y, sphere.pos.z, 1.0f);
+        mat4 trans = Scale(sphere.scale.x, sphere.scale.y, sphere.scale.z);
         mat4 inv;
         InvertMatrix(transpose(trans), inv);
         normal_vec.w = 0;
@@ -304,16 +291,14 @@ vec4 trace(const Ray& ray, int depth)
         for (int i = 0; i < g_lights.size(); i++) {
             Light l = g_lights[i];
             Ray light_ray;
-            light_ray.dir = normalize(vec4(l.pos_x - hit.x, l.pos_y - hit.y, l.pos_z - hit.z, 0.0f));
+            light_ray.dir = normalize(vec4(l.pos.x - hit.x, l.pos.y - hit.y, l.pos.z - hit.z, 0.0f));
             light_ray.origin = hit;
 
             Sphere block;
             float shadow = intersect(light_ray, block);
-            if (shadow != numeric_limits<float>::max()) {
+            if (shadow != numeric_limits<float>::max() && shadow >= 0.0001f) {
                 continue;
             }
-
-
 
             float d = dot(light_ray.dir, normal_vec);
 
@@ -333,7 +318,7 @@ vec4 trace(const Ray& ray, int depth)
         // float r = 2 * dot(ray.dir, normal_vec);
         float r = dot(ray.dir, normal_vec) * -2;
         Ray reflect; 
-        reflect.dir = r * normal_vec + ray.dir;
+        reflect.dir = normalize(r * normal_vec + ray.dir);
         reflect.origin = hit;
 
         vec4 reflection = trace(reflect, depth+1);
@@ -421,10 +406,16 @@ void saveFile()
     delete[] buf;
 }
 
+string printVec(vec4 v) {
+    string res = "(" + to_string(v.x) + ", " + to_string(v.y) + ", " + to_string(v.z) + ")";
+    return res;
+}
+
 void debug() 
 {
-
-
+    for (int i = 0; i < g_spheres.size(); i++) {
+        cout << "SPHERE " << i + 1 << ": POSITION = " << printVec(g_spheres[i].pos) << endl;
+    }
 
 
 }
@@ -445,9 +436,7 @@ int main(int argc, char* argv[])
     loadFile(argv[1]);
     render();
     saveFile();
-    if (argc == 3) {
-        debug();
-    }
+    debug();
 	return 0;
 }
 
