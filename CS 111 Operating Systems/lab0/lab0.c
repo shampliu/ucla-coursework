@@ -14,14 +14,14 @@ void SIGSEGV_handler(int signum) {
 }
 
 int main(int argc, char **argv) {
-  int segfault = 0;
-  int catch = 0;
-  const char *options = "abc:d"; 
+  static int segfault;
+  static int catch;
+  const char *options = "io"; 
   static struct option long_options[] = {
     { "input", required_argument, NULL, 'i' },
     { "output", required_argument, NULL, 'o' },
-    { "segfault", no_argument, 0, 's' },
-    { "catch", no_argument, 0, 'c' }
+    { "segfault", no_argument, &segfault, 1 },
+    { "catch", no_argument, &catch, 1 }
   };
   int options_index = 0;
   int c;
@@ -60,13 +60,6 @@ int main(int argc, char **argv) {
           }
         }
         break;
-      case 's': {
-        segfault = 1;
-        break;
-      }
-      case 'c':
-        catch = 1;
-	break;
     }
     
   }  
@@ -79,17 +72,14 @@ int main(int argc, char **argv) {
      int b = *a; 
   }
 
-  char buf[1];
+  char buf[128];
   int r; 
   while (1) {
     r = read(0, buf, sizeof(buf));
     if (r <= 0) {
       break;
     }
-    write(1, buf, sizeof(buf)); 
-  }
-  if (r < 0) {
-
+    write(1, buf, r); 
   }
   exit(0); 
 }
