@@ -59,28 +59,27 @@ void *thread_func(void *arg) {
 	}
 
 	// length
-	for (i = start_ind; i < end_ind; i++) {
-		switch(opt_sync) {
-			// PTHREAD MUTEX
-			case 'm': {
-				pthread_mutex_lock(&LIST_MUTEX);
-				SortedList_length(&LIST_HEAD);
-				pthread_mutex_unlock(&LIST_MUTEX);
-				break;
-			}
-			// SPIN LOCK
-			case 's': {
-				while (__sync_lock_test_and_set(&LIST_SPIN_LOCK, 1)) { }
-				SortedList_length(&LIST_HEAD);
-				__sync_lock_release(&LIST_SPIN_LOCK);
-				break;
-			}
-			// NO LOCK	
-			default: 
-				SortedList_length(&LIST_HEAD);
-				break;
+	switch(opt_sync) {
+		// PTHREAD MUTEX
+		case 'm': {
+			pthread_mutex_lock(&LIST_MUTEX);
+			SortedList_length(&LIST_HEAD);
+			pthread_mutex_unlock(&LIST_MUTEX);
+			break;
 		}
+		// SPIN LOCK
+		case 's': {
+			while (__sync_lock_test_and_set(&LIST_SPIN_LOCK, 1)) { }
+			SortedList_length(&LIST_HEAD);
+			__sync_lock_release(&LIST_SPIN_LOCK);
+			break;
+		}
+		// NO LOCK	
+		default: 
+			SortedList_length(&LIST_HEAD);
+			break;
 	}
+	
 
 	SortedListElement_t *elem;
 
@@ -197,7 +196,7 @@ int main(int argc, char *argv[]) {
 
   clock_gettime(CLOCK_MONOTONIC, &end);
 
-  long long OPERATIONS = NTHREADS * NITERATIONS;
+  long long OPERATIONS = NTHREADS * NITERATIONS * 2;	
   printf("%d threads x %d iterations x (insert + lookup/delete) = %d operations\n", NTHREADS, NITERATIONS, OPERATIONS);
 
   long long ELAPSED_TIME = ((end.tv_sec - start.tv_sec) * 1000000000) + (end.tv_nsec - start.tv_nsec);
