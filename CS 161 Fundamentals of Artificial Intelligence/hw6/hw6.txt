@@ -1,0 +1,128 @@
+1.
+  a. P(A, B, B), P(x, y, z).
+     θ = { x | A, y | B, z | B}
+
+  b. Q(y, G(A, B)), Q(G(x, x), y).
+     No unifier exists
+
+  c. R(x,A,z) , R(B,y,z)
+     θ = { x | B, y | A, }
+
+  d. Older (Father(y), y), Older (Father(x), John). 
+     θ = { x | John, y | John }
+
+  e. Knows(Father(y),y), Knows(x,x).
+     No unifier exists
+
+2.
+  a. 1  ∀x(Food(x) => Likes(John, x))
+     2  Food(Apples)
+     3  Food(Chicken)
+     4  ∀x∀y(Eats(x,y) ∧ ¬Kills(y,x) => Food(y))
+     5  ∀x∀y(Kills(y,x) => ¬Alive(x))
+     6  Eats(Bill, Peanuts) ∧ Alive(Bill)
+     7  ∀x(Eats(Bill, x) => Eats(Sue, x))
+
+  b. Eliminate => and move ¬ inwards
+
+     8  ∀x(¬Food(x) ∨ Likes(John, x))                 1
+     9  ∀x∀y(¬(Eats(x,y) ∧ ¬Kills(y,x)) ∨ Food(y))    4
+     10 ∀x∀y(¬Kills(y,x) ∨ ¬Alive(x))                 5
+     11 ∀x(¬Eats(Bill, x) ∨ Eats(Sue, x))             7
+     12 ∀x∀y(¬Eats(x,y) ∨ Kills(y,x) ∨ Food(y))       9
+
+     Standardize variables
+
+     13 ∀a(¬Food(a) ∨ Likes(John, a))                 8
+     14 ∀b∀c(¬Eats(b,c) ∨ Kills(c,b)) ∨ Food(c))      12
+     15 ∀d∀e(¬Kills(e,d) ∨ ¬Alive(d))                 10
+     16 ∀f(¬Eats(Bill, f) ∨ Eats(Sue, f))             11
+
+     Skolemization
+
+     Get rid of universal quantifiers
+
+     17 ¬Food(a) ∨ Likes(John, a)                     13
+     18 ¬Eats(b,c) ∨ Kills(c,b) ∨ Food(c)             14    
+     19 ¬Kills(e,d) ∨ ¬Alive(d)                       15
+     20 ¬Eats(Bill, f) ∨ Eats(Sue, f)                 16
+
+     Distribute ∨ and ∧
+
+  c. 1  ¬Food(a) ∨ Likes(John, a)
+     2  Food(Apples)
+     3  Food(Chicken)
+     4  ¬Eats(b,c) ∨ Kills(c,b) ∨ Food(c)
+     5  ¬Kills(e,d) ∨ ¬Alive(d)
+     6  Eats(Bill, Peanuts)
+     7  Alive(Bill)
+     8  ¬Eats(Bill, f) ∨ Eats(Sue, f)
+
+     9  Assume ¬Likes(John, Peanuts)
+     10 ¬Food(Peanuts)                                1, 9
+     11 ¬Kills(e, Bill)                               5, 7
+     12 ¬Eats(Bill, c) ∨ Food(c)                      4, 11
+     13 Food(Peanuts)                                 6, 12
+
+     Contradiction found between 13 and 10, therefore John likes peanuts.
+
+  d. 1  ¬Food(a) ∨ Likes(John, a)
+     2  Food(Apples)
+     3  Food(Chicken)
+     4  ¬Eats(b,c) ∨ Kills(c,b) ∨ Food(c)
+     5  ¬Kills(e,d) ∨ ¬Alive(d)
+     6  Eats(Bill, Peanuts)
+     7  Alive(Bill)
+     8  ¬Eats(Bill, f) ∨ Eats(Sue, f)
+
+     9  Assume ¬Eats(Sue, Peanuts)                                                          
+     10 Eats(Sue, Peanuts)                            6, 8
+
+     Contradiction found between 9 and 10, therefore Sue eats peanuts.
+
+  e. 1  ¬Food(a) ∨ Likes(John, a)
+     2  Food(Apples)
+     3  Food(Chicken)
+     4  ¬Eats(b,c) ∨ Kills(c,b) ∨ Food(c)
+     5  ¬Kills(e,d) ∨ ¬Alive(d)
+     6  Eats(Bill, Peanuts)
+     7  Alive(Bill)
+     8  ¬Eats(Bill, f) ∨ Eats(Sue, f) 
+
+     (new knowledge base)
+     9  ∀x∀y(¬Eats(x,y) => Dies(x))
+     10 ∀y(Dies(x) => ¬Alive(x))
+     11 Alive(Bill)
+     12 Eats(g,h) ∨ Dies(g)                           9
+     13 ¬Dies(i) ∨ ¬Alive(i)                          10
+     
+     14 Assume ¬Eats(Sue, Apples)
+     15 Dies(Sue)                                     14, 12
+     16 ¬Alive(Sue)                                   15, 13
+     17 ¬Kills(e, Bill)                               11, 5
+     18 ¬Eats(Bill,Apples)                            8, 14
+     19 Dies(Bill)                                    12, 18
+     18 ¬Alive(Bill)                                  19, 13
+
+     Contradiction found between 18 and 11, therefore Sue eats apples.
+
+3.
+  Graph 1's coloring is not satisfiable with 3 colors but it is satisfiable with 4 colors. 
+
+  This tells us that 4 is the minimum amount of values in the domain needed to meet the constraints of this problem. 
+
+  One way to color Graph 1 is:
+
+  Node    Color
+  1       1
+  2       2
+  3       1
+  4       4
+  5       3
+  6       2
+  7       3 
+
+  Graph 2 needs at least 8 colors to be satisfiable.
+
+
+
