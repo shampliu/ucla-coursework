@@ -1,0 +1,96 @@
+Chang Liu 
+704291153
+
+CS 161 HW 7
+
+1.
+  a. P(A,B|K) = P(A|B,K)P(B|K)
+     P(A,B,K) / P(K) = (P(A,B,K) / P(B,K)) * (P(B,K) / P(K))
+     P(A,B,K) / P(K) = P(A,B,K) / P(K)
+
+  b. P(A|B,K) = P(B|A,K)P(A|K)/P(B|K)
+     P(A,B|K) / P(B|K) = (P(B,A,K)/P(K)) * (P(A,K) / P(K)) * (P(B,K) / P(K))
+     P(A,B|K) / P(B|K) = (P(B,A,K) / P(K)) * (P(B,K)/P(K))
+     (P(A,B,K) / P(K)) * (P(B,K) / P(K)) = (P(B,A,K) / P(K)) * (P(B,K) / P(K))
+     P(A,B,K) / P(K) = P(B,A,K) / P(K)
+     P(A,B,K) / P(K) = P(A,B,K) / P(K)
+
+2.
+
+P(Oil) = 0.5
+P(Gas) = 0.2
+P(Neither) = 0.3
+P(Postive | Oil) = 0.9
+P(Positive | Gas) = 0.3
+P(Positive | Neither) = 0.1
+
+P(Positive) 
+ = P(Positive | Oil) * P(Oil) + P(Positive | Gas) * P(Gas) + P(Positive | Neither) * P(Neither)
+ = 0.9 * 0.5 + 0.3 * 0.2 + 0.1 * 0.3
+ = 0.54
+
+ P(Oil | Positive) 
+ = (P(Oil) * P(Positive | Oil)) / P(Positive)
+ = (0.5 * 0.9) / 0.54
+ = 0.83
+
+3. 
+
+P(a1) = P(Black) = 9/13
+P(a2) = P(Square) = 8/13
+P(a3) = P(Square | One ∨ Black) = P(Square ∧ (One ∨ Black)) / P(One ∨ Black) = 7/11
+
+        Black               ¬Black         
+        Square  ¬Square     Square  ¬Square
+One     2/13    1/13        1/13    1/13   
+¬One    4/13    2/13        1/13    1/13
+
+a1: Black
+P(a1) = 2/13 + 4/13 + 1/13 + 2/13 = 9/13
+
+a2: Square
+P(a2) = 2/13 + 4/13 + 1/13 + 1/13 = 8/13
+
+a3: Square | One ∨ Black 
+P(a3) = P(Square ∧ (One ∨ Black)) / P(One ∨ Black)
+      = (2/13 + 4/13 + 1/13) / (2/13 + 4/13 + 1/13 + 2/13 + 1/13 + 1/13)
+      = 7/11
+
+Two sentences that satisfy the condition:
+  (1) alpha = Square, beta = One, gamma = ¬Black         
+  (2) alpha = Square, beta ¬One, gamma = ¬Black
+  
+4.
+  a. I(A, {}, BE), 
+     I(B, {}, AC), 
+     I(C, A, BDE), 
+     I(D, AB, CE), 
+     I(E, B, ACDFG),
+     I(F, CD, ABE), 
+     I(G, F, ABCDEH), 
+     I(H, EF, ABCDG)
+
+  b. d_separated(A,BH,E)
+     False. ACFHE is not blocked. C and F (both sequential) are not in {B,H} and they are open. 
+    
+     d_separated(G,D,E)
+     True. Paths from G to E must go through either H or D. H is blocked since it's 
+     not in {D} and D is blocked since it is in {D}.
+
+     d_separated(AB,F,GH)
+     False. Removing F will block the path from A and B to G but there still exists the sequence BEH. 
+
+  c. P(a,b,c,d,e,f,g,h) = P(a) * P(b) * P(c|a) * P(d|a,b) * P(e|b) * P(f|c,d) 
+     * P(h|e,f) * P(g|f)
+
+  d. A and B are independent
+     P(A = 0, B = 0) = P(A = 0) * P(B = 0) = 0.24 
+     
+     A and E are independent
+     P(E = 1 | A = 1) = P(E = 1) 
+     P(E = 1) = P(E = 1, B = 0) + P(E = 1, B = 1)
+         = P(E = 1 | B = 0) * P(B = 0) + P(E = 1 | B = 1) * P(B = 1)
+         = 0.9 * 0.3 + 0.1 * 0.7 = 0.34
+         = 0.34
+
+
