@@ -1,0 +1,99 @@
+Chang Liu
+704291153
+
+CS 161 HW 8
+
+1.  Included in this folder is my test.net file which contains the Bayesian 
+    network for the problem. In SamIAm, I constrained the Test node to be 
+    Positive and ran a sensitivity analysis for Pr(D|T) >= 3. The suggested
+    values it gave me were:
+
+    Pr(Disease = Positive) >= 0.008942      
+    - current value was 0.001
+    Pr(Test = Positive | Disease = Negative) <= 0.002219
+    - current value was 0.02
+
+2.  
+	a. 
+
+	Variables				Possible Values
+
+	ExpectingGuests			Yes, No, N/A
+	FamilyHome				Yes, No, N/A
+	SoundSensor				On, Off, N/A
+	LightSensor 			On, Off, N/A
+	HearableBarking			Yes, No, N/A
+	Battery					OK, Dead, N/A
+	SoundSensorHealth		OK, Broken, N/A
+	LightSensorHealth		OK, Broken, N/A
+	DogBarking				Yes, No, N/A
+	DogOutside				Yes, No, N/A
+	OutdoorLight			On, Off, N/A
+	DogBowelTrouble			Yes, No, N/A
+
+	b. 
+
+	ExpectingGuests => OutdoorLight
+	FamilyHome => DogOutside
+	DogBowelTrouble => DogOutside
+	DogOutside => DogBarking
+	DogBarking => HearableBarking
+	HearableBarking => SoundSensor
+	OutdoorLight => LightSensor
+	SoundSensorHealth => SoundSensor
+	LightSensorHealth => LightSensor
+	Battery => SoundSensor
+	Battery => LightSensor
+	ExpectingGuests => FamilyHome
+	FamilyHome => OutdoorLight
+
+	c. 
+
+	After constructing the network from the causal structure, I ran the EM 
+	Learning algorithm on the structure. 
+
+	- 	For the first instantiation, I set the LightSensor variable to On and
+		the SoundSensor variable to Off. I then ran the MPE computation with 
+		this given info and got:
+
+		Battery								OK
+		DogBarking							No
+		DogBowelTrouble						Yes
+		DogOutside							Yes
+		ExpectingGuests						No
+		FamilyHome							No
+		HearableBarking						No
+		LightSensorHealth					OK
+		OutdoorLight						On
+		SoundSensorHealth					OK
+
+		Running MAP on this yielded the same result.
+
+	-	For the second instantiation, I set ExpectingGuests to No and 
+		FamilyHome to Yes. Running MPE gave me the following instantiations 
+		for the sensors:
+
+		LightSensor								Off
+		SoundSensor 							Off
+
+		Running MAP on this yielded the same result.
+
+	- 	One set for Z could be { Battery, DogOutside }. We can see taht Battery 
+		and DogOutside d-separate the two sensors, causing them to be 
+		conditionally independent. 
+
+	- 	The network here is a multiply-connected network. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
